@@ -19,10 +19,6 @@ class Receptor extends FlxSpriteGroup
     {
         this.direction = direction;
         this.isCPU = isCPU;
-        this.skin = skin;
-        super(x, y);
-
-        add(strumNote);
 
         script = new MoonScript();
 
@@ -30,6 +26,12 @@ class Receptor extends FlxSpriteGroup
         script.set("receptor", strumNote);
 
         script.load('assets/images/ingame/UI/notes/$skin/noteskin.hx');
+        
+        this.skin = skin;
+        super(x, y);
+
+        add(strumNote);
+
     }
 
     private function _updtGraphics()
