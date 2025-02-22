@@ -31,7 +31,6 @@ class Receptor extends FlxSpriteGroup
         super(x, y);
 
         add(strumNote);
-
     }
 
     private function _updtGraphics()

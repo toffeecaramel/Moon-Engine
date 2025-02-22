@@ -19,7 +19,7 @@ class PlayState extends FlxState
 	{
 		super.create();
 
-		playField = new PlayField('2hot', 'pico', 'hard');
+		playField = new PlayField('2hot', 'hard', 'pico');
 		playField.conductor.onBeat.add(beatHit);
 		add(playField);
 	}

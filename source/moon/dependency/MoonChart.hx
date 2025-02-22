@@ -16,6 +16,7 @@ typedef NoteStruct =
     var data:Int;
     var lane:String;
     var type:String;
+    var duration:Float;
 };
 
 /**
@@ -133,9 +134,10 @@ class MoonChart
                 final note:NoteStruct =
                 {
                     time: note.t,
-                    data: (note.d > 3) ? Std.int(note.d - 3) : note.d,
-                    lane:  (note.d > 3) ? 'playerStrumline' : 'opponentStrumline',
-                    type: note.k ?? 'default'
+                    data: (note.d > 3) ? Std.int(note.d - 4) : note.d,
+                    lane:  (note.d > 3) ? 'opponent' : 'p1',
+                    type: note.k ?? 'default',
+                    duration: note.l
                 };
                 convertedChart.notes.push(note);
             }

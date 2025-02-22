@@ -1,5 +1,6 @@
 package moon.game.obj.notes;
 
+import sys.FileSystem;
 import moon.dependency.scripting.MoonScript;
 import sys.io.File;
 import haxe.Json;
@@ -10,11 +11,13 @@ import flixel.tweens.FlxEase;
 
 enum NoteState 
 {
+    CHART_EDITOR;
     GOT_HIT;
     TOO_LATE;
     MISSED;
     NONE;
 }
+
 class Note extends MoonSprite
 {
     /**
@@ -58,7 +61,13 @@ class Note extends MoonSprite
      */
     public var lane:String = 'P1';
 
+    /**
+     * The receptor in which the note will go to.
+     */
+    public var receptor:Receptor;
+
     public var conductor:Conductor;
+
     public var script:MoonScript;
 
     /**
@@ -68,8 +77,9 @@ class Note extends MoonSprite
      * @param type
      * @param skin
      * @param duration
+     * @param conductor
      */
-    public function new(direction, time, ?type = 'v-slice', ?skin = 'default', duration) 
+    public function new(direction, time, ?type = 'v-slice', ?skin = 'v-slice', duration, conductor) 
     {
         super();
         centerAnimations = true;
@@ -77,22 +87,30 @@ class Note extends MoonSprite
         this.time = time;
         this.type = type;
 
+        script = new MoonScript();
         script.set("staticNote", this);
         script.load('assets/images/ingame/UI/notes/$skin/noteskin.hx');
 
         this.skin = skin;
         this.duration = duration;
+        this.conductor = conductor;
     }
 
     override public function update(dt:Float):Void
     {
         super.update(dt);
+        if(receptor != null || state != CHART_EDITOR)
+        {
+            this.visible = true;
+            this.y = receptor.y + (this.time - conductor.time) * speed;
+            this.x = receptor.x;
+        }
         if(active && state == GOT_HIT) alpha = 0;
     }
 
     private function _updateGraphics():Void
     {
-        final curSkin = (type != 'v-slice') ? skin : type;
+        final curSkin = (type != 'default' && FileSystem.exists('assets/images/ingame/UI/notes/$type')) ? type : skin;
         final dir:String = MoonUtils.intToDir(direction);
 
         frames = Paths.getSparrowAtlas('ingame/UI/notes/$curSkin/staticArrows');

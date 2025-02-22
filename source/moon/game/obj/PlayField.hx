@@ -1,5 +1,6 @@
 package moon.game.obj;
 
+import moon.game.obj.notes.NoteSpawner;
 import flixel.FlxG;
 import moon.game.obj.notes.Strumline;
 import flixel.group.FlxGroup;
@@ -10,14 +11,16 @@ class PlayField extends FlxGroup
     var conductor:Conductor;
     var playback:Song;
 
+    var playerStrumline:Strumline;
+    var opponentStrumline:Strumline;
+    var noteSpawner:NoteSpawner;
+    var chart:MoonChart;
+
     var song:String;
     var mix:String;
     var difficulty:String;
 
-    var playerStrumline:Strumline;
-    var opponentStrumline:Strumline;
-
-    public function new(song:String, mix:String, difficulty:String)
+    public function new(song:String, difficulty:String, mix:String)
     {
         super();
         this.song = song;
@@ -33,16 +36,24 @@ class PlayField extends FlxGroup
 			{name: song, mix: mix, type: Voices_Opponent}, 
 			{name: song, mix: mix, type: Voices_Player}], 
         conductor);
+
+        chart = new MoonChart(song, difficulty, mix);
             
         final xVal = (FlxG.width * 0.5);
         final xAddition = (FlxG.width * 0.25);
 
         //TODO: Actual skin support
         opponentStrumline = new Strumline(xVal - xAddition, 80, 'v-slice', true);
+        opponentStrumline.strumID = 'opponent';
         add(opponentStrumline);
 
         playerStrumline = new Strumline(xVal + xAddition, 80, 'v-slice', false);
+        playerStrumline.strumID = 'p1';
         add(playerStrumline);
+
+        //TODO: make 2p support for note spawner
+        noteSpawner = new NoteSpawner(chart.content.notes, [playerStrumline, opponentStrumline], conductor);
+        add(noteSpawner);
 
 		playback.state = PLAY;
     }
