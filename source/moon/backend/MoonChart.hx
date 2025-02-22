@@ -1,5 +1,6 @@
 package moon.backend;
 
+import sys.io.File;
 import haxe.Json;
 import moonchart.formats.fnf.legacy.FNFPsych;
 import moonchart.formats.fnf.FNFCodename;
@@ -33,6 +34,7 @@ typedef EventStruct =
 typedef MetadataStruct =
 {
     // Game data
+    var bpm:Float;
     var scrollSpd:Float;
     var stage:String;
     var players:Array<String>;
@@ -78,6 +80,9 @@ class MoonChart
         'v-slice'
     ];
 
+    /**
+     * All of the chart content.
+     */
     public var content:ChartStruct;
 
     /**
@@ -139,6 +144,7 @@ class MoonChart
         // Now let's convert the metadata as well.
         convertedChart.meta =
         {
+            bpm: metadata.timeChanges[0].bpm,
             scrollSpd: Reflect.field(data.scrollSpeed, difficulty),
             stage: metadata.playData.stage,
             players: [metadata.playData.characters.player],
@@ -154,6 +160,7 @@ class MoonChart
             generatedBy: metadata.generatedBy,
             version: metadata.version
         };
-        trace(convertedChart.meta);
+
+        File.saveContent('assets/data/chart-converter/mychart-$difficulty-converted.json', Json.stringify(convertedChart, "\t"));
     }
 }

@@ -1,5 +1,6 @@
 package;
 
+import moon.toolkit.ChartConvert;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.FlxSprite;
@@ -37,13 +38,15 @@ class PlayState extends FlxState
 	{
 		(FlxG.sound.music != null) ? conductor.time = FlxG.sound.music.time /** FlxG.sound.music.pitch*/ : null;
 		super.update(elapsed);
+
+		if(FlxG.keys.justPressed.NINE) FlxG.switchState(()->new ChartConvert());
 	}
 
 	public function beatHit(curBeat:Float)
 	{
 		if ((curBeat % conductor.numerator) == 0)
 		{
-			// cam zoom
+			//TODO: cam zoom
 		}
 	}
 }
