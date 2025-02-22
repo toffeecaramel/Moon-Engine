@@ -1,5 +1,7 @@
 package;
 
+import moon.game.obj.PlayField;
+import moon.game.obj.Song;
 import moon.toolkit.ChartConvert;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
@@ -13,30 +15,18 @@ import flixel.FlxState;
 class PlayState extends FlxState
 {
 	private var conductor:Conductor;
-	private var soul:FlxSprite = new FlxSprite();
+	private var playField:PlayField;
 	override public function create()
 	{
 		super.create();
 
-		conductor = new Conductor(115, 6, 4);
-		conductor.onBeat.add(beatHit);
-
-		soul.loadGraphic('assets/soul.png');
-		soul.scale.set(0.1, 0.1);
-		soul.screenCenter();
-		soul.x -= 100;
-		soul.y -= 100;
-		add(soul);
-
-		FlxTween.tween(soul, {x: soul.x + 200}, conductor.crochet / 1000 * conductor.numerator, {ease: FlxEase.quadInOut, type:PINGPONG});
-		FlxTween.tween(soul, {y: soul.y + 200}, conductor.crochet / 1000 * 3, {ease: FlxEase.quadInOut, type:PINGPONG});
-
-		FlxG.sound.playMusic('assets/Undyne 115.ogg');
+		playField = new PlayField('2hot', 'pico', 'hard');
+		playField.conductor.onBeat.add(beatHit);
+		add(playField);
 	}
 
 	override public function update(elapsed:Float):Void
 	{
-		(FlxG.sound.music != null) ? conductor.time = FlxG.sound.music.time /** FlxG.sound.music.pitch*/ : null;
 		super.update(elapsed);
 
 		if(FlxG.keys.justPressed.NINE) FlxG.switchState(()->new ChartConvert());

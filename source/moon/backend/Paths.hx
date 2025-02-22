@@ -242,22 +242,15 @@ class Paths
 
     inline static public function file(file:String, type:AssetType = TEXT, ?library:String)
         return getPath(file, type, library);
-
-    /**
-     * Returns a sound file from the sounds path.
-     * @param file 
-     * @return return 'assets/sounds/$file.ogg'
-     */
-    inline static public function sound(file:String)
-        return 'assets/sounds/$file.ogg';
     
     /**
      * Returns a music file from the music path.
      * @param file 
+     * @param from (can be either images, data, etc.)
      * @return return 'assets/music/$file.ogg'
      */
-    inline static public function music(file:String)
-        return 'assets/music/$file.ogg';
+    inline static public function audio(file:String, ?from:String = 'music')
+        return 'assets/$from/$file.ogg';
 
     /**
      * Returns a font file from the fonts path. (MUST INCLUDE FILE FORMAT!)

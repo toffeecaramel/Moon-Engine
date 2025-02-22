@@ -1,0 +1,6239 @@
+{
+	"events": [],
+	"notes": [
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 0,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 0,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 206.043956043956,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 206.043956043956,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 494.505494505495,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 494.505494505495,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 824.175824175824,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 989.010989010989,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 1153.84615384615,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 1318.68131868132,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 1318.68131868132,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 1524.72527472527,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 1524.72527472527,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 1813.18681318681,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 1813.18681318681,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 2142.85714285714,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 2307.69230769231,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 2472.52747252747,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 2637,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 2637,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 2843.04395604396,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 2843.04395604396,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 3131.50549450549,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 3131.50549450549,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 3461.17582417582,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 3626.01098901099,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 3790.84615384615,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 3955.68131868132,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 3955.68131868132,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 3956.04395604396,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 4120.87912087912,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 4162.08791208791,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 4162.08791208791,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 4285.71428571429,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 4450.18681318681,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 4450.18681318681,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 4450.54945054945,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 4615.38461538462,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 4779.85714285714,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 4780.21978021978,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 4944.69230769231,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 4945.05494505495,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 5109.52747252747,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 5109.89010989011,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 5274.72527472528,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 5604.39560439561,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 5934.06593406593,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 6263.73626373626,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 6593.40659340659,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 6923.07692307692,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 7252.74725274725,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 7582.41758241758,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 7912.08791208791,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 8076.92307692308,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 8241.75824175824,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 8406.59340659341,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 8571.42857142857,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 8736.26373626374,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 8901.0989010989,
+			"type": "weekend-1-lightcan"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 8901.0989010989,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 8983.51648351648,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 9065.93406593407,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 9148.35164835165,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 9230.76923076923,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 9560.43956043956,
+			"type": "weekend-1-kickcan"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 9560.43956043956,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 9890.10989010989,
+			"type": "weekend-1-kneecan"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 9890.10989010989,
+			"type": "weekend-1-cockgun"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 10219.7802197802,
+			"type": "weekend-1-firegun"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 10549,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 10549,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 10755.043956044,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 10755.043956044,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 11043.5054945055,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 11043.5054945055,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 11373.1758241758,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 11538.010989011,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 11702.8461538462,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 11867.6813186813,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 11867.6813186813,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 12073.7252747253,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 12073.7252747253,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 12362.1868131868,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 12362.1868131868,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 12691.8571428571,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 12856.6923076923,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 13021.5274725275,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 13186,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 13186,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 13392.043956044,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 13392.043956044,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 13680.5054945055,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 13680.5054945055,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 14010.1758241758,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 14175.010989011,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 14339.8461538462,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 14504.6813186813,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 14504.6813186813,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 14710.7252747253,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 14710.7252747253,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 14999.1868131868,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 14999.1868131868,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 15328.8571428571,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 15493.6923076923,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 15658.5274725275,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 15824.1758241758,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 15989.010989011,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 16153.8461538462,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 16318.6813186813,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 16483.5164835165,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 16648.3516483517,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 16813.1868131868,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 16978.021978022,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 17142.8571428571,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 17307.6923076923,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 17472.5274725275,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 17637.3626373626,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 17802.1978021978,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 17967.032967033,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 18131.8681318681,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 18214.2857142857,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 18296.7032967033,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 18461.5384615385,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 18626.3736263736,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 18791.2087912088,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 18956.043956044,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 19120.8791208791,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 19285.7142857143,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 19450.5494505495,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 19615.3846153846,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 19780.2197802198,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 19945.0549450549,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 20109.8901098901,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 20274.7252747253,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 20439.5604395604,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 20604.3956043956,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 20769.2307692308,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 20851.6483516484,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 20934.0659340659,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 21098.9010989011,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 21098.9010989011,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 21428.5714285714,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 21593.4065934066,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 21758.2417582418,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 21923.0769230769,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 22087.9120879121,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 22252.7472527473,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 22417.5824175824,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 22417.5824175824,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 22582.4175824176,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 22747.2527472527,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 22912.0879120879,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 23076.9230769231,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 23241.7582417582,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 23406.5934065934,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 23571.4285714286,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 23736.2637362637,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 23736.2637362637,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 24065.9340659341,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 24230.7692307692,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 24395.6043956044,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 24560.4395604396,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 24725.2747252747,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 24890.1098901099,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 25054.9450549451,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 25054.9450549451,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 25219.7802197802,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 25384.6153846154,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 25549.4505494506,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 25714.2857142857,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 25879.1208791209,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 26043.956043956,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 26208.7912087912,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 26373.6263736264,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 26538.4615384615,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 26703.2967032967,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 26868.1318681319,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 27032.967032967,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 27197.8021978022,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 27362.6373626374,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 27445.0549450549,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 27527.4725274725,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 27609.8901098901,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 27692.3076923077,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 27857.1428571429,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 28021.978021978,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 28186.8131868132,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 28351.6483516484,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 28516.4835164835,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 28681.3186813187,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 28763.7362637363,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 28846.1538461538,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 28928.5714285714,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 29010.989010989,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 29175.8241758242,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 29340.6593406593,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 29505.4945054945,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 29670.3296703297,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 29835.1648351648,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 30000,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 30082.4175824176,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 30164.8351648352,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 30247.2527472528,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 30329.6703296703,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 30659.3406593407,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 30989.010989011,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 31318.6813186813,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 31648.3516483517,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 31648.3516483517,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 31978.021978022,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 31978.021978022,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 32472.5274725275,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 32472.5274725275,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 32802.1978021978,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 32884.6153846154,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 32967.032967033,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 32967.032967033,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 33173.0769230769,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 33173.0769230769,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 33461.5384615385,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 33461.5384615385,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 33791.2087912088,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 33791.2087912088,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 34285.7142857143,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 34285.7142857143,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 34615.3846153846,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 34615.3846153846,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 35109.8901098901,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 35109.8901098901,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 35439.5604395604,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 35521.978021978,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 35604.3956043956,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 35604.3956043956,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 35810.4395604396,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 35810.4395604396,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 36098.9010989011,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 36098.9010989011,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 36428.5714285714,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 36428.5714285714,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 36923.0769230769,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 36923.0769230769,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 37252.7472527473,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 37252.7472527473,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 37747.2527472528,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 37747.2527472528,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 38076.9230769231,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 38159.3406593407,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 38241.7582417582,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 38241.7582417582,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 38447.8021978022,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 38447.8021978022,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 38736.2637362637,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 38736.2637362637,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 39065.9340659341,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 39065.9340659341,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 39560.4395604396,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 39560.4395604396,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 39890.1098901099,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 39890.1098901099,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 40384.6153846154,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 40384.6153846154,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 40549.4505494506,
+			"type": "weekend-1-lightcan"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 40714.2857142857,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 40796.7032967033,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 40879.1208791209,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 40879.1208791209,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 41085.1648351648,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 41085.1648351648,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 41208.7912087912,
+			"type": "weekend-1-kickcan"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 41373.6263736264,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 41373.6263736264,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 41538.4615384615,
+			"type": "weekend-1-cockgun"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 41538.4615384615,
+			"type": "weekend-1-kneecan"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 41868.1318681319,
+			"type": "weekend-1-firegun"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 42197.8021978022,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 42197.8021978022,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 42527.4725274725,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 42527.4725274725,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 43021.978021978,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 43021.978021978,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 43351.6483516484,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 43434.0659340659,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 43516.4835164835,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 43516.4835164835,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 43846.1538461539,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 43846.1538461539,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 44340.6593406593,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 44340.6593406593,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 44670.3296703297,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 44752.7472527473,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 44835.1648351648,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 44835.1648351648,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 45164.8351648352,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 45164.8351648352,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 45659.3406593407,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 45659.3406593407,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 45989.010989011,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 46071.4285714286,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 46153.8461538462,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 46153.8461538462,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 46483.5164835165,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 46483.5164835165,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 46978.021978022,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 46978.021978022,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 47307.6923076923,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 47390.1098901099,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 47472.5274725275,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 47472.5274725275,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 47678.5714285714,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 47678.5714285714,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 47967.032967033,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 47967.032967033,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 48296.7032967033,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 48461.5384615385,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 48626.3736263736,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 48791.2087912088,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 48791.2087912088,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 48997.2527472528,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 48997.2527472528,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 49285.7142857143,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 49285.7142857143,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 49615.3846153846,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 49780.2197802198,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 49945.054945055,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 50109.8901098901,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 50109.8901098901,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 50315.9340659341,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 50315.9340659341,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 50604.3956043956,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 50645.6043956044,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 50934.0659340659,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 51098.9010989011,
+			"type": "weekend-1-lightcan"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 51098.9010989011,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 51263.7362637363,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 51428.5714285714,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 51428.5714285714,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 51634.6153846154,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 51634.6153846154,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 51758.2417582418,
+			"type": "weekend-1-kickcan"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 51923.0769230769,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 51923.0769230769,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 52087.9120879121,
+			"type": "weekend-1-kneecan"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 52087.9120879121,
+			"type": "weekend-1-cockgun"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 52417.5824175824,
+			"type": "weekend-1-firegun"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 52747,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 52747,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 52953.043956044,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 52953.043956044,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 53241.5054945055,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 53241.5054945055,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 53571.1758241758,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 53736.010989011,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 53900.8461538461,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 54065.6813186813,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 54065.6813186813,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 54271.7252747253,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 54271.7252747253,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 54560.1868131868,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 54560.1868131868,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 54889.8571428571,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 55054.6923076923,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 55219.5274725275,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 55384.6153846154,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 55467.032967033,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 55549.4505494506,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 55714.2857142857,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 55796.7032967033,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 55879.1208791209,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 56043.956043956,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 56126.3736263736,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 56208.7912087912,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 56373.6263736264,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 56456.043956044,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 56538.4615384615,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 56703.2967032967,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 56785.7142857143,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 56868.1318681319,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 57032.967032967,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 57115.3846153846,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 57197.8021978022,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 57362.6373626374,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 57445.054945055,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 57527.4725274725,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 57692.3076923077,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 57774.7252747253,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 57857.1428571429,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 58021.978021978,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 58104.032967033,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 58186.8131868132,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 58351.6483516484,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 58433.7032967033,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 58516.4835164835,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 58681.3186813187,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 58763.3736263736,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 58846.1538461539,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 59010.989010989,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 59093.043956044,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 59175.8241758242,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 59340.6593406593,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 59422.7142857143,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 59505.4945054945,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 59670.3296703297,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 59752.3846153846,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 59835.1648351648,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 60000,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 60082.4175824176,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 60164.8351648352,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 60329.6703296703,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 60412.0879120879,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 60494.5054945055,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 60659.3406593407,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 60659.3406593407,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 60741.7582417582,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 60824.1758241758,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 60989.010989011,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 60989.010989011,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 61071.4285714286,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 61153.8461538462,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 61318.6813186813,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 61318.6813186813,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 61401.0989010989,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 61483.5164835165,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 61648.3516483517,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 61648.3516483517,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 61730.7692307692,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 61813.1868131868,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 61978.021978022,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 61978.021978022,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 62060.4395604396,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 62142.8571428571,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 62307.6923076923,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 62307.6923076923,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 62390.1098901099,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 62472.5274725275,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 62637.3626373626,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 62637.3626373626,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 62719.7802197802,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 62802.1978021978,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 62967.032967033,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 62967.032967033,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 63049.4505494506,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 63131.8681318681,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 63296.7032967033,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 63379.1208791209,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 63461.5384615385,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 63626.3736263736,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 63708.7912087912,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 63791.2087912088,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 63956.043956044,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 64038.4615384615,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 64120.8791208791,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 64285.7142857143,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 64368.1318681319,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 64450.5494505495,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 64615.3846153846,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 64697.8021978022,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 64780.2197802198,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 64945.0549450549,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 65027.4725274725,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 65109.8901098901,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 65274.7252747253,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 65357.1428571429,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 65439.5604395604,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 65604.3956043956,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 65686.8131868132,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 65769.2307692308,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 65934.0659340659,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 65934.0659340659,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 65934.0659340659,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 65934.0659340659,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 66263.7362637362,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 66263.7362637362,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 66263.7362637363,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 66263.7362637363,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 66758.2417582417,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 66758.2417582417,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 66758.2527472528,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 66758.2527472528,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 67087.912087912,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 67087.9230769231,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 67170.3296703296,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 67170.3406593407,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 67252.7472527472,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 67252.7472527472,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 67252.7582417582,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 67252.7582417582,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 67458.7912087911,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 67458.7912087911,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 67458.8021978022,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 67458.8021978022,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 67747.2527472527,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 67747.2527472527,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 67747.2637362637,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 67747.2637362637,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 68076.923076923,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 68076.923076923,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 68076.9340659341,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 68076.9340659341,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 68571.4285714285,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 68571.4285714285,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 68571.4395604396,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 68571.4395604396,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 68901.0989010988,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 68901.0989010988,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 68901.0989010989,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 68901.0989010989,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 69395.6043956043,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 69395.6043956043,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 69395.6153846154,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 69395.6153846154,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 69725.2747252746,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 69725.2747252747,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 69807.6923076922,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 69807.6923076923,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 69890.1098901098,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 69890.1098901098,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 69890.1098901099,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 69890.1098901099,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 70096.1538461538,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 70096.1538461538,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 70096.1538461538,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 70096.1538461538,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 70384.6153846153,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 70384.6153846153,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 70384.6153846154,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 70384.6153846154,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 70549.4505494506,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 70714.2857142856,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 70714.2857142856,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 70714.2857142857,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 70879.1208791209,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 71043.956043956,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 71208.0659340659,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 71208.0659340659,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 71208.0659340659,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 71208.0659340659,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 71537.7362637362,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 71537.7362637362,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 71538.4615384615,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 71538.4615384615,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 72032.2417582417,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 72032.2417582417,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 72032.2527472528,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 72032.2527472528,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 72361.912087912,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 72361.9230769231,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 72444.3296703296,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 72444.3406593407,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 72526.7472527472,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 72526.7472527472,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 72526.7582417582,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 72526.7582417582,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 72732.7912087911,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 72732.7912087911,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 72732.8021978022,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 72732.8021978022,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 73021.2527472527,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 73021.2527472527,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 73021.2637362637,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 73021.2637362637,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 73350.923076923,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 73350.923076923,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 73350.9340659341,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 73350.9340659341,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 73845.4285714285,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 73845.4285714285,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 73845.4395604396,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 73845.4395604396,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 74175.0989010988,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 74175.0989010988,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 74175.8241758242,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 74175.8241758242,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 74669.6043956043,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 74669.6043956043,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 74669.6153846154,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 74669.6153846154,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 74999.2747252746,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 74999.2747252747,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 75081.6923076922,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 75081.6923076923,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 75164.1098901098,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 75164.1098901098,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 75164.1098901099,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 75164.1098901099,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 75370.1538461538,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 75370.1538461538,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 75370.1538461538,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 75370.1538461538,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 75658.6153846153,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 75658.6153846153,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 75658.6153846154,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 75658.6153846154,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 75823.4505494506,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 75988.2857142856,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 75988.2857142856,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 75989.010989011,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 76153.1208791209,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 76318.6813186813,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 76483.6153846154,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 76566.032967033,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 76648.4505494506,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 76813.2857142857,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 76895.6043956044,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 76978.021978022,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 77142.956043956,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 77225.2747252747,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 77307.7912087912,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 77472.6263736264,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 77554.9450549451,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 77637.4615384615,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 77802.2967032967,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 77884.6153846154,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 77967.1318681319,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 78131.967032967,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 78214.2857142857,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 78296.8021978022,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 78461.6373626374,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 78543.956043956,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 78626.4725274725,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 78791.3076923077,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 78873.6263736264,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 78956.1428571429,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 79120.8791208791,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 79203.032967033,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 79285.7142857143,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 79450.5494505495,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 79532.967032967,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 79615.3846153846,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 79780.2197802198,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 79862.6373626374,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 79945.0549450549,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 80109.8901098901,
+			"type": "weekend-1-lightcan"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 80109.8901098901,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 80192.3076923077,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 80274.7252747253,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 80439.5604395604,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 80521.978021978,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 80604.3956043956,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 80769.2307692308,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 80769.2307692308,
+			"type": "weekend-1-kickcan"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 80851.6483516484,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 80934.0659340659,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 81098.9010989011,
+			"type": "weekend-1-kneecan"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 81098.1098901099,
+			"type": "weekend-1-cockgun"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 81427.7802197802,
+			"type": "weekend-1-firegun"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 81758.2417582418,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 81758.2417582418,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 81840.6593406594,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 81923.076923077,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 82087.9120879121,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 82087.9120879121,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 82170.3296703297,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 82252.7472527473,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 82417.5824175824,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 82417.5824175824,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 82500,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 82582.4175824176,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 82747.2527472528,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 82747.2527472528,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 82829.6703296703,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 82912.0879120879,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 83076.9230769231,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 83076.9230769231,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 83159.3406593407,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 83241.7582417583,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 83406.5934065934,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 83406.5934065934,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 83489.010989011,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 83571.4285714286,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 83736.2637362638,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 83736.2637362638,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 83818.6813186813,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 83901.0989010989,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 84065.9340659341,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 84065.9340659341,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 84148.3516483517,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 84230.7692307692,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 84395.6043956044,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 84478.021978022,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 84560.4395604396,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 84725.2747252747,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 84807.6923076923,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 84890.1098901099,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 85054.9450549451,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 85137.3626373626,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 85219.7802197802,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 85384.6153846154,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 85384.6153846154,
+			"type": "weekend-1-lightcan"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 85467.032967033,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 85549.4505494506,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 85714.2857142857,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 85796.7032967033,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 85879.1208791209,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 86043.956043956,
+			"type": "weekend-1-kickcan"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 86043.956043956,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 86126.3736263736,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 86208.7912087912,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 86373.6263736264,
+			"type": "weekend-1-kneecan"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 86373.1098901099,
+			"type": "weekend-1-cockgun"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 86702.7802197802,
+			"type": "weekend-1-firegun"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 87032.0659340659,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 87032.0659340659,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 87032.0659340659,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 87032.0659340659,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 87361.7362637362,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 87361.7362637362,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 87362.6373626374,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 87362.6373626374,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 87856.2417582417,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 87856.2417582417,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 87856.2527472528,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 87857.1428571429,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 88185.912087912,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 88185.9230769231,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 88268.3296703296,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 88268.3406593407,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 88350.7472527472,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 88350.7472527472,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 88350.7582417582,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 88350.7582417582,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 88556.7912087911,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 88556.7912087911,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 88557.6923076923,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 88557.6923076923,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 88845.2527472527,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 88845.2527472527,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 88845.2637362637,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 88845.2637362637,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 89174.923076923,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 89174.923076923,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 89175.8241758242,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 89175.8241758242,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 89669.4285714285,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 89669.4285714285,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 89669.4395604396,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 89669.4395604396,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 89999.0989010988,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 89999.0989010988,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 90000,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 90000,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 90493.6043956043,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 90493.6043956043,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 90493.6153846154,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 90494.5054945055,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 90823.2747252746,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 90823.2747252747,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 90905.6923076922,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 90905.6923076923,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 90988.1098901098,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 90988.1098901098,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 90988.1098901099,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 90988.1098901099,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 91194.1538461538,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 91194.1538461538,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 91195.0549450549,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 91195.0549450549,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 91482.6153846153,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 91482.6153846153,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 91482.6153846154,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 91482.6153846154,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 91647.4505494506,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 91812.2857142856,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 91812.2857142856,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 91813.1868131868,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 91977.1208791209,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 92142.8571428571,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 92306.0659340659,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 92306.0659340659,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 92306.0659340659,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 92306.0659340659,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 92635.7362637362,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 92635.7362637362,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 92637.3626373626,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 92637.3626373626,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 93130.2417582417,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 93130.2417582417,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 93130.2527472528,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 93131.8681318681,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 93459.912087912,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 93459.9230769231,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 93542.3296703296,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 93542.3406593407,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 93624.7472527472,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 93624.7472527472,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 93624.7582417582,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 93624.7582417582,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 93830.7912087911,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 93830.7912087911,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 93832.4175824176,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 93832.4175824176,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 94119.2527472527,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 94119.2527472527,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 94119.2637362637,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 94119.2637362637,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 94448.923076923,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 94448.923076923,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 94450.5494505495,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 94450.5494505495,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 94943.4285714285,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 94943.4285714285,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 94943.4395604396,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 94943.4395604396,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 95273.0989010988,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 95273.0989010988,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 95274.7252747253,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 95274.7252747253,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 95767.6043956043,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 95767.6043956043,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 95767.6153846154,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 95769.2307692308,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 96097.2747252746,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 96097.2747252747,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 96179.6923076922,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 96179.6923076923,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 96262.1098901098,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 96262.1098901098,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 96262.1098901099,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 96262.1098901099,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 96468.1538461538,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 96468.1538461538,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 96469.7802197802,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 96469.7802197802,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 96756.6153846153,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 96756.6153846153,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 96756.6153846154,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 96756.6153846154,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 96921.4505494506,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 97086.2857142856,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 97086.2857142856,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 97087.9120879121,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 97251.1208791209,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 97417.5824175824,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 97582.4175824176,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 97582.4175824176,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 97788.4615384615,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 97788.4615384615,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 98076.9230769231,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 98076.9230769231,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 98406.5934065934,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 98571.4285714286,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 98736.2637362637,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 98901.0989010989,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 98901.0989010989,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 99107.1428571429,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 99107.1428571429,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 99395.6043956044,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 99395.6043956044,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 99725.2747252747,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 99890.1098901099,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 100054.945054945,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 100219.417582418,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 100219.417582418,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 100425.461538462,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 100425.461538462,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 100713.923076923,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 100713.923076923,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 101043.593406593,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 101208.428571429,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 101373.263736264,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 101538.098901099,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 101538.098901099,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 101538.461538462,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 101703.296703297,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 101744.142857143,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 101744.142857143,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 101868.131868132,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 102032.604395604,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 102032.604395604,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 102032.967032967,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 102197.802197802,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 102362.274725275,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 102362.637362637,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 102527.10989011,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 102527.472527473,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 102691.945054945,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 102692.307692308,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 102857.725274725,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 103187.395604396,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 103516.483516484,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 103846.153846154,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 104176.406593407,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 104506.076923077,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 104835.164835165,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 105164.835164835,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 105495.087912088,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 105659.923076923,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 105824.758241758,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 105989.593406593,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 106154.428571429,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 106319.263736264,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 106483.516483516,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 106565.934065934,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 106648.351648352,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 106730.769230769,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 106813.186813187,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 107142.857142857,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 108131.615384615,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 108131.868131868,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 108214.032967033,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 108296.450549451,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 108461.538461538,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 108461.538461538,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 108543.956043956,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 108626.373626374,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 108791.208791209,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 108791.208791209,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 108873.373626374,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 108956.043956044,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 109120.879120879,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 109120.879120879,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 109203.296703297,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 109285.714285714,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 109450.549450549,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 109450.549450549,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 109532.967032967,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 109615.384615385,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 109779.967032967,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 109780.21978022,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 109862.384615385,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 109944.802197802,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 110109.89010989,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 110109.89010989,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 110192.307692308,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 110274.725274725,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 110439.307692308,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 110439.56043956,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 110521.978021978,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 110604.142857143,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 110768.615384615,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 110769.230769231,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 110851.648351648,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 110933.450549451,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 111098.901098901,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 111098.901098901,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 111180.703296703,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 111263.736263736,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 111428.571428571,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 111428.571428571,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 111510.989010989,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 111593.406593407,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 111758.241758242,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 111758.241758242,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 111840.659340659,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 111923.076923077,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 112087.296703297,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 112087.912087912,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 112170.32967033,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 112252.747252747,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 112417.582417582,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 112417.582417582,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 112500,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 112582.417582418,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 112747.252747253,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 112747.252747253,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 112829.67032967,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 112912.087912088,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 113076.307692308,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 113076.923076923,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 113159.340659341,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 113241.142857143,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 113406.340659341,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 113406.340659341,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 113406.593406593,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 113488.758241758,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 113571.175824176,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 113571.428571429,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 113736.010989011,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 113736.010989011,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 113736.263736264,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 113818.428571429,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 113900.846153846,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 113901.098901099,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 114065.681318681,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 114065.681318681,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 114065.934065934,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 114148.098901099,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 114230.516483516,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 114230.769230769,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 114395.021978022,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 114395.351648352,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 114395.351648352,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 114477.43956044,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 114477.769230769,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 114559.857142857,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 114560.186813187,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 114642.274725275,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 114724.692307692,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 114725.021978022,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 114725.021978022,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 114807.43956044,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 114889.857142857,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 115054.362637363,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 115054.692307692,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 115054.692307692,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 115137.10989011,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 115219.527472527,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 115384.362637363,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 115384.362637363,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 115384.615384615,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 115466.78021978,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 115549.197802198,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 115714.032967033,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 115714.032967033,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 115714.285714286,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "playerStrumline",
+			"time": 115796.450549451,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 115878.868131868,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 116043.956043956,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 116043.956043956,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 116126.373626374,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 116208.791208791,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 116373.626373626,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 116373.626373626,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 116456.043956044,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 116538.461538462,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 116703.296703297,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 116703.296703297,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 116785.714285714,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 116868.131868132,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "playerStrumline",
+			"time": 117032.967032967,
+			"type": "weekend-1-lightcan"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 117032.967032967,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 117032.967032967,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 117115.384615385,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 117197.802197802,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 117362.637362637,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 117362.637362637,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 117445.054945055,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 117527.472527473,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 117692.307692308,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 117692.307692308,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "playerStrumline",
+			"time": 117692.307692308,
+			"type": "weekend-1-kickcan"
+		},
+		{
+			"data": 2,
+			"lane": "opponentStrumline",
+			"time": 117774.725274725,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"lane": "opponentStrumline",
+			"time": 117857.142857143,
+			"type": "default"
+		},
+		{
+			"data": 4,
+			"lane": "playerStrumline",
+			"time": 118021.978021978,
+			"type": "weekend-1-kneecan"
+		},
+		{
+			"data": 1,
+			"lane": "opponentStrumline",
+			"time": 118021.10989011,
+			"type": "weekend-1-cockgun"
+		},
+		{
+			"data": 0,
+			"lane": "opponentStrumline",
+			"time": 118350.78021978,
+			"type": "weekend-1-firegun"
+		}
+	],
+	"meta": {
+		"stage": "phillyStreets",
+		"players": [
+			"pico-playable"
+		],
+		"opponents": [
+			"darnell"
+		],
+		"artist": "Kawai Sprite",
+		"charter": "Jenny Crowe + Spazkid + ninjamuffin99",
+		"spectators": [
+			"nene"
+		],
+		"diffRating": 5,
+		"bpm": 182,
+		"album": "volume3",
+		"preview": [
+			0,
+			15000
+		],
+		"scrollSpd": 2.6,
+		"generatedBy": "Chart Editor Import (FNF Legacy)",
+		"version": "2.2.4"
+	}
+}

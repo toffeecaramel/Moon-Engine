@@ -31,7 +31,7 @@ class ChartConvert extends FlxState
         );
         FlxG.stage.window.onDropFile.cancel();*/
 
-        FlxG.sound.playMusic(Paths.music('toolbox/chillPlace'));
+        FlxG.sound.playMusic(Paths.audio('toolbox/chillPlace'));
 
         _text = new FlxText(0, 40, 0, 'Hello!\nDrop your desired chart at the following path:\n("assets/data/chart-converter")\nRename it to \"mychart\"\nThen, select its format:');
         _text.setFormat(Paths.font('5by7_b.ttf'), 24, FlxColor.WHITE, CENTER);
