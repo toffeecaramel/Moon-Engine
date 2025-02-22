@@ -15,7 +15,7 @@ class Receptor extends FlxSpriteGroup
 
     public var script:MoonScript;
 
-    public function new(x:Float, y:Float, ?skin:String = 'v-slice', direction:Int, isCPU:Bool)
+    public function new(x:Float, y:Float, ?skin:String = 'v-slice', direction:Int, ?isCPU:Bool = false)
     {
         this.direction = direction;
         this.isCPU = isCPU;
@@ -26,7 +26,7 @@ class Receptor extends FlxSpriteGroup
         script.set("receptor", strumNote);
 
         script.load('assets/images/ingame/UI/notes/$skin/noteskin.hx');
-        
+
         this.skin = skin;
         super(x, y);
 

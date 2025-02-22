@@ -1,4 +1,4 @@
-final scale:Float = 0.6;
+var scale:Float = 0.6;
 
 function createStrumNote()
 {
