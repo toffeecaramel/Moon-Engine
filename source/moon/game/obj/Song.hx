@@ -62,11 +62,11 @@ class Song extends FlxTypedGroup<MoonSound>
     {
         for (i in 0...this.members.length)
         if ((this.members[i].type == Inst) &&
-			(this.members[i].time >= conductor.time + 25 || this.members[i].time <= conductor.time - 25)) 
+			(this.members[i].time >= conductor.time + 13 || this.members[i].time <= conductor.time - 13)) 
 				resync();
     }
 
-/**
+    /**
 	 * Pauses all the songs playing and syncs their time.
 	 */
 	public function resync():Void

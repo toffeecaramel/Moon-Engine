@@ -48,7 +48,7 @@
 	<haxelib name="discord_rpc" if="cpp" />
 	
 	<haxelib name="moonchart" />
-	<haxelib name="hscript" />
+	<haxelib name="hscript-improved" />
 	<haxelib name="yaml" />
 
 	<!-- ______________________________ Haxedefines _____________________________ -->
@@ -93,11 +93,16 @@
 	<!-- Always enable cpp's crash handler whenever the game crashes. -->
 	<haxedef name="HXCPP_CHECK_POINTER" if="release" />
 	<haxedef name="HXCPP_STACK_LINE" if="release" />
+	<haxedef name="HXCPP_STACK_TRACE" />
+	<haxedef name="hscriptPos" />
 
 	<!-- _________________________________ Custom _______________________________ -->
 
 	<!-- Makes it run a script before compiling and after compiling. -->
 	<prebuild haxe="Prebuild.hx"/>
 	<postbuild haxe="Postbuild.hx"/>
+
+	<!-- Enables custom classes on hscript. -->
+	<define name="CUSTOM_CLASSES" />
 
 </project>

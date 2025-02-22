@@ -1,4 +1,4 @@
-package moon.backend;
+package moon.dependency;
 
 import sys.io.File;
 import haxe.Json;

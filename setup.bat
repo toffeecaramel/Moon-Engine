@@ -58,10 +58,10 @@ haxelib set haxeui-flixel git
 haxelib git haxeui-core https://github.com/haxeui/haxeui-core
 haxelib set haxeui-core git
 
+haxelib git hscript-improved https://github.com/FNF-CNE-Devs/hscript-improved.git
 haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc
 haxelib git flxanimate https://github.com/FunkinCrew/flxanimate 9bacdd6ea39f5e3a33b0f5dfb7bc583fe76060d4
 haxelib git funkin.visfix https://github.com/toffeecaramel/funkVis-GrigFIX
-haxelib git https://github.com/FunkinCrew/hscript.git
 
 cls
 title Moon Engine Setup - Doing a set-up

@@ -14,7 +14,6 @@ import flixel.FlxState;
 
 class PlayState extends FlxState
 {
-	private var conductor:Conductor;
 	private var playField:PlayField;
 	override public function create()
 	{
@@ -34,7 +33,7 @@ class PlayState extends FlxState
 
 	public function beatHit(curBeat:Float)
 	{
-		if ((curBeat % conductor.numerator) == 0)
+		if ((curBeat % playField.conductor.numerator) == 0)
 		{
 			//TODO: cam zoom
 		}

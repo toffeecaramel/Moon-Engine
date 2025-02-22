@@ -1,16 +1,21 @@
 package moon.game.obj.notes;
 
+import flixel.group.FlxGroup.FlxTypedGroup;
+import moon.dependency.scripting.MoonScript;
 import flixel.group.FlxSpriteGroup;
 
 class Receptor extends FlxSpriteGroup
 {
     public var direction:Int = 0;
     public var isCPU:Bool = false;
-    @:isVar public var skin(default, set):String = 'vslice';
+    @:isVar public var skin(default, set):String = 'v-slice';
 
     public var strumNote:MoonSprite = new MoonSprite();
+    public var notesGroup:FlxTypedGroup<Note> = new FlxTypedGroup<Note>();
 
-    public function new(x:Float, y:Float, ?skin:String = 'vslice', direction:Int, isCPU:Bool)
+    public var script:MoonScript;
+
+    public function new(x:Float, y:Float, ?skin:String = 'v-slice', direction:Int, isCPU:Bool)
     {
         this.direction = direction;
         this.isCPU = isCPU;
@@ -18,11 +23,27 @@ class Receptor extends FlxSpriteGroup
         super(x, y);
 
         add(strumNote);
+
+        script = new MoonScript();
+
+        script.set("this", this);
+        script.set("receptor", strumNote);
+
+        script.load('assets/images/ingame/UI/notes/$skin/noteskin.hx');
     }
 
     private function _updtGraphics()
     {
-        //strumNote.frames = Paths.getSparrowAtlas();
+        final dir = MoonUtils.intToDir(direction);
+        strumNote.centerAnimations = true;
+        strumNote.frames = Paths.getSparrowAtlas('ingame/UI/notes/$skin/strumline');
+        strumNote.animation.addByPrefix('$dir-static', '$dir-static', 24, true);
+        strumNote.animation.addByPrefix('$dir-press', '$dir-press', 24, false);
+        strumNote.animation.addByPrefix('$dir-confirm', '$dir-confirm', 24, false);
+
+        strumNote.playAnim('$dir-static', true);
+        script.get("createStrumNote")();
+        strumNote.updateHitbox();
     }
 
     @:noCompletion public function set_skin(skin:String):String
