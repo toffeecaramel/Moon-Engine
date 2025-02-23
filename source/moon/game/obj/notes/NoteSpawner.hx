@@ -47,15 +47,27 @@ class NoteSpawner extends FlxGroup
         {
             if (strum.strumID == data.lane)
             {
-                strum.receptors.members[data.data].notesGroup.recycle(Note, function():Note
+                final group = strum.receptors.members[data.data];
+                group.notesGroup.recycle(Note, function():Note
                 {
                     // TODO: Get note skin system.
                     var note = new Note(data.data, data.time, data.type, 'v-slice', data.duration, conductor);
                     note.receptor = strum.receptors.members[data.data];
                     note.visible = false;
+                    if(note.duration > 0) recycleSustain(note, group.sustainsGroup);
                     return note;
                 });
             }
         }
+    }
+
+    public function recycleSustain(note:Note, group:FlxTypedGroup<NoteSustain>)
+    {
+        group.recycle(NoteSustain, function():NoteSustain
+        {
+            var sustain = new NoteSustain(note);
+            note.child = sustain;
+            return sustain;
+        });
     }
 }

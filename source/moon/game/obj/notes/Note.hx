@@ -67,8 +67,12 @@ class Note extends MoonSprite
      */
     public var receptor:Receptor;
 
-    public var conductor:Conductor;
+    /**
+     * This note's sustain.
+     */
+    public var child:NoteSustain;
 
+    public var conductor:Conductor;
     public var script:MoonScript;
 
     /**
@@ -102,16 +106,11 @@ class Note extends MoonSprite
         super.update(dt);
         if((receptor != null || state != CHART_EDITOR) && this.state == NONE)
         {
+            final downscrollLogic:Bool = (receptor.y > FlxG.height / 2);
+            final time = (this.time - conductor.time);
             this.visible = true;
-            if(receptor.y > FlxG.height / 2)
-            {
-                this.y = receptor.y - (this.time - conductor.time) * speed;
-            }
-            else
-            {
-                this.y = receptor.y + (this.time - conductor.time) * speed;
-            }
-                
+            this.y = (downscrollLogic) ? receptor.y - time * speed : receptor.y + time * speed;
+            if(child != null) child.downscroll = downscrollLogic;
             this.x = receptor.x;
 
             //TODO: Remove this, its just a placeholder for testing purposes.

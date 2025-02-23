@@ -9,16 +9,18 @@ class Receptor extends FlxSpriteGroup
     public var direction:Int = 0;
     public var isCPU:Bool = false;
     @:isVar public var skin(default, set):String = 'v-slice';
-
+    public var conductor:Conductor;
     public var strumNote:MoonSprite = new MoonSprite();
     public var script:MoonScript;
     
-    public var notesGroup:FlxTypedGroup<Note> = new FlxTypedGroup<Note>();
+    public var notesGroup:FlxTypedGroup<MoonSprite> = new FlxTypedGroup<MoonSprite>();
+    public var sustainsGroup:FlxTypedGroup<NoteSustain> = new FlxTypedGroup<NoteSustain>();
 
-    public function new(x:Float, y:Float, ?skin:String = 'v-slice', direction:Int, ?isCPU:Bool = false)
+    public function new(x:Float, y:Float, ?skin:String = 'v-slice', direction:Int, ?isCPU:Bool = false, conductor:Conductor)
     {
         this.direction = direction;
         this.isCPU = isCPU;
+        this.conductor = conductor;
 
         script = new MoonScript();
 
@@ -27,8 +29,9 @@ class Receptor extends FlxSpriteGroup
 
         script.load('assets/images/ingame/UI/notes/$skin/noteskin.hx');
 
-        this.skin = skin;
         super(x, y);
+
+        this.skin = skin;
 
         add(strumNote);
     }

@@ -1,0 +1,6315 @@
+{
+	"events": [],
+	"meta": {
+		"album": null,
+		"artist": "Unknown",
+		"bpm": 129,
+		"charter": "Unknown",
+		"diffRating": 0,
+		"generatedBy": "Moonchart 0.4.0",
+		"opponents": [
+			"mazin-tv"
+		],
+		"players": [
+			"bf-mazin-mall"
+		],
+		"preview": [
+			0,
+			0
+		],
+		"scrollSpd": 2.8,
+		"spectators": [
+			"gf"
+		],
+		"stage": "mazin-mall",
+		"version": "2.2.2"
+	},
+	"notes": [
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 7441.86046511628,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 7558.13953488372,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 7674.41860465116,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 7906.97674418605,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 7906.97674418605,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 8139.53488372093,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 8372.09302325581,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 8372.09302325581,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 8720.93023255814,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 9069.76744186047,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 9302.32558139535,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 9418.60465116279,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 9534.88372093023,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 9767.44186046511,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 9767.44186046511,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 10000,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 10232.5581395349,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 10232.5581395349,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 10581.3953488372,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 10581.3953488372,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 10813.9534883721,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 10930.2325581395,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 11046.511627907,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 11162.7906976744,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 11279.0697674419,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 11395.3488372093,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 11627.9069767442,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 11627.9069767442,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 11860.4651162791,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 12093.023255814,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 12093.023255814,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 12441.8604651163,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 12790.6976744186,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 13023.2558139535,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 13139.5348837209,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 13255.8139534884,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 13488.3720930233,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 13488.3720930233,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 13720.9302325581,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 13953.488372093,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 13953.488372093,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 14302.3255813953,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 14534.8837209302,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 14651.1627906977,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 14767.4418604651,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 14883.7209302326,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 15000,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 15116.2790697674,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 15348.8372093023,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 15348.8372093023,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 15581.3953488372,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 15813.9534883721,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 15813.9534883721,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 16162.7906976744,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 16511.6279069767,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 16744.1860465116,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 16860.4651162791,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 16976.7441860465,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 17209.3023255814,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 17209.3023255814,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 17441.8604651163,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 17674.4186046512,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 17674.4186046512,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 18023.2558139535,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 18023.2558139535,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 18255.8139534884,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 18372.0930232558,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 18488.3720930233,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 18604.6511627907,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 18720.9302325581,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 18837.2093023256,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 19069.7674418605,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 19069.7674418605,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 19302.3255813953,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 19534.8837209302,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 19534.8837209302,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 19883.7209302326,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 20232.5581395349,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 20465.1162790698,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 20581.3953488372,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 20697.6744186046,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 20930.2325581395,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 20930.2325581395,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 21162.7906976744,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 21395.3488372093,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 21395.3488372093,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 21744.1860465116,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 21976.7441860465,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 22093.023255814,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 22209.3023255814,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 22325.5813953488,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 22325.5813953488,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 22441.8604651163,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 22558.1395348837,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 22674.4186046512,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 23255.8139534884,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 23255.8139534884,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 23488.3720930232,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 116.279069767442,
+			"lane": "opponent",
+			"time": 23604.6511627907,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 116.279069767442,
+			"lane": "opponent",
+			"time": 23604.6511627907,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 23837.2093023256,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 24186.0465116279,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 24186.0465116279,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 24302.3255813953,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 24418.6046511628,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 24534.8837209302,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 25116.2790697674,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 25116.2790697674,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 25348.8372093023,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 116.279069767442,
+			"lane": "opponent",
+			"time": 25465.1162790698,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 116.279069767442,
+			"lane": "opponent",
+			"time": 25465.1162790698,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 25697.6744186046,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 26046.511627907,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 26162.7906976744,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 26279.0697674419,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 26395.3488372093,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 26511.6279069767,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 26627.9069767442,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 26744.1860465116,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 26976.7441860465,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 27209.3023255814,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 232.558139534884,
+			"lane": "opponent",
+			"time": 27325.5813953488,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 232.558139534884,
+			"lane": "opponent",
+			"time": 27325.5813953488,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 27674.4186046512,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 27906.976744186,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 28139.5348837209,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 232.558139534884,
+			"lane": "opponent",
+			"time": 28255.8139534884,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 232.558139534884,
+			"lane": "opponent",
+			"time": 28255.8139534884,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 28604.6511627907,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 28837.2093023256,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 232.558139534884,
+			"lane": "opponent",
+			"time": 28953.488372093,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 232.558139534884,
+			"lane": "opponent",
+			"time": 28953.488372093,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 29302.3255813953,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 29418.6046511628,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 29534.8837209302,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 29651.1627906977,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 29767.4418604651,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 29767.4418604651,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 581.395348837209,
+			"lane": "opponent",
+			"time": 29767.4418604651,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 29883.7209302326,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 30000,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 30116.2790697674,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 30465.1162790698,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 30697.6744186046,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 30697.6744186046,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 30930.2325581395,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 116.279069767442,
+			"lane": "opponent",
+			"time": 30930.2325581395,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 116.279069767442,
+			"lane": "opponent",
+			"time": 30930.2325581395,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 116.279069767442,
+			"lane": "p1",
+			"time": 31046.511627907,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 116.279069767442,
+			"lane": "p1",
+			"time": 31046.511627907,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 31279.0697674418,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 31279.0697674418,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 348.837209302326,
+			"lane": "opponent",
+			"time": 31395.3488372093,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 31627.9069767442,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 31627.9069767442,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 31744.1860465116,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 31860.4651162791,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 31860.4651162791,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 31976.7441860465,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 32325.5813953488,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 232.558139534884,
+			"lane": "opponent",
+			"time": 32441.8604651163,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 32558.1395348837,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 32558.1395348837,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 32790.6976744186,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 32790.6976744186,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 116.279069767442,
+			"lane": "p1",
+			"time": 32906.976744186,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 116.279069767442,
+			"lane": "p1",
+			"time": 32906.976744186,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 32906.976744186,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 33023.2558139535,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 33139.5348837209,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 33139.5348837209,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 33255.8139534884,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 33372.0930232558,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 33488.3720930232,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 33604.6511627907,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 33720.9302325581,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 33720.9302325581,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 33837.2093023256,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 33953.488372093,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 33953.488372093,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 34186.0465116279,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 34186.0465116279,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 34302.3255813953,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 34418.6046511628,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 34418.6046511628,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 34534.8837209302,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 34651.1627906977,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 34651.1627906977,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 34767.4418604651,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 34883.7209302326,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 34883.7209302326,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 35116.2790697674,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 35116.2790697674,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 35232.5581395349,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 35348.8372093023,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 35465.1162790698,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 35581.3953488372,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 35581.3953488372,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 35697.6744186046,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 35813.9534883721,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 35813.9534883721,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 36046.511627907,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 36046.511627907,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 36162.7906976744,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 36279.0697674418,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 36279.0697674418,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 36395.3488372093,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 36511.6279069767,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 36511.6279069767,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 36744.1860465116,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 36976.7441860465,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 37093.0232558139,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 37441.8604651163,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 37558.1395348837,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 37674.4186046512,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 37674.4186046512,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 37906.976744186,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 38139.5348837209,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 38139.5348837209,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 38255.8139534884,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 38372.0930232558,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 38488.3720930232,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 38604.6511627907,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 38720.9302325581,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 38953.488372093,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 39186.0465116279,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 39302.3255813953,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 39418.6046511628,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 39534.8837209302,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 39651.1627906977,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 39767.4418604651,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 39883.7209302325,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 40000,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 40116.2790697674,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 40174.4186046511,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 40232.5581395349,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 40348.8372093023,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 40465.1162790698,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 40581.3953488372,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 40813.9534883721,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 41162.7906976744,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 41279.0697674418,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 41395.3488372093,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 41395.3488372093,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 41627.9069767442,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 41860.4651162791,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 41860.4651162791,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 41976.7441860465,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 42093.0232558139,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 42209.3023255814,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 42325.5813953488,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 42441.8604651163,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 42674.4186046511,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 42906.976744186,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 43023.2558139535,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 43139.5348837209,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 43255.8139534884,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 43372.0930232558,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 43488.3720930232,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 43604.6511627907,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 43720.9302325581,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 43837.2093023256,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 43895.3488372093,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 43953.488372093,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 44069.7674418605,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 44186.0465116279,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 44302.3255813953,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 44534.8837209302,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 44883.7209302326,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 45000,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 45116.2790697674,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 45116.2790697674,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 45348.8372093023,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 45581.3953488372,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 45581.3953488372,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 45697.6744186046,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 45813.9534883721,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 45930.2325581395,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 46046.511627907,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 46162.7906976744,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 46395.3488372093,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 46627.9069767442,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 46744.1860465116,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 46860.4651162791,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 46976.7441860465,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 47093.0232558139,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 47209.3023255814,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 47325.5813953488,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 47441.8604651163,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 47558.1395348837,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 47616.2790697674,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 47674.4186046511,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 47790.6976744186,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 47906.976744186,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 48023.2558139535,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 48255.8139534884,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 48604.6511627907,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 48720.9302325581,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 48837.2093023256,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 48837.2093023256,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 49069.7674418604,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 49302.3255813953,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 49302.3255813953,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 49418.6046511628,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 49534.8837209302,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 49651.1627906977,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 49767.4418604651,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 49883.7209302325,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 50116.2790697674,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 50348.8372093023,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 50465.1162790698,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 50581.3953488372,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 50697.6744186046,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 50813.9534883721,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 50930.2325581395,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 51046.511627907,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 51162.7906976744,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 51279.0697674418,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 51337.2093023256,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 51395.3488372093,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 51511.6279069767,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 51627.9069767442,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 51744.1860465116,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 51976.7441860465,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 52093.023255814,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 52209.3023255814,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 52325.5813953488,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 52558.1395348837,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 52558.1395348837,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 52790.6976744186,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 53023.2558139535,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 53023.2558139535,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 53372.0930232558,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 53720.9302325581,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 53953.488372093,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 54069.7674418605,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 54186.0465116279,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 54418.6046511628,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 54418.6046511628,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 54651.1627906977,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 54883.7209302326,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 54883.7209302326,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 55232.5581395349,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 55232.5581395349,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 55465.1162790698,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 55581.3953488372,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 55697.6744186047,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 55813.9534883721,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 55930.2325581396,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 56046.511627907,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 56279.0697674419,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 56279.0697674419,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 56511.6279069768,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 56744.1860465117,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 56744.1860465117,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 57093.023255814,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 57441.8604651163,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 57674.4186046512,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 57790.6976744186,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 57906.9767441861,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 58139.534883721,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 58139.534883721,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 58372.0930232558,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 58604.6511627907,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 58604.6511627907,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 58953.488372093,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 59186.0465116279,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 59302.3255813954,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 59418.6046511628,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 59534.8837209303,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 59651.1627906977,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 59767.4418604651,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 60000,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 60000,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 60232.5581395349,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 60465.1162790698,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 60465.1162790698,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 60813.9534883721,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 61162.7906976744,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 61395.3488372093,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 61511.6279069768,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 61627.9069767442,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 61860.4651162791,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 61860.4651162791,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 62093.023255814,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 62325.5813953489,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 62325.5813953489,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 62674.4186046512,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 62674.4186046512,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 62906.9767441861,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 63023.2558139535,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 63139.534883721,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 63255.8139534884,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 63372.0930232558,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 63488.3720930233,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 63720.9302325582,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 63720.9302325582,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 63953.4883720931,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 64186.046511628,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 64186.046511628,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 64534.8837209302,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 64883.7209302326,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 65116.2790697674,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 65232.5581395349,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 65348.8372093023,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 65581.3953488372,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 65581.3953488372,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 65813.953488372,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 66046.5116279069,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 66046.5116279069,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 66395.3488372093,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 66627.9069767442,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 66744.1860465116,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 66860.4651162791,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 66976.7441860465,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 67441.8604651163,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 232.558139534884,
+			"lane": "opponent",
+			"time": 67906.976744186,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 68255.8139534884,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 68604.6511627907,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 68837.2093023256,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 68953.488372093,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 69069.7674418604,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 69302.3255813953,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 69302.3255813953,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 69534.8837209302,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 69767.4418604651,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 70116.2790697674,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 70348.8372093023,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 70465.1162790697,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 70581.3953488372,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 70697.6744186046,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 71162.7906976744,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 232.558139534884,
+			"lane": "p1",
+			"time": 71627.9069767442,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 71976.7441860465,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 72325.5813953488,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 72558.1395348837,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 72674.4186046511,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 72790.6976744186,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 73023.2558139535,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 73023.2558139535,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 73255.8139534884,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 73488.3720930232,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 73837.2093023256,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 74069.7674418604,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 74186.0465116279,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 74302.3255813953,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 74418.6046511628,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 74883.7209302325,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 232.558139534884,
+			"lane": "opponent",
+			"time": 75348.8372093023,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 75697.6744186046,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 76046.5116279069,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 76279.0697674418,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 76395.3488372093,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 76511.6279069767,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 76744.1860465116,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 76744.1860465116,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 76976.7441860465,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 77209.3023255814,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 77558.1395348837,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 77790.6976744186,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 77906.976744186,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 78023.2558139535,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 78139.5348837209,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 78604.6511627907,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 232.558139534884,
+			"lane": "p1",
+			"time": 79069.7674418604,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 79418.6046511628,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 79767.4418604651,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 80000,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 80232.5581395349,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 80465.1162790697,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 80697.6744186046,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 80930.2325581395,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 81162.7906976744,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 81395.3488372093,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 116.279069767442,
+			"lane": "p1",
+			"time": 81627.9069767442,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 81860.465116279,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 232.558139534884,
+			"lane": "p1",
+			"time": 81860.465116279,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 81976.7441860465,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 82209.3023255814,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 82325.5813953488,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 82558.1395348837,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 82674.4186046511,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 83023.2558139535,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 83139.5348837209,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 83255.8139534883,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 83372.0930232558,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 83720.9302325581,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 83837.2093023255,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 84069.7674418604,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 84186.0465116279,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 84418.6046511628,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 84534.8837209302,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 84883.7209302325,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 85000,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 85116.2790697674,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 85232.5581395349,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 85348.8372093023,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 85465.1162790697,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 85581.3953488372,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 85697.6744186046,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 85930.2325581395,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 86046.5116279069,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 86279.0697674418,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 86395.3488372093,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 86744.1860465116,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 86860.465116279,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 86976.7441860465,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 87093.0232558139,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 87441.8604651162,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 87558.1395348837,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 87790.6976744186,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 87906.976744186,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 88139.5348837209,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 88255.8139534883,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 116.279069767442,
+			"lane": "p1",
+			"time": 88604.6511627907,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 116.279069767442,
+			"lane": "p1",
+			"time": 88604.6511627907,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 88837.2093023255,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 88953.488372093,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 89069.7674418604,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 89186.0465116279,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 116.279069767442,
+			"lane": "p1",
+			"time": 89302.3255813953,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 89302.3255813953,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 89302.3255813953,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 89418.6046511628,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 89534.8837209302,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 89651.1627906977,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 90232.5581395349,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 90232.5581395349,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 90465.1162790697,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 116.279069767442,
+			"lane": "opponent",
+			"time": 90581.3953488372,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 116.279069767442,
+			"lane": "opponent",
+			"time": 90581.3953488372,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 90813.9534883721,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 91162.7906976744,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 91162.7906976744,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 91279.0697674418,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 91395.3488372093,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 91511.6279069767,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 92093.0232558139,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 92093.0232558139,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 92325.5813953488,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 116.279069767442,
+			"lane": "opponent",
+			"time": 92441.8604651163,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 116.279069767442,
+			"lane": "opponent",
+			"time": 92441.8604651163,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 92674.4186046511,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 93023.2558139535,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 93139.5348837209,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 93255.8139534884,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 93372.0930232558,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 93488.3720930232,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 93604.6511627907,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 93720.9302325581,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 93953.488372093,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 94186.0465116279,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 232.558139534884,
+			"lane": "opponent",
+			"time": 94302.3255813953,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 232.558139534884,
+			"lane": "opponent",
+			"time": 94302.3255813953,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 94651.1627906977,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 94883.7209302325,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 95116.2790697674,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 232.558139534884,
+			"lane": "opponent",
+			"time": 95232.5581395349,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 232.558139534884,
+			"lane": "opponent",
+			"time": 95232.5581395349,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 95581.3953488372,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 95813.9534883721,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 232.558139534884,
+			"lane": "opponent",
+			"time": 95930.2325581395,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 232.558139534884,
+			"lane": "opponent",
+			"time": 95930.2325581395,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 96279.0697674418,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 96395.3488372093,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 96511.6279069767,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 96627.9069767442,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 96744.1860465116,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 96744.1860465116,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 581.395348837209,
+			"lane": "opponent",
+			"time": 96744.1860465116,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 96860.4651162791,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 96976.7441860465,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 97093.0232558139,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 97441.8604651163,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 97674.4186046511,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 97674.4186046511,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 97906.976744186,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 116.279069767442,
+			"lane": "opponent",
+			"time": 97906.976744186,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 116.279069767442,
+			"lane": "opponent",
+			"time": 97906.976744186,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 116.279069767442,
+			"lane": "p1",
+			"time": 98023.2558139535,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 116.279069767442,
+			"lane": "p1",
+			"time": 98023.2558139535,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 98255.8139534883,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 98255.8139534883,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 348.837209302326,
+			"lane": "opponent",
+			"time": 98372.0930232558,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 98604.6511627907,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 98604.6511627907,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 98720.9302325581,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 98837.2093023256,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 98837.2093023256,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 98953.488372093,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 99302.3255813953,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 232.558139534884,
+			"lane": "opponent",
+			"time": 99418.6046511628,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 99534.8837209302,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 99534.8837209302,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 99767.4418604651,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 99767.4418604651,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 116.279069767442,
+			"lane": "p1",
+			"time": 99883.7209302325,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 116.279069767442,
+			"lane": "p1",
+			"time": 99883.7209302325,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 100000,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 100116.279069767,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 100116.279069767,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 100232.558139535,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 100348.837209302,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 100465.11627907,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 100581.395348837,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 100697.674418605,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 100697.674418605,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 100813.953488372,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 100930.232558139,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 100930.23255814,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 101162.790697674,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 101162.790697674,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 101279.069767442,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 101395.348837209,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 101395.348837209,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 101511.627906977,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 101627.906976744,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 101627.906976744,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 101744.186046512,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 101860.465116279,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 101860.465116279,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 102093.023255814,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 102093.023255814,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 102209.302325581,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 102325.581395349,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 102441.860465116,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 102558.139534884,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 102558.139534884,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 102674.418604651,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 102790.697674419,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 102790.697674419,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 103023.255813953,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 103023.255813953,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 103139.534883721,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 103255.813953488,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 103255.813953488,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 103372.093023256,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 103488.372093023,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 103488.372093023,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 103720.930232558,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 103953.488372093,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 104069.76744186,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 111627.906976744,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 111744.186046512,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 111860.465116279,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 112093.023255814,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 112093.023255814,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 112325.581395349,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 112558.139534884,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 112558.139534884,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 112906.976744186,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 113255.813953488,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 113488.372093023,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 113604.651162791,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 113720.930232558,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 113953.488372093,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 113953.488372093,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 114186.046511628,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 114418.604651163,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 114418.604651163,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 114767.441860465,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 115000,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 115116.279069767,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 115232.558139535,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 115348.837209302,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 115465.11627907,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 115581.395348837,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 115813.953488372,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 115813.953488372,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 116046.511627907,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 116279.069767442,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 116279.069767442,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 116627.906976744,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 116976.744186046,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 117209.302325581,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 117209.302325581,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 117325.581395349,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 117325.581395349,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 117441.860465116,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 117441.860465116,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 117674.418604651,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 117674.418604651,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 117674.418604651,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 117674.418604651,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 117906.976744186,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 117906.976744186,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 118139.534883721,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 118139.534883721,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 118139.534883721,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 118139.534883721,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 118488.372093023,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 118488.372093023,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 118488.372093023,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 118720.930232558,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 118720.930232558,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 118837.209302326,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 118837.209302326,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 118953.488372093,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 118953.488372093,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 119302.325581395,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 119418.604651163,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 119534.88372093,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 119534.88372093,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 119767.441860465,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 120000,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 120000,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 120116.279069767,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 120232.558139535,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 120348.837209302,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 120465.11627907,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 120581.395348837,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 120813.953488372,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 121046.511627907,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 121162.790697674,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 121279.069767442,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 121395.348837209,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 121511.627906977,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 121627.906976744,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 121744.186046512,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 121860.465116279,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 121976.744186046,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 122034.88372093,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 122093.023255814,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 122209.302325581,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 122325.581395349,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 122441.860465116,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 122674.418604651,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 123023.255813953,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 123139.534883721,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 123255.813953488,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 123255.813953488,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 123488.372093023,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 123720.930232558,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 123720.930232558,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 123837.209302326,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 123953.488372093,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 124069.76744186,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 124186.046511628,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 124302.325581395,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 124534.88372093,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 124767.441860465,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 124883.720930233,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 125000,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 125116.279069767,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 125232.558139535,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 125348.837209302,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 125465.11627907,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 125581.395348837,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 125697.674418605,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 125755.813953488,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 125813.953488372,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 125930.23255814,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 126046.511627907,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 126162.790697674,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 126395.348837209,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 126744.186046512,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 126860.465116279,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 126976.744186046,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 126976.744186046,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 127209.302325581,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 127441.860465116,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 127441.860465116,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 127558.139534884,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 127674.418604651,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 127790.697674419,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 127906.976744186,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 128023.255813953,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 128255.813953488,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 128488.372093023,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 128604.651162791,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 128720.930232558,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 128837.209302326,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 128953.488372093,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 129069.76744186,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 129186.046511628,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 129302.325581395,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 129418.604651163,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 129476.744186046,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 129534.88372093,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 129651.162790698,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 129767.441860465,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 129883.720930233,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 130116.279069767,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 130465.11627907,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 130581.395348837,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 130697.674418605,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 130697.674418605,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 130930.232558139,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 131162.790697674,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 131162.790697674,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 131279.069767442,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 131395.348837209,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 131511.627906977,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 131627.906976744,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 131744.186046512,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 131976.744186046,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 132209.302325581,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 132325.581395349,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 132441.860465116,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 132558.139534884,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 132674.418604651,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 132790.697674419,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 132906.976744186,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 133023.255813953,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 133139.534883721,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 133197.674418605,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 133255.813953488,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 133372.093023256,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 133488.372093023,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 133604.651162791,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 133837.209302326,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 133953.488372093,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 134069.76744186,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 134186.046511628,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 134418.604651163,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 134418.604651163,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 134651.162790698,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 134883.720930233,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 134883.720930233,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 135232.558139535,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 135581.395348837,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 135813.953488372,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 135930.23255814,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 136046.511627907,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 136279.069767442,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 136279.069767442,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 136511.627906977,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 136744.186046512,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 136744.186046512,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 137093.023255814,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 137093.023255814,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 137325.581395349,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 137441.860465116,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 137558.139534884,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 137674.418604651,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 137790.697674419,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 137906.976744186,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 138139.534883721,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 138139.534883721,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 138372.093023256,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 138604.651162791,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 138604.651162791,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 138953.488372093,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 139302.325581395,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 139534.88372093,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 139651.162790698,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 139767.441860465,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 140000,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 140000,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 140232.558139535,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 140465.11627907,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 140465.11627907,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 140813.953488372,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 141046.511627907,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 141162.790697674,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 141279.069767442,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 141395.348837209,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 141511.627906977,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 141627.906976744,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 141860.465116279,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 141860.465116279,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 142093.023255814,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 142325.581395349,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 142325.581395349,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 142674.418604651,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 143023.255813953,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 143255.813953488,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 143372.093023256,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 143488.372093023,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 143720.930232558,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 143720.930232558,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 143953.488372093,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 144186.046511628,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 144186.046511628,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 144534.88372093,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 144534.88372093,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 144767.441860465,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 144883.720930233,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "opponent",
+			"time": 145000,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 145116.279069767,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 145232.558139535,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 145348.837209302,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 145581.395348837,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 145581.395348837,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 145813.953488372,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 146046.511627907,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 146046.511627907,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 146395.348837209,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 146744.186046512,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 146976.744186047,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 147093.023255814,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 147209.302325581,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 147441.860465116,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 147441.860465116,
+			"type": "default"
+		},
+		{
+			"data": 3,
+			"duration": 0,
+			"lane": "p1",
+			"time": 147674.418604651,
+			"type": "default"
+		},
+		{
+			"data": 0,
+			"duration": 0,
+			"lane": "p1",
+			"time": 147906.976744186,
+			"type": "default"
+		},
+		{
+			"data": 2,
+			"duration": 0,
+			"lane": "p1",
+			"time": 147906.976744186,
+			"type": "default"
+		},
+		{
+			"data": 1,
+			"duration": 0,
+			"lane": "p1",
+			"time": 148255.813953488,
+			"type": "default"
+		}
+	]
+}

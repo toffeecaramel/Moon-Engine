@@ -43,11 +43,11 @@ class PlayField extends FlxGroup
         final xAddition = (FlxG.width * 0.25);
 
         //TODO: Actual skin support
-        opponentStrumline = new Strumline(xVal - xAddition, 80, 'v-slice', true);
+        opponentStrumline = new Strumline(xVal - xAddition, 80, 'v-slice', true, conductor);
         opponentStrumline.strumID = 'opponent';
         add(opponentStrumline);
 
-        playerStrumline = new Strumline(xVal + xAddition, 80, 'v-slice', false);
+        playerStrumline = new Strumline(xVal + xAddition, 80, 'v-slice', false, conductor);
         playerStrumline.strumID = 'p1';
         add(playerStrumline);
 
