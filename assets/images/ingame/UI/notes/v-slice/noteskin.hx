@@ -3,7 +3,11 @@ final scale = 0.6;
 function createStrumNote()
 {
     //trace("Hello there! From noteskin~", "DEBUG");
+
+    // Rescale the note cause its big af
     receptor.scale.set(scale, scale);
+
+    // Set the antialiasing to true otherwise it looks weird
     receptor.antialiasing = true;
 
     // Reminder for you if you're modding a noteskin:

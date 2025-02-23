@@ -46,8 +46,24 @@ class Receptor extends FlxSpriteGroup
         strumNote.animation.addByPrefix('$dir-confirm', '$dir-confirm', 24, false);
 
         strumNote.playAnim('$dir-static', true);
+
+        strumNote.animation.onFinish.add(function(animation:String)
+        {
+            if(!this.isCPU)
+            {
+                final confirm = '$dir-confirm';
+                if(animation == confirm) strumNote.playAnim('$dir-press');
+            }
+        });
+
         script.get("createStrumNote")();
         strumNote.updateHitbox();
+    }
+
+    public function onNoteHit(judgement:String = 'sick')
+    {
+        final dir = MoonUtils.intToDir(direction);
+        strumNote.playAnim('$dir-confirm', true);
     }
 
     @:noCompletion public function set_skin(skin:String):String

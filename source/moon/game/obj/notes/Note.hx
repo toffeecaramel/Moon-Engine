@@ -110,6 +110,7 @@ class Note extends MoonSprite
             final time = (this.time - conductor.time);
             this.visible = true;
             this.y = (downscrollLogic) ? receptor.y - time * speed : receptor.y + time * speed;
+
             if(child != null) child.downscroll = downscrollLogic;
             this.x = receptor.x;
 
@@ -117,6 +118,7 @@ class Note extends MoonSprite
             if(this.time - conductor.time <= 0)
             {
                 this.state = GOT_HIT;
+                receptor.onNoteHit('sick');
                 this.active = false;
                 this.visible = false;
             }
