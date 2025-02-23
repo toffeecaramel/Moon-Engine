@@ -1,5 +1,6 @@
 package moon.game.obj.notes;
 
+import flixel.FlxG;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
@@ -42,5 +43,20 @@ class Strumline extends FlxGroup
 
         add(receptors);
         for(receptor in receptors.members) add(receptor.notesGroup);
+    }
+
+    public var boolean:Bool = false;
+    override public function update(elapsed:Float)
+    {
+        super.update(elapsed);
+
+        //TODO: Remove this, its just a downscroll test. PLACHEOLDER.
+        if(FlxG.keys.justPressed.P)
+        {
+            boolean = !boolean;
+
+            for (i in 0...receptors.members.length)
+            FlxTween.tween(receptors.members[i], {y: (boolean) ? 80 : FlxG.height - receptors.members[i].height - 80}, 0.5, {startDelay: 0.05 * i, ease: FlxEase.circOut});
+        }
     }
 }

@@ -1,5 +1,6 @@
 package moon.game.obj.notes;
 
+import flixel.FlxG;
 import sys.FileSystem;
 import moon.dependency.scripting.MoonScript;
 import sys.io.File;
@@ -102,7 +103,15 @@ class Note extends MoonSprite
         if((receptor != null || state != CHART_EDITOR) && this.state == NONE)
         {
             this.visible = true;
-            this.y = receptor.y + (this.time - conductor.time) * speed;
+            if(receptor.y > FlxG.height / 2)
+            {
+                this.y = receptor.y - (this.time - conductor.time) * speed;
+            }
+            else
+            {
+                this.y = receptor.y + (this.time - conductor.time) * speed;
+            }
+                
             this.x = receptor.x;
 
             //TODO: Remove this, its just a placeholder for testing purposes.
