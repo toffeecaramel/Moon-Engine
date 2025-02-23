@@ -99,13 +99,20 @@ class Note extends MoonSprite
     override public function update(dt:Float):Void
     {
         super.update(dt);
-        if(receptor != null || state != CHART_EDITOR)
+        if((receptor != null || state != CHART_EDITOR) && this.state == NONE)
         {
             this.visible = true;
             this.y = receptor.y + (this.time - conductor.time) * speed;
             this.x = receptor.x;
+
+            //TODO: Remove this, its just a placeholder for testing purposes.
+            if(this.time - conductor.time <= 0)
+            {
+                this.state = GOT_HIT;
+                this.active = false;
+                this.visible = false;
+            }
         }
-        if(active && state == GOT_HIT) alpha = 0;
     }
 
     private function _updateGraphics():Void

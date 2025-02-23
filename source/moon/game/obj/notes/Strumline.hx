@@ -1,5 +1,7 @@
 package moon.game.obj.notes;
 
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
 import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 import flixel.group.FlxGroup;
 
@@ -33,6 +35,7 @@ class Strumline extends FlxGroup
                 receptor.x -= ((4 * 0.5) * receptor.strumNote.width);
                 receptor.x += (receptor.strumNote.width * i);
                 receptor.ID = i;
+
                 return receptor;
             });
         }

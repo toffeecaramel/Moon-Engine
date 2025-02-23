@@ -11,9 +11,9 @@ class Receptor extends FlxSpriteGroup
     @:isVar public var skin(default, set):String = 'v-slice';
 
     public var strumNote:MoonSprite = new MoonSprite();
-    public var notesGroup:FlxTypedGroup<Note> = new FlxTypedGroup<Note>();
-
     public var script:MoonScript;
+    
+    public var notesGroup:FlxTypedGroup<Note> = new FlxTypedGroup<Note>();
 
     public function new(x:Float, y:Float, ?skin:String = 'v-slice', direction:Int, ?isCPU:Bool = false)
     {
