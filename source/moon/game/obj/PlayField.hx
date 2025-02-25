@@ -1,13 +1,17 @@
+// in PlayField.hx
 package moon.game.obj;
 
-import moon.game.obj.notes.NoteSpawner;
+import moon.backend.gameplay.InputHandler;
 import flixel.FlxG;
-import moon.game.obj.notes.Strumline;
 import flixel.group.FlxGroup;
+
+import moon.game.obj.notes.*;
+import moon.backend.gameplay.Timings;
 
 @:publicFields
 class PlayField extends FlxGroup
 {
+    public static var playfield:PlayField;
     var conductor:Conductor;
     var playback:Song;
 
@@ -20,6 +24,10 @@ class PlayField extends FlxGroup
     var mix:String;
     var difficulty:String;
 
+    var strumlines:Array<Strumline> = [];
+
+    public var inputHandlerP1:InputHandler;
+
     public function new(song:String, difficulty:String, mix:String)
     {
         super();
@@ -27,33 +35,56 @@ class PlayField extends FlxGroup
         this.mix = mix;
         this.difficulty = difficulty;
 
+        playfield = this;
+
+        //< -- SONG SETUP -- >//
+
         conductor = new Conductor(182, 4, 4);
 		conductor.onBeat.add(beatHit);
 
-        //TODO: Shorten this.
         playback = new Song(
-			[{name: song, mix: mix, type: Inst}, 
-			{name: song, mix: mix, type: Voices_Opponent}, 
-			{name: song, mix: mix, type: Voices_Player}], 
+			[{name: song, mix: mix, type: Inst},
+			{name: song, mix: mix, type: Voices_Opponent},
+			{name: song, mix: mix, type: Voices_Player}],
         conductor);
 
         chart = new MoonChart(song, difficulty, mix);
-            
+
+        //< -- STRUMLINES SETUP -- >//
+
         final xVal = (FlxG.width * 0.5);
         final xAddition = (FlxG.width * 0.25);
 
-        //TODO: Actual skin support
-        opponentStrumline = new Strumline(xVal - xAddition, 80, 'v-slice', true, conductor);
-        opponentStrumline.strumID = 'opponent';
+        opponentStrumline = new Strumline(xVal - xAddition, 80, 'v-slice', true, "opponent", conductor);
         add(opponentStrumline);
+        strumlines.push(opponentStrumline);
 
-        playerStrumline = new Strumline(xVal + xAddition, 80, 'v-slice', false, conductor);
-        playerStrumline.strumID = 'p1';
+        playerStrumline = new Strumline(xVal + xAddition, 80, 'v-slice', false, "p1", conductor);
         add(playerStrumline);
+        strumlines.push(playerStrumline);
 
-        //TODO: make 2p support for note spawner
-        noteSpawner = new NoteSpawner(chart.content.notes, [playerStrumline, opponentStrumline], conductor);
+        //< -- NOTES SETUP -- >//
+
+        noteSpawner = new NoteSpawner(chart.content.notes, strumlines, conductor);
         add(noteSpawner);
+
+        //< -- INPUTS SETUP -- >//
+
+        inputHandlerP1 = new InputHandler(noteSpawner.notes, 'p1', conductor);
+        inputHandlerP1.onNoteHit = function(note, timing, isSustain)
+        {
+            playerStrumline.receptors.members[note.direction].onNoteHit(timing);
+        };
+
+        inputHandlerP1.onNoteMiss = function(note:Note){};
+        inputHandlerP1.onGhostTap = function(dir:Int)
+        {
+            playerStrumline.receptors.members[dir].strumNote.playAnim('${MoonUtils.intToDir(dir)}-press', true);
+        };
+        inputHandlerP1.onKeyRelease = function(dir:Int)
+        {
+            playerStrumline.receptors.members[dir].strumNote.playAnim('${MoonUtils.intToDir(dir)}-static', true);
+        };
 
 		playback.state = PLAY;
     }
@@ -61,11 +92,40 @@ class PlayField extends FlxGroup
     override public function update(dt:Float)
     {
         conductor.time += dt * 1000;
+
+        inputHandlerP1.justPressed = [MoonInput.justPressed(LEFT),MoonInput.justPressed(DOWN),MoonInput.justPressed(UP),MoonInput.justPressed(RIGHT),
+		];
+
+		inputHandlerP1.pressed = [MoonInput.pressed(LEFT),MoonInput.pressed(DOWN),MoonInput.pressed(UP),MoonInput.pressed(RIGHT),
+		];
+
+		inputHandlerP1.released = [MoonInput.released(LEFT),MoonInput.released(DOWN),MoonInput.released(UP),MoonInput.released(RIGHT),
+		];
+
+        inputHandlerP1.thisNotes = noteSpawner.notes;
+
         super.update(dt);
+        inputHandlerP1.update();
     }
 
     function beatHit(beat:Float)
     {
 
+    }
+
+    function onPlayerNoteMiss(note:Note):Void
+    {
+        trace('Note Missed!');
+    }
+
+    function onPlayerGhostTap(direction:Int):Void
+    {
+        trace('Ghost Tap! Direction: ' + direction);
+    }
+
+    function onPlayerKeyRelease(direction:Int):Void
+    {
+        // Handle key release events if needed
+        // trace('Key Released! Direction: ' + direction);
     }
 }

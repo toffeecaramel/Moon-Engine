@@ -11,27 +11,19 @@ class Strumline extends FlxGroup
     /**
      * Sets the ID for recognizing this strumline (whether its opponent or not.)
      */
-    public var strumID:String;
+    public var playerID:String;
 
     public var receptors:FlxTypedGroup<Receptor> = new FlxTypedGroup<Receptor>();
 
-    /**
-     * Creates a strumline on screen.
-     * @param x 
-     * @param y 
-     * @param skin 
-     * @param isCPU 
-     * @param conductor
-     */
-    public function new(x:Float = 0, y:Float = 0, skin:String = 'v-slice', isCPU:Bool = false, conductor:Conductor)
+    public function new(x:Float = 0, y:Float = 0, skin:String = 'v-slice', isCPU:Bool = false, playerID:String, conductor:Conductor)
     {
         super();
-
+        this.playerID = playerID;
         for (i in 0...4)
         {
             receptors.recycle(Receptor, function():Receptor
             {
-                var receptor = new Receptor(0, 0, skin, i, isCPU, conductor);
+                var receptor = new Receptor(0, 0, skin, i, isCPU, playerID, conductor);
                 receptor.setPosition(x, y);
                 // yummy emoji
                 receptor.x -= ((4 * 0.5) * receptor.strumNote.width);

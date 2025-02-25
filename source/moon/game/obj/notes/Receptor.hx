@@ -6,9 +6,11 @@ import flixel.group.FlxSpriteGroup;
 
 class Receptor extends FlxSpriteGroup
 {
+    @:isVar public var skin(default, set):String = 'v-slice';
     public var direction:Int = 0;
     public var isCPU:Bool = false;
-    @:isVar public var skin(default, set):String = 'v-slice';
+    public var playerID:String;
+
     public var conductor:Conductor;
     public var strumNote:MoonSprite = new MoonSprite();
     public var script:MoonScript;
@@ -16,12 +18,13 @@ class Receptor extends FlxSpriteGroup
     public var notesGroup:FlxTypedGroup<MoonSprite> = new FlxTypedGroup<MoonSprite>();
     public var sustainsGroup:FlxTypedGroup<NoteSustain> = new FlxTypedGroup<NoteSustain>();
 
-    public function new(x:Float, y:Float, ?skin:String = 'v-slice', direction:Int, ?isCPU:Bool = false, conductor:Conductor)
+    public function new(x:Float, y:Float, ?skin:String = 'v-slice', direction:Int, ?isCPU:Bool = false, playerID:String, conductor:Conductor)
     {
         this.direction = direction;
         this.isCPU = isCPU;
         this.conductor = conductor;
-
+        this.playerID = playerID;
+        
         script = new MoonScript();
 
         script.set("this", this);
@@ -51,8 +54,11 @@ class Receptor extends FlxSpriteGroup
         {
             if(!this.isCPU)
             {
-                final confirm = '$dir-confirm';
-                if(animation == confirm) strumNote.playAnim('$dir-press');
+                if(animation == '$dir-confirm') strumNote.playAnim('$dir-press');
+            }
+            else
+            {
+                if(animation == '$dir-confirm') strumNote.playAnim('$dir-static');
             }
         });
 

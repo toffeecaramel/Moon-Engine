@@ -23,7 +23,7 @@ class Note extends MoonSprite
 {
     /**
      * Defines the note state.
-     * E.G `MISSED, GOT_HIT, TOO_LATE` etc.
+     * E.G; `MISSED, GOT_HIT, TOO_LATE` etc.
      */
     public var state:NoteState = NONE;
 
@@ -114,8 +114,7 @@ class Note extends MoonSprite
             if(child != null) child.downscroll = downscrollLogic;
             this.x = receptor.x;
 
-            //TODO: Remove this, its just a placeholder for testing purposes.
-            if(this.time - conductor.time <= 0)
+            if(this.time - conductor.time <= 0 && this.lane.toLowerCase() == 'opponent')
             {
                 this.state = GOT_HIT;
                 receptor.onNoteHit('sick');

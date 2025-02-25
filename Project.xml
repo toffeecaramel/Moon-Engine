@@ -104,5 +104,4 @@
 
 	<!-- Enables custom classes on hscript. -->
 	<define name="CUSTOM_CLASSES" />
-
 </project>
