@@ -1,5 +1,6 @@
 package;
 
+import flixel.util.FlxColor;
 import moon.game.obj.PlayField;
 import moon.game.obj.Song;
 import moon.toolkit.ChartConvert;
@@ -19,7 +20,10 @@ class PlayState extends FlxState
 	{
 		super.create();
 
-		playField = new PlayField('toast', 'hard', 'bf');
+		var bg = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.GRAY);
+		add(bg);
+
+		playField = new PlayField('deathmatch', 'hard', '024');
 		playField.conductor.onBeat.add(beatHit);
 		add(playField);
 	}

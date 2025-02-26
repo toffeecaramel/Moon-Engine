@@ -38,9 +38,13 @@ class Strumline extends FlxGroup
             });
         }
 
-        for(receptor in receptors.members) add(receptor.sustainsGroup);
         add(receptors);
-        for(receptor in receptors.members) add(receptor.notesGroup);
+        for(receptor in receptors.members)
+        {
+            add(receptor.sustainsGroup);
+            add(receptor.notesGroup);
+            add(receptor.splashGroup);
+        }
     }
 
     public var boolean:Bool = false;

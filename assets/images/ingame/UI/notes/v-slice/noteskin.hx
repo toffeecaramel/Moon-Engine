@@ -21,3 +21,9 @@ function createStaticNote()
     staticNote.scale.set(scale, scale);
     staticNote.antialiasing = true;
 }
+
+function createSplash()
+{
+    splash.scale.set(0.8, 0.8);
+    splash.antialiasing = true;
+}

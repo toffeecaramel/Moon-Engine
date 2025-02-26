@@ -152,7 +152,6 @@ class InputHandler
     private function isWithinTiming(note:Note):Bool
         return checkTiming(note) != null;
 
-
     private function checkTiming(note:Note):String
     {
         final timeDifference = Math.abs(note.time - conductor.time);

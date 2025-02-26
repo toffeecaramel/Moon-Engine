@@ -82,7 +82,7 @@ class PlayField extends FlxGroup
         inputHandlerP1 = new InputHandler(noteSpawner.notes, 'p1', conductor);
         inputHandlerP1.onNoteHit = function(note, timing, isSustain)
         {
-            playerStrumline.receptors.members[note.direction].onNoteHit(timing);
+            playerStrumline.receptors.members[note.direction].onNoteHit(timing, isSustain);
             tst.text = inputHandlerP1.stats.accuracy + '%';
             tst.setPosition(playerStrumline.x, 20);
         };
