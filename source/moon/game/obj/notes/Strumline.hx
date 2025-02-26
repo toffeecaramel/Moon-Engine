@@ -8,6 +8,8 @@ import flixel.group.FlxGroup;
 
 class Strumline extends FlxGroup
 {
+    public var x:Float = 0;
+    public var y:Float = 0;
     /**
      * Sets the ID for recognizing this strumline (whether its opponent or not.)
      */
@@ -19,6 +21,8 @@ class Strumline extends FlxGroup
     {
         super();
         this.playerID = playerID;
+        this.x = x;
+        this.y = y;
         for (i in 0...4)
         {
             receptors.recycle(Receptor, function():Receptor

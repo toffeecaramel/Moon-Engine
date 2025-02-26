@@ -1,6 +1,8 @@
 // in PlayField.hx
 package moon.game.obj;
 
+import flixel.util.FlxColor;
+import flixel.text.FlxText;
 import moon.backend.gameplay.InputHandler;
 import flixel.FlxG;
 import flixel.group.FlxGroup;
@@ -28,6 +30,8 @@ class PlayField extends FlxGroup
 
     public var inputHandlerP1:InputHandler;
 
+
+    var tst:FlxText;
     public function new(song:String, difficulty:String, mix:String)
     {
         super();
@@ -63,6 +67,11 @@ class PlayField extends FlxGroup
         add(playerStrumline);
         strumlines.push(playerStrumline);
 
+        tst = new FlxText();
+        tst.text = ':3';
+        tst.setFormat(Paths.font('phantomuff/full.ttf'), 32, FlxColor.WHITE, LEFT);
+        add(tst);
+
         //< -- NOTES SETUP -- >//
 
         noteSpawner = new NoteSpawner(chart.content.notes, strumlines, conductor);
@@ -74,9 +83,14 @@ class PlayField extends FlxGroup
         inputHandlerP1.onNoteHit = function(note, timing, isSustain)
         {
             playerStrumline.receptors.members[note.direction].onNoteHit(timing);
+            tst.text = inputHandlerP1.stats.accuracy + '%';
+            tst.setPosition(playerStrumline.x, 20);
         };
 
-        inputHandlerP1.onNoteMiss = function(note:Note){};
+        inputHandlerP1.onNoteMiss = function(note:Note){
+            tst.text = inputHandlerP1.stats.accuracy + '%';
+            tst.setPosition(playerStrumline.x, 20);
+        };
         inputHandlerP1.onGhostTap = function(dir:Int)
         {
             playerStrumline.receptors.members[dir].strumNote.playAnim('${MoonUtils.intToDir(dir)}-press', true);

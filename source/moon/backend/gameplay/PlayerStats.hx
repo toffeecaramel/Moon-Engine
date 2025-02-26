@@ -1,11 +1,60 @@
 package moon.backend.gameplay;
 
+@:publicFields
 class PlayerStats
 {
     /**
-     * Variable used for storing total notes hit by the player.
+     * Used for storing total notes that got hit or missed by the player.
      */
-    public static var totalNotes:Int = 0;
-    public static var accuracyCount:Float = 0;
-    //public static var
+    @:isVar var totalNotes(default, set):Int = 0;
+
+    /**
+     * Used for checking a total accuracy you got on said judgement.
+     */
+     @:isVar var accuracyCount(default, set):Float = 0;
+
+    /**
+     * Total accuracy by said player.
+     */
+    var accuracy:Float = 0;
+
+    /**
+     * Total misses by said player, either by ghost tapping or missing notes.
+     */
+    var misses:Int = 0;
+
+    /**
+     * Total score by said player, gained by each note hit, depending on the Timing it got.
+     */
+    var score:Int = 0;
+
+    /**
+     * The ID of this player.
+     */
+    var playerID:String = 'p1';
+
+    public function new(playerID:String = 'p1')
+    {
+        this.playerID = playerID;
+        accuracy = 0;
+        score = 0;
+        misses = 0;
+    }
+
+    function updtAccuracy()
+        accuracy = Math.round((accuracyCount / totalNotes) * 10000) / 100;
+
+    @:noCompletion function set_accuracyCount(value:Float):Float
+    {
+        accuracyCount = value;
+        updtAccuracy();
+        return value;
+    }
+
+    @:noCompletion function set_totalNotes(value:Int):Int
+    {
+        totalNotes = value;
+        updtAccuracy();
+        return value;
+    }
 }

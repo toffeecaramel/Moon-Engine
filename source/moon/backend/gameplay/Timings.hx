@@ -7,17 +7,17 @@ class Timings
 {
     public static var judgementsMap:Map<String, Array<Dynamic>> = [
         /**
-            ID (0) - Unused so far
+            Accuracy count (0)
             max milliseconds (1)
             score from it (2)
             health gain (3)
             judgement color (4)
         **/
-        'sick' => [0,   45,      350,   4,     0xFF2883ff],
-        'good' => [1,   90,      150,   2,     0xFF44cd4d],
-        'bad'  => [2,   135,     0,     0,     0xFFa8738a],
-        'shit' => [3,   157.5,  -50,   -2,     0xFF59443f],
-        'miss' => [4,   180,    -600,  -4.5,  0xFF894331]
+        'sick' => [1.0,     45,      350,   4,     0xFF2883ff],
+        'good' => [0.5,     90,      150,   2,     0xFF44cd4d],
+        'bad'  => [-0.02,   135,     0,     0,     0xFFa8738a],
+        'shit' => [-0.5,    157.5,  -50,   -2,     0xFF59443f],
+        'miss' => [-1.0,    180,    -600,  -4.5,   0xFF894331]
     ];
 
     public static var judgementsCounter:Map<String, Int> =

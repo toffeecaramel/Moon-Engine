@@ -9,6 +9,13 @@ import moon.backend.gameplay.Timings;
  **/
 class InputHandler
 {
+    public var stats:PlayerStats;
+    public var playerID:String;
+    public var conductor:Conductor;
+    
+    private var heldSustains:Map<Int, Note> = new Map<Int, Note>();
+    public var thisNotes:Array<Note> = [];
+    
     public var onNoteHit:(Note, String, Bool)->Void;
     public var onNoteMiss:Note->Void;
     public var onGhostTap:Int->Void;
@@ -17,19 +24,14 @@ class InputHandler
     public var justPressed:Array<Bool> = [];
     public var pressed:Array<Bool> = [];
     public var released:Array<Bool> = [];
-
-    public var playerID:String;
-    private var conductor:Conductor;
     
-    private var heldSustains:Map<Int, Note> = new Map<Int, Note>();
-    public var thisNotes:Array<Note> = [];
-
     public function new(thisNotes:Array<Note>, playerID:String, conductor:Conductor)
     {
         //TODO: Doccument this class.
         this.thisNotes = thisNotes;
         this.playerID = playerID;
         this.conductor = conductor;
+        this.stats = new PlayerStats(playerID);
     }
 
     public function update():Void
@@ -68,14 +70,21 @@ class InputHandler
                         note.state = GOT_HIT;
                         if (note.duration > 0)
                             heldSustains.set(i, note);
+
+                        stats.totalNotes++;
+                        stats.accuracyCount += Timings.getParameters(timing)[0];
                         note.visible = note.active = false;
                     }
                 }
                 else
                 {
+                    //TODO: Ghost tapping support.
                     if(onGhostTap != null) onGhostTap(i);
                     if (onNoteMiss != null/*&& !UserSettings.callSetting('Ghost Tapping')*/)
                         onNoteMiss(null);
+
+                    stats.totalNotes++;
+                    stats.accuracyCount += Timings.getParameters('miss')[0];
                 }
             }
         }
@@ -135,8 +144,7 @@ class InputHandler
                 if (onNoteMiss != null) onNoteMiss(note);
                 note.state = TOO_LATE;
                 note.visible = note.active = false;
-                //TODO This :3 v
-                //playerStats.SCORE += Std.int(Timings.getParameters('miss')[2]);
+                stats.accuracyCount += Timings.getParameters('miss')[0];
             }
         }
     }
