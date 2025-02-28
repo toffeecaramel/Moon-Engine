@@ -17,18 +17,15 @@ class PlayField extends FlxGroup
     var conductor:Conductor;
     var playback:Song;
 
-    var playerStrumline:Strumline;
-    var opponentStrumline:Strumline;
-    var noteSpawner:NoteSpawner;
+    public var noteSpawner:NoteSpawner;
     var chart:MoonChart;
 
     var song:String;
     var mix:String;
     var difficulty:String;
 
-    var strumlines:Array<Strumline> = [];
-
-    public var inputHandlerP1:InputHandler;
+    public var strumlines:Array<Strumline> = [];
+    public var inputHandlers:Array<InputHandler> = []; // Array to hold input handlers
 
 
     var tst:FlxText;
@@ -54,18 +51,41 @@ class PlayField extends FlxGroup
 
         chart = new MoonChart(song, difficulty, mix);
 
-        //< -- STRUMLINES SETUP -- >//
+        //< -- STRUMLINES & INPUTS SETUP -- >//
+        strumlines = [];
+        inputHandlers = [];
 
         final xVal = (FlxG.width * 0.5);
         final xAddition = (FlxG.width * 0.25);
+        final strumXs:Array<Float> = [-xAddition, xAddition]; // X positions relative to center
+        final playerIDs:Array<String> = ["opponent", "p1"]; // Player IDs
+        final isCPUPlayers:Array<Bool> = [true, false];
 
-        opponentStrumline = new Strumline(xVal - xAddition, 80, 'v-slice', true, "opponent", conductor);
-        add(opponentStrumline);
-        strumlines.push(opponentStrumline);
+        for (i in 0...playerIDs.length)
+        {
+            var strumline = new Strumline(xVal + strumXs[i], 80, 'v-slice', isCPUPlayers[i], playerIDs[i], conductor);
+            add(strumline);
+            strumlines.push(strumline);
 
-        playerStrumline = new Strumline(xVal + xAddition, 80, 'v-slice', false, "p1", conductor);
-        add(playerStrumline);
-        strumlines.push(playerStrumline);
+            var inputHandler = new InputHandler(null, playerIDs[i], strumline, conductor); // Note: thisNotes will be set later
+            inputHandlers.push(inputHandler);
+
+            if (playerIDs[i] == 'p1') // Example for player 1 input handling
+            {
+                inputHandlers[i].onNoteHit = function(note, timing, isSustain)
+                {
+                    tst.text = inputHandlers[i].stats.accuracy + '%';
+                    tst.setPosition(strumlines[i].x, 20);
+                };
+
+                inputHandlers[i].onNoteMiss = function(note:Note){
+                    tst.text = inputHandlers[i].stats.accuracy + '%';
+                    tst.setPosition(strumlines[i].x, 20);
+                };
+            }
+             // You can set up onNoteHit, onNoteMiss, etc. for other inputHandlers here if needed
+        }
+
 
         tst = new FlxText();
         tst.text = ':3';
@@ -77,28 +97,8 @@ class PlayField extends FlxGroup
         noteSpawner = new NoteSpawner(chart.content.notes, strumlines, conductor);
         add(noteSpawner);
 
-        //< -- INPUTS SETUP -- >//
-
-        inputHandlerP1 = new InputHandler(noteSpawner.notes, 'p1', conductor);
-        inputHandlerP1.onNoteHit = function(note, timing, isSustain)
-        {
-            playerStrumline.receptors.members[note.direction].onNoteHit(timing, isSustain);
-            tst.text = inputHandlerP1.stats.accuracy + '%';
-            tst.setPosition(playerStrumline.x, 20);
-        };
-
-        inputHandlerP1.onNoteMiss = function(note:Note){
-            tst.text = inputHandlerP1.stats.accuracy + '%';
-            tst.setPosition(playerStrumline.x, 20);
-        };
-        inputHandlerP1.onGhostTap = function(dir:Int)
-        {
-            playerStrumline.receptors.members[dir].strumNote.playAnim('${MoonUtils.intToDir(dir)}-press', true);
-        };
-        inputHandlerP1.onKeyRelease = function(dir:Int)
-        {
-            playerStrumline.receptors.members[dir].strumNote.playAnim('${MoonUtils.intToDir(dir)}-static', true);
-        };
+        for (inputHandler in inputHandlers)
+            inputHandler.thisNotes = noteSpawner.notes;
 
 		playback.state = PLAY;
     }
@@ -107,39 +107,23 @@ class PlayField extends FlxGroup
     {
         conductor.time += dt * 1000;
 
-        inputHandlerP1.justPressed = [MoonInput.justPressed(LEFT),MoonInput.justPressed(DOWN),MoonInput.justPressed(UP),MoonInput.justPressed(RIGHT),
+        inputHandlers[1].justPressed = [MoonInput.justPressed(LEFT),MoonInput.justPressed(DOWN),MoonInput.justPressed(UP),MoonInput.justPressed(RIGHT),
 		];
 
-		inputHandlerP1.pressed = [MoonInput.pressed(LEFT),MoonInput.pressed(DOWN),MoonInput.pressed(UP),MoonInput.pressed(RIGHT),
+		inputHandlers[1].pressed = [MoonInput.pressed(LEFT),MoonInput.pressed(DOWN),MoonInput.pressed(UP),MoonInput.pressed(RIGHT),
 		];
 
-		inputHandlerP1.released = [MoonInput.released(LEFT),MoonInput.released(DOWN),MoonInput.released(UP),MoonInput.released(RIGHT),
+		inputHandlers[1].released = [MoonInput.released(LEFT),MoonInput.released(DOWN),MoonInput.released(UP),MoonInput.released(RIGHT),
 		];
 
-        inputHandlerP1.thisNotes = noteSpawner.notes;
 
         super.update(dt);
-        inputHandlerP1.update();
+        for (inputHandler in inputHandlers)
+            inputHandler.update();
     }
 
     function beatHit(beat:Float)
     {
 
-    }
-
-    function onPlayerNoteMiss(note:Note):Void
-    {
-        trace('Note Missed!');
-    }
-
-    function onPlayerGhostTap(direction:Int):Void
-    {
-        trace('Ghost Tap! Direction: ' + direction);
-    }
-
-    function onPlayerKeyRelease(direction:Int):Void
-    {
-        // Handle key release events if needed
-        // trace('Key Released! Direction: ' + direction);
     }
 }

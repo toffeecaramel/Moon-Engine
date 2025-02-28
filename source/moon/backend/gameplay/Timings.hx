@@ -1,4 +1,3 @@
-// in Timings.hx
 package moon.backend.gameplay;
 
 import flixel.util.FlxColor;

@@ -23,7 +23,7 @@ class PlayState extends FlxState
 		var bg = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.GRAY);
 		add(bg);
 
-		playField = new PlayField('deathmatch', 'hard', '024');
+		playField = new PlayField('toast', 'hard', 'bf');
 		playField.conductor.onBeat.add(beatHit);
 		add(playField);
 	}

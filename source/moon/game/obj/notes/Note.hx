@@ -113,14 +113,6 @@ class Note extends MoonSprite
 
             if(child != null) child.downscroll = downscrollLogic;
             this.x = receptor.x;
-
-            if(this.time - conductor.time <= 0 && this.lane.toLowerCase() == 'opponent')
-            {
-                this.state = GOT_HIT;
-                receptor.onNoteHit('sick');
-                this.active = false;
-                this.visible = false;
-            }
         }
     }
 

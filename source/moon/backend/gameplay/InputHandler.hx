@@ -11,25 +11,28 @@ class InputHandler
 {
     public var stats:PlayerStats;
     public var playerID:String;
+    public var strumline:Strumline;
     public var conductor:Conductor;
-    
+
     private var heldSustains:Map<Int, Note> = new Map<Int, Note>();
     public var thisNotes:Array<Note> = [];
-    
+
     public var onNoteHit:(Note, String, Bool)->Void;
     public var onNoteMiss:Note->Void;
     public var onGhostTap:Int->Void;
     public var onKeyRelease:Int->Void;
+    public var onSustainComplete:Note->Void;
 
     public var justPressed:Array<Bool> = [];
     public var pressed:Array<Bool> = [];
     public var released:Array<Bool> = [];
-    
-    public function new(thisNotes:Array<Note>, playerID:String, conductor:Conductor)
+
+    public function new(thisNotes:Array<Note>, playerID:String, strumline:Strumline, conductor:Conductor)
     {
         //TODO: Doccument this class.
         this.thisNotes = thisNotes;
         this.playerID = playerID;
+        this.strumline = strumline;
         this.conductor = conductor;
         this.stats = new PlayerStats(playerID);
     }
@@ -37,10 +40,29 @@ class InputHandler
     public function update():Void
     {
         if(playerID != 'opponent')
-        {
             processInputs();
-            checkSustains();
-            checkMisses();
+        else
+            processCPUInputs();
+
+        checkSustains();
+        checkMisses();
+    }
+
+    private function processCPUInputs():Void
+    {
+        for (i in 0...4)
+        {
+            final possibleNotes = thisNotes.filter(note ->
+            return (note.direction == i &&
+                note.lane == playerID &&
+                note.time - conductor.time <= 0 &&
+                note.state == NONE)
+            );
+
+            possibleNotes.sort((a, b) -> Std.int(a.time - b.time));
+
+            if (possibleNotes.length > 0)
+                onHit(possibleNotes[0], i, 'sick', true);
         }
     }
 
@@ -50,11 +72,11 @@ class InputHandler
         {
             if (justPressed[i])
             {
-                var possibleNotes = thisNotes.filter(note ->
+                final possibleNotes = thisNotes.filter(note ->
                 return (note.direction == i &&
-                        note.lane == playerID &&
-                        isWithinTiming(note) &&
-                        note.state == NONE)
+                    note.lane == playerID &&
+                    isWithinTiming(note) &&
+                    note.state == NONE)
                 );
 
                 possibleNotes.sort((a, b) -> Std.int(a.time - b.time));
@@ -66,25 +88,23 @@ class InputHandler
 
                     if (timing != null)
                     {
-                        (timing != 'miss' && onNoteHit != null) ? onNoteHit(note, timing, false) : (timing == 'miss' && onNoteMiss != null) ? onNoteMiss(note) : null;
-                        note.state = GOT_HIT;
-                        if (note.duration > 0)
-                            heldSustains.set(i, note);
-
+                        onHit(note, i, timing, false);
                         stats.totalNotes++;
                         stats.accuracyCount += Timings.getParameters(timing)[0];
-                        note.visible = note.active = false;
                     }
                 }
                 else
                 {
-                    //TODO: Ghost tapping support.
+                    //TODO: Ghost tapping support, like, the options yea
                     if(onGhostTap != null) onGhostTap(i);
+                    strumline.receptors.members[i].strumNote.playAnim('${MoonUtils.intToDir(i)}-press', true);
                     if (onNoteMiss != null/*&& !UserSettings.callSetting('Ghost Tapping')*/)
+                    {
                         onNoteMiss(null);
 
-                    stats.totalNotes++;
-                    stats.accuracyCount += Timings.getParameters('miss')[0];
+                        stats.totalNotes++;
+                        stats.accuracyCount += Timings.getParameters('miss')[0];
+                    }
                 }
             }
         }
@@ -94,9 +114,11 @@ class InputHandler
             if(released[i])
             {
                 if (onKeyRelease != null) onKeyRelease(i);
+                strumline.receptors.members[i].strumNote.playAnim('${MoonUtils.intToDir(i)}-static', true);
 
                 if (heldSustains.exists(i))
                 {
+                    strumline.receptors.members[i].sustainSplash.despawn(true);
                     final heldNote = heldSustains.get(i);
                     heldSustains.remove(i);
 
@@ -108,6 +130,17 @@ class InputHandler
         }
     }
 
+    private function onHit(note:Note, ID:Int, timing:String, isCPU:Bool)
+    {
+        (timing != 'miss' && onNoteHit != null) ? onNoteHit(note, timing, isCPU) : (timing == 'miss' && onNoteMiss != null) ? onNoteMiss(note) : null;
+        note.state = GOT_HIT;
+        note.visible = note.active = false;
+        strumline.receptors.members[note.direction].onNoteHit(note, timing, isCPU);
+        strumline.receptors.members[note.direction].sustainSplash.despawn((playerID == 'opponent')); // just a workaround in case it doesnt stop
+        if (note.duration > 0)
+            heldSustains.set(ID, note);
+    }
+
     private var sustainTrack:Int = 0; // for tracking sustain shii
     private function checkSustains():Void
     {
@@ -115,11 +148,12 @@ class InputHandler
         {
             final heldNote = heldSustains.get(direction);
             if (heldNote != null && heldNote.state == GOT_HIT && heldNote.child != null && heldNote.child.active)
-            {   
+            {
                 sustainTrack++;
                 if(sustainTrack >= 5)
                 {
                     (onNoteHit != null) ? onNoteHit(heldNote, null, true) : null;
+                    strumline.receptors.members[heldNote.direction].onNoteHit(heldNote, null, true);
                     sustainTrack = 0;
                 }
 
@@ -130,7 +164,11 @@ class InputHandler
                 }
             }
             else if (heldNote == null || heldNote.state != GOT_HIT || heldNote.child == null || !heldNote.child.active)
+            {
                 heldSustains.remove(direction);
+                strumline.receptors.members[heldNote.direction].sustainSplash.despawn((playerID == 'opponent'));
+                if(onSustainComplete != null) onSustainComplete(heldNote);
+            }
         }
     }
 
@@ -138,7 +176,7 @@ class InputHandler
     {
         for (note in thisNotes)
         {
-            if (note.state != GOT_HIT && note.state != TOO_LATE && note.lane == 'p1' &&
+            if (note.state != GOT_HIT && note.state != NoteState.TOO_LATE && note.lane == playerID && // Use playerID here for opponent misses too if needed
                 conductor.time > note.time + Timings.getParameters('miss')[1])
             {
                 if (onNoteMiss != null) onNoteMiss(note);
