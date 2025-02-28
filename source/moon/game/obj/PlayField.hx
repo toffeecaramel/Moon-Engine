@@ -67,10 +67,10 @@ class PlayField extends FlxGroup
             add(strumline);
             strumlines.push(strumline);
 
-            var inputHandler = new InputHandler(null, playerIDs[i], strumline, conductor); // Note: thisNotes will be set later
+            var inputHandler = new InputHandler(null, playerIDs[i], strumline, conductor);
             inputHandlers.push(inputHandler);
 
-            if (playerIDs[i] == 'p1') // Example for player 1 input handling
+            if (playerIDs[i] == 'p1')
             {
                 inputHandlers[i].onNoteHit = function(note, timing, isSustain)
                 {
@@ -83,9 +83,7 @@ class PlayField extends FlxGroup
                     tst.setPosition(strumlines[i].x, 20);
                 };
             }
-             // You can set up onNoteHit, onNoteMiss, etc. for other inputHandlers here if needed
         }
-
 
         tst = new FlxText();
         tst.text = ':3';
@@ -115,7 +113,6 @@ class PlayField extends FlxGroup
 
 		inputHandlers[1].released = [MoonInput.released(LEFT),MoonInput.released(DOWN),MoonInput.released(UP),MoonInput.released(RIGHT),
 		];
-
 
         super.update(dt);
         for (inputHandler in inputHandlers)
