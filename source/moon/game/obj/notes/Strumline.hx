@@ -10,6 +10,7 @@ class Strumline extends FlxGroup
 {
     public var x:Float = 0;
     public var y:Float = 0;
+
     /**
      * Sets the ID for recognizing this strumline (whether its opponent or not.)
      */
@@ -17,6 +18,14 @@ class Strumline extends FlxGroup
 
     public var receptors:FlxTypedGroup<Receptor> = new FlxTypedGroup<Receptor>();
 
+    /**
+     * Creates a strumline in screen.
+     * @param x         X Position.
+     * @param y         Y Position.
+     * @param skin      This skin.
+     * @param isCPU     Whether is a CPU or not.
+     * @param playerID The player ID for this. can be opponent, p1, etc...
+     */
     public function new(x:Float = 0, y:Float = 0, skin:String = 'v-slice', isCPU:Bool = false, playerID:String)
     {
         super();
@@ -29,6 +38,7 @@ class Strumline extends FlxGroup
             {
                 var receptor = new Receptor(0, 0, skin, i, isCPU, playerID);
                 receptor.setPosition(x, y);
+
                 // yummy emoji
                 receptor.x -= ((4 * 0.5) * receptor.strumNote.width);
                 receptor.x += (receptor.strumNote.width * i);
@@ -38,6 +48,7 @@ class Strumline extends FlxGroup
             });
         }
 
+        // add everythin' (kinda messy but k)
         add(receptors);
         for(receptor in receptors.members)
         {
