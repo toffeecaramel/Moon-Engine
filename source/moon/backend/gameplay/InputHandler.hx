@@ -27,6 +27,13 @@ class InputHandler
     public var pressed:Array<Bool> = [];
     public var released:Array<Bool> = [];
 
+    /**
+     * [Description]
+     * @param thisNotes 
+     * @param playerID 
+     * @param strumline 
+     * @param conductor 
+     */
     public function new(thisNotes:Array<Note>, playerID:String, strumline:Strumline, conductor:Conductor)
     {
         //TODO: Doccument this class.
@@ -176,7 +183,7 @@ class InputHandler
     {
         for (note in thisNotes)
         {
-            if (note.state != GOT_HIT && note.state != NoteState.TOO_LATE && note.lane == playerID && // Use playerID here for opponent misses too if needed
+            if (note.state != GOT_HIT && note.state != NoteState.TOO_LATE && note.lane == playerID &&
                 conductor.time > note.time + Timings.getParameters('miss')[1])
             {
                 if (onNoteMiss != null) onNoteMiss(note);

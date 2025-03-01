@@ -25,8 +25,7 @@ class PlayField extends FlxGroup
     var difficulty:String;
 
     public var strumlines:Array<Strumline> = [];
-    public var inputHandlers:Array<InputHandler> = []; // Array to hold input handlers
-
+    public var inputHandlers:Array<InputHandler> = [];
 
     var tst:FlxText;
     public function new(song:String, difficulty:String, mix:String)
