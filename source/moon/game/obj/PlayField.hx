@@ -28,6 +28,13 @@ class PlayField extends FlxGroup
     public var inputHandlers:Array<InputHandler> = [];
 
     var tst:FlxText;
+
+    /**
+     * Creates a gameplay scene on screen.
+     * @param song        The song that'll be played on the directory.
+     * @param difficulty  The song's difficulty.
+     * @param mix         The song's mix (e.g. bf, pico)
+     */
     public function new(song:String, difficulty:String, mix:String)
     {
         super();
@@ -54,12 +61,16 @@ class PlayField extends FlxGroup
         strumlines = [];
         inputHandlers = [];
 
+        // strums positioning values
         final xVal = (FlxG.width * 0.5);
         final xAddition = (FlxG.width * 0.25);
-        final strumXs:Array<Float> = [-xAddition, xAddition]; // X positions relative to center
-        final playerIDs:Array<String> = ["opponent", "p1"]; // Player IDs
+        final strumXs:Array<Float> = [-xAddition, xAddition];
+
+        // some setups for their ids
+        final playerIDs:Array<String> = ["opponent", "p1"];
         final isCPUPlayers:Array<Bool> = [true, false];
 
+        // actually setup strumlines
         for (i in 0...playerIDs.length)
         {
             var strumline = new Strumline(xVal + strumXs[i], 80, 'v-slice', isCPUPlayers[i], playerIDs[i], conductor);
@@ -69,6 +80,9 @@ class PlayField extends FlxGroup
             var inputHandler = new InputHandler(null, playerIDs[i], strumline, conductor);
             inputHandlers.push(inputHandler);
 
+            // specific thing when its player 1 only
+            // oh btw lemme
+            // TODO: ADD p2 support here and... mhmhmhm AGFAGH BARK :3
             if (playerIDs[i] == 'p1')
             {
                 inputHandlers[i].onNoteHit = function(note, timing, isSustain)
@@ -84,6 +98,7 @@ class PlayField extends FlxGroup
             }
         }
 
+        // little text for testing out the accuracy;
         tst = new FlxText();
         tst.text = ':3';
         tst.setFormat(Paths.font('phantomuff/full.ttf'), 32, FlxColor.WHITE, LEFT);
@@ -91,12 +106,15 @@ class PlayField extends FlxGroup
 
         //< -- NOTES SETUP -- >//
 
+        // add the note spawner
         noteSpawner = new NoteSpawner(chart.content.notes, strumlines, conductor);
         add(noteSpawner);
 
+        // set input handler's notes
         for (inputHandler in inputHandlers)
             inputHandler.thisNotes = noteSpawner.notes;
 
+        // set the song's state
 		playback.state = PLAY;
     }
 
@@ -104,6 +122,8 @@ class PlayField extends FlxGroup
     {
         conductor.time += dt * 1000;
 
+        // this is kinda... dumb? so uh
+        //TODO: shorten this? somehow??
         inputHandlers[1].justPressed = [MoonInput.justPressed(LEFT),MoonInput.justPressed(DOWN),MoonInput.justPressed(UP),MoonInput.justPressed(RIGHT),
 		];
 
