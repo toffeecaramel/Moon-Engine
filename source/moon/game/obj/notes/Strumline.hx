@@ -17,7 +17,7 @@ class Strumline extends FlxGroup
 
     public var receptors:FlxTypedGroup<Receptor> = new FlxTypedGroup<Receptor>();
 
-    public function new(x:Float = 0, y:Float = 0, skin:String = 'v-slice', isCPU:Bool = false, playerID:String, conductor:Conductor)
+    public function new(x:Float = 0, y:Float = 0, skin:String = 'v-slice', isCPU:Bool = false, playerID:String)
     {
         super();
         this.playerID = playerID;
@@ -27,7 +27,7 @@ class Strumline extends FlxGroup
         {
             receptors.recycle(Receptor, function():Receptor
             {
-                var receptor = new Receptor(0, 0, skin, i, isCPU, playerID, conductor);
+                var receptor = new Receptor(0, 0, skin, i, isCPU, playerID);
                 receptor.setPosition(x, y);
                 // yummy emoji
                 receptor.x -= ((4 * 0.5) * receptor.strumNote.width);

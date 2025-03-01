@@ -6,29 +6,77 @@ import flixel.group.FlxSpriteGroup;
 
 class Receptor extends FlxSpriteGroup
 {
+    /**
+     * Skin used for the receptor, if you change it, it will be updated.
+     */
     @:isVar public var skin(default, set):String = 'v-slice';
+
+    /**
+     * The direction data (e.g. 0, 1, 2, 3...)
+     */
     public var data:Int = 0;
+
+    /**
+     * Whether is a CPU or not.
+     */
     public var isCPU:Bool = false;
+
+    /**
+     * The player ID for this. can be opponent, p1, etc...
+     */
     public var playerID:String;
 
+    /**
+     * The strum note.
+     */
     public var strumNote:MoonSprite = new MoonSprite();
+
+    /**
+     * The note splash.
+     */
     public var splash:RegularSplash;
+
+    /**
+     * The sustain note splash (when holding one.)
+     */
     public var sustainSplash:SustainSplash;
 
-    public var conductor:Conductor;
+    /**
+     * Script for the noteskins.
+     */
     public var script:MoonScript;
     
+    /**
+     * Group for the notes on this receptor.
+     */
     public var notesGroup:FlxTypedSpriteGroup<MoonSprite> = new FlxTypedSpriteGroup<MoonSprite>();
+
+    /**
+     * Group for the sustain pieces on this receptor.
+     */
     public var sustainsGroup:FlxTypedSpriteGroup<NoteSustain> = new FlxTypedSpriteGroup<NoteSustain>();
+
+    /**
+     * Group for the notes on this receptor.
+     */
     public var splashGroup:FlxTypedSpriteGroup<MoonSprite> = new FlxTypedSpriteGroup<MoonSprite>();
 
-    public function new(x:Float, y:Float, ?skin:String = 'v-slice', data:Int, ?isCPU:Bool = false, playerID:String, conductor:Conductor)
+    /**
+     * Creates a receptor on your desired position with skin and other data stuff.
+     * @param x         X Position
+     * @param y         Y Position
+     * @param skin      Skin for it (default is v-slice)
+     * @param data      Direction data (E.G. 0, 1, 2, 3...)
+     * @param isCPU     Whether is CPU or not.
+     * @param playerID  The player ID for this. can be opponent, p1, etc...
+     */
+    public function new(x:Float, y:Float, ?skin:String = 'v-slice', data:Int, ?isCPU:Bool = false, playerID:String)
     {
         this.data = data;
         this.isCPU = isCPU;
-        this.conductor = conductor;
         this.playerID = playerID;
         
+        //load script
         script = new MoonScript();
 
         script.set("this", this);
@@ -76,12 +124,20 @@ class Receptor extends FlxSpriteGroup
         strumNote.updateHitbox();
     }
 
+    /**
+     * Called upon note hittin.
+     * @param note      The note that got hit.
+     * @param judgement The judgement when hitting the note.
+     * @param isSustain Whether or not is a sustain note.
+     */
     public function onNoteHit(?note:Note, judgement:String = 'sick', isSustain:Bool = false)
     {
+        // set positions
         final dir = MoonUtils.intToDir(data);
         final strumCenterX = strumNote.x + strumNote.width / 2;
         final strumCenterY = strumNote.y + strumNote.height / 2;
 
+        // then play anims
         strumNote.playAnim('$dir-confirm', true);
         if(judgement == 'sick' && !isCPU && !isSustain)
         {
