@@ -7,6 +7,11 @@ class SustainSplash extends MoonSprite
     @:isVar public var skin(default, set):String;
     public var data:Int;
 
+    /**
+     * Creates a hold note splash instance
+     * @param skin skin for it.
+     * @param data direction data (0, 1, 2...)
+     */
     public function new(skin:String, data:Int = 0)
     {
         super();
@@ -23,6 +28,10 @@ class SustainSplash extends MoonSprite
     }
 
     var direction:String;
+
+    /**
+     * Updates all the animations to the current skin.
+     */
     private function _updtGraphics()
     {
         frames = Paths.getSparrowAtlas('ingame/UI/notes/$skin/holdSplash');
@@ -44,8 +53,13 @@ class SustainSplash extends MoonSprite
     }
 
     public var isOnLoop:Bool;
+
+    /**
+     * Spawns a hold note splash, note that if this function gets called again, the animation will not reset.
+     */
     public function spawn()
     {
+        // just a check for making the animation not loop if the function is called again
         if(!isOnLoop)
         {
             isOnLoop = true;
@@ -55,12 +69,16 @@ class SustainSplash extends MoonSprite
         }
     }
 
-    public function despawn(isCPU:Bool)
+    /**
+     * Despawns the note splash.
+     * @param insta if true, it'll disappear instantly. Else, it'll play the end animation and then disappear
+     */
+    public function despawn(insta:Bool)
     {
         if(isOnLoop)
         {
             isOnLoop = false;
-            if(isCPU) this.active = this.visible = false;
+            if(insta) this.active = this.visible = false;
             else this.playAnim('$direction-end', true);
         }
     }
