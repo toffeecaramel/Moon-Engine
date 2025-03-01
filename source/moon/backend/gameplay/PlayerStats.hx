@@ -33,6 +33,10 @@ class PlayerStats
      */
     var playerID:String = 'p1';
 
+    /**
+     * Creates states for a specific player
+     * @param playerID The player ID that'll be used. (e.g. `p1, opponent[...]`)
+     */
     public function new(playerID:String = 'p1')
     {
         this.playerID = playerID;
@@ -41,6 +45,9 @@ class PlayerStats
         misses = 0;
     }
 
+    /**
+     * Function called for updating the accuracy based on everything.
+     */
     function updtAccuracy()
         accuracy = Math.round((accuracyCount / totalNotes) * 10000) / 100;
 
