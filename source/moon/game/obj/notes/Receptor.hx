@@ -156,7 +156,7 @@ class Receptor extends FlxSpriteGroup
         {
             sustainSplash.x = strumCenterX - sustainSplash.width / 2; 
             sustainSplash.y = strumCenterY - sustainSplash.height / 2;
-            if (note.duration >= 30) sustainSplash.spawn();
+            sustainSplash.spawn();
         }
     }
 
