@@ -73,7 +73,7 @@ class PlayField extends FlxGroup
         // actually setup strumlines
         for (i in 0...playerIDs.length)
         {
-            var strumline = new Strumline(xVal + strumXs[i], 80, 'v-slice', isCPUPlayers[i], playerIDs[i]);
+            var strumline = new Strumline(xVal + strumXs[i], 80, 'v-slice', isCPUPlayers[i], playerIDs[i], conductor);
             add(strumline);
             strumlines.push(strumline);
 

@@ -27,6 +27,11 @@ class Receptor extends FlxSpriteGroup
     public var playerID:String;
 
     /**
+     * The conductor for this class.
+     */
+    public var conductor:Conductor;
+
+    /**
      * The strum note.
      */
     public var strumNote:MoonSprite = new MoonSprite();
@@ -69,12 +74,14 @@ class Receptor extends FlxSpriteGroup
      * @param data      Direction data (E.G. 0, 1, 2, 3...)
      * @param isCPU     Whether is CPU or not.
      * @param playerID  The player ID for this. can be opponent, p1, etc...
+     * @param conductor The conductor, useful for tracking time n stuff.
      */
-    public function new(x:Float, y:Float, ?skin:String = 'v-slice', data:Int, ?isCPU:Bool = false, playerID:String)
+    public function new(x:Float, y:Float, ?skin:String = 'v-slice', data:Int, ?isCPU:Bool = false, playerID:String, conductor:Conductor)
     {
         this.data = data;
         this.isCPU = isCPU;
         this.playerID = playerID;
+        this.conductor = conductor;
         
         //load script
         script = new MoonScript();

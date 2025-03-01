@@ -24,9 +24,10 @@ class Strumline extends FlxGroup
      * @param y         Y Position.
      * @param skin      This skin.
      * @param isCPU     Whether is a CPU or not.
-     * @param playerID The player ID for this. can be opponent, p1, etc...
+     * @param playerID  The player ID for this. can be opponent, p1, etc...
+     * @param conductor The conductor, useful for tracking time stuff.
      */
-    public function new(x:Float = 0, y:Float = 0, skin:String = 'v-slice', isCPU:Bool = false, playerID:String)
+    public function new(x:Float = 0, y:Float = 0, skin:String = 'v-slice', isCPU:Bool = false, playerID:String, conductor:Conductor)
     {
         super();
         this.playerID = playerID;
@@ -36,7 +37,7 @@ class Strumline extends FlxGroup
         {
             receptors.recycle(Receptor, function():Receptor
             {
-                var receptor = new Receptor(0, 0, skin, i, isCPU, playerID);
+                var receptor = new Receptor(0, 0, skin, i, isCPU, playerID, conductor);
                 receptor.setPosition(x, y);
 
                 // yummy emoji
