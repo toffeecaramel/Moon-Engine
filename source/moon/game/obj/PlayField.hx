@@ -87,12 +87,12 @@ class PlayField extends FlxGroup
             {
                 inputHandlers[i].onNoteHit = function(note, timing, isSustain)
                 {
-                    tst.text = 'SCORE: ${inputHandlers[i].stats.score} // MISSES: ${inputHandlers[i].stats.misses} // ACCURACY: ${inputHandlers[i].stats.misses}%';
+                    tst.text = 'SCORE: ${inputHandlers[i].stats.score} // MISSES: ${inputHandlers[i].stats.misses} // ACCURACY: ${inputHandlers[i].stats.accuracy}%';
                     tst.screenCenter(X);
                 };
 
                 inputHandlers[i].onNoteMiss = function(note:Note){
-                    tst.text = 'SCORE: ${inputHandlers[i].stats.score} // MISSES: ${inputHandlers[i].stats.misses} // ACCURACY: ${inputHandlers[i].stats.misses}%';
+                    tst.text = 'SCORE: ${inputHandlers[i].stats.score} // MISSES: ${inputHandlers[i].stats.misses} // ACCURACY: ${inputHandlers[i].stats.accuracy}%';
                     tst.screenCenter(X);
                 };
             }
