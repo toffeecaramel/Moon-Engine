@@ -226,7 +226,7 @@ class InputHandler
             heldSustains.set(ID, note);
     }
 
-    private var sustainTrack:Int = 0; // for tracking sustain stuffies
+    private var sustainCounters:Map<Int, Int> = new Map<Int, Int>(); // for tracking sustain stuffies
     private function checkSustains():Void
     {
         for (direction in heldSustains.keys())
@@ -235,11 +235,14 @@ class InputHandler
             // on hold note hit
             if (heldNote != null && heldNote.state == GOT_HIT && heldNote.child != null && heldNote.child.active)
             {
-                // basically the ticks ammount when to call an sustain note hit
-                sustainTrack++;
-                if(sustainTrack % 6 == 0)
+                var counter = sustainCounters.exists(direction) ? sustainCounters.get(direction) : 0;
+                counter++;
+                sustainCounters.set(direction, counter);
+                
+                // trigger on note hit every 6 ticks for this sustain note.
+                if (counter % 6 == 0)
                 {
-                    (onNoteHit != null) ? onNoteHit(heldNote, null, true) : null;
+                    if(onNoteHit != null) onNoteHit(heldNote, null, true);
                     stats.score += 2;
                     strumline.receptors.members[heldNote.direction].onNoteHit(heldNote, null, true);
                 }
