@@ -1,7 +1,9 @@
 package;
 
+import flixel.math.FlxRect;
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
 import flixel.math.FlxMath;
-import flixel.FlxCamera;
 import flixel.util.FlxColor;
 import flixel.FlxSprite;
 import flixel.FlxG;
@@ -15,9 +17,9 @@ class PlayState extends FlxState
 	private var playField:PlayField;
 
 	// Cameras
-	public var camHUD:FlxCamera = new FlxCamera();
-	public var camALT:FlxCamera = new FlxCamera();
-	public var camGAME:FlxCamera;
+	public var camHUD:MoonCamera = new MoonCamera();
+	public var camALT:MoonCamera = new MoonCamera();
+	public var camGAME:MoonCamera = new MoonCamera();
 
 	var ralsei:MoonSprite = new MoonSprite(); //lol
 	override public function create()
@@ -25,45 +27,64 @@ class PlayState extends FlxState
 		super.create();
 		
 		//< -- CAMERAS SETUP -- >//
+		camGAME.bgColor = 0x00000000;
 		camHUD.bgColor = 0x00000000;
 		camALT.bgColor = 0x00000000;
 
+		FlxG.cameras.add(camGAME, true);
 		FlxG.cameras.add(camHUD, false);
 		FlxG.cameras.add(camALT, false);
-		camGAME = FlxG.camera;
 
 		var bg = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.GRAY);
 		add(bg);
 
 		//< -- PLAYFIELD SETUP -- >//
-		playField = new PlayField('toast', 'hard', 'bf');
+		playField = new PlayField('sugarcrush', 'hard', 'bf');
 		playField.camera = camHUD;
 		playField.conductor.onBeat.add(beatHit);
 		add(playField);
 
 		ralsei.loadGraphic(Paths.image('ralsei'));
 		ralsei.scale.set(0.2, 0.2);
-		ralsei.screenCenter();
+		ralsei.screenCenter(X);
+		ralsei.y = 1400;
 		add(ralsei);
 	}
 
+	var canBump:Bool = false;
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
-		ralsei.screenCenter(X);
-		ralsei.y = FlxMath.lerp(ralsei.y, (FlxG.height - ralsei.height) / 2, elapsed * 24);
-		ralsei.updateHitbox();
-		
+		if(FlxG.keys.justPressed.O) canBump = !canBump;
+		if(canBump)
+		{
+			ralsei.screenCenter(X);
+			ralsei.y = FlxMath.lerp(ralsei.y, (FlxG.height - ralsei.height) / 2, elapsed * 17);
+			ralsei.updateHitbox();
+		}
+
 		//TODO: enhance this so camGAME is able to have custom zooms while bump is active.
 		camHUD.zoom = camGAME.zoom = FlxMath.lerp(camHUD.zoom, 1, elapsed * 10);
 
 		if(FlxG.keys.justPressed.NINE) FlxG.switchState(()->new ChartConvert());
 	}
 
+	var twn:FlxTween;
 	public function beatHit(curBeat:Float)
 	{
+		if(canBump)
+		{
+			final dur = playField.conductor.crochet / 2000;
+			if(twn != null && twn.active) twn.cancel();
+
+			twn = FlxTween.tween(camHUD, {y: -20}, dur, {ease: FlxEase.circOut, onComplete: function(_)
+			{
+				twn = FlxTween.tween(camHUD, {y: 0}, dur, {ease: FlxEase.circIn});
+			}});
+		}
+
 		ralsei.flipX = !ralsei.flipX;
-		ralsei.y += 10;
+		ralsei.y += 25;
 		if ((curBeat % playField.conductor.numerator) == 0)
 		{
 			camGAME.zoom += 0.015;
