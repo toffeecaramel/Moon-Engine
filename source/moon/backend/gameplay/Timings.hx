@@ -30,6 +30,10 @@ class Timings
 
     public static var values(get, default):Array<String>;
 
+    /**
+     * Get a parameter data from a judgement.
+     * @param jt The judgement that will iterate data from.
+     */
     public static function getParameters(jt:String):Array<Dynamic>
         return judgementsMap.get(jt);
 

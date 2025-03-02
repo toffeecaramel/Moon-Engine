@@ -168,6 +168,8 @@ class InputHandler
                     if (onNoteMiss != null/*&& !UserSettings.callSetting('Ghost Tapping')*/)
                     {
                         onNoteMiss(null);
+                        stats.misses++;
+                        stats.score += Timings.getParameters('miss')[2];
 
                         stats.totalNotes++;
                         stats.accuracyCount += Timings.getParameters('miss')[0];
@@ -208,10 +210,12 @@ class InputHandler
         // else if timing is equal miss and onNoteMiss' callback is not null
         // it'll call onNoteMiss
         (timing != 'miss' && onNoteHit != null) ? onNoteHit(note, timing, isCPU) : (timing == 'miss' && onNoteMiss != null) ? onNoteMiss(note) : null;
-
+        if(timing == 'miss') stats.misses++;
         // do some changes on the note after it gets hit
         note.state = GOT_HIT;
         note.visible = note.active = false;
+
+        stats.score += Timings.getParameters(timing)[2];
 
         // call strumline stuff
         strumline.receptors.members[note.direction].onNoteHit(note, timing, isCPU);
@@ -236,6 +240,7 @@ class InputHandler
                 if(sustainTrack % 6 == 0)
                 {
                     (onNoteHit != null) ? onNoteHit(heldNote, null, true) : null;
+                    stats.score += 2;
                     strumline.receptors.members[heldNote.direction].onNoteHit(heldNote, null, true);
                 }
 
@@ -267,6 +272,8 @@ class InputHandler
                 note.state = TOO_LATE;
                 note.visible = note.active = false;
                 stats.accuracyCount += Timings.getParameters('miss')[0];
+                stats.score += Timings.getParameters('miss')[2];
+                stats.misses++;
             }
         }
     }
@@ -291,7 +298,7 @@ class InputHandler
         for (jt in Timings.values)
             if (timeDifference <= Timings.getParameters(jt)[1])
                 return jt;
-        
+
         return null;
     }
 }
