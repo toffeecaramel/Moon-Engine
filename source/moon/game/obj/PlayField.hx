@@ -43,20 +43,19 @@ class PlayField extends FlxGroup
         this.difficulty = difficulty;
 
         playfield = this;
-
+        
         //< -- SONG SETUP -- >//
-
-        conductor = new Conductor(182, 4, 4);
-		conductor.onBeat.add(beatHit);
-
         playback = new Song(
-			[{name: song, mix: mix, type: Inst},
-			{name: song, mix: mix, type: Voices_Opponent},
-			{name: song, mix: mix, type: Voices_Player}],
+        [{name: song, mix: mix, type: Inst},
+        {name: song, mix: mix, type: Voices_Opponent},
+        {name: song, mix: mix, type: Voices_Player}],
         conductor);
-
+        
         chart = new MoonChart(song, difficulty, mix);
-
+        
+        conductor = new Conductor(chart.content.meta.bpm, 4, 4);
+        conductor.onBeat.add(beatHit);
+    
         //< -- STRUMLINES & INPUTS SETUP -- >//
         strumlines = [];
         inputHandlers = [];

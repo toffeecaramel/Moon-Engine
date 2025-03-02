@@ -1,29 +1,41 @@
 package;
 
-import flixel.util.FlxColor;
-import moon.game.obj.PlayField;
-import moon.game.obj.Song;
-import moon.toolkit.ChartConvert;
-import flixel.tweens.FlxEase;
-import flixel.tweens.FlxTween;
-import flixel.FlxSprite;
 import flixel.math.FlxMath;
+import flixel.FlxCamera;
+import flixel.util.FlxColor;
+import flixel.FlxSprite;
 import flixel.FlxG;
-import flixel.sound.FlxSound;
-import moon.backend.Conductor;
 import flixel.FlxState;
+import moon.game.obj.PlayField;
+import moon.toolkit.ChartConvert;
 
 class PlayState extends FlxState
 {
+	// Gameplay (playfield)
 	private var playField:PlayField;
+
+	// Cameras
+	public var camHUD:FlxCamera = new FlxCamera();
+	public var camALT:FlxCamera = new FlxCamera();
+	public var camGAME:FlxCamera;
 	override public function create()
 	{
 		super.create();
+		
+		//< -- CAMERAS SETUP -- >//
+		camHUD.bgColor = 0x00000000;
+		camALT.bgColor = 0x00000000;
+
+		FlxG.cameras.add(camHUD, false);
+		FlxG.cameras.add(camALT, false);
+		camGAME = FlxG.camera;
 
 		var bg = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.GRAY);
 		add(bg);
 
+		//< -- PLAYFIELD SETUP -- >//
 		playField = new PlayField('toast', 'hard', 'bf');
+		playField.camera = camHUD;
 		playField.conductor.onBeat.add(beatHit);
 		add(playField);
 	}
@@ -31,6 +43,7 @@ class PlayState extends FlxState
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
+		camHUD.zoom = FlxMath.lerp(camHUD.zoom, 1, elapsed * 24);
 
 		if(FlxG.keys.justPressed.NINE) FlxG.switchState(()->new ChartConvert());
 	}
@@ -39,7 +52,7 @@ class PlayState extends FlxState
 	{
 		if ((curBeat % playField.conductor.numerator) == 0)
 		{
-			//TODO: cam zoom
+			camHUD.zoom += 0.05;
 		}
 	}
 }
