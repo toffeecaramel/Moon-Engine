@@ -43,7 +43,7 @@ class PlayState extends FlxState
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
-		camHUD.zoom = FlxMath.lerp(camHUD.zoom, 1, elapsed * 24);
+		camHUD.zoom = FlxMath.lerp(camHUD.zoom, 1, elapsed * 10);
 
 		if(FlxG.keys.justPressed.NINE) FlxG.switchState(()->new ChartConvert());
 	}
@@ -52,7 +52,7 @@ class PlayState extends FlxState
 	{
 		if ((curBeat % playField.conductor.numerator) == 0)
 		{
-			camHUD.zoom += 0.05;
+			camHUD.zoom += 0.025;
 		}
 	}
 }
