@@ -34,7 +34,7 @@ class Receptor extends FlxSpriteGroup
     /**
      * The strum note.
      */
-    public var strumNote:MoonSprite = new MoonSprite();
+    public var strumNote:StrumNote;
 
     /**
      * The note splash.
@@ -94,26 +94,14 @@ class Receptor extends FlxSpriteGroup
         super(x, y);
 
         this.skin = skin;
-
-        add(strumNote);
     }
 
     private function _updtGraphics()
     {
         // -- Create Strum Arrow -- //
-        final dir = MoonUtils.intToDir(data);
-        strumNote.centerAnimations = true;
-        strumNote.frames = Paths.getSparrowAtlas('ingame/UI/notes/$skin/strumline');
-        strumNote.animation.addByPrefix('$dir-static', '$dir-static', 24, true);
-        strumNote.animation.addByPrefix('$dir-press', '$dir-press', 24, false);
-        strumNote.animation.addByPrefix('$dir-confirm', '$dir-confirm', 24, false);
 
-        strumNote.playAnim('$dir-static', true);
-
-        strumNote.animation.onFinish.add(function(animation:String)
-        {
-            if(animation == '$dir-confirm') strumNote.playAnim((!this.isCPU) ? '$dir-press' : '$dir-static');
-        });
+        if(strumNote != null) strumNote.kill();
+        strumNote = new StrumNote(skin, data, isCPU);
 
         // -- Create Note Splash -- //
 
@@ -129,6 +117,7 @@ class Receptor extends FlxSpriteGroup
         
         script.get("createStrumNote")();
         strumNote.updateHitbox();
+        add(strumNote);
     }
 
     /**

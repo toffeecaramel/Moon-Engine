@@ -39,7 +39,7 @@ class PlayState extends FlxState
 		add(bg);
 
 		//< -- PLAYFIELD SETUP -- >//
-		playField = new PlayField('sugarcrush', 'hard', 'bf');
+		playField = new PlayField('sansational', 'hard', 'bf');
 		playField.camera = camHUD;
 		playField.conductor.onBeat.add(beatHit);
 		add(playField);
@@ -55,6 +55,7 @@ class PlayState extends FlxState
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
+
 		if(FlxG.keys.justPressed.O) canBump = !canBump;
 		if(canBump)
 		{

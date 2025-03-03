@@ -19,6 +19,16 @@ class Song extends FlxTypedGroup<MoonSound>
 	 */
 	public var state(default, set):SongState = PLAY;
 
+	/**
+	 * The song's current time.
+	 */
+	@:isVar public var time(get, set):Float = 0;
+
+    /**
+	 * Get the song's full time.
+	 */
+	@:isVar public var fullLength(get, never):Float = 0;
+
     public var onComplete:()->Void;
     private var conductor:Conductor;
 
@@ -74,7 +84,7 @@ class Song extends FlxTypedGroup<MoonSound>
         {
             if(this.members[i] != null)
             {
-                trace('Music is resyncing! from ${this.members[i].time} to ${conductor.time}', 'WARNING');
+                //trace('Music is resyncing! from ${this.members[i].time} to ${conductor.time}', 'WARNING');
 
                 state = PAUSE;
                 (this.members[i].type == Inst) ? conductor.time = this.members[i].time : this.members[i].time = conductor.time;
@@ -83,12 +93,13 @@ class Song extends FlxTypedGroup<MoonSound>
         }
     }
 
-    	////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
 
+    
 	@:noCompletion public function set_state(state:SongState = PLAY):SongState
-    {
-        this.state = state;
-        for (i in 0...members.length)
+        {
+            this.state = state;
+            for (i in 0...members.length)
         {
             switch(state)
             {
@@ -101,5 +112,32 @@ class Song extends FlxTypedGroup<MoonSound>
             }
         }
         return state;
+    }
+
+    @:noCompletion public function get_time():Float
+    {
+        var lastTime:Float = 0;
+        for (i in 0...members.length)
+            lastTime = members[i].time;
+
+        return lastTime;
+    }		
+
+    @:noCompletion public function set_time(value:Float):Float
+    {
+        time = value;
+        for(i in 0...members.length)
+            members[i].time = value;
+
+        return value;
+    }
+    
+    @:noCompletion public function get_fullLength():Float
+    {
+        var lastLength:Float = 0;
+        for (i in 0...members.length)
+            lastLength = members[i].length;
+
+        return lastLength;
     }
 }

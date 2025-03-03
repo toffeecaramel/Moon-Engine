@@ -16,6 +16,12 @@ class Strumline extends FlxGroup
      */
     public var playerID:String;
 
+    @:isVar public var skin(default, set):String;
+
+    public var isCPU:Bool;
+
+    public var conductor:Conductor;
+
     public var receptors:FlxTypedGroup<Receptor> = new FlxTypedGroup<Receptor>();
 
     /**
@@ -31,8 +37,33 @@ class Strumline extends FlxGroup
     {
         super();
         this.playerID = playerID;
+        this.conductor = conductor;
         this.x = x;
         this.y = y;
+
+        this.skin = skin;
+    }
+
+    public var boolean:Bool = false;
+    override public function update(elapsed:Float)
+    {
+        super.update(elapsed);
+
+        //TODO: Remove this, its just a downscroll test. PLACHEOLDER.
+        if(FlxG.keys.justPressed.P)
+        {
+            boolean = !boolean;
+
+            for (i in 0...receptors.members.length)
+            FlxTween.tween(receptors.members[i], {y: (boolean) ? 80 : FlxG.height - receptors.members[i].height - 80}, 0.5, {startDelay: 0.05 * i, ease: FlxEase.circOut});
+        }
+    }
+
+    @:noCompletion public function set_skin(skin:String):String
+    {
+        this.skin = skin;
+        this.clear();
+
         for (i in 0...4)
         {
             receptors.recycle(Receptor, function():Receptor
@@ -57,20 +88,6 @@ class Strumline extends FlxGroup
             add(receptor.notesGroup);
             add(receptor.splashGroup);
         }
-    }
-
-    public var boolean:Bool = false;
-    override public function update(elapsed:Float)
-    {
-        super.update(elapsed);
-
-        //TODO: Remove this, its just a downscroll test. PLACHEOLDER.
-        if(FlxG.keys.justPressed.P)
-        {
-            boolean = !boolean;
-
-            for (i in 0...receptors.members.length)
-            FlxTween.tween(receptors.members[i], {y: (boolean) ? 80 : FlxG.height - receptors.members[i].height - 80}, 0.5, {startDelay: 0.05 * i, ease: FlxEase.circOut});
-        }
+        return skin;
     }
 }
