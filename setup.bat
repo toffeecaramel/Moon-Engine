@@ -50,6 +50,8 @@ haxelib set moonchart 0.4.0
 haxelib install haxeui-core 1.7.0
 haxelib set haxeui-core 1.7.0
 
+haxelib install hscript-iris
+
 haxelib run lime setup
 
 haxelib git haxeui-flixel https://github.com/haxeui/haxeui-flixel
@@ -58,7 +60,6 @@ haxelib set haxeui-flixel git
 haxelib git haxeui-core https://github.com/haxeui/haxeui-core
 haxelib set haxeui-core git
 
-haxelib git hscript-improved https://github.com/FNF-CNE-Devs/hscript-improved.git
 haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc
 haxelib git flxanimate https://github.com/FunkinCrew/flxanimate 9bacdd6ea39f5e3a33b0f5dfb7bc583fe76060d4
 haxelib git funkin.visfix https://github.com/toffeecaramel/funkVis-GrigFIX

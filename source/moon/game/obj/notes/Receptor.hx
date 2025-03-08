@@ -85,10 +85,8 @@ class Receptor extends FlxSpriteGroup
         
         //load script
         script = new MoonScript();
-
-        script.set("this", this);
-
         script.load('assets/images/ingame/UI/notes/$skin/noteskin.hx');
+        script.set("this", this);
 
         super(x, y);
 

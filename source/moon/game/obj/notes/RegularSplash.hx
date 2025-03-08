@@ -16,8 +16,8 @@ class RegularSplash extends MoonSprite
         super();
         
         script = new MoonScript();
-        script.set("splash", this);
         script.load('assets/images/ingame/UI/notes/$skin/noteskin.hx');
+        script.set("splash", this);
         this.data = data;
         this.skin = skin;
     }

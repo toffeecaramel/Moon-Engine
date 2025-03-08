@@ -93,8 +93,8 @@ class Note extends MoonSprite
         this.type = type;
 
         script = new MoonScript();
-        script.set("staticNote", this);
         script.load('assets/images/ingame/UI/notes/$skin/noteskin.hx');
+        script.set("staticNote", this);
 
         this.skin = skin;
         this.duration = duration;

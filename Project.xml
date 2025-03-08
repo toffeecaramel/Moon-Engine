@@ -47,9 +47,10 @@
 
 	<haxelib name="discord_rpc" if="cpp" />
 	
+	<haxelib name="hscript-iris"/>
+	<haxedef name="hscriptPos"/>
+
 	<haxelib name="moonchart" />
-	<haxelib name="hscript-improved" />
-	<haxelib name="yaml" />
 
 	<!-- ______________________________ Haxedefines _____________________________ -->
 
@@ -101,7 +102,4 @@
 	<!-- Makes it run a script before compiling and after compiling. -->
 	<prebuild haxe="Prebuild.hx"/>
 	<postbuild haxe="Postbuild.hx"/>
-
-	<!-- Enables custom classes on hscript. -->
-	<define name="CUSTOM_CLASSES" />
 </project>
