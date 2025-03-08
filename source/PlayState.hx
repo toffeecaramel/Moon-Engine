@@ -40,7 +40,7 @@ class PlayState extends FlxState
 		add(bg);
 
 		//< -- PLAYFIELD SETUP -- >//
-		playField = new PlayField('deathmatch', 'hard', '024');
+		playField = new PlayField('spookeez', 'hard', 'luna');
 		playField.camera = camHUD;
 		playField.conductor.onBeat.add(beatHit);
 		add(playField);
