@@ -38,6 +38,7 @@ class Strumline extends FlxGroup
         super();
         this.playerID = playerID;
         this.conductor = conductor;
+        this.isCPU = isCPU;
         this.x = x;
         this.y = y;
 
