@@ -87,7 +87,6 @@ class Receptor extends FlxSpriteGroup
         script = new MoonScript();
 
         script.set("this", this);
-        script.set("receptor", strumNote);
 
         script.load('assets/images/ingame/UI/notes/$skin/noteskin.hx');
 
@@ -102,6 +101,9 @@ class Receptor extends FlxSpriteGroup
 
         if(strumNote != null) strumNote.kill();
         strumNote = new StrumNote(skin, data, isCPU);
+        add(strumNote);
+        
+        script.set("receptor", strumNote);
 
         // -- Create Note Splash -- //
 
@@ -117,7 +119,6 @@ class Receptor extends FlxSpriteGroup
         
         script.get("createStrumNote")();
         strumNote.updateHitbox();
-        add(strumNote);
     }
 
     /**

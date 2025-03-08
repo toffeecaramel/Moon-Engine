@@ -1,5 +1,6 @@
 package;
 
+import moon.toolkit.chart_editor.ChartEditor;
 import flixel.math.FlxRect;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
@@ -39,7 +40,7 @@ class PlayState extends FlxState
 		add(bg);
 
 		//< -- PLAYFIELD SETUP -- >//
-		playField = new PlayField('sansational', 'hard', 'bf');
+		playField = new PlayField('deathmatch', 'hard', '024');
 		playField.camera = camHUD;
 		playField.conductor.onBeat.add(beatHit);
 		add(playField);
@@ -55,6 +56,7 @@ class PlayState extends FlxState
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
+		if(FlxG.keys.justPressed.SEVEN) FlxG.switchState(() -> new ChartEditor());
 
 		if(FlxG.keys.justPressed.O) canBump = !canBump;
 		if(canBump)

@@ -3,6 +3,7 @@ package moon.toolkit.chart_editor;
 import flixel.FlxG;
 import moon.game.obj.Song;
 import flixel.FlxState;
+import flixel.util.FlxColor;
 
 class ChartEditor extends FlxState
 {
@@ -31,18 +32,24 @@ class ChartEditor extends FlxState
         {name: song, mix: mix, type: Voices_Player}],
         _conductor);
 
-        grid = new ChartGrid(0, 0).createGrid(_chart.content.notes, _conductor, _playBack.fullLength);
+        var bg = new MoonSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.fromRGB(30, 29, 31));
+        add(bg);
+
+        grid = new ChartGrid('opponent').createGrid(_chart.content.notes, _conductor, _playBack.fullLength);
         grid.screenCenter(X);
         add(grid);
 
-        _playBack.state = PLAY;
+        _playBack.state = PAUSE;
     }
 
     override public function update(elapsed:Float)
     {
         _conductor.time = _playBack.time;
         super.update(elapsed);
+
+        //TODO: Remove this, it's debug only lol.
         if(FlxG.keys.justPressed.R) grid.redrawGrid();
+
         if(FlxG.keys.justPressed.SPACE) _playBack.state = (_playBack.state != PLAY) ? PLAY : PAUSE;
 
         final addition = (FlxG.keys.pressed.SHIFT) ? 3 : 1;

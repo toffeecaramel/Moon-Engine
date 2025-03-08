@@ -5,22 +5,28 @@ class StrumNote extends MoonSprite
     public var data:Int;
     public var isCPU:Bool;
     @:isVar public var skin(default, set):String;
+
     public function new(skin:String, data:Int, isCPU:Bool)
     {
         this.data = data;
         this.isCPU = isCPU;
+        super(data);
+
         this.skin = skin;
-        super();
     }
 
     override public function update(elapsed:Float)
-    {}
+    {
+        super.update(elapsed); // need this for animations to work :P
+    }
 
     private function _updtGraphics()
     {
+        frames = Paths.getSparrowAtlas('ingame/UI/notes/$skin/strumline');
+        
         final dir = MoonUtils.intToDir(data);
         this.centerAnimations = true;
-        this.frames = Paths.getSparrowAtlas('ingame/UI/notes/$skin/strumline');
+
         this.animation.addByPrefix('$dir-static', '$dir-static', 24, true);
         this.animation.addByPrefix('$dir-press', '$dir-press', 24, false);
         this.animation.addByPrefix('$dir-confirm', '$dir-confirm', 24, false);
