@@ -13,7 +13,8 @@ class NoteSpawner extends FlxGroup
     private var strumlines:Array<Strumline> = [];
     private var conductor:Conductor;
 
-    // Keeps track of the next note to spawn. :3
+    public var scrollSpeed(default, set):Float = 1;
+
     private var nextNoteIndex:Int = 0;
 
     public function new(noteStructs:Array<NoteStruct>, strumlines:Array<Strumline>, conductor:Conductor)
@@ -31,15 +32,13 @@ class NoteSpawner extends FlxGroup
         }
 
         _notes.sort((a, b) ->  Std.int(a.time - b.time));
-
-        for (i in 0...15)
-            recycleNote(_notes[i]);
     }
 
-    final spawnThreshold:Float = 700;
+    public var spawnThreshold:Float; 
 
     override public function update(dt:Float)
     {
+        spawnThreshold = (scrollSpeed <= 0.9) ? 2000 : 700;
         super.update(dt);
 
         while (nextNoteIndex < _notes.length && _notes[nextNoteIndex].time <= conductor.time + spawnThreshold)
@@ -60,6 +59,7 @@ class NoteSpawner extends FlxGroup
                 {
                     note.receptor = strum.receptors.members[note.direction];
                     note.visible = false;
+                    note.speed = scrollSpeed;
                     note.state = NONE;
                     if(note.duration > 0) recycleSustain(note, group.sustainsGroup, note);
                     return note;
@@ -87,10 +87,19 @@ class NoteSpawner extends FlxGroup
             {
                 // TODO: Get note skin system.
                 var note = new Note(noteStruct.data, noteStruct.time, noteStruct.type, 'v-slice', noteStruct.duration, conductor);
+                note.speed = scrollSpeed;
                 note.lane = noteStruct.lane;
                 return note;
             }
         }
         return null;
+    }
+
+    @:noCompletion public function set_scrollSpeed(sp:Float)
+    {
+        this.scrollSpeed = sp; // SÃO PAULO?!?!?!
+        for (note in _notes)
+            note.speed = sp;
+        return sp; // SÃO PAULO VOLTOU VAMBORAAAAAAAAAAA
     }
 }

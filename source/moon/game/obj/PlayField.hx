@@ -107,6 +107,7 @@ class PlayField extends FlxGroup
 
         // add the note spawner
         noteSpawner = new NoteSpawner(chart.content.notes, strumlines, conductor);
+        noteSpawner.scrollSpeed = chart.content.meta.scrollSpd;
         add(noteSpawner);
 
         // set input handler's notes
