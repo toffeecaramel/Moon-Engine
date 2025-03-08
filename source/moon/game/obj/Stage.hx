@@ -27,7 +27,7 @@ class Stage extends FlxSpriteGroup
         else
         {
             script.load(Paths.data('stages/$stg.hx'));
-            script.get('onCreate')();
+            script.call('onCreate');
         }
 
         return stg;    

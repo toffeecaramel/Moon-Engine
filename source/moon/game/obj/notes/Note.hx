@@ -127,7 +127,7 @@ class Note extends MoonSprite
         animation.addByPrefix('$dir-hold', '${dir}-hold0', 24, true);
         animation.addByPrefix('$dir-holdEnd', '${dir}-holdend0', 24, true);
 
-        script.get("createStaticNote")();
+        script.call("createStaticNote");
 
         updateHitbox();
 

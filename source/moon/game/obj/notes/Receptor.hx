@@ -101,21 +101,25 @@ class Receptor extends FlxSpriteGroup
         strumNote = new StrumNote(skin, data, isCPU);
         add(strumNote);
         
-        script.set("receptor", strumNote);
+        script.set("strumNote", strumNote);
 
         // -- Create Note Splash -- //
 
         if(splash != null) splash.kill();
         splash = new RegularSplash(skin, data);
         splashGroup.add(splash);
+
+        script.set("splash", splash);
         
         // -- Create Sustain Splash -- //
 
         if(sustainSplash != null) sustainSplash.kill();
         sustainSplash = new SustainSplash(skin, data);
         splashGroup.add(sustainSplash);
+
+        script.set("sustainSplash", sustainSplash);
         
-        script.get("createStrumNote")();
+        script.call("createReceptor");
         strumNote.updateHitbox();
     }
 

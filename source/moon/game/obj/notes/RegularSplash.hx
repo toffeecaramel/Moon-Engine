@@ -16,8 +16,6 @@ class RegularSplash extends MoonSprite
         super();
         
         script = new MoonScript();
-        script.load('assets/images/ingame/UI/notes/$skin/noteskin.hx');
-        script.set("splash", this);
         this.data = data;
         this.skin = skin;
     }
@@ -31,8 +29,6 @@ class RegularSplash extends MoonSprite
         angle = FlxG.random.float(-360, 360);
 
         playAnim('splash${FlxG.random.int(1, 2)}', true);
-
-        script.get("createSplash")();
     }
 
     @:noCompletion public function set_skin(skn:String):String
