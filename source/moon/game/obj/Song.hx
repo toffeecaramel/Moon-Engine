@@ -45,9 +45,10 @@ class Song extends FlxTypedGroup<MoonSound>
         for(i in 0...audList.length)
         {
             final item = audList[i];
-            final audPath = Paths.audio('${item.name}/${item.mix}/${item.type}', 'songs');
+            final items = '${item.name}/${item.mix}/${item.type}';
+            final audPath = Paths.sound('$items', 'songs');
 
-            if(FileSystem.exists(audPath))
+            if(Paths.fileExists('assets/songs/$items.ogg'))
             {
                 this.recycle(MoonSound, function():MoonSound
                 {

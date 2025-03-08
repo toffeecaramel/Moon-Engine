@@ -20,7 +20,8 @@ class MoonScript
      */
     public var DEFAULT_VARIABLES:Map<String, Dynamic> = [
         "Paths" => Paths,
-        "Constants" => Constants
+        "Constants" => Constants,
+        "MoonSprite" => MoonSprite
     ];
 
     public function new(){}

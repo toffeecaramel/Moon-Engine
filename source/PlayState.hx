@@ -1,21 +1,26 @@
 package;
 
-import moon.toolkit.chart_editor.ChartEditor;
+import flixel.FlxSprite;
+import flixel.FlxG;
+import flixel.FlxState;
 import flixel.math.FlxRect;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.math.FlxMath;
 import flixel.util.FlxColor;
-import flixel.FlxSprite;
-import flixel.FlxG;
-import flixel.FlxState;
+
+import moon.game.obj.Stage;
 import moon.game.obj.PlayField;
 import moon.toolkit.ChartConvert;
+import moon.toolkit.chart_editor.ChartEditor;
 
 class PlayState extends FlxState
 {
 	// Gameplay (playfield)
 	private var playField:PlayField;
+
+	// Background (stage)
+	private var stage:Stage;
 
 	// Cameras
 	public var camHUD:MoonCamera = new MoonCamera();
@@ -36,11 +41,12 @@ class PlayState extends FlxState
 		FlxG.cameras.add(camHUD, false);
 		FlxG.cameras.add(camALT, false);
 
-		var bg = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.GRAY);
-		add(bg);
-
+		//< -- BACKGROUND SETUP -- >//
+		stage = new Stage('limo');
+		add(stage);
+		
 		//< -- PLAYFIELD SETUP -- >//
-		playField = new PlayField('spookeez', 'hard', 'luna');
+		playField = new PlayField('fun is infinite', 'hard', 'bf');
 		playField.camera = camHUD;
 		playField.conductor.onBeat.add(beatHit);
 		add(playField);

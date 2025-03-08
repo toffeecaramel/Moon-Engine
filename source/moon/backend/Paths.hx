@@ -35,12 +35,18 @@ class Paths
     public static var currentTrackedSounds:Map<String, Sound> = [];
     public static var localTrackedAssets:Array<String> = [];
 
-    
-    static public function cacheBitmap(file:String, ?bitmap:BitmapData = null, ?allowGPU:Bool = true) 
+    static public function cacheBitmap(file:String, ?bitmap:BitmapData = null, ?allowGPU:Bool = true)
     {
-        if(bitmap == null) {
-            if (OpenFlAssets.exists(file, IMAGE))
+        if (bitmap == null)
+        {
+            if (fileExists(file, IMAGE))
+            {
+                #if sys
+                bitmap = BitmapData.fromFile(file);
+                #else
                 bitmap = OpenFlAssets.getBitmapData(file);
+                #end
+            }
 
             if(bitmap == null) return null;
         }
@@ -68,7 +74,7 @@ class Paths
     {
         var path = getPath('$from/$key.png', IMAGE, library);
 
-        if (#if sys FileSystem.exists(path) #else OpenFlAssets.exists(path) #end)
+        if (fileExists(path, IMAGE))
         {
             if (!currentTrackedAssets.exists(key))
             {
@@ -95,12 +101,12 @@ class Paths
         trace('$key didn\'t load. Did you type the path correctly?', "ERROR");
         return null;
     }
-    
-    
+
+
     inline static function getLibraryPathForce(file:String, library:String)
         return '$library/$file';
 
-    
+
     // - Other utilities. - //
 
     public static inline function spaceToDash(string:String):String
@@ -114,15 +120,15 @@ class Paths
 
     /**
      * Clears any asset that got loaded up but went unused.
-     * @param dumpExclusions 
+     * @param dumpExclusions
      */
     public static function clearUnusedMemory(?dumpExclusions:Array<String> = null)
     {
         if (dumpExclusions == null)
             dumpExclusions = [];
-    
+
         var counter:Int = 0;
-    
+
         for (key in currentTrackedAssets.keys())
         {
             // - Check if the asset is not locally tracked and is not excluded
@@ -133,7 +139,7 @@ class Paths
                 {
                     obj.persist = false;
                     obj.destroyOnNoUse = true;
-    
+
                     // - Check if the asset has a texture and dispose of it
                     if (currentTrackedTextures.exists(key))
                     {
@@ -141,7 +147,7 @@ class Paths
                         texture.dispose();
                         currentTrackedTextures.remove(key);
                     }
-    
+
                     // - Remove cached bitmap data if present
                     @:privateAccess
                     if (openfl.Assets.cache.hasBitmapData(key))
@@ -149,7 +155,7 @@ class Paths
                         openfl.Assets.cache.removeBitmapData(key);
                         FlxG.bitmap._cache.remove(key);
                     }
-    
+
                     // - Destroy the graphic and remove from tracked assets
                     obj.destroy();
                     currentTrackedAssets.remove(key);
@@ -157,15 +163,15 @@ class Paths
                 }
             }
         }
-    
+
         System.gc();
         trace('$counter unused assets have been cleared.');
     }
-    
+
     /**
      * Clears every asset in the game's memory.
-     * @param cleanUnused 
-     * @param dumpExclusions 
+     * @param cleanUnused
+     * @param dumpExclusions
      */
     public static function clearStoredMemory(?cleanUnused:Bool = false, ?dumpExclusions:Array<String> = null)
     {
@@ -173,7 +179,7 @@ class Paths
 
         if (dumpExclusions == null)
             dumpExclusions = [];
-    
+
         // - Clear all cached bitmap data not in the tracked list
         @:privateAccess
         for (key in FlxG.bitmap._cache.keys())
@@ -188,7 +194,7 @@ class Paths
                 counter++;
             }
         }
-    
+
         // - Clear all cached sounds
         for (key in currentTrackedSounds.keys())
         {
@@ -205,7 +211,7 @@ class Paths
                 }
             }
         }
-    
+
         // - Clear all cached textures
         for (key in currentTrackedTextures.keys())
         {
@@ -222,39 +228,47 @@ class Paths
                 }
             }
         }
-    
+
         // - Clear all tracked assets if not flagged as unused
         if (!cleanUnused)
         {
             localTrackedAssets = [];
             currentTrackedAssets.clear();
         }
-    
+
         // - Force garbage collection
         System.gc();
         trace('$counter assets have been cleared.');
-    } 
-    
+    }
+
     // - Path-related utilities. - //
-    
+
+    /**
+     * Helper function to check if a file exists, handling sys/non-sys differences.
+     * @param path The path to the file.
+     * @param type The AssetType (can be null if only checking for existence, but useful for consistency)
+     */
+     public inline static function fileExists(path:String, ?type:AssetType):Bool
+        return #if sys FileSystem.exists(path); #else return OpenFlAssets.exists(path, type); #end
+
+    /**
+     * Helper function to get file content as text, handling sys/non-sys differences.
+     * @param path The path to the file.
+     * @param type The AssetType (TEXT in most cases)
+     * @return The file content.
+     */
+    public inline static function getFileContent(path:String, ?type:AssetType = TEXT):String
+        return #if sys File.getContent(path); #else OpenFlAssets.getText(path, type); #end
+
     static public function getLibraryPath(file:String, library = "preload")
         return (library == "preload" || library == "default") ? getPreloadPath(file) : getLibraryPathForce(file, library);
 
     inline static public function file(file:String, type:AssetType = TEXT, ?library:String)
         return getPath(file, type, library);
-    
-    /**
-     * Returns a music file from the music path.
-     * @param file 
-     * @param from (can be either images, data, etc.)
-     * @return return 'assets/music/$file.ogg'
-     */
-    inline static public function audio(file:String, ?from:String = 'music')
-        return 'assets/$from/$file.ogg';
 
     /**
      * Returns a font file from the fonts path. (MUST INCLUDE FILE FORMAT!)
-     * @param file 
+     * @param file
      * @return return 'assets/fonts/$file'
      */
     inline static public function font(file:String)
@@ -262,7 +276,7 @@ class Paths
 
     /**
      * Returns a file from the data path. (MUST INCLUDE FILE FORMAT!)
-     * @param file 
+     * @param file
      * @return return 'assets/data/$file'
      */
     inline static public function data(file:String)
@@ -270,7 +284,7 @@ class Paths
 
     /**
      * Returns a shader (frag) file from the shaders path.
-     * @param file 
+     * @param file
      * @return return 'assets/shaders/$file.frag'
      */
     inline static public function frag(file:String)
@@ -278,22 +292,57 @@ class Paths
 
     /**
      * Returns a entire parsed JSON content from a path.
-     * @param file 
+     * @param file
      * @param from (can be either images, data, etc.)
      * @return return (json content)
      */
     inline static public function JSON(file:String, ?from:String = 'images')
-        return Json.parse(#if sys File.getContent('assets/$from/$file.json') #else OpenFlAssets.getText('assets/$from/$file.json') #end);
+    {
+        var path = 'assets/$from/$file.json';
+        if (fileExists(path, TEXT))
+            return Json.parse(getFileContent(path, TEXT));
+
+        return Json.parse(getFileContent('assets/$from/$file.json', TEXT));
+    }
+
+        /**
+     * Loads a sound from the file system dynamically.
+     * @param key The name of the sound file (without extension).
+     * @param from The subdirectory within 'assets' (e.g., 'music', 'sounds').
+     * @param library Optional library.
+     * @return The loaded Sound object, or null if loading fails.
+     */
+     public static function sound(key:String, ?from:String = 'music', ?library:String):Null<Sound>
+    {
+        var path = getPath('$from/$key.ogg', SOUND, library);
+
+        if (currentTrackedSounds.exists(key))
+        {
+            localTrackedAssets.push(key);
+            return currentTrackedSounds.get(key);
+        }
+
+        if (fileExists(path, SOUND))
+        {
+            var newSound = Sound.fromFile(path);
+            currentTrackedSounds.set(key, newSound);
+            localTrackedAssets.push(key);
+            return newSound;
+        }
+
+        trace('Sound $key not found. Did you place the file correctly?', "ERROR");
+        return null;
+    }
 
     /**
      * Returns a image graphic from a specified file path.
      * @param key (path)
      * @param from (can be either images, data, etc.)
-     * @param library 
+     * @param library
      * @param allowGPU if the graphic will be gpu-loaded
      * @return FlxGraphic
      */
-    static public function image(key:String, ?from:String = 'images', ?library:String = null, ?allowGPU:Bool = true):FlxGraphic 
+    static public function image(key:String, ?from:String = 'images', ?library:String = null, ?allowGPU:Bool = true):FlxGraphic
     {
         var file:String = getPath('$from/$key.png', IMAGE, library);
 
@@ -303,11 +352,16 @@ class Paths
             return currentTrackedAssets.get(file);
         }
 
-        var bitmap:BitmapData = OpenFlAssets.exists(file, IMAGE) ? OpenFlAssets.getBitmapData(file) : null;
+        var bitmap:BitmapData = null;
+        if (fileExists(file, IMAGE))
+            bitmap = BitmapData.fromFile(file);
+        else if (OpenFlAssets.exists(file, IMAGE))
+            bitmap = OpenFlAssets.getBitmapData(file);
 
-        if (bitmap != null) {
+        if (bitmap != null)
+        {
             var retVal = cacheBitmap(file, bitmap, allowGPU);
-            if(retVal != null) return retVal;
+            if (retVal != null) return retVal;
         }
 
         trace('$file is returning null.', "ERROR");
@@ -318,19 +372,31 @@ class Paths
      * Returns a animated Sparrow Atlas from a specified path.
      * @param key (path)
      * @param from (can be either from images, data, etc.)
-     * @param library 
+     * @param library
      * @param textureCompression whether or not should the texture be compressed.
      */
     inline static public function getSparrowAtlas(key:String, ?from:String = 'images', ?library:String, ?textureCompression:Bool = false)
     {
         var graphic:FlxGraphic = returnGraphic(key, from, library, textureCompression);
-        return (FlxAtlasFrames.fromSparrow(graphic, #if sys File.getContent(file('$from/$key.xml', library)) #else OpenFlAssets.getText(file('$from/$key.xml', library))#end));
+        var xmlPath = file('$from/$key.xml', TEXT, library);
+        var xmlContent = "";
+        if (fileExists(xmlPath, TEXT))
+            xmlContent = getFileContent(xmlPath, TEXT);
+        else if (OpenFlAssets.exists(xmlPath, TEXT))
+            xmlContent = OpenFlAssets.getText(xmlPath);
+
+        return (FlxAtlasFrames.fromSparrow(graphic, xmlContent));
     }
-    
+
     inline public static function getPath(file:String, type:AssetType, ?library:Null<String>)
     {
         if (library != null)
             return getLibraryPath(file, library);
+
+        var filePath = getPreloadPath(file);
+        if (fileExists(filePath, type))
+            return filePath;
+
 
         var levelPath = getLibraryPathForce(file, "mods");
         if (OpenFlAssets.exists(levelPath, type))
@@ -339,10 +405,11 @@ class Paths
         return getPreloadPath(file);
     }
 
+
     inline static function getPreloadPath(file:String)
     {
         var returnPath:String = 'assets/$file';
-        if (#if sys !FileSystem.exists(returnPath) #else !OpenFlAssets.exists(returnPath) #end)
+        if (!fileExists(returnPath, TEXT))
             returnPath = swapSpaceDash(returnPath);
         return returnPath;
     }
