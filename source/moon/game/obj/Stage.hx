@@ -27,9 +27,15 @@ class Stage extends FlxSpriteGroup
         else
         {
             script.load(Paths.data('stages/$stg.hx'));
+            script.set("fullStage", this);
             script.call('onCreate');
         }
-
         return stg;    
+    }
+
+    override public function update(elapsed:Float)
+    {
+        super.update(elapsed);
+        script.get("onUpdate")(elapsed);
     }
 }

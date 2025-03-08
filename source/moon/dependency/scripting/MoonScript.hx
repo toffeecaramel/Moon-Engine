@@ -6,11 +6,23 @@ import crowplexus.iris.Iris;
 import crowplexus.iris.IrisConfig;
 
 /**
- * Class meant to handle script loading with Hscript Improved. (which is made by Codename Crew)
+ * Class meant to handle scripts.
  */
 class MoonScript
 {
+    /**
+     * The script content itself.
+     */
     public var code:Iris;
+
+    /**
+     * Just some default variables that'll be set on upon initializng the script.
+     */
+    public var DEFAULT_VARIABLES:Map<String, Dynamic> = [
+        "Paths" => Paths,
+        "Constants" => Constants
+    ];
+
     public function new(){}
 
     /**
@@ -20,7 +32,11 @@ class MoonScript
     inline public function load(path:String)
     {
         if(FileSystem.exists(path))
+        {
             code = new Iris(File.getContent(path));
+            for(variableName => variableValue in DEFAULT_VARIABLES)
+                code.set(variableName, variableValue);
+        }
         else throw 'Script path at $path was not found!';
     }
 
@@ -29,8 +45,8 @@ class MoonScript
         return (exists(variable)) ? code.get(variable) : null;
 
     @:inheritDoc(crowplexus.iris.Iris.set)
-    public function set(variable:String, value:Dynamic)
-        return code.set(variable, value);
+    public function set(variable:String, value:Dynamic, ?allowOverride:Bool = true)
+        return code.set(variable, value, allowOverride);
 
     @:inheritDoc(crowplexus.iris.Iris.exists)
     public function exists(variable:String):Bool
@@ -38,5 +54,5 @@ class MoonScript
 
     @:inheritDoc(crowplexus.iris.Iris.call)
     public function call(func:String, ?args:Null<Array<Dynamic>>)
-        return code.call(func, args);
+        return return (exists(func)) ? code.call(func, args) : null;
 }
