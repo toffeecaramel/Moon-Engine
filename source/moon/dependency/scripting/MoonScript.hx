@@ -1,5 +1,6 @@
 package moon.dependency.scripting;
 
+import openfl.display.BlendMode;
 import sys.FileSystem;
 import sys.io.File;
 import crowplexus.iris.Iris;

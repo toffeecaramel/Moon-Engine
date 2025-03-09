@@ -1,5 +1,6 @@
 package;
 
+import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.FlxG;
 import flixel.FlxState;
@@ -27,35 +28,43 @@ class PlayState extends FlxState
 	public var camALT:MoonCamera = new MoonCamera();
 	public var camGAME:MoonCamera = new MoonCamera();
 
+	public var camFollower:FlxObject = new FlxObject();
+
 	var ralsei:MoonSprite = new MoonSprite(); //lol
 	override public function create()
 	{
 		super.create();
 		
 		//< -- CAMERAS SETUP -- >//
-		camGAME.bgColor = 0x00000000;
+		camGAME.bgColor = 0xFF000000;
 		camHUD.bgColor = 0x00000000;
 		camALT.bgColor = 0x00000000;
 
 		FlxG.cameras.add(camGAME, true);
 		FlxG.cameras.add(camHUD, false);
 		FlxG.cameras.add(camALT, false);
+		camFollower.setPosition(0, 0);
+		camGAME.follow(camFollower, LOCKON, 1);
+		camGAME.focusOn(camFollower.getPosition());
 
 		//< -- BACKGROUND SETUP -- >//
 		stage = new Stage('limo');
 		add(stage);
 		
 		//< -- PLAYFIELD SETUP -- >//
-		playField = new PlayField('fun is infinite', 'hard', 'bf');
+		playField = new PlayField('bittersweet sunset', 'hard', 'bf');
 		playField.camera = camHUD;
 		playField.conductor.onBeat.add(beatHit);
 		add(playField);
+
+		playField.conductor.onBeat.add(stage.script.get('onBeat'));
 
 		ralsei.loadGraphic(Paths.image('ralsei'));
 		ralsei.scale.set(0.2, 0.2);
 		ralsei.screenCenter(X);
 		ralsei.y = 1400;
 		add(ralsei);
+
 	}
 
 	var canBump:Bool = false;
@@ -71,6 +80,11 @@ class PlayState extends FlxState
 			ralsei.y = FlxMath.lerp(ralsei.y, (FlxG.height - ralsei.height) / 2, elapsed * 17);
 			ralsei.updateHitbox();
 		}
+
+		if(FlxG.keys.pressed.RIGHT) camFollower.x += 10;
+		if(FlxG.keys.pressed.LEFT) camFollower.x -= 10;
+		if(FlxG.keys.pressed.DOWN) camFollower.y += 10;
+		if(FlxG.keys.pressed.UP) camFollower.y -= 10;
 
 		//TODO: enhance this so camGAME is able to have custom zooms while bump is active.
 		camHUD.zoom = camGAME.zoom = FlxMath.lerp(camHUD.zoom, 1, elapsed * 10);

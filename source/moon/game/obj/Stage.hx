@@ -1,10 +1,14 @@
 package moon.game.obj;
 
+import flixel.FlxBasic;
+import flixel.group.FlxGroup.FlxTypedGroup;
+import openfl.display.BlendMode;
+import flixel.FlxSprite;
 import moon.dependency.scripting.MoonScript;
 import sys.FileSystem;
 import flixel.group.FlxSpriteGroup;
 
-class Stage extends FlxSpriteGroup
+class Stage extends FlxTypedGroup<FlxBasic>
 {
     public var stage(default, set):String;
     public var script:MoonScript;

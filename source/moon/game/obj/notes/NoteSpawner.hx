@@ -97,7 +97,7 @@ class NoteSpawner extends FlxGroup
 
     @:noCompletion public function set_scrollSpeed(sp:Float)
     {
-        this.scrollSpeed = sp; // SÃO PAULO?!?!?!
+        this.scrollSpeed = sp / 2.4; // SÃO PAULO?!?!?!
         for (note in _notes)
             note.speed = sp;
         return sp; // SÃO PAULO VOLTOU VAMBORAAAAAAAAAAA
