@@ -46,6 +46,7 @@ class PlayState extends FlxState
 		camFollower.setPosition(0, 0);
 		camGAME.follow(camFollower, LOCKON, 1);
 		camGAME.focusOn(camFollower.getPosition());
+		camGAME.handheldVFX = {xIntensity: 2.2, yIntensity: 3.2, distance: 11, speed: 0.3};
 
 		//< -- BACKGROUND SETUP -- >//
 		stage = new Stage('limo');
