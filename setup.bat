@@ -47,9 +47,6 @@ haxelib set hxcpp-debug-server 1.2.4
 haxelib install moonchart 0.4.0
 haxelib set moonchart 0.4.0
 
-haxelib install haxeui-core 1.7.0
-haxelib set haxeui-core 1.7.0
-
 haxelib install hscript-iris
 
 haxelib run lime setup

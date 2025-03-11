@@ -7,4 +7,6 @@ import flixel.FlxCamera;
  * TODO
  */
 class MoonCamera extends FlxCamera
-{}
+{
+    
+}
