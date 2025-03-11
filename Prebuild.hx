@@ -17,7 +17,8 @@ class Prebuild
     **/
     
     public static var motivationMsgs:Array<String> = [
-        "Don't give up hope, no matter what people say."
+        "Don't give up hope, no matter what people say.",
+		"I know you can make it better than it ever was."
     ];
 
     static function main():Void

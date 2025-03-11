@@ -52,7 +52,7 @@ class PlayState extends FlxState
 		add(stage);
 		
 		//< -- PLAYFIELD SETUP -- >//
-		playField = new PlayField('bittersweet sunset', 'hard', 'bf');
+		playField = new PlayField('2hot', 'hard', 'pico');
 		playField.camera = camHUD;
 		playField.conductor.onBeat.add(beatHit);
 		add(playField);
@@ -65,6 +65,7 @@ class PlayState extends FlxState
 		ralsei.y = 1400;
 		add(ralsei);
 
+		Paths.clearUnusedMemory();
 	}
 
 	var canBump:Bool = false;

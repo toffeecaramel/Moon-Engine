@@ -1,8 +1,6 @@
 package moon.dependency.scripting;
 
 import openfl.display.BlendMode;
-import sys.FileSystem;
-import sys.io.File;
 import crowplexus.iris.Iris;
 import crowplexus.iris.IrisConfig;
 
@@ -33,9 +31,9 @@ class MoonScript
      */
     inline public function load(path:String)
     {
-        if(FileSystem.exists(path))
+        if(Paths.fileExists(path))
         {
-            code = new Iris(File.getContent(path));
+            code = new Iris(Paths.getFileContent(path));
             for(variableName => variableValue in DEFAULT_VARIABLES)
                 code.set(variableName, variableValue);
         }

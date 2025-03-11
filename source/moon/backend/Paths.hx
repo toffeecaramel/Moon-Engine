@@ -30,11 +30,32 @@ typedef AnimationData = {
 
 class Paths
 {
+    /**
+     * An map containing all the currently tracked assets.
+     */
     public static var currentTrackedAssets:Map<String, FlxGraphic> = [];
+
+    /**
+     * An map containing all the currently tracked textures.
+     */
     public static var currentTrackedTextures:Map<String, Texture> = [];
+
+    /**
+     * An map containing all the currently tracked sounds.
+     */
     public static var currentTrackedSounds:Map<String, Sound> = [];
+
+    /**
+     * An array containing all the locally tracked assets.
+     */
     public static var localTrackedAssets:Array<String> = [];
 
+    /**
+     * On upon calling, this function will cache a bitmap in memory.
+     * @param file file path
+     * @param bitmap bitmap data
+     * @param allowGPU whether or not to load on GPU.
+     */
     static public function cacheBitmap(file:String, ?bitmap:BitmapData = null, ?allowGPU:Bool = true)
     {
         if (bitmap == null)
@@ -102,7 +123,6 @@ class Paths
         return null;
     }
 
-
     inline static function getLibraryPathForce(file:String, library:String)
         return '$library/$file';
 
@@ -117,6 +137,8 @@ class Paths
 
     public static inline function swapSpaceDash(string:String):String
         return string.contains('-') ? dashToSpace(string) : spaceToDash(string);
+
+    // - Cleanup utilities. - //
 
     /**
      * Clears any asset that got loaded up but went unused.
@@ -165,7 +187,7 @@ class Paths
         }
 
         System.gc();
-        trace('$counter unused assets have been cleared.');
+        trace('$counter unused assets have been cleared.', "DEBUG");
     }
 
     /**
@@ -236,9 +258,8 @@ class Paths
             currentTrackedAssets.clear();
         }
 
-        // - Force garbage collection
         System.gc();
-        trace('$counter assets have been cleared.');
+        trace('$counter assets have been cleared.', "DEBUG");
     }
 
     // - Path-related utilities. - //
@@ -257,8 +278,11 @@ class Paths
      * @param type The AssetType (TEXT in most cases)
      * @return The file content.
      */
-    public inline static function getFileContent(path:String, ?type:AssetType = TEXT):String
-        return #if sys File.getContent(path); #else OpenFlAssets.getText(path, type); #end
+    public inline static function getFileContent(path:String):String
+        return #if sys File.getContent(path); #else OpenFlAssets.getText(path); #end
+
+    public inline static function saveFileContent(path:String, content:Dynamic)
+        return #if sys File.saveContent(path, content); #else throw 'File Saving is only available on Desktop.'; #end
 
     static public function getLibraryPath(file:String, library = "preload")
         return (library == "preload" || library == "default") ? getPreloadPath(file) : getLibraryPathForce(file, library);
@@ -300,9 +324,9 @@ class Paths
     {
         var path = 'assets/$from/$file.json';
         if (fileExists(path, TEXT))
-            return Json.parse(getFileContent(path, TEXT));
+            return Json.parse(getFileContent(path));
 
-        return Json.parse(getFileContent('assets/$from/$file.json', TEXT));
+        return Json.parse(getFileContent('assets/$from/$file.json'));
     }
 
         /**
@@ -312,7 +336,7 @@ class Paths
      * @param library Optional library.
      * @return The loaded Sound object, or null if loading fails.
      */
-     public static function sound(key:String, ?from:String = 'music', ?library:String):Null<Sound>
+    public static function sound(key:String, ?from:String = 'music', ?library:String):Null<Sound>
     {
         var path = getPath('$from/$key.ogg', SOUND, library);
 
@@ -381,7 +405,7 @@ class Paths
         var xmlPath = file('$from/$key.xml', TEXT, library);
         var xmlContent = "";
         if (fileExists(xmlPath, TEXT))
-            xmlContent = getFileContent(xmlPath, TEXT);
+            xmlContent = getFileContent(xmlPath);
         else if (OpenFlAssets.exists(xmlPath, TEXT))
             xmlContent = OpenFlAssets.getText(xmlPath);
 

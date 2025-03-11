@@ -1,12 +1,12 @@
 package moon.game.obj;
 
+import flixel.FlxSprite;
 import flixel.FlxBasic;
 import flixel.group.FlxGroup.FlxTypedGroup;
-import openfl.display.BlendMode;
-import flixel.FlxSprite;
-import moon.dependency.scripting.MoonScript;
-import sys.FileSystem;
 import flixel.group.FlxSpriteGroup;
+import openfl.display.BlendMode;
+
+import moon.dependency.scripting.MoonScript;
 
 class Stage extends FlxTypedGroup<FlxBasic>
 {
@@ -24,7 +24,7 @@ class Stage extends FlxTypedGroup<FlxBasic>
     {
         this.stage = stg;
 
-        if(!FileSystem.exists(Paths.data('stages/$stg.hx')))
+        if(!Paths.fileExists(Paths.data('stages/$stg.hx')))
         {
             throw 'The specified stage "$stg" does not have an hx file at "assets/data/stages".';
             return null;

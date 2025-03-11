@@ -1,6 +1,5 @@
 package moon.game.obj;
 
-import sys.FileSystem;
 import flixel.FlxG;
 import moon.dependency.MoonSound.MusicType;
 import flixel.group.FlxGroup.FlxTypedGroup;

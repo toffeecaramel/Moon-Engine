@@ -1,10 +1,11 @@
 package moon.dependency;
 
-import sys.io.File;
 import haxe.Json;
+#if sys
 import moonchart.formats.fnf.legacy.FNFPsych;
 import moonchart.formats.fnf.FNFCodename;
 import moonchart.formats.fnf.FNFVSlice;
+#end
 using StringTools;
 
 /**
@@ -103,6 +104,8 @@ class MoonChart
      */
     public static function convert(type:String, path:String, difficulty:String, ?meta)
     {
+        // gotta do that since moonchart uses filesystem.
+        #if sys
         // So first, we'll get the chart format and convert 'em to
         // vslice, because vslice will be our main 'base' for converting.
         // (thanks moonchart for existing its BASED AF)
@@ -136,7 +139,7 @@ class MoonChart
                     time: note.t,
                     data: (note.d > 3) ? Std.int(note.d - 4) : note.d,
                     lane:  (note.d > 3) ? 'opponent' : 'p1',
-                    type: 'default',
+                    type: note.k,
                     duration: note.l
                 };
                 convertedChart.notes.push(note);
@@ -163,6 +166,9 @@ class MoonChart
             version: metadata.version
         };
 
-        File.saveContent('assets/data/chart-converter/mychart-$difficulty-converted.json', Json.stringify(convertedChart, "\t"));
+        Paths.saveFileContent('assets/data/chart-converter/mychart-$difficulty-converted.json', Json.stringify(convertedChart, "\t"));
+        #else
+        throw 'Chart conversion is currently only available for Desktop.';
+        #end
     }
 }
