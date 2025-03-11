@@ -34,22 +34,22 @@ class MoonInput
     [
         // Gameplay Keybinds
         'LEFT' => [
-        	[FlxKey.A, FlxKey.LEFT],
+        	[FlxKey.D, FlxKey.LEFT],
         	[FlxPad.LEFT_TRIGGER, FlxPad.DPAD_LEFT]
         ],
 
         'DOWN' => [
-        	[FlxKey.S, FlxKey.DOWN], 
+        	[FlxKey.F, FlxKey.DOWN], 
         	[FlxPad.LEFT_SHOULDER, FlxPad.DPAD_DOWN]
         ],
 
         'UP' => [
-        	[FlxKey.K, FlxKey.UP], 
+        	[FlxKey.J, FlxKey.UP], 
         	[FlxPad.RIGHT_SHOULDER, FlxPad.DPAD_UP]
         ],
 
         'RIGHT' => [
-        	[FlxKey.L, FlxKey.RIGHT], 
+        	[FlxKey.K, FlxKey.RIGHT], 
         	[FlxPad.RIGHT_TRIGGER, FlxPad.DPAD_RIGHT]
         ],
 

@@ -27,14 +27,14 @@ class Stage extends FlxTypedGroup<FlxBasic>
     {
         this.stage = stg;
 
-        if(!Paths.fileExists(Paths.data('stages/$stg.hx')))
+        if(!Paths.fileExists('assets/images/ingame/stages/$stg/script.hx'))
         {
-            throw 'The specified stage "$stg" does not have an hx file at "assets/data/stages".';
+            throw 'The specified stage "$stg" does not have an hx file at "assets/images/ingame/stages/$stg".';
             return null;
         }
         else
         {
-            script.load(Paths.data('stages/$stg.hx'));
+            script.load('assets/images/ingame/stages/$stg/script.hx');
             script.set("background", this);
             script.call('onCreate');
         }

@@ -1,5 +1,6 @@
 package;
 
+import moon.game.obj.Character;
 import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.FlxG;
@@ -31,6 +32,9 @@ class PlayState extends FlxState
 	public var camFollower:FlxObject = new FlxObject();
 
 	var ralsei:MoonSprite = new MoonSprite(); //lol
+
+	public var oppTest:Character;
+
 	override public function create()
 	{
 		super.create();
@@ -67,6 +71,9 @@ class PlayState extends FlxState
 		ralsei.screenCenter(X);
 		ralsei.y = 1400;
 		add(ralsei);
+
+		oppTest = new Character(30, 30, 'darnell', playField.conductor);
+		add(oppTest);
 
 		Paths.clearUnusedMemory();
 	}

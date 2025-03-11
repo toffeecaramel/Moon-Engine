@@ -46,7 +46,7 @@ class MoonSprite extends FlxSprite
 
 	/**
 	 * Adds an offset to a animation. (IMPORTANT NOTE: For offsets to apply, use `playAnim()` instead of `animation.play()`.)
-	 * @param name The animation's name;
+	 * @param name The animation's name.
 	 * @param x    The X offset.
 	 * @param y    The Y offset.
 	 */
