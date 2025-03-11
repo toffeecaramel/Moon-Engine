@@ -51,6 +51,8 @@ class PlayState extends FlxState
 		//< -- BACKGROUND SETUP -- >//
 		stage = new Stage('limo');
 		add(stage);
+		//TODO: Set null value to be Spectator's(GF's) position once added.
+		camFollower.setPosition(stage.cameraSettings.startX ?? 0, stage.cameraSettings.startY ?? 0);
 		
 		//< -- PLAYFIELD SETUP -- >//
 		playField = new PlayField('2hot', 'hard', 'pico');
@@ -89,7 +91,8 @@ class PlayState extends FlxState
 		if(FlxG.keys.pressed.UP) camFollower.y -= 10;
 
 		//TODO: enhance this so camGAME is able to have custom zooms while bump is active.
-		camHUD.zoom = camGAME.zoom = FlxMath.lerp(camHUD.zoom, 1, elapsed * 10);
+		camGAME.zoom = FlxMath.lerp(camGAME.zoom, stage.cameraSettings.zoom ?? 1, elapsed * 10);
+		camHUD.zoom = FlxMath.lerp(camHUD.zoom, 1, elapsed * 10);
 
 		if(FlxG.keys.justPressed.NINE) FlxG.switchState(()->new ChartConvert());
 	}

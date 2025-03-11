@@ -10,7 +10,10 @@ import moon.dependency.scripting.MoonScript;
 
 class Stage extends FlxTypedGroup<FlxBasic>
 {
+    public var cameraSettings:{?zoom:Float, ?startX:Float, ?startY:Float};
+    
     public var stage(default, set):String;
+
     public var script:MoonScript;
     
     public function new(stage:String = 'stage')
