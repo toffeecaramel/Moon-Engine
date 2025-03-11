@@ -26,12 +26,13 @@ class MoonSprite extends FlxSprite
 		animOffsets = new Map<String, Array<Dynamic>>();
 	}
 
-	public function playAnim(AnimName:String, Force:Bool = false, Reversed:Bool = false, Frame:Int = 0):Void
+	@:inheritDoc(flixel.animation.FlxAnimationController.play)
+	public function playAnim(animName:String, force:Bool = false, reversed:Bool = false, frame:Int = 0):Void
 	{
-		animation.play(AnimName, Force, Reversed, Frame);
+		animation.play(animName, force, reversed, frame);
 
-		final daOffset = animOffsets.get(AnimName);
-		if (animOffsets.exists(AnimName))
+		final daOffset = animOffsets.get(animName);
+		if (animOffsets.exists(animName))
 			offset.set(daOffset[0], daOffset[1]);
 		else
 			offset.set(0, 0);
@@ -43,6 +44,12 @@ class MoonSprite extends FlxSprite
 		}
 	}
 
+	/**
+	 * Adds an offset to a animation. (IMPORTANT NOTE: For offsets to apply, use `playAnim()` instead of `animation.play()`.)
+	 * @param name The animation's name;
+	 * @param x    The X offset.
+	 * @param y    The Y offset.
+	 */
 	public function addOffset(name:String, x:Float = 0, y:Float = 0)
 		animOffsets[name] = [x, y];
 }
