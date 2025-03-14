@@ -106,7 +106,6 @@
 	<haxedef name="HXCPP_CHECK_POINTER" if="release" />
 	<haxedef name="HXCPP_STACK_LINE" if="release" />
 	<haxedef name="HXCPP_STACK_TRACE" />
-	<haxedef name="hscriptPos" />
 
 	<!-- _________________________________ Custom _______________________________ -->
 

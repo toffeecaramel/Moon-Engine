@@ -51,18 +51,24 @@ class PlayState extends FlxState
 		camGAME.follow(camFollower, LOCKON, 1);
 		camGAME.focusOn(camFollower.getPosition());
 		camGAME.handheldVFX = {xIntensity: 2.2, yIntensity: 3.2, distance: 11, speed: 0.3};
-
-		//< -- BACKGROUND SETUP -- >//
-		stage = new Stage('limo');
-		add(stage);
-		//TODO: Set null value to be Spectator's(GF's) position once added.
-		camFollower.setPosition(stage.cameraSettings.startX ?? 0, stage.cameraSettings.startY ?? 0);
 		
 		//< -- PLAYFIELD SETUP -- >//
 		playField = new PlayField('2hot', 'hard', 'pico');
 		playField.camera = camHUD;
 		playField.conductor.onBeat.add(beatHit);
 		add(playField);
+		
+		//< -- BACKGROUND SETUP -- >//
+		stage = new Stage('limo', playField.conductor);
+		add(stage);
+
+		//TODO: Set null value to be Spectator's(GF's) position once added.
+		camFollower.setPosition(stage.cameraSettings.startX ?? 0, stage.cameraSettings.startY ?? 0);
+
+		final chartMeta = playField.chart.content.meta;
+		for (opp in chartMeta.opponents) stage.addCharTo(opp, stage.opponents);
+		for (plyr in chartMeta.players) stage.addCharTo(plyr,stage.players);
+		for (spct in chartMeta.spectators) stage.addCharTo(spct, stage.spectators);
 
 		playField.conductor.onBeat.add(stage.script.get('onBeat'));
 
@@ -71,9 +77,6 @@ class PlayState extends FlxState
 		ralsei.screenCenter(X);
 		ralsei.y = 1400;
 		add(ralsei);
-
-		oppTest = new Character(30, 30, 'darnell', playField.conductor);
-		add(oppTest);
 
 		Paths.clearUnusedMemory();
 	}

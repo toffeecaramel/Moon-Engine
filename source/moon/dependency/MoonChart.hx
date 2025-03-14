@@ -76,6 +76,7 @@ class MoonChart
      */
     public static final SUPPORTED_FORMATS:Array<String> = 
     [
+        //TODO: add other formats in here.
         'legacy',
         'psych',
         'codename',

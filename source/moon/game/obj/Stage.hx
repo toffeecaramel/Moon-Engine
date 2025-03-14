@@ -13,11 +13,20 @@ class Stage extends FlxTypedGroup<FlxBasic>
     public var stage(default, set):String;
     public var cameraSettings:{?zoom:Float, ?startX:Float, ?startY:Float};
 
+    public var spectators:FlxTypedGroup<Character> = new FlxTypedGroup<Character>();
+    public var opponents:FlxTypedGroup<Character> = new FlxTypedGroup<Character>();
+    public var players:FlxTypedGroup<Character> = new FlxTypedGroup<Character>();
+
+    public var chars:Array<Character> = [];
+    public var conductor:Conductor;
+
     public var script:MoonScript;
     
-    public function new(stage:String = 'stage')
+    public function new(stage:String = 'stage', conductor:Conductor)
     {
         super();
+        this.conductor = conductor;
+        
         script = new MoonScript();
         this.stage = stage;
     }
@@ -39,6 +48,16 @@ class Stage extends FlxTypedGroup<FlxBasic>
         }
 
         return stg;    
+    }
+
+    public function addCharTo(charName:String, group:FlxTypedGroup<Character>)
+    {
+        group.recycle(Character, function():Character
+        {
+            var char = new Character(0,0,charName,conductor);
+            chars.push(char);
+            return char;
+        });
     }
 
     override public function update(elapsed:Float)

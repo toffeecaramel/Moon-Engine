@@ -89,6 +89,8 @@ class Character extends MoonSprite
 
     @:noCompletion public function set_character(char:String):String
     {
+        if(!Paths.fileExists('assets/images/ingame/characters/$char/data.json')) char = 'darnell'; // safe check in case it doesnt exist
+
         this.character = char;
         data = cast Paths.JSON('ingame/characters/$char/data');
         this.frames = Paths.getSparrowAtlas('ingame/characters/$char/$char');

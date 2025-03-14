@@ -41,18 +41,24 @@ function onCreate()
 		henchdudes.push(dancer);
 	}
 
-	FlxTween.tween(backDriver, {x: -150}, 1.2, {ease: FlxEase.quadOut, startDelay: 1.2, onComplete: function(_)
-	{
-		for(i in 0...henchdudes.length)
-			FlxTween.tween(henchdudes[i], {x: backDriver.x + 290 + (390 *i)}, 0.25, {ease: FlxEase.circOut, startDelay: 0.25 * i});
-	}});
 	
+	background.add(background.spectators);
+	
+	FlxTween.tween(backDriver, {x: -150}, 1.2, {ease: FlxEase.quadOut, startDelay: 1.2, onComplete: function(_)
+		{
+			for(i in 0...henchdudes.length)
+				FlxTween.tween(henchdudes[i], {x: backDriver.x + 290 + (390 *i)}, 0.25, {ease: FlxEase.circOut, startDelay: 0.25 * i});
+		}});
+		
 	var frontDriver = new MoonSprite(-150, 250);
 	frontDriver.frames = Paths.getSparrowAtlas(p + 'limoDrive');
 	frontDriver.animation.addByPrefix('ok', 'Limo stage', 24, true);
 	frontDriver.playAnim('ok', true);
 	background.add(frontDriver);
-
+	
+	background.add(background.opponents);
+	background.add(background.players);
+		
 	veryFastCar = new MoonSprite(1600, 100).loadGraphic(Paths.image(p + 'fastCarLol'));
 	veryFastCar.scale.set(0.8, 0.8);
 	background.add(veryFastCar);
