@@ -1,5 +1,6 @@
 package moon.game.obj;
 
+import flixel.FlxG;
 using StringTools;
 typedef CharacterData = 
 {
@@ -54,22 +55,21 @@ class Character extends MoonSprite
     public function checkDance(curBeat:Float)
     {
         if (animation.curAnim == null) return;
-    
+        if (animation.curAnim.name.startsWith('sing') || animation.curAnim.name.startsWith('miss'))
+            animationHold += conductor.stepCrochet;
+
         if ((animation.curAnim.name.startsWith("idle") 
             || animation.curAnim.name.startsWith("dance"))
             && (Std.int(curBeat) % data.danceFrequency == 0))
-            this.dance();
+            this.dance(true);
     }
         
     override public function update(elapsed:Float)
-    {
-        if (animation.curAnim != null && 
-            (animation.curAnim.name.startsWith('sing') || animation.curAnim.name.startsWith('miss')))
-            animationHold += elapsed;
-        
-        if (animationHold >= conductor.stepCrochet * 8) 
+    {        
+        //trace(animationHold + ': ' + conductor.stepCrochet);
+        if (animationHold >= conductor.stepCrochet * 3) 
         {
-            dance();
+            dance(true);
             animationHold = 0;
         }
     

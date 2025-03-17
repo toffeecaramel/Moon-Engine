@@ -1,0 +1,23 @@
+{
+    "cameraSettings": {
+        "zoom": 0.9,
+        "startX": 780,
+        "startY": 100
+    },
+
+    "characterSettings": {
+        "positions": {
+            "opponents": [0, 0],
+            "spectators": [2000, -200],
+            "players": [700, -200]
+        },
+
+        "scrollFactors": {
+            "spectators": [0.65, 0.65]
+        },
+
+        "scales": {
+            "spectators": [0.7, 0.7]
+        }
+    }
+}

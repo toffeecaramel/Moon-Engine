@@ -1,5 +1,6 @@
 package moon.backend.gameplay;
 
+import moon.game.obj.Character;
 import moon.game.obj.notes.Note.NoteState;
 import moon.game.obj.notes.*;
 import moon.backend.gameplay.Timings;
@@ -64,6 +65,11 @@ class InputHandler
      * Function called whenever a sustain gets completed (held till the end.)
      */
     public var onSustainComplete:Note->Void;
+
+    /**
+     * An character to be attached, useful for playing animations.
+     */
+    public var attachedChar:Character;
 
     /**
      * Array for all the the keys on the 'justPressed' state.
@@ -165,15 +171,7 @@ class InputHandler
                     //TODO: Ghost tapping support, like, the options yea
                     if(onGhostTap != null) onGhostTap(i);
                     strumline.receptors.members[i].strumNote.playAnim('${MoonUtils.intToDir(i)}-press', true);
-                    if (onNoteMiss != null/*&& !UserSettings.callSetting('Ghost Tapping')*/)
-                    {
-                        onNoteMiss(null);
-                        stats.misses++;
-                        stats.score += Timings.getParameters('miss')[2];
-
-                        stats.totalNotes++;
-                        stats.accuracyCount += Timings.getParameters('miss')[0];
-                    }
+                    onMiss(null);
                 }
             }
         }
@@ -202,28 +200,46 @@ class InputHandler
         }
     }
 
-    private function onHit(note:Note, ID:Int, timing:String, isCPU:Bool)
+    private function onHit(note:Note, ID:Int, timing:String, isCPU:Bool, ?isSustain:Bool = false):Void
     {
-        // kind of a big one line if statement but les go I'll explain nice n slow :3
-        // first of all, it checks if the timing is not a miss and the callback to 'onNoteHit' isnt null
-        // then it'll call onNoteHit.
-        // else if timing is equal miss and onNoteMiss' callback is not null
-        // it'll call onNoteMiss
-        (timing != 'miss' && onNoteHit != null) ? onNoteHit(note, timing, isCPU) : (timing == 'miss' && onNoteMiss != null) ? onNoteMiss(note) : null;
-        if(timing == 'miss') stats.misses++;
-        // do some changes on the note after it gets hit
-        note.state = GOT_HIT;
-        note.visible = note.active = false;
+        final convertedDir = MoonUtils.intToDir(note.direction);
 
-        stats.score += Timings.getParameters(timing)[2];
+        
+        if(!isSustain)
+            {
+                note.state = GOT_HIT;
+                note.visible = note.active = false;
+                if (note.duration > 0) heldSustains.set(ID, note);
+            }
+            
+            stats.score += (!isSustain) ? Timings.getParameters(timing)[2] : 2;
+        strumline.receptors.members[note.direction].onNoteHit(note, timing, isSustain);
+        
+        // little workaround if it doesnt despawn, which may happen sometimes...
+        if(!isSustain) strumline.receptors.members[note.direction].sustainSplash.despawn((playerID == 'opponent'));
+        
+        if(attachedChar != null) 
+        {
+            attachedChar.playAnim('sing${convertedDir.toUpperCase()}', true);
+            attachedChar.animationHold = 0;
+        }
 
-        // call strumline stuff
-        strumline.receptors.members[note.direction].onNoteHit(note, timing, isCPU);
-        strumline.receptors.members[note.direction].sustainSplash.despawn((playerID == 'opponent')); // just a workaround in case it doesnt stop
+        (timing != 'miss' && onNoteHit != null) ? onNoteHit(note, timing, isSustain) : (timing == 'miss') ? onMiss(note) : null;
+    }
 
-        // set the sustain if it exists
-        if (note.duration > 0)
-            heldSustains.set(ID, note);
+    public function onMiss(note:Note):Void
+    {
+        if(note != null)
+        {
+            note.state = TOO_LATE;
+            note.visible = note.active = false;
+        }
+        
+        stats.accuracyCount += Timings.getParameters('miss')[0];
+        stats.score += Timings.getParameters('miss')[2];
+        stats.misses++;
+        
+        if(onNoteMiss != null) onNoteMiss(note);
     }
 
     private var sustainCounters:Map<Int, Int> = new Map<Int, Int>(); // for tracking sustain stuffies
@@ -239,12 +255,10 @@ class InputHandler
                 counter++;
                 sustainCounters.set(direction, counter);
                 
-                // trigger on note hit every 6 ticks for this sustain note.
                 if (counter % 6 == 0)
                 {
-                    if(onNoteHit != null) onNoteHit(heldNote, null, true);
+                    onHit(heldNote, direction, null, (playerID == 'opponent'), true);
                     stats.score += 2;
-                    strumline.receptors.members[heldNote.direction].onNoteHit(heldNote, null, true);
                 }
 
                 if (conductor.time >= heldNote.time + heldNote.duration)
@@ -264,22 +278,11 @@ class InputHandler
     }
 
     private function onLateMiss():Void
-    {
         // iterates through all notes and checks if they're too late.
         for (note in thisNotes)
-        {
             if (note.state != GOT_HIT && note.state != NoteState.TOO_LATE && note.lane == playerID &&
                 conductor.time > note.time + Timings.getParameters('miss')[1])
-            {
-                if (onNoteMiss != null) onNoteMiss(note);
-                note.state = TOO_LATE;
-                note.visible = note.active = false;
-                stats.accuracyCount += Timings.getParameters('miss')[0];
-                stats.score += Timings.getParameters('miss')[2];
-                stats.misses++;
-            }
-        }
-    }
+                onMiss(note);
 
     /**
      * Checks if the note is within timing,

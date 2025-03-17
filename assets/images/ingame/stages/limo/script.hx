@@ -11,12 +11,6 @@ function onCreate()
 	animProgress = 0;
 	final p = 'ingame/stages/limo/';
 
-	background.cameraSettings = {
-		zoom: 0.9,
-		startX: 780,
-		startY: 100
-	};
-
 	var back = new MoonSprite(-325, -200).loadGraphic(Paths.image(p + 'limoSunset'));
 	back.scrollFactor.set(0.1, 0.1);
 	background.add(back);
@@ -40,16 +34,16 @@ function onCreate()
 		background.add(dancer);
 		henchdudes.push(dancer);
 	}
-
 	
 	background.add(background.spectators);
 	
 	FlxTween.tween(backDriver, {x: -150}, 1.2, {ease: FlxEase.quadOut, startDelay: 1.2, onComplete: function(_)
-		{
-			for(i in 0...henchdudes.length)
-				FlxTween.tween(henchdudes[i], {x: backDriver.x + 290 + (390 *i)}, 0.25, {ease: FlxEase.circOut, startDelay: 0.25 * i});
-		}});
-		
+	{
+		for(i in 0...henchdudes.length)
+			FlxTween.tween(henchdudes[i], {x: backDriver.x + 290 + (390 *i)}, 0.25, {ease: FlxEase.circOut, startDelay: 0.25 * i});
+	}});
+	FlxTween.tween(background.spectators, {x: 370}, 1.2, {ease: FlxEase.quadOut, startDelay: 1.2});
+
 	var frontDriver = new MoonSprite(-150, 250);
 	frontDriver.frames = Paths.getSparrowAtlas(p + 'limoDrive');
 	frontDriver.animation.addByPrefix('ok', 'Limo stage', 24, true);
@@ -58,7 +52,7 @@ function onCreate()
 	
 	background.add(background.opponents);
 	background.add(background.players);
-		
+
 	veryFastCar = new MoonSprite(1600, 100).loadGraphic(Paths.image(p + 'fastCarLol'));
 	veryFastCar.scale.set(0.8, 0.8);
 	background.add(veryFastCar);
@@ -68,11 +62,11 @@ var carTimer:Float = 0;
 function onUpdate(elapsed)
 {
 	carTimer += elapsed;
-	if(carTimer >= FlxG.random.float(4, 10))
+	if(carTimer >= FlxG.random.float(6, 10))
 	{
 		carTimer = 0;
 		FlxG.sound.play(Paths.sound('stages/limo/carPass' + FlxG.random.int(0, 1), "sounds"));
-		FlxTween.tween(veryFastCar, {x: -1200}, 0.13, {startDelay: 1, onComplete: (_) -> veryFastCar.x = 1600});
+		FlxTween.tween(veryFastCar, {x: -1200}, 0.13, {startDelay: 1.4, onComplete: (_) -> veryFastCar.x = 1600});
 	}
 }
 

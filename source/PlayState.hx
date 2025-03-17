@@ -1,5 +1,6 @@
 package;
 
+import moon.game.submenus.PauseScreen;
 import moon.game.obj.Character;
 import flixel.FlxObject;
 import flixel.FlxSprite;
@@ -31,13 +32,14 @@ class PlayState extends FlxState
 
 	public var camFollower:FlxObject = new FlxObject();
 
-	var ralsei:MoonSprite = new MoonSprite(); //lol
-
 	public var oppTest:Character;
 
 	override public function create()
 	{
 		super.create();
+
+		this.persistentUpdate = false;
+		//this.persistentDraw = false;
 		
 		//< -- CAMERAS SETUP -- >//
 		camGAME.bgColor = 0xFF000000;
@@ -47,13 +49,14 @@ class PlayState extends FlxState
 		FlxG.cameras.add(camGAME, true);
 		FlxG.cameras.add(camHUD, false);
 		FlxG.cameras.add(camALT, false);
+
 		camFollower.setPosition(0, 0);
 		camGAME.follow(camFollower, LOCKON, 1);
 		camGAME.focusOn(camFollower.getPosition());
 		camGAME.handheldVFX = {xIntensity: 2.2, yIntensity: 3.2, distance: 11, speed: 0.3};
 		
 		//< -- PLAYFIELD SETUP -- >//
-		playField = new PlayField('2hot', 'hard', 'pico');
+		playField = new PlayField('expurgated', 'hard', 'bf');
 		playField.camera = camHUD;
 		playField.conductor.onBeat.add(beatHit);
 		add(playField);
@@ -62,38 +65,24 @@ class PlayState extends FlxState
 		stage = new Stage('limo', playField.conductor);
 		add(stage);
 
-		//TODO: Set null value to be Spectator's(GF's) position once added.
-		camFollower.setPosition(stage.cameraSettings.startX ?? 0, stage.cameraSettings.startY ?? 0);
-
 		final chartMeta = playField.chart.content.meta;
-		for (opp in chartMeta.opponents) stage.addCharTo(opp, stage.opponents);
-		for (plyr in chartMeta.players) stage.addCharTo(plyr,stage.players);
+		for (opp in chartMeta.opponents) stage.addCharTo(opp, stage.opponents, playField.inputHandlers.get('opponent'));
+		for (plyr in chartMeta.players) stage.addCharTo(plyr, stage.players, playField.inputHandlers.get('p1'));
 		for (spct in chartMeta.spectators) stage.addCharTo(spct, stage.spectators);
+		stage.setDefaultPositions();
+
+		final mainSpec = stage.spectators.members[0];
+		camFollower.setPosition(stage.cameraSettings.startX ?? (mainSpec.x ?? 0), stage.cameraSettings.startY ?? (mainSpec.y ?? 0));
 
 		playField.conductor.onBeat.add(stage.script.get('onBeat'));
-
-		ralsei.loadGraphic(Paths.image('ralsei'));
-		ralsei.scale.set(0.2, 0.2);
-		ralsei.screenCenter(X);
-		ralsei.y = 1400;
-		add(ralsei);
 
 		Paths.clearUnusedMemory();
 	}
 
-	var canBump:Bool = false;
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
 		if(FlxG.keys.justPressed.SEVEN) FlxG.switchState(() -> new ChartEditor());
-
-		if(FlxG.keys.justPressed.O) canBump = !canBump;
-		if(canBump)
-		{
-			ralsei.screenCenter(X);
-			ralsei.y = FlxMath.lerp(ralsei.y, (FlxG.height - ralsei.height) / 2, elapsed * 17);
-			ralsei.updateHitbox();
-		}
 
 		if(FlxG.keys.pressed.RIGHT) camFollower.x += 10;
 		if(FlxG.keys.pressed.LEFT) camFollower.x -= 10;
@@ -105,24 +94,16 @@ class PlayState extends FlxState
 		camHUD.zoom = FlxMath.lerp(camHUD.zoom, 1, elapsed * 10);
 
 		if(FlxG.keys.justPressed.NINE) FlxG.switchState(()->new ChartConvert());
+
+		if(MoonInput.justPressed(PAUSE))
+		{
+			openSubState(new PauseScreen(camALT));
+			playField.playback.state = PAUSE;
+		}
 	}
 
-	var twn:FlxTween;
 	public function beatHit(curBeat:Float)
 	{
-		if(canBump)
-		{
-			final dur = playField.conductor.crochet / 2000;
-			if(twn != null && twn.active) twn.cancel();
-
-			twn = FlxTween.tween(camHUD, {y: -20}, dur, {ease: FlxEase.circOut, onComplete: function(_)
-			{
-				twn = FlxTween.tween(camHUD, {y: 0}, dur, {ease: FlxEase.circIn});
-			}});
-		}
-
-		ralsei.flipX = !ralsei.flipX;
-		ralsei.y += 25;
 		if ((curBeat % playField.conductor.numerator) == 0)
 		{
 			camGAME.zoom += 0.015;

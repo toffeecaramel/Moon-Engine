@@ -6,9 +6,9 @@ import flixel.text.FlxText;
 import moon.backend.gameplay.InputHandler;
 import flixel.FlxG;
 import flixel.group.FlxGroup;
-
 import moon.game.obj.notes.*;
 import moon.backend.gameplay.Timings;
+import haxe.ds.StringMap; // Import the StringMap type
 
 @:publicFields
 class PlayField extends FlxGroup
@@ -24,9 +24,9 @@ class PlayField extends FlxGroup
     var mix:String;
     var difficulty:String;
 
-    public var strumlines:Array<Strumline> = [];
-    public var inputHandlers:Array<InputHandler> = [];
-
+    var inputHandlers:Map<String, InputHandler> = [];
+    var strumlines:Array<Strumline> = [];
+    
     var tst:FlxText;
 
     /**
@@ -51,53 +51,37 @@ class PlayField extends FlxGroup
         conductor.onBeat.add(beatHit);
         
         playback = new Song(
-        [{name: song, mix: mix, type: Inst},
-        {name: song, mix: mix, type: Voices_Opponent},
-        {name: song, mix: mix, type: Voices_Player}],
-        conductor);
+            [{name: song, mix: mix, type: Inst},
+             {name: song, mix: mix, type: Voices_Opponent},
+             {name: song, mix: mix, type: Voices_Player}],
+            conductor
+        );
     
         //< -- STRUMLINES & INPUTS SETUP -- >//
         strumlines = [];
-        inputHandlers = [];
 
-        // strums positioning values
         final xVal = (FlxG.width * 0.5);
         final xAddition = (FlxG.width * 0.25);
-        final strumXs:Array<Float> = [-xAddition, xAddition];
+        final strumXs = [-xAddition, xAddition];
 
-        // some setups for their ids
-        final playerIDs:Array<String> = ["opponent", "p1"];
-        final isCPUPlayers:Array<Bool> = [true, false];
+        final playerIDs = ["opponent", "p1"];
+        final isCPUPlayers = [true, false];
 
-        // actually setup strumlines
         for (i in 0...playerIDs.length)
         {
+            //TODO: Skins lol
             var strumline = new Strumline(xVal + strumXs[i], 80, 'v-slice', isCPUPlayers[i], playerIDs[i], conductor);
             add(strumline);
             strumlines.push(strumline);
 
             var inputHandler = new InputHandler(null, playerIDs[i], strumline, conductor);
-            inputHandlers.push(inputHandler);
+            inputHandlers.set(playerIDs[i], inputHandler);
 
-            // specific thing when its player 1 only
-            // oh btw lemme
-            // TODO: ADD p2 support here and... mhmhmhm AGFAGH BARK :3
-            if (playerIDs[i] == 'p1')
-            {
-                inputHandlers[i].onNoteHit = function(note, timing, isSustain)
-                {
-                    tst.text = 'SCORE: ${inputHandlers[i].stats.score} // MISSES: ${inputHandlers[i].stats.misses} // ACCURACY: ${inputHandlers[i].stats.accuracy}%';
-                    tst.screenCenter(X);
-                };
-
-                inputHandlers[i].onNoteMiss = function(note:Note){
-                    tst.text = 'SCORE: ${inputHandlers[i].stats.score} // MISSES: ${inputHandlers[i].stats.misses} // ACCURACY: ${inputHandlers[i].stats.accuracy}%';
-                    tst.screenCenter(X);
-                };
-            }
+            inputHandler.onNoteHit = (note, timing, isSustain) -> onNoteHit(playerIDs[i], note, timing, isSustain);
+            inputHandler.onNoteMiss = (note) -> onNoteMiss(playerIDs[i], note);
         }
 
-        // little text for testing out the accuracy;
+        // Little text for testing out the accuracy.
         tst = new FlxText(0, 20);
         tst.text = ':3';
         tst.setFormat(Paths.font('phantomuff/full.ttf'), 32, FlxColor.WHITE, LEFT);
@@ -105,40 +89,75 @@ class PlayField extends FlxGroup
 
         //< -- NOTES SETUP -- >//
 
-        // add the note spawner
+        // Add the note spawner.
         noteSpawner = new NoteSpawner(chart.content.notes, strumlines, conductor);
         noteSpawner.scrollSpeed = chart.content.meta.scrollSpd;
         add(noteSpawner);
 
-        // set input handler's notes
-        for (inputHandler in inputHandlers)
-            inputHandler.thisNotes = noteSpawner.notes;
+        // Set each input handler's notes.
+        for (handler in inputHandlers.iterator())
+            handler.thisNotes = noteSpawner.notes;
 
-        // set the song's state
-		playback.state = PLAY;
+        // Set the song's state.
+        playback.state = PLAY;
     }
 
     override public function update(dt:Float)
     {
         conductor.time += dt * 1000;
 
-        // this is kinda... dumb? so uh
-        //TODO: shorten this? somehow??
-        inputHandlers[1].justPressed = [MoonInput.justPressed(LEFT),MoonInput.justPressed(DOWN),MoonInput.justPressed(UP),MoonInput.justPressed(RIGHT),
-		];
+        var p1Handler:InputHandler = inputHandlers.get("p1");
+        if (p1Handler != null)
+        {
+            p1Handler.justPressed = [
+                MoonInput.justPressed(LEFT),
+                MoonInput.justPressed(DOWN),
+                MoonInput.justPressed(UP),
+                MoonInput.justPressed(RIGHT)
+            ];
 
-		inputHandlers[1].pressed = [MoonInput.pressed(LEFT),MoonInput.pressed(DOWN),MoonInput.pressed(UP),MoonInput.pressed(RIGHT),
-		];
+            p1Handler.pressed = [
+                MoonInput.pressed(LEFT),
+                MoonInput.pressed(DOWN),
+                MoonInput.pressed(UP),
+                MoonInput.pressed(RIGHT)
+            ];
 
-		inputHandlers[1].released = [MoonInput.released(LEFT),MoonInput.released(DOWN),MoonInput.released(UP),MoonInput.released(RIGHT),
-		];
+            p1Handler.released = [
+                MoonInput.released(LEFT),
+                MoonInput.released(DOWN),
+                MoonInput.released(UP),
+                MoonInput.released(RIGHT)
+            ];
+        }
 
         super.update(dt);
-        for (inputHandler in inputHandlers)
-            inputHandler.update();
+        for (handler in inputHandlers.iterator())
+            handler.update();
     }
 
-    function beatHit(beat:Float)
+    public function onNoteHit(playerID:String, note:Note, timing:String, isSustain:Bool)
+    {
+        if (playerID == 'p1')
+            updateP1Stats();
+
+        //final input = inputHandlers.get(playerID);
+        //input.attachedChar
+    }
+
+    public function onNoteMiss(playerID:String, note:Note)
+    {
+        if (playerID == 'p1') updateP1Stats();
+    }
+
+    private function updateP1Stats():Void
+    {
+        final stat = inputHandlers.get('p1').stats;
+        tst.text = 'SCORE: ${stat.score} // MISSES: ${stat.misses} // ACCURACY: ${stat.accuracy}%';
+        tst.screenCenter(X);
+    }
+
+    function beatHit(beat:Float):Void
     {
 
     }

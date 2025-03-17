@@ -320,13 +320,13 @@ class Paths
      * @param from (can be either images, data, etc.)
      * @return return (json content)
      */
-    inline static public function JSON(file:String, ?from:String = 'images')
+    inline static public function JSON(file:String, ?from:String = 'images'):Dynamic
     {
         var path = 'assets/$from/$file.json';
         if (fileExists(path, TEXT))
             return Json.parse(getFileContent(path));
 
-        return Json.parse(getFileContent('assets/$from/$file.json'));
+        return Json.parse(getFileContent(path));
     }
 
         /**
