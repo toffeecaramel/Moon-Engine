@@ -1,5 +1,6 @@
 package;
 
+import moon.dependency.scripting.MoonEvent;
 import moon.game.submenus.PauseScreen;
 import moon.game.obj.Character;
 import flixel.FlxObject;
@@ -19,8 +20,16 @@ import moon.toolkit.chart_editor.ChartEditor;
 
 class PlayState extends FlxState
 {
-	// Gameplay (playfield)
+	//-- Gameplay main variables --//
+
+	// The main gameplay interface
 	private var playField:PlayField;
+
+	// Just the conductor :P poor little guy,,
+	private var conductor:Conductor;
+
+	// Events (a array containing every MoonEvent, not the raw events from chart.)
+	public static var events:Array<MoonEvent> = [];
 
 	// Background (stage)
 	private var stage:Stage;
@@ -29,10 +38,7 @@ class PlayState extends FlxState
 	public var camHUD:MoonCamera = new MoonCamera();
 	public var camALT:MoonCamera = new MoonCamera();
 	public var camGAME:MoonCamera = new MoonCamera();
-
 	public var camFollower:FlxObject = new FlxObject();
-
-	public var oppTest:Character;
 
 	override public function create()
 	{
@@ -55,27 +61,40 @@ class PlayState extends FlxState
 		camGAME.focusOn(camFollower.getPosition());
 		
 		//< -- PLAYFIELD SETUP -- >//
-		playField = new PlayField('toast', 'hard', 'bf');
+		playField = new PlayField('bittersweet sunset', 'hard', 'bf');
 		playField.camera = camHUD;
 		playField.conductor.onBeat.add(beatHit);
 		add(playField);
+		this.conductor = playField.conductor;
 		
 		//< -- BACKGROUND SETUP -- >//
-		stage = new Stage('limo', playField.conductor);
+		stage = new Stage('limo', conductor);
 		add(stage);
 		
 		final chartMeta = playField.chart.content.meta;
 		for (opp in chartMeta.opponents) stage.addCharTo(opp, stage.opponents, playField.inputHandlers.get('opponent'));
 		for (plyr in chartMeta.players) stage.addCharTo(plyr, stage.players, playField.inputHandlers.get('p1'));
 		for (spct in chartMeta.spectators) stage.addCharTo(spct, stage.spectators);
+		conductor.onBeat.add(stage.script.get('onBeat'));
+
+		//< -- EVENTS SETUP -- >//
+		for(event in playField.chart.content.events)
+		{
+			var ev = new MoonEvent(event.tag, event.values);
+			ev.PRESET_VARIABLES = [
+				'game' => this,
+				'stage' => stage,
+				'playField' => playField
+			];
+			ev.time = event.time;
+			events.push(ev);
+		}
 		
-		final mainSpec = stage.spectators.members[0];
-		
-		playField.conductor.onBeat.add(stage.script.get('onBeat'));
-		
+		// call on post create for scripts
 		stage.script.set('game', this);
 		stage.script.call('onPostCreate');
 		
+		final mainSpec = stage.spectators.members[0];
 		camFollower.setPosition(stage.cameraSettings.startX ?? (mainSpec.x ?? 0), stage.cameraSettings.startY ?? (mainSpec.y ?? 0));
 		Paths.clearUnusedMemory();
 	}
@@ -83,18 +102,23 @@ class PlayState extends FlxState
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
-		if(FlxG.keys.justPressed.SEVEN) FlxG.switchState(() -> new ChartEditor());
-
-		if(FlxG.keys.pressed.RIGHT) camFollower.x += 10;
-		if(FlxG.keys.pressed.LEFT) camFollower.x -= 10;
-		if(FlxG.keys.pressed.DOWN) camFollower.y += 10;
-		if(FlxG.keys.pressed.UP) camFollower.y -= 10;
-
+		
+		// EVENTS CHECK
+		for (event in events)
+		{
+			if (event.time <= conductor.time)
+			{
+				event.exec();
+				events.remove(event);
+			}
+		}
+		
 		//TODO: enhance this so camGAME is able to have custom zooms while bump is active.
 		camGAME.zoom = FlxMath.lerp(camGAME.zoom, stage.cameraSettings.zoom ?? 1, elapsed * 10);
 		camHUD.zoom = FlxMath.lerp(camHUD.zoom, 1, elapsed * 10);
-
+		
 		if(FlxG.keys.justPressed.NINE) FlxG.switchState(()->new ChartConvert());
+		if(FlxG.keys.justPressed.SEVEN) FlxG.switchState(() -> new ChartEditor());
 
 		if(MoonInput.justPressed(PAUSE))
 		{

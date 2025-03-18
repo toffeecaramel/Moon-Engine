@@ -65,8 +65,6 @@ function onPostCreate()
         startY: 100
 	};
 
-	trace(background.cameraSettings);
-
 	game.camGAME.handheldVFX = {xIntensity: 2.2, yIntensity: 3.2, distance: 11, speed: 0.3};
 
 	background.spectators.setPosition(2000, -200);

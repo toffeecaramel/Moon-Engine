@@ -70,6 +70,8 @@ class Stage extends FlxTypedGroup<FlxBasic>
         return stg;
     }
 
+    var index:Int = 0;
+
     /**
      * Adds a char to a specific group.
      * @param charName The name of the character (e.g. darnell)
@@ -81,8 +83,10 @@ class Stage extends FlxTypedGroup<FlxBasic>
         group.recycle(Character, function():Character
         {
             var char = new Character(0 + (100 * group.members.length), 0, charName, conductor);
+            char.ID = index;
             chars.push(char);
             if(attachedInputs != null) attachedInputs.attachedChar = char;
+            index++;
             return char;
         });
     }

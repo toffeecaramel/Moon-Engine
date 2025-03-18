@@ -1,5 +1,21 @@
 {
-	"events": [],
+	"events": [
+		{
+			"tag": "SetCameraFocus",
+			"time": 3000,
+			"values": ["darnell-0", 1.2, "circOut"]
+		},
+		{
+			"tag": "SetCameraFocus",
+			"time": 6000,
+			"values": ["darnell-1", 1.2, "backOut"]
+		},
+		{
+			"tag": "SetCameraFocus",
+			"time": 9000,
+			"values": ["darnell-2", 1.2, "circInOut"]
+		}
+	],
 	"notes": [
 		{
 			"duration": 0,

@@ -1,7 +1,9 @@
 package moon.game.obj;
 
 import flixel.FlxG;
+
 using StringTools;
+
 typedef CharacterData = 
 {
     var isPlayer:Bool;

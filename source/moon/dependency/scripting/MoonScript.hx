@@ -20,7 +20,7 @@ class MoonScript
     public var DEFAULT_VARIABLES:Map<String, Dynamic> = [
         "Paths" => Paths,
         "Constants" => Constants,
-        "MoonSprite" => MoonSprite
+        "Reflect" => Reflect
     ];
 
     public function new(){}
@@ -37,7 +37,7 @@ class MoonScript
             for(variableName => variableValue in DEFAULT_VARIABLES)
                 code.set(variableName, variableValue);
         }
-        else throw 'Script path at $path was not found!';
+        else trace('Script path at $path was not found!', "ERROR");
     }
 
     @:inheritDoc(crowplexus.iris.Iris.get)
