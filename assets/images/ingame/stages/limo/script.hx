@@ -42,7 +42,6 @@ function onCreate()
 		for(i in 0...henchdudes.length)
 			FlxTween.tween(henchdudes[i], {x: backDriver.x + 290 + (390 *i)}, 0.25, {ease: FlxEase.circOut, startDelay: 0.25 * i});
 	}});
-	FlxTween.tween(background.spectators, {x: 370}, 1.2, {ease: FlxEase.quadOut, startDelay: 1.2});
 
 	var frontDriver = new MoonSprite(-150, 250);
 	frontDriver.frames = Paths.getSparrowAtlas(p + 'limoDrive');
@@ -58,6 +57,26 @@ function onCreate()
 	background.add(veryFastCar);
 }
 
+function onPostCreate()
+{
+	background.cameraSettings = {
+		zoom: 0.9,
+        startX: 780,
+        startY: 100
+	};
+
+	trace(background.cameraSettings);
+
+	game.camGAME.handheldVFX = {xIntensity: 2.2, yIntensity: 3.2, distance: 11, speed: 0.3};
+
+	background.spectators.setPosition(2000, -200);
+	background.spectators.scrollFactor.set(0.65, 0.65);
+	background.spectators.scale.set(0.7, 0.7);
+
+	background.players.setPosition(700, -200);
+	FlxTween.tween(background.spectators, {x: 370}, 1.2, {ease: FlxEase.quadOut, startDelay: 1.2});
+}
+
 var carTimer:Float = 0;
 function onUpdate(elapsed)
 {
@@ -66,7 +85,7 @@ function onUpdate(elapsed)
 	{
 		carTimer = 0;
 		FlxG.sound.play(Paths.sound('stages/limo/carPass' + FlxG.random.int(0, 1), "sounds"));
-		FlxTween.tween(veryFastCar, {x: -1200}, 0.13, {startDelay: 1.4, onComplete: (_) -> veryFastCar.x = 1600});
+		FlxTween.tween(veryFastCar, {x: -1200}, 0.13, {startDelay: 1, onComplete: (_) -> veryFastCar.x = 1600});
 	}
 }
 

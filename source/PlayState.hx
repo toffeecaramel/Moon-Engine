@@ -53,10 +53,9 @@ class PlayState extends FlxState
 		camFollower.setPosition(0, 0);
 		camGAME.follow(camFollower, LOCKON, 1);
 		camGAME.focusOn(camFollower.getPosition());
-		camGAME.handheldVFX = {xIntensity: 2.2, yIntensity: 3.2, distance: 11, speed: 0.3};
 		
 		//< -- PLAYFIELD SETUP -- >//
-		playField = new PlayField('expurgated', 'hard', 'bf');
+		playField = new PlayField('toast', 'hard', 'bf');
 		playField.camera = camHUD;
 		playField.conductor.onBeat.add(beatHit);
 		add(playField);
@@ -64,18 +63,20 @@ class PlayState extends FlxState
 		//< -- BACKGROUND SETUP -- >//
 		stage = new Stage('limo', playField.conductor);
 		add(stage);
-
+		
 		final chartMeta = playField.chart.content.meta;
 		for (opp in chartMeta.opponents) stage.addCharTo(opp, stage.opponents, playField.inputHandlers.get('opponent'));
 		for (plyr in chartMeta.players) stage.addCharTo(plyr, stage.players, playField.inputHandlers.get('p1'));
 		for (spct in chartMeta.spectators) stage.addCharTo(spct, stage.spectators);
-		stage.setDefaultPositions();
-
+		
 		final mainSpec = stage.spectators.members[0];
-		camFollower.setPosition(stage.cameraSettings.startX ?? (mainSpec.x ?? 0), stage.cameraSettings.startY ?? (mainSpec.y ?? 0));
-
+		
 		playField.conductor.onBeat.add(stage.script.get('onBeat'));
-
+		
+		stage.script.set('game', this);
+		stage.script.call('onPostCreate');
+		
+		camFollower.setPosition(stage.cameraSettings.startX ?? (mainSpec.x ?? 0), stage.cameraSettings.startY ?? (mainSpec.y ?? 0));
 		Paths.clearUnusedMemory();
 	}
 

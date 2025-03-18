@@ -25,11 +25,6 @@ class Stage extends FlxTypedGroup<FlxBasic>
     public var cameraSettings:{?zoom:Float, ?startX:Float, ?startY:Float};
 
     /**
-     * All the characters settings.
-     */
-    public var charSettings:Dynamic;
-
-    /**
      * Background's spectators.
      */
     public var spectators:FlxSpriteGroup = new FlxSpriteGroup();
@@ -69,10 +64,7 @@ class Stage extends FlxTypedGroup<FlxBasic>
             script.load('assets/images/ingame/stages/$stg/script.hx');
             script.set("background", this);
             script.call('onCreate');
-            
-            final json = Paths.JSON('ingame/stages/$stg/stageSettings');
-            cameraSettings = json.cameraSettings;
-            charSettings = json.characterSettings;
+
         }
 
         return stg;
@@ -94,28 +86,6 @@ class Stage extends FlxTypedGroup<FlxBasic>
             return char;
         });
     }
-
-    public function setDefaultPositions()
-    {
-        updateGrpProperty(spectators, 'spectators');
-        updateGrpProperty(players, 'players');
-        updateGrpProperty(opponents, 'opponents');
-    }
-
-    private function updateGrpProperty(group:FlxSpriteGroup, type:String):Void
-    {
-        final pos:Array<Float> = getField(charSettings.positions, type);
-        if(pos != null) group.setPosition(pos[0], pos[1]);
-
-        final sf:Array<Float> = getField(charSettings.scrollFactors, type);
-        if(sf != null) group.scrollFactor.set(sf[0], sf[1]);
-
-        final scl:Array<Float> = getField(charSettings.scales, type);
-        if(scl != null) group.scale.set(scl[0], scl[1]);
-    }
-
-    private function getField(a, b)
-        return (Reflect.hasField(a, b)) ? Reflect.field(a, b) : null;
 
     override public function update(elapsed:Float)
     {
