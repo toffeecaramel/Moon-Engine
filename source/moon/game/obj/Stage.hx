@@ -28,18 +28,31 @@ class Stage extends FlxTypedGroup<FlxBasic>
      * Background's spectators.
      */
     public var spectators:FlxSpriteGroup = new FlxSpriteGroup();
-    public var opponents:FlxSpriteGroup = new FlxSpriteGroup();
-    public var players:FlxSpriteGroup = new FlxSpriteGroup();
-
-    public var chars:Array<Character> = [];
-    public var conductor:Conductor;
-
-    public var script:MoonScript;
 
     /**
-     * The horizontal space between characters in the same group.
+     * Background's opponents.
      */
-    public var XSeparator:Float = 150;
+    public var opponents:FlxSpriteGroup = new FlxSpriteGroup();
+
+    /**
+     * Background's players.
+     */
+    public var players:FlxSpriteGroup = new FlxSpriteGroup();
+
+    /**
+     * An array containing every character in the stage.
+     */
+    public var chars:Array<Character> = [];
+
+    /**
+     * Conductor used for calling beat hit and amongst other stuff.
+     */
+    public var conductor:Conductor;
+
+    /**
+     * The stage script.
+     */
+    public var script:MoonScript;
 
     public function new(stage:String = 'stage', conductor:Conductor)
     {

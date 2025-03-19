@@ -7,18 +7,30 @@ function onExecute(values)
 {
     if(tween != null && tween.active) tween.cancel();
 
-    final charPos = getCharPositions(values[0]);
+    final charPos = getCamPos(values[0]);
     tween = FlxTween.tween(game.camFollower, {x: charPos[0], y: charPos[1]}, 
     values[1], {ease: Reflect.field(FlxEase, values[2])});
 }
 
-function getCharPositions(charName:String):Array<Float>
+//for getting camera positions for the said character
+var char:Character;
+function getCamPos(charName:String):Array<Float>
 {
     final chars = stage.chars;
     for (c in chars)
     {
         if (c.character + ('-' + c.ID) == charName)
             return [c.getMidpoint().x + c.data.camOffsets[0], c.getMidpoint().y + c.data.camOffsets[1]];
+        else //these are for mainly converted charts, since its the possibly best way to get them working haha :'3
+        {
+            switch(charName)
+            {
+                case 'opponent': char = stage.opponents.members[0];
+                case 'spectator': char = stage.spectators.members[0];
+                case 'player': char = stage.players.members[0];
+            }
+            return [char.getMidpoint().x + char.data.camOffsets[0], char.getMidpoint().y + char.data.camOffsets[1]];
+        }
     }
     return [0, 0];
 }

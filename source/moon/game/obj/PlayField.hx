@@ -56,6 +56,7 @@ class PlayField extends FlxGroup
              {name: song, mix: mix, type: Voices_Player}],
             conductor
         );
+        playback.state = PAUSE;
     
         //< -- STRUMLINES & INPUTS SETUP -- >//
         strumlines = [];
@@ -97,9 +98,6 @@ class PlayField extends FlxGroup
         // Set each input handler's notes.
         for (handler in inputHandlers.iterator())
             handler.thisNotes = noteSpawner.notes;
-
-        // Set the song's state.
-        playback.state = PLAY;
     }
 
     override public function update(dt:Float)

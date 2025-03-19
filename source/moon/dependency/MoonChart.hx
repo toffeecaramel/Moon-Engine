@@ -147,6 +147,27 @@ class MoonChart
             }
         }
 
+        // time to convert some basic events (such as camera and stuff)
+        final events:Array<Dynamic> = data.events;
+        for(event in events)
+        {
+            switch(event.e)
+            {
+                case 'FocusCamera':
+                    var camVent =
+                    {
+                        tag: 'SetCameraFocus',
+                        values: ([
+                            (event.v.char == 1) ? 'opponent' : 'player', 
+                            1.3,
+                            'circOut'
+                        ] : Array<Dynamic>),
+                        time: event.t
+                    };
+                convertedChart.events.push(camVent);
+            }
+        }
+
         // Now let's convert the metadata as well.
         convertedChart.meta =
         {
