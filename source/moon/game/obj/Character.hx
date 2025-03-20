@@ -21,8 +21,11 @@ class Character extends MoonSprite
     public var isPlayer(default,set):Bool;
 
     public var data:CharacterData;
-
+    public var idleAnims:Array<String>;
+    
     public var animationHold:Float = 0;
+    var danceIndex:Int = 0;
+    var lastDanceBeat:Int = -1;
 
     /**
      * Creates a character on the screen.
@@ -36,7 +39,6 @@ class Character extends MoonSprite
         super(x, y);
         this.conductor = conductor;
         this.character = character;
-
         conductor.onBeat.add(checkDance);
     }
     
@@ -59,53 +61,64 @@ class Character extends MoonSprite
         if (animation.curAnim == null) return;
         if (animation.curAnim.name.startsWith('sing') || animation.curAnim.name.startsWith('miss'))
             animationHold += conductor.stepCrochet;
-
-        if ((animation.curAnim.name.startsWith("idle") 
-            || animation.curAnim.name.startsWith("dance"))
-            && (Std.int(curBeat) % data.danceFrequency == 0))
+        var beatInt = Std.int(curBeat);
+        if ((animation.curAnim.name.startsWith("idle") || animation.curAnim.name.startsWith("dance"))
+            && (beatInt % data.danceFrequency == 0) && (beatInt != lastDanceBeat))
+        {
+            lastDanceBeat = beatInt;
             this.dance(true);
+        }
     }
         
     override public function update(elapsed:Float)
     {        
-        //trace(animationHold + ': ' + conductor.stepCrochet);
         if (animationHold >= conductor.stepCrochet * 3) 
         {
             dance(true);
             animationHold = 0;
         }
-    
         super.update(elapsed);
     }
 
-    var danced:Bool = true;
     public function dance(?force:Bool = false) 
     {
-        if (animation.getByName('danceLeft') != null && animation.getByName('danceRight') != null)
+        if (idleAnims != null && idleAnims.length > 0)
         {
-            danced = !danced;
-            playAnim((danced) ? 'danceRight' : 'danceLeft', force);
+            playAnim(idleAnims[danceIndex], force);
+            danceIndex = (danceIndex + 1) % idleAnims.length;
         }
-        else playAnim('idle', force);
+        else
+        {
+            if(animation.exists("idle-0"))
+            {
+                playAnim("idle-0", force);
+                danceIndex = 0;
+            }
+        }
     }
 
     @:noCompletion public function set_character(char:String):String
     {
-        if(!Paths.fileExists('assets/images/ingame/characters/$char/data.json')) char = 'darnell'; // safe check in case it doesnt exist
-
+        if(!Paths.fileExists('assets/images/ingame/characters/$char/data.json')) char = 'darnell';
+        
         this.character = char;
         data = cast Paths.JSON('ingame/characters/$char/data');
         this.frames = Paths.getSparrowAtlas('ingame/characters/$char/$char');
 
+        idleAnims = [];
+
         for (i in 0...data.animations.length)
         {
             final anim = data.animations[i];
-            this.animation.addByPrefix(anim.name, anim.prefix, anim.fps ?? 24, anim.looped ?? false);
+            (anim.indices != null)
+            ? this.animation.addByIndices(anim.name, anim.prefix, anim.indices, '', anim.fps ?? 24, anim.looped ?? false)
+            : this.animation.addByPrefix(anim.name, anim.prefix, anim.fps ?? 24, anim.looped ?? false);
             this.addOffset(anim.name, anim.x ?? 0, anim.y ?? 0);
+            
+            if(anim.name.startsWith("idle-"))
+                idleAnims.push(anim.name);
         }
-
-        this.playAnim('idle');
-
+        this.playAnim("idle-0");
         return char;
     }
 
@@ -116,5 +129,4 @@ class Character extends MoonSprite
         flipLeftRight();
         return isPlyr;
     }
-
 }

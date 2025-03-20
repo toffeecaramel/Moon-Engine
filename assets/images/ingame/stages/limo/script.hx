@@ -67,12 +67,12 @@ function onPostCreate()
 
 	game.camGAME.handheldVFX = {xIntensity: 2.2, yIntensity: 3.2, distance: 11, speed: 0.3};
 
-	background.spectators.setPosition(2000, -200);
+	background.spectators.setPosition(2000, -5);
 	background.spectators.scrollFactor.set(0.65, 0.65);
 	background.spectators.scale.set(0.7, 0.7);
 
 	background.players.setPosition(700, -200);
-	FlxTween.tween(background.spectators, {x: 370}, 1.2, {ease: FlxEase.quadOut, startDelay: 1.2});
+	FlxTween.tween(background.spectators, {x: 400}, 1.2, {ease: FlxEase.quadOut, startDelay: 1.2});
 }
 
 var carTimer:Float = 0;

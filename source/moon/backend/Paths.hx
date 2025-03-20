@@ -22,6 +22,7 @@ using StringTools;
 typedef AnimationData = {
     var name:String;
     var prefix:String;
+    var ?indices:Array<Int>;
     var x:Float;
     var y:Float;
     var fps:Int;

@@ -27,26 +27,26 @@ class PlayState extends FlxState
 
 	// Just the conductor :P poor little guy,,
 	private var conductor:Conductor;
-
-	// Events (a array containing every MoonEvent, not the raw events from chart.)
-	public static var events:Array<MoonEvent> = [];
-
+	
 	// Background (stage)
 	private var stage:Stage;
-
+	
 	// Cameras
 	public var camHUD:MoonCamera = new MoonCamera();
 	public var camALT:MoonCamera = new MoonCamera();
 	public var camGAME:MoonCamera = new MoonCamera();
 	public var camFollower:FlxObject = new FlxObject();
-
+	
 	// Some other values
 	public var gameZoom:Float = 1;
 
+	// Events (a array containing every MoonEvent, not the raw events from chart.)
+	public static var events:Array<MoonEvent> = [];
+	
 	override public function create()
 	{
 		super.create();
-
+		
 		this.persistentUpdate = false;
 		//this.persistentDraw = false;
 		
