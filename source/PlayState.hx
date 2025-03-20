@@ -40,6 +40,9 @@ class PlayState extends FlxState
 	public var camGAME:MoonCamera = new MoonCamera();
 	public var camFollower:FlxObject = new FlxObject();
 
+	// Some other values
+	public var gameZoom:Float = 1;
+
 	override public function create()
 	{
 		super.create();
@@ -96,6 +99,7 @@ class PlayState extends FlxState
 		
 		final mainSpec = stage.spectators.members[0];
 		camFollower.setPosition(stage.cameraSettings.startX ?? (mainSpec.x ?? 0), stage.cameraSettings.startY ?? (mainSpec.y ?? 0));
+		gameZoom = stage.cameraSettings.zoom ?? 1;
 		Paths.clearUnusedMemory();
 
 		playField.playback.state = PLAY;
@@ -116,8 +120,8 @@ class PlayState extends FlxState
 		}
 		
 		//TODO: enhance this so camGAME is able to have custom zooms while bump is active.
-		camGAME.zoom = FlxMath.lerp(camGAME.zoom, stage.cameraSettings.zoom ?? 1, elapsed * 10);
-		camHUD.zoom = FlxMath.lerp(camHUD.zoom, 1, elapsed * 10);
+		camGAME.zoom = FlxMath.lerp(camGAME.zoom, gameZoom, elapsed * 16);
+		camHUD.zoom = FlxMath.lerp(camHUD.zoom, 1, elapsed * 16);
 		
 		if(FlxG.keys.justPressed.NINE) FlxG.switchState(()->new ChartConvert());
 		if(FlxG.keys.justPressed.SEVEN) FlxG.switchState(() -> new ChartEditor());
@@ -133,8 +137,8 @@ class PlayState extends FlxState
 	{
 		if ((curBeat % playField.conductor.numerator) == 0)
 		{
-			camGAME.zoom += 0.015;
-			camHUD.zoom += 0.025;
+			camGAME.zoom += 0.025;
+			camHUD.zoom += 0.030;
 		}
 	}
 }

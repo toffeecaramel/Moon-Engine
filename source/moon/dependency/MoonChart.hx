@@ -154,17 +154,29 @@ class MoonChart
             switch(event.e)
             {
                 case 'FocusCamera':
-                    var camVent =
+                    final camVent = //mogus
                     {
                         tag: 'SetCameraFocus',
                         values: ([
                             (event.v.char == 1) ? 'opponent' : 'player', 
-                            1.3,
-                            'circOut'
+                            (event.v.ease == 'CLASSIC') ? 0.8 : event.v.duration,
+                            (event.v.ease == 'CLASSIC') ? 'circOut' : event.v.ease
                         ] : Array<Dynamic>),
                         time: event.t
                     };
                 convertedChart.events.push(camVent);
+
+                case 'ZoomCamera':
+                    final camZoomVent = {
+                        tag: 'SetCameraZoom',
+                        values: ([
+                            event.v.zoom,
+                            event.v.duration / 16,
+                            event.v.ease
+                        ] : Array<Dynamic>),
+                        time: event.t                    
+                    };
+                convertedChart.events.push(camZoomVent);
             }
         }
 
