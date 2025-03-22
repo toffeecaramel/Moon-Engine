@@ -1,7 +1,7 @@
 {
     "isPlayer": false,
     "flipX": false,
-    "camOffsets": [0, 0],
+    "camOffsets": [-20, -120],
     "healthbarColors": [0, 0, 0],
     "danceFrequency": 2,
     "animations": [
