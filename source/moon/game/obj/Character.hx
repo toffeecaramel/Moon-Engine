@@ -6,7 +6,6 @@ using StringTools;
 
 typedef CharacterData = 
 {
-    var isPlayer:Bool;
     var flipX:Bool;
     var camOffsets:Array<Float>;
     var healthbarColors:Array<Int>;
@@ -18,7 +17,6 @@ class Character extends MoonSprite
 {
     public var conductor:Conductor;
     public var character(default, set):String;
-    public var isPlayer(default,set):Bool;
 
     public var data:CharacterData;
     public var idleAnims:Array<String>;
@@ -118,15 +116,8 @@ class Character extends MoonSprite
             if(anim.name.startsWith("idle-"))
                 idleAnims.push(anim.name);
         }
+
         this.playAnim("idle-0");
         return char;
-    }
-
-    @:noCompletion public function set_isPlayer(isPlyr:Bool):Bool
-    {
-        isPlayer = isPlyr;
-        flipX = !flipX;
-        flipLeftRight();
-        return isPlyr;
     }
 }
