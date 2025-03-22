@@ -6,6 +6,7 @@ using StringTools;
 
 typedef CharacterData = 
 {
+    var ?antialiasing:Bool;
     var flipX:Bool;
     var camOffsets:Array<Float>;
     var healthbarColors:Array<Int>;
@@ -15,13 +16,14 @@ typedef CharacterData =
 
 class Character extends MoonSprite
 {
+    public var data:CharacterData;
+    public var idleAnims:Array<String>;
+
     public var conductor:Conductor;
     public var character(default, set):String;
 
-    public var data:CharacterData;
-    public var idleAnims:Array<String>;
-    
     public var animationHold:Float = 0;
+
     var danceIndex:Int = 0;
     var lastDanceBeat:Int = -1;
 
@@ -116,7 +118,7 @@ class Character extends MoonSprite
             if(anim.name.startsWith("idle-"))
                 idleAnims.push(anim.name);
         }
-
+        this.antialiasing = data.antialiasing ?? true;
         this.playAnim("idle-0");
         return char;
     }

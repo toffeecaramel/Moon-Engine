@@ -78,7 +78,8 @@ class PlayState extends FlxState
 		for (opp in chartMeta.opponents) stage.addCharTo(opp, stage.opponents, playField.inputHandlers.get('opponent'));
 		for (plyr in chartMeta.players) stage.addCharTo(plyr, stage.players, playField.inputHandlers.get('p1'));
 		for (spct in chartMeta.spectators) stage.addCharTo(spct, stage.spectators);
-		conductor.onBeat.add(stage.script.get('onBeat'));
+
+		if(stage.script.exists("onBeat")) conductor.onBeat.add(stage.script.get('onBeat'));
 
 		//< -- EVENTS SETUP -- >//
 		for(event in playField.chart.content.events)

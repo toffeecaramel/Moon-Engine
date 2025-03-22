@@ -104,9 +104,18 @@ class Stage extends FlxTypedGroup<FlxBasic>
         });
     }
 
+    public function adjustGroupColor(group:FlxSpriteGroup, values:{?hue:Float, ?saturation:Float, ?brightness:Float, ?contrast:Float})
+    {
+        var shader = new MoonShader('AdjustColor');
+        shader.script.get("setValues")(values.hue ?? 0, values.saturation ?? 0,values.brightness ?? 0, values.contrast ?? 0);
+
+        for(i in 0...group.members.length) group.members[i].shader = shader;
+    }
+
     override public function update(elapsed:Float)
     {
         super.update(elapsed);
-        script.get("onUpdate")(elapsed);
+
+        if(script.exists("onUpdate")) script.get("onUpdate")(elapsed);
     }
 }

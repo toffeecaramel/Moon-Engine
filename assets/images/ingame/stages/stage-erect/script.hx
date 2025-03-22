@@ -38,7 +38,7 @@ function onCreate()
 			case 'brightLightSmall':
 				light.scrollFactor.set(1.2, 1.2);
 				light.setPosition(1475, -460);
-			case 'orangeLight': light.setPosition(290, -340);
+			case 'orangeLight': light.setPosition(340, -340);
 		}
 		
 		light.blend = 0;
@@ -52,28 +52,25 @@ function onCreate()
 	
 	var upperStuff = new MoonSprite(-160, -470).loadGraphic(Paths.image(p + 'lights'));
 	background.add(upperStuff);
+
 	for(light in itssojoever) background.add(light);
+
+	for(obj in background.members) obj.antialiasing = true;
 }
 
 function onPostCreate()
 {
 	background.cameraSettings = {
-		zoom: 0.3,
-        startX: 780,
-        startY: 100
+		zoom: 0.9,
+        startX: 840,
+        startY: 150
 	};
 	
 	background.opponents.setPosition(420);
 	background.spectators.setPosition(770);
 	background.players.setPosition(1020);
-}
 
-function onUpdate(elapsed)
-{
-
-}
-
-function onBeat()
-{
-
+	background.adjustGroupColor(background.players, {hue: 12, saturation: 0, brightness: -23, contrast: 7});
+	background.adjustGroupColor(background.spectators, {hue: -9, saturation: 0, brightness: -30, contrast: -4});
+	background.adjustGroupColor(background.opponents, {hue: -32, saturation: 0, brightness: -33, contrast: -23});
 }
