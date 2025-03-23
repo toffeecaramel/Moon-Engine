@@ -135,7 +135,7 @@ class Receptor extends FlxSpriteGroup
         final dir = MoonUtils.intToDir(data);
         final strumCenterX = strumNote.x + strumNote.width / 2;
         final strumCenterY = strumNote.y + strumNote.height / 2;
-
+        
         // then play anims
         strumNote.playAnim('$dir-confirm', true);
         if(judgement == 'sick' && !isCPU && !isSustain)
@@ -143,12 +143,14 @@ class Receptor extends FlxSpriteGroup
             splash.setPosition(strumCenterX - splash.width / 2, strumCenterY - splash.height / 2);
             splash.spawn();
         }
-
+        
         if(isSustain)
         {
             sustainSplash.setPosition(strumCenterX - sustainSplash.width / 2, strumCenterY - sustainSplash.height / 2);
             sustainSplash.spawn();
         }
+
+        if(script.exists('onNoteHit')) script.get('onNoteHit')(note, judgement, isSustain);
     }
 
     @:noCompletion public function set_skin(skin:String):String

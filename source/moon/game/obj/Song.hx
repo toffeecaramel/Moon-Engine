@@ -71,26 +71,20 @@ class Song extends FlxTypedGroup<MoonSound>
     private function steps(step)
     {
         for (i in 0...this.members.length)
-        if ((this.members[i].time >= conductor.time + 20 || this.members[i].time <= conductor.time - 20))
-				resync();
+        if ((this.state == PLAY) && (this.members[i].time >= conductor.time + 20 || this.members[i].time <= conductor.time - 20))
+				resync(this.members[i]);
     }
 
     /**
 	 * Pauses all the songs playing and syncs their time.
 	 */
-	public function resync():Void
+	public function resync(member:MoonSound):Void
     {
-        for(i in 0...this.members.length)
-        {
-            if(this.members[i] != null)
-            {
-                //trace('Music is resyncing! from ${this.members[i].time} to ${conductor.time}', 'WARNING');
+        //trace('Music is resyncing! from ${this.members[i].time} to ${conductor.time}', 'WARNING');
 
-                state = PAUSE;
-                (this.members[i].type == Inst) ? conductor.time = this.members[i].time : this.members[i].time = conductor.time;
-                state = PLAY;
-            }
-        }
+        state = PAUSE;
+        (member.type == Inst) ? conductor.time = member.time : member.time = conductor.time;
+        state = PLAY;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////

@@ -8,7 +8,8 @@ class RegularSplash extends MoonSprite
 {
     private var script:MoonScript;
 
-    @:isVar public var skin(default, set):String;
+    public var totalAnims(default, set):Int = 2;
+    public var skin(default, set):String;
     public var data:Int;
 
     public function new(skin:String, data:Int = 0):Void
@@ -26,9 +27,8 @@ class RegularSplash extends MoonSprite
     {
         if(this.alpha <= 0.1) alpha = 1;
         visible = active = true;
-        angle = FlxG.random.float(-360, 360);
 
-        playAnim('splash${FlxG.random.int(1, 2)}', true);
+        playAnim('splash${FlxG.random.int(1, totalAnims)}', true);
     }
 
     @:noCompletion public function set_skin(skn:String):String
@@ -38,15 +38,23 @@ class RegularSplash extends MoonSprite
         return skn;
     }
 
+    @:noCompletion public function set_totalAnims(total:Int)
+    {
+        this.totalAnims = total;
+        this.animation.destroyAnimations();
+        final direction = MoonUtils.intToDir(data);
+
+        for (i in 0...totalAnims)
+            animation.addByPrefix('splash${i+1}', '${direction}${i+1}0', 32, false);
+
+        return this.totalAnims;
+    }
+
     private function _updtGraphics()
     {
         frames = Paths.getSparrowAtlas('ingame/UI/notes/$skin/splash');
         alpha = 0.0001;
-        final direction = MoonUtils.intToDir(data);
-        animation.addByPrefix('splash1', '${direction}10', 32, false);
-        animation.addByPrefix('splash2', '${direction}20', 32, false);
         animation.onFinish.add((anim) -> visible = active = false);
-        blend = BlendMode.ADD;
         updateHitbox();
         centerAnimations = true;
     }

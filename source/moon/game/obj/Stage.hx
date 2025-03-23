@@ -98,6 +98,7 @@ class Stage extends FlxTypedGroup<FlxBasic>
             var char = new Character(0 + (800 * group.members.length), 0, charName, conductor);
             char.ID = index;
             chars.push(char);
+            
             if(attachedInputs != null) attachedInputs.attachedChar = char;
             index++;
             return char;

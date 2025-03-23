@@ -1,6 +1,7 @@
 // in PlayField.hx
 package moon.game.obj;
 
+import flixel.util.FlxTimer;
 import haxe.ui.styles.Style.StyleBorderType;
 import flixel.util.FlxColor;
 import flixel.text.FlxText;
@@ -14,7 +15,6 @@ import haxe.ds.StringMap; // Import the StringMap type
 @:publicFields
 class PlayField extends FlxGroup
 {
-
     public static var playfield:PlayField;
     var conductor:Conductor;
     var playback:Song;
@@ -86,6 +86,7 @@ class PlayField extends FlxGroup
             strumlines.push(strumline);
 
             var inputHandler = new InputHandler(null, playerIDs[i], strumline, conductor);
+			inputHandler.CPUMode = isCPUPlayers[i];
             inputHandlers.set(playerIDs[i], inputHandler);
 
             inputHandler.onNoteHit = (note, timing, isSustain) -> onNoteHit(playerIDs[i], note, timing, isSustain);
@@ -110,45 +111,46 @@ class PlayField extends FlxGroup
         // Set each input handler's notes.
         for (handler in inputHandlers.iterator())
             handler.thisNotes = noteSpawner.notes;
+
+        conductor.time = -(conductor.crochet * 6);
     }
+
+    var inCountdown:Bool = true;
 
     override public function update(dt:Float)
     {
         conductor.time += dt * 1000;
 
-        var p1Handler:InputHandler = inputHandlers.get("p1");
-        if (p1Handler != null)
-        {
-            p1Handler.justPressed = [
+        super.update(dt);
+        for (handler in inputHandlers.iterator())
+		{
+			handler.justPressed = [
                 MoonInput.justPressed(LEFT),
                 MoonInput.justPressed(DOWN),
                 MoonInput.justPressed(UP),
                 MoonInput.justPressed(RIGHT)
             ];
 
-            p1Handler.pressed = [
+            handler.pressed = [
                 MoonInput.pressed(LEFT),
                 MoonInput.pressed(DOWN),
                 MoonInput.pressed(UP),
                 MoonInput.pressed(RIGHT)
             ];
 
-            p1Handler.released = [
+            handler.released = [
                 MoonInput.released(LEFT),
                 MoonInput.released(DOWN),
                 MoonInput.released(UP),
                 MoonInput.released(RIGHT)
             ];
-        }
-
-        super.update(dt);
-        for (handler in inputHandlers.iterator())
             handler.update();
+		}
 
         healthBar.health = inputHandlers.get('p1').stats.health;
     }
 
-    public function onNoteHit(playerID:String, note:Note, timing:String, isSustain:Bool)
+    function onNoteHit(playerID:String, note:Note, timing:String, isSustain:Bool)
     {
         if (playerID == 'p1')
             updateP1Stats();
@@ -157,7 +159,7 @@ class PlayField extends FlxGroup
         //input.attachedChar
     }
 
-    public function onNoteMiss(playerID:String, note:Note)
+    function onNoteMiss(playerID:String, note:Note)
     {
         if (playerID == 'p1') updateP1Stats();
     }
@@ -173,5 +175,17 @@ class PlayField extends FlxGroup
     {
         healthBar.oppIcon.scale.set(1, 1);
         healthBar.playerIcon.scale.set(1, 1);
+
+       // <- COUNTDOWN STUFF -> //
+       if(inCountdown)
+       {
+            switch(beat)
+            {
+                case 0: playback.state = PLAY;
+                inCountdown = false;
+                case -1: FlxG.sound.play(Paths.sound('game/countdown/intro-0', 'sounds'));
+                default: if(beat >= -5)FlxG.sound.play(Paths.sound('game/countdown/intro${beat+1}', 'sounds'));
+            }
+       }
     }
 }

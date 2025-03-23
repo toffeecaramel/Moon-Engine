@@ -18,9 +18,14 @@ class InputHandler
     public var stats:PlayerStats;
 
     /**
-     * The player ID, used for many things, but mainly note reading and inputs.
+     * The player ID, used for many things, but mainly note reading.
      */
     public var playerID:String;
+	
+	/**
+	 * Wheter is a CPU or not, used for checking inputs.
+	 */
+	public var CPUMode:Bool = false;
 
     /**
      * The strumline, used for triggering animations and maybe more.
@@ -105,7 +110,7 @@ class InputHandler
 
     public function update():Void
     {
-        if(playerID != 'opponent')
+        if(!CPUMode)
             processInputs();
         else
             processCPUInputs();
@@ -113,7 +118,7 @@ class InputHandler
         checkSustains();
         onLateMiss();
 
-        stats.health = FlxMath.bound(stats.health, 0, 100);
+        stats.health = FlxMath.bound(stats.health, 0, 101);
     }
 
     private function processCPUInputs():Void
@@ -219,7 +224,7 @@ class InputHandler
         strumline.receptors.members[note.direction].onNoteHit(note, timing, isSustain);
         
         // little workaround if it doesnt despawn, which may happen sometimes...
-        if(!isSustain) strumline.receptors.members[note.direction].sustainSplash.despawn((playerID == 'opponent'));
+        if(!isSustain) strumline.receptors.members[note.direction].sustainSplash.despawn((CPUMode));
         
         if(attachedChar != null) 
         {
@@ -261,7 +266,7 @@ class InputHandler
                 
                 if (counter % 6 == 0)
                 {
-                    onHit(heldNote, direction, null, (playerID == 'opponent'), true);
+                    onHit(heldNote, direction, null, (CPUMode), true);
                     stats.score += 2;
                 }
 
@@ -275,7 +280,7 @@ class InputHandler
             else if (heldNote == null || heldNote.state != GOT_HIT || heldNote.child == null || !heldNote.child.active)
             {
                 heldSustains.remove(direction);
-                strumline.receptors.members[heldNote.direction].sustainSplash.despawn((playerID == 'opponent'));
+                strumline.receptors.members[heldNote.direction].sustainSplash.despawn((CPUMode));
                 if(onSustainComplete != null) onSustainComplete(heldNote);
             }
         }

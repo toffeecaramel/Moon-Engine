@@ -101,9 +101,10 @@ class PlayState extends FlxState
 		final mainSpec = stage.spectators.members[0];
 		camFollower.setPosition(stage.cameraSettings.startX ?? (mainSpec.x ?? 0), stage.cameraSettings.startY ?? (mainSpec.y ?? 0));
 		gameZoom = stage.cameraSettings.zoom ?? 1;
+
 		Paths.clearUnusedMemory();
 
-		playField.playback.state = PLAY;
+		//playField.playback.state = PLAY;
 	}
 
 	override public function update(elapsed:Float):Void
@@ -136,7 +137,7 @@ class PlayState extends FlxState
 
 	public function beatHit(curBeat:Float)
 	{
-		if ((curBeat % playField.conductor.numerator) == 0)
+		if (((curBeat % playField.conductor.numerator) == 0) && !playField.inCountdown)
 		{
 			camGAME.zoom += 0.025;
 			camHUD.zoom += 0.030;
