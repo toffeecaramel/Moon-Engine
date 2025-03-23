@@ -1,5 +1,6 @@
 package moon.backend.gameplay;
 
+import flixel.math.FlxMath;
 import moon.game.obj.Character;
 import moon.game.obj.notes.Note.NoteState;
 import moon.game.obj.notes.*;
@@ -111,6 +112,8 @@ class InputHandler
 
         checkSustains();
         onLateMiss();
+
+        stats.health = FlxMath.bound(stats.health, 0, 100);
     }
 
     private function processCPUInputs():Void
@@ -203,16 +206,16 @@ class InputHandler
     private function onHit(note:Note, ID:Int, timing:String, isCPU:Bool, ?isSustain:Bool = false):Void
     {
         final convertedDir = MoonUtils.intToDir(note.direction);
-
         
         if(!isSustain)
-            {
-                note.state = GOT_HIT;
-                note.visible = note.active = false;
-                if (note.duration > 0) heldSustains.set(ID, note);
-            }
-            
-            stats.score += (!isSustain) ? Timings.getParameters(timing)[2] : 2;
+        {
+            note.state = GOT_HIT;
+            note.visible = note.active = false;
+            if (note.duration > 0) heldSustains.set(ID, note);
+        }
+        
+        stats.health += (!isSustain) ? Timings.getParameters(timing)[3] : 0.5;
+        stats.score += (!isSustain) ? Timings.getParameters(timing)[2] : 2;
         strumline.receptors.members[note.direction].onNoteHit(note, timing, isSustain);
         
         // little workaround if it doesnt despawn, which may happen sometimes...
@@ -237,6 +240,7 @@ class InputHandler
         
         stats.accuracyCount += Timings.getParameters('miss')[0];
         stats.score += Timings.getParameters('miss')[2];
+        stats.health += Timings.getParameters('miss')[3];
         stats.misses++;
         
         if(onNoteMiss != null) onNoteMiss(note);

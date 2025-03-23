@@ -1,6 +1,7 @@
 // in PlayField.hx
 package moon.game.obj;
 
+import haxe.ui.styles.Style.StyleBorderType;
 import flixel.util.FlxColor;
 import flixel.text.FlxText;
 import moon.backend.gameplay.InputHandler;
@@ -64,7 +65,7 @@ class PlayField extends FlxGroup
         //< -- HEALTHBAR SETUP -- >//
         healthBar = new HealthBar(chart.content.meta.opponents[0], chart.content.meta.players[0]);
         add(healthBar);
-        healthBar.setPosition(0, FlxG.height - healthBar.height + 80);
+        healthBar.setPosition(0, FlxG.height - healthBar.height + 32);
         healthBar.screenCenter(X);
     
         //< -- STRUMLINES & INPUTS SETUP -- >//
@@ -92,9 +93,11 @@ class PlayField extends FlxGroup
         }
 
         // Little text for testing out the accuracy.
-        tst = new FlxText(0, 20);
-        tst.text = ':3';
-        tst.setFormat(Paths.font('phantomuff/full.ttf'), 32, FlxColor.WHITE, LEFT);
+        tst = new FlxText(0, healthBar.y + 27);
+        tst.text = 'Score: 0';
+        tst.setFormat(Paths.font('vcr.ttf'), 16, FlxColor.WHITE, RIGHT);
+        tst.setBorderStyle(OUTLINE, FlxColor.BLACK, 2);
+        tst.x = FlxG.width / 2 + 120;
         add(tst);
 
         //< -- NOTES SETUP -- >//
@@ -141,6 +144,8 @@ class PlayField extends FlxGroup
         super.update(dt);
         for (handler in inputHandlers.iterator())
             handler.update();
+
+        healthBar.health = inputHandlers.get('p1').stats.health;
     }
 
     public function onNoteHit(playerID:String, note:Note, timing:String, isSustain:Bool)
@@ -160,12 +165,13 @@ class PlayField extends FlxGroup
     private function updateP1Stats():Void
     {
         final stat = inputHandlers.get('p1').stats;
-        tst.text = 'SCORE: ${stat.score} // MISSES: ${stat.misses} // ACCURACY: ${stat.accuracy}%';
-        tst.screenCenter(X);
+        tst.text = 'Score: ${stat.score}';
+        tst.x = FlxG.width / 2 + 120;
     }
 
     function beatHit(beat:Float):Void
     {
-
+        healthBar.oppIcon.scale.set(1, 1);
+        healthBar.playerIcon.scale.set(1, 1);
     }
 }

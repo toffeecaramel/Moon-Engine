@@ -3,7 +3,7 @@
     "scale": 1,
     "flipX": false,
     "camOffsets": [160, -80],
-    "healthbarColors": [0, 0, 0],
+    "healthbarColors": [175, 102, 206],
     "danceFrequency": 2,
     "animations": [
         {"name": "idle-0", "prefix": "idle", "x": 0, "y": 0, "fps": 24},

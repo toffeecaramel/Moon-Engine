@@ -32,6 +32,8 @@ class HealthBar extends FlxSpriteGroup
         super();
 
         barBG = cast new MoonSprite().loadGraphic(Paths.image('ingame/UI/healthbar'));
+        barBG.scale.set(0.9, 0.9);
+        barBG.updateHitbox();
 
         bar = new FlxBar(RIGHT_TO_LEFT, Std.int(barBG.width - 12), Std.int(barBG.height - 3));
         bar.x += 5;
@@ -40,9 +42,12 @@ class HealthBar extends FlxSpriteGroup
         add(barBG);
 
         oppIcon = new HealthIcon();
+        oppIcon.scale.set(0.8, 0.8);
         oppIcon.y = bar.y - (oppIcon.height * 0.5);
 
         playerIcon = new HealthIcon();
+        playerIcon.scale.set(0.8, 0.8);
+
         playerIcon.flipX = true;
         playerIcon.y = bar.y - (playerIcon.height * 0.5);
 
@@ -64,8 +69,13 @@ class HealthBar extends FlxSpriteGroup
         final percent:Float = 1 - (health / 100);
         final value = bar.x + (bar.width * percent);
         
-        oppIcon.x = FlxMath.lerp(oppIcon.x, value - 120, elapsed * 16);
-        playerIcon.x = FlxMath.lerp(playerIcon.x, value - 15, elapsed * 16);
+        oppIcon.x = FlxMath.lerp(oppIcon.x, value - 100, elapsed * 16);
+        playerIcon.x = FlxMath.lerp(playerIcon.x, value, elapsed * 16);
+
+        oppIcon.updateHitbox();
+        playerIcon.updateHitbox();
+        oppIcon.scale.x = oppIcon.scale.y = playerIcon.scale.x = playerIcon.scale.y = FlxMath.lerp(playerIcon.scale.x, 0.8, elapsed * 16);
+
         oppIcon.y = bar.y - (oppIcon.height * 0.5);
         playerIcon.y = bar.y - (playerIcon.height * 0.5);
     }

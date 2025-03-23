@@ -29,6 +29,11 @@ class PlayerStats
     var score:Int = 0;
 
     /**
+     * The total health by said player.
+     */
+    var health:Float = 50;
+
+    /**
      * The ID of this player.
      */
     var playerID:String = 'p1';
