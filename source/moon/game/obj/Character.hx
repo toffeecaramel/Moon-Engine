@@ -7,6 +7,7 @@ using StringTools;
 typedef CharacterData = 
 {
     var ?antialiasing:Bool;
+    var ?scale:Float;
     var flipX:Bool;
     var camOffsets:Array<Float>;
     var healthbarColors:Array<Int>;
@@ -118,7 +119,11 @@ class Character extends MoonSprite
             if(anim.name.startsWith("idle-"))
                 idleAnims.push(anim.name);
         }
+
         this.antialiasing = data.antialiasing ?? true;
+        this.scale.set(data.scale ?? 0, data.scale ?? 0);
+
+        this.updateHitbox();
         this.playAnim("idle-0");
         return char;
     }

@@ -34,10 +34,10 @@ function onCreate()
 		{
 			case 'lightgreen': light.setPosition(200, -60);
 			case 'lightred': light.setPosition(270, 270);
-			case 'lightAbove': light.setPosition(1375, -450);
+			case 'lightAbove': light.setPosition(1405, -450);
 			case 'brightLightSmall':
 				light.scrollFactor.set(1.2, 1.2);
-				light.setPosition(1475, -460);
+				light.setPosition(1505, -460);
 			case 'orangeLight': light.setPosition(340, -340);
 		}
 		
@@ -46,7 +46,7 @@ function onCreate()
 		(lights[i] != 'lightAbove') ? background.add(light) : itssojoever.push(light);
 	}
 	
-	background.add(background.spectators);
+	//background.add(background.spectators);
 	background.add(background.opponents);
 	background.add(background.players);
 	
@@ -66,9 +66,9 @@ function onPostCreate()
         startY: 150
 	};
 	
-	background.opponents.setPosition(420);
-	background.spectators.setPosition(770);
-	background.players.setPosition(1020);
+	background.opponents.setPosition(400, -200);
+	background.spectators.setPosition(830);
+	background.players.setPosition(1080, -70);
 
 	background.adjustGroupColor(background.players, {hue: 12, saturation: 0, brightness: -23, contrast: 7});
 	background.adjustGroupColor(background.spectators, {hue: -9, saturation: 0, brightness: -30, contrast: -4});

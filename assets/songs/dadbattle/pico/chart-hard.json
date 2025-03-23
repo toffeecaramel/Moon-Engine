@@ -423,10 +423,10 @@
 		"diffRating": 12,
 		"generatedBy": "Friday Night Funkin' - v0.5.0 (develop:96c151c:MODIFIED) PROTOTYPE",
 		"opponents": [
-			"dad"
+			"daddyDearest"
 		],
 		"players": [
-			"pico-playable"
+			"luna"
 		],
 		"preview": [
 			0,
@@ -436,7 +436,7 @@
 		"spectators": [
 			"gfCar"
 		],
-		"stage": "mainStageErect",
+		"stage": "stage-erect",
 		"version": "2.2.4"
 	},
 	"notes": [

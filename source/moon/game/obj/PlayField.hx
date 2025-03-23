@@ -13,11 +13,12 @@ import haxe.ds.StringMap; // Import the StringMap type
 @:publicFields
 class PlayField extends FlxGroup
 {
+
     public static var playfield:PlayField;
     var conductor:Conductor;
     var playback:Song;
 
-    public var noteSpawner:NoteSpawner;
+    var noteSpawner:NoteSpawner;
     var chart:MoonChart;
 
     var song:String;
@@ -26,6 +27,8 @@ class PlayField extends FlxGroup
 
     var inputHandlers:Map<String, InputHandler> = [];
     var strumlines:Array<Strumline> = [];
+
+    var healthBar:HealthBar;
     
     var tst:FlxText;
 
@@ -57,6 +60,12 @@ class PlayField extends FlxGroup
             conductor
         );
         playback.state = PAUSE;
+
+        //< -- HEALTHBAR SETUP -- >//
+        healthBar = new HealthBar(chart.content.meta.opponents[0], chart.content.meta.players[0]);
+        add(healthBar);
+        healthBar.setPosition(0, FlxG.height - healthBar.height + 80);
+        healthBar.screenCenter(X);
     
         //< -- STRUMLINES & INPUTS SETUP -- >//
         strumlines = [];

@@ -95,7 +95,7 @@ class Stage extends FlxTypedGroup<FlxBasic>
     {
         group.recycle(Character, function():Character
         {
-            var char = new Character(0 + (100 * group.members.length), 0, charName, conductor);
+            var char = new Character(0 + (800 * group.members.length), 0, charName, conductor);
             char.ID = index;
             chars.push(char);
             if(attachedInputs != null) attachedInputs.attachedChar = char;

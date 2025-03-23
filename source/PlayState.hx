@@ -71,7 +71,7 @@ class PlayState extends FlxState
 		this.conductor = playField.conductor;
 		
 		//< -- BACKGROUND SETUP -- >//
-		stage = new Stage('stage-erect', conductor);
+		stage = new Stage(playField.chart.content.meta.stage, conductor);
 		add(stage);
 		
 		final chartMeta = playField.chart.content.meta;

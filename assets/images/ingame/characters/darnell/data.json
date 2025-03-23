@@ -1,5 +1,6 @@
 {
     "antialiasing": true,
+    "scale": 1,
     "flipX": false,
     "camOffsets": [-20, -120],
     "healthbarColors": [0, 0, 0],
