@@ -88,8 +88,8 @@ class HealthBar extends FlxSpriteGroup
 
     public function getRGBData(character:String)
     {
-        var data:Character.CharacterData = Paths.JSON('ingame/characters/${character}/data');
-        final c = data.healthbarColors;
+        var data:Character.CharacterData = (Paths.fileExists('assets/images/ingame/characters/${character}/data.json')) ? Paths.JSON('ingame/characters/${character}/data') : null;
+        final c = (data != null) ? data.healthbarColors : [80, 80, 80];
         return FlxColor.fromRGB(c[0], c[1], c[2]);
     }
 

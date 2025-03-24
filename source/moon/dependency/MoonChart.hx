@@ -159,8 +159,8 @@ class MoonChart
                         tag: 'SetCameraFocus',
                         values: ([
                             (event.v.char == 1) ? 'opponent' : 'player', 
-                            (event.v.ease == 'CLASSIC') ? 0.8 : event.v.duration,
-                            (event.v.ease == 'CLASSIC') ? 'circOut' : event.v.ease
+                            (event.v.ease == 'CLASSIC') ? 1.4 : event.v.duration,
+                            (event.v.ease == 'CLASSIC') ? 'expoOut' : event.v.ease
                         ] : Array<Dynamic>),
                         time: event.t
                     };

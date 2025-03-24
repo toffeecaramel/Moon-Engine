@@ -64,7 +64,7 @@ class PlayState extends FlxState
 		camGAME.focusOn(camFollower.getPosition());
 		
 		//< -- PLAYFIELD SETUP -- >//
-		playField = new PlayField('dadbattle', 'hard', 'pico');
+		playField = new PlayField('darnell', 'hard', 'bf');
 		playField.camera = camHUD;
 		playField.conductor.onBeat.add(beatHit);
 		add(playField);
@@ -96,7 +96,8 @@ class PlayState extends FlxState
 		
 		// call on post create for scripts
 		stage.script.set('game', this);
-		stage.script.call('onPostCreate');
+
+		if(stage.script.exists('onPostCreate')) stage.script.call('onPostCreate');
 		
 		final mainSpec = stage.spectators.members[0];
 		camFollower.setPosition(stage.cameraSettings.startX ?? (mainSpec.x ?? 0), stage.cameraSettings.startY ?? (mainSpec.y ?? 0));
