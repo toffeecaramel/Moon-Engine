@@ -120,6 +120,8 @@ class PauseScreen extends FlxSubState
         final wawa = [metadata, displayIcon, cmetadata];
         for(i in 0...wawa.length)
             FlxTween.tween(wawa[i], {x: wawa[i].x + 30, alpha: 1}, 0.5, {ease: FlxEase.quadOut, startDelay: 0.1 * i});
+
+        FlxG.sound.play(Paths.sound('game/pause/onPause', 'sounds'));
     }
 
     override public function update(elapsed:Float)

@@ -184,7 +184,8 @@ class PlayField extends FlxGroup
                 case 0: playback.state = PLAY;
                 inCountdown = false;
                 case -1: FlxG.sound.play(Paths.sound('game/countdown/intro-0', 'sounds'));
-                default: if(beat >= -5)FlxG.sound.play(Paths.sound('game/countdown/intro${beat+1}', 'sounds'));
+
+                default: if(beat >= -4)FlxG.sound.play(Paths.sound('game/countdown/intro${beat+1}', 'sounds'));
             }
        }
     }

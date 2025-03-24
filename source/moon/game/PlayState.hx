@@ -68,7 +68,7 @@ class PlayState extends FlxState
 		camGAME.focusOn(camFollower.getPosition());
 		
 		//< -- PLAYFIELD SETUP -- >//
-		playField = new PlayField('dadbattle', 'hard', 'pico');
+		playField = new PlayField('darnell', 'hard', 'bf');
 		playField.camera = camHUD;
 		playField.conductor.onBeat.add(beatHit);
 		add(playField);

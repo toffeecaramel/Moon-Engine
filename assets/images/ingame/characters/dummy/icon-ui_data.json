@@ -1,6 +1,6 @@
 {
     "frameSize": 48,
     "frames": [0, 1, 2, 3],
-    "scale": 1,
+    "scale": 4,
     "antialiasing": false
 }
