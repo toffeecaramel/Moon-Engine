@@ -1,5 +1,8 @@
 package moon.game.submenus;
 
+import flixel.effects.FlxFlicker;
+import flixel.util.FlxTimer;
+import moon.global_obj.PixelIcon;
 import moon.game.obj.PlayField;
 import flixel.FlxSprite;
 import flixel.FlxG;
@@ -17,7 +20,7 @@ import flixel.util.FlxGradient;
 class PauseScreen extends FlxSubState
 {
     private final DEFAULT_ITEMS:Array<String> = [
-        'resume', 'restart', 'accessibility settings', 'exit'
+        'resume', 'restart', 'settings', 'accessibility settings', 'exit'
     ];
 
     private final ACCESSIBILITY_ITEMS:Array<String> = [
@@ -31,8 +34,12 @@ class PauseScreen extends FlxSubState
 
     public var curSelected:Int = 0;
 
+    public var canMove:Bool;
+
     private var backGradient:FlxSprite;
     private var back:FlxSprite;
+
+    private var displayIcon:PixelIcon;
 
     public var pauseItems:FlxTypedGroup<FlxText> = new FlxTypedGroup<FlxText>();
     public var selector:FlxText = new FlxText();
@@ -43,6 +50,8 @@ class PauseScreen extends FlxSubState
     public function new(camera:FlxCamera)
     {
         super();
+        canMove = true;
+        trace(canMove);
         this.camera = camera;
         pf = game.playField; // NAO NAO É UM PRATO FEITO E PLAYFIELD!!!!
 
@@ -81,6 +90,8 @@ class PauseScreen extends FlxSubState
         metadata.alpha = 0;
         add(metadata);
 
+        slideOutItems.push(metadata);
+
         metadata.textField.antiAliasType = ADVANCED;
         metadata.textField.sharpness = 400;
         metadata.antialiasing = false;
@@ -94,29 +105,36 @@ class PauseScreen extends FlxSubState
         cmetadata.textField.sharpness = metadata.textField.sharpness;
         add(cmetadata);
 
+        slideOutItems.push(cmetadata);
+
         cmetadata.antialiasing = false;
         cmetadata.setPosition(120, (metadata.y + cmetadata.height));
 
-        final wawa = [metadata, cmetadata];
-        for(i in 0...wawa.length)
-            FlxTween.tween(wawa[i], {x: wawa[i].x + 30, alpha: 1}, 0.6, {ease: FlxEase.quadOut, startDelay: 0.2 * i});
+        displayIcon = new PixelIcon(cc.meta.opponents[0]);
+        displayIcon.alpha = 0;
+        add(displayIcon);
 
-        slideOutItems.push(metadata);
+        slideOutItems.push(displayIcon);
+        
+        displayIcon.setPosition((metadata.x - displayIcon.width) + 12, (metadata.y - (displayIcon.height / 2)) + 12);
+
+        final wawa = [metadata, displayIcon, cmetadata];
+        for(i in 0...wawa.length)
+            FlxTween.tween(wawa[i], {x: wawa[i].x + 30, alpha: 1}, 0.5, {ease: FlxEase.quadOut, startDelay: 0.1 * i});
     }
 
     override public function update(elapsed:Float)
     {
-        super.update(elapsed);
-        if(MoonInput.justPressed(UI_DOWN)) changeSelection(1);
-        if(MoonInput.justPressed(UI_UP)) changeSelection(-1);
+        if(MoonInput.justPressed(UI_DOWN) && canMove) changeSelection(1);
+        if(MoonInput.justPressed(UI_UP) && canMove) changeSelection(-1);
 
-        if(MoonInput.justPressed(BACK))
+        if(MoonInput.justPressed(BACK) && canMove)
         {
             if(currentArray != DEFAULT_ITEMS) regenItems(DEFAULT_ITEMS);
-            else prepareToClose();
+            else prepareToClose(true);
         }
 
-        if(MoonInput.justPressed(ACCEPT))
+        if(MoonInput.justPressed(ACCEPT) && canMove)
         {
             switch(pauseItems.members[curSelected].text.toLowerCase())
             {
@@ -124,6 +142,8 @@ class PauseScreen extends FlxSubState
                 case 'accessibility settings': regenItems(ACCESSIBILITY_ITEMS);
             }
         }
+
+        super.update(elapsed);
 
         if(pauseItems.members.length > 0)
         {
@@ -161,11 +181,21 @@ class PauseScreen extends FlxSubState
         changeSelection(0);
     }
 
-    public function prepareToClose()
+    public function prepareToClose(?pressedEsc:Bool = false)
     {
-        pf.playback.state = PLAY;
-        for(member in pf.playback.members) pf.playback.resync(member);
-        close();
+        canMove = false;
+        for (c in pauseItems.members) slideOutItems.push(c);
+        displayIcon.playAnim('select', true);
+
+        if(!pressedEsc)FlxFlicker.flicker(pauseItems.members[curSelected], 1, 0.05, true);
+        new FlxTimer().start(1, function(_)
+        {
+            for (item in slideOutItems) FlxTween.tween(item, {x: item.x - 700}, 0.6, {ease: FlxEase.expoIn});
+
+            //pf.playback.state = PLAY;
+            //for(member in pf.playback.members) pf.playback.resync(member);
+            //close();
+        });
     }
 
     @:noCompletion function get_game():PlayState
