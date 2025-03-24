@@ -52,7 +52,7 @@ class PauseScreen extends FlxSubState
         super();
         canMove = true;
         this.camera = camera;
-        pf = game.playField; // NAO NAO É UM PRATO FEITO E PLAYFIELD!!!!
+        pf = game.playField; // NAO NAO É UM PRATO FEITO É UM PLAYFIELD!!!!
 
         backGradient = FlxGradient.createGradientFlxSprite(FlxG.width, FlxG.height, [0x00000000, 0xFF001A83], 1, 180);
         backGradient.alpha = 0;
