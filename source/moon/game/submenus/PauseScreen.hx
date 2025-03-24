@@ -51,7 +51,6 @@ class PauseScreen extends FlxSubState
     {
         super();
         canMove = true;
-        trace(canMove);
         this.camera = camera;
         pf = game.playField; // NAO NAO É UM PRATO FEITO E PLAYFIELD!!!!
 
