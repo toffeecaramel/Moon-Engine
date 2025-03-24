@@ -1,4 +1,4 @@
-package;
+package moon.game;
 
 import moon.dependency.scripting.MoonEvent;
 import moon.game.submenus.PauseScreen;
@@ -19,17 +19,20 @@ import moon.toolkit.ChartConvert;
 import moon.toolkit.chart_editor.ChartEditor;
 
 class PlayState extends FlxState
-{
+{	
+	// Just a variable for getting playstate. nothing much.
+	public static var playgame:PlayState;
+
 	//-- Gameplay main variables --//
 
 	// The main gameplay interface
-	private var playField:PlayField;
+	public var playField:PlayField;
 
 	// Just the conductor :P poor little guy,,
-	private var conductor:Conductor;
+	public var conductor:Conductor;
 	
 	// Background (stage)
-	private var stage:Stage;
+	public var stage:Stage;
 	
 	// Cameras
 	public var camHUD:MoonCamera = new MoonCamera();
@@ -46,6 +49,7 @@ class PlayState extends FlxState
 	override public function create()
 	{
 		super.create();
+		playgame = this;
 		
 		this.persistentUpdate = false;
 		//this.persistentDraw = false;
@@ -64,7 +68,7 @@ class PlayState extends FlxState
 		camGAME.focusOn(camFollower.getPosition());
 		
 		//< -- PLAYFIELD SETUP -- >//
-		playField = new PlayField('darnell', 'hard', 'bf');
+		playField = new PlayField('dadbattle', 'hard', 'pico');
 		playField.camera = camHUD;
 		playField.conductor.onBeat.add(beatHit);
 		add(playField);
