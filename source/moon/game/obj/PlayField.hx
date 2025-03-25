@@ -115,8 +115,12 @@ class PlayField extends FlxGroup
         conductor.time = -(conductor.crochet * 6);
     }
 
-    var inCountdown:Bool = true;
+    function restartSong()
+    {
+        //TODO
+    }
 
+    var inCountdown:Bool = true;
     override public function update(dt:Float)
     {
         conductor.time += dt * 1000;

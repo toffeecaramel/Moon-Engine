@@ -413,6 +413,11 @@ class Paths
         return (FlxAtlasFrames.fromSparrow(graphic, xmlContent));
     }
 
+    // < SOME FUNCTIONS RELATED TO PLAYING SOUNDS. > //
+
+    inline static public function playSFX(sound:String, type:String) //TODO: GET VOLUME FROM SETTINGS!
+        return FlxG.sound.play(Paths.sound('$type/$sound', 'sounds'), 0.8);
+
     inline public static function getPath(file:String, type:AssetType, ?library:Null<String>)
     {
         if (library != null)
