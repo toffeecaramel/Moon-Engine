@@ -90,7 +90,7 @@ class PauseScreen extends FlxSubState
         //(chart content)
         final cc = pf.chart.content;
         var metadata = new FlxText();
-        metadata.text = '${cc.meta.artist} - ${pf.song.toUpperCase()} (${pf.mix.toUpperCase()} MIX)';
+        metadata.text = '${cc.meta.artist} - ${pf.chart.content.meta.displayName}';
         metadata.setFormat(Paths.font(thisFont), 20, FlxColor.WHITE, LEFT);
         metadata.alpha = 0;
         add(metadata);

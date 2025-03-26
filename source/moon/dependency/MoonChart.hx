@@ -44,6 +44,7 @@ typedef MetadataStruct =
     var opponents:Array<String>;
 
     // Other data
+    var displayName:String;
     var album:String;
     var artist:String;
     var charter:String;
@@ -190,6 +191,7 @@ class MoonChart
             spectators: [metadata.playData.characters.girlfriend],
             opponents: [metadata.playData.characters.opponent],
 
+            displayName: metadata.songName,
             album: metadata.playData.album,
             artist: metadata.artist,
             charter: metadata.charter,
