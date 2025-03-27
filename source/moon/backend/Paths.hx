@@ -397,7 +397,7 @@ class Paths
      * Returns a animated Sparrow Atlas from a specified path.
      * @param key (path)
      * @param from (can be either from images, data, etc.)
-     * @param library
+     * @param library (can be null)
      * @param textureCompression whether or not should the texture be compressed.
      */
     inline static public function getSparrowAtlas(key:String, ?from:String = 'images', ?library:String, ?textureCompression:Bool = false)

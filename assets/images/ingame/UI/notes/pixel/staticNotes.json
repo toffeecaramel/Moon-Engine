@@ -1,0 +1,126 @@
+{ "frames": {
+   "staticNotes 0.aseprite": {
+    "frame": { "x": 0, "y": 0, "w": 17, "h": 17 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 17, "h": 17 },
+    "sourceSize": { "w": 17, "h": 17 },
+    "duration": 100
+   },
+   "staticNotes 1.aseprite": {
+    "frame": { "x": 17, "y": 0, "w": 7, "h": 6 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 7, "h": 6 },
+    "sourceSize": { "w": 17, "h": 17 },
+    "duration": 100
+   },
+   "staticNotes 2.aseprite": {
+    "frame": { "x": 24, "y": 0, "w": 7, "h": 6 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 7, "h": 6 },
+    "sourceSize": { "w": 17, "h": 17 },
+    "duration": 100
+   },
+   "staticNotes 3.aseprite": {
+    "frame": { "x": 31, "y": 0, "w": 17, "h": 17 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 17, "h": 17 },
+    "sourceSize": { "w": 17, "h": 17 },
+    "duration": 100
+   },
+   "staticNotes 4.aseprite": {
+    "frame": { "x": 48, "y": 0, "w": 7, "h": 6 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 7, "h": 6 },
+    "sourceSize": { "w": 17, "h": 17 },
+    "duration": 100
+   },
+   "staticNotes 5.aseprite": {
+    "frame": { "x": 55, "y": 0, "w": 7, "h": 6 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 7, "h": 6 },
+    "sourceSize": { "w": 17, "h": 17 },
+    "duration": 100
+   },
+   "staticNotes 6.aseprite": {
+    "frame": { "x": 62, "y": 0, "w": 17, "h": 17 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 17, "h": 17 },
+    "sourceSize": { "w": 17, "h": 17 },
+    "duration": 100
+   },
+   "staticNotes 7.aseprite": {
+    "frame": { "x": 79, "y": 0, "w": 7, "h": 6 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 7, "h": 6 },
+    "sourceSize": { "w": 17, "h": 17 },
+    "duration": 100
+   },
+   "staticNotes 8.aseprite": {
+    "frame": { "x": 86, "y": 0, "w": 7, "h": 6 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 7, "h": 6 },
+    "sourceSize": { "w": 17, "h": 17 },
+    "duration": 100
+   },
+   "staticNotes 9.aseprite": {
+    "frame": { "x": 93, "y": 0, "w": 17, "h": 17 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 17, "h": 17 },
+    "sourceSize": { "w": 17, "h": 17 },
+    "duration": 100
+   },
+   "staticNotes 10.aseprite": {
+    "frame": { "x": 110, "y": 0, "w": 7, "h": 6 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 7, "h": 6 },
+    "sourceSize": { "w": 17, "h": 17 },
+    "duration": 100
+   },
+   "staticNotes 11.aseprite": {
+    "frame": { "x": 117, "y": 0, "w": 7, "h": 6 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 7, "h": 6 },
+    "sourceSize": { "w": 17, "h": 17 },
+    "duration": 100
+   }
+ },
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3-rc4-dev",
+  "image": "staticNotes.png",
+  "format": "RGBA8888",
+  "size": { "w": 124, "h": 17 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "left", "from": 0, "to": 0, "direction": "forward", "color": "#d186dfff" },
+   { "name": "left-hold", "from": 1, "to": 1, "direction": "forward", "color": "#d186dfff" },
+   { "name": "left-holdEnd", "from": 2, "to": 2, "direction": "forward", "color": "#d186dfff" },
+   { "name": "down", "from": 3, "to": 3, "direction": "forward", "color": "#57b9f2ff" },
+   { "name": "down-hold", "from": 4, "to": 4, "direction": "forward", "color": "#57b9f2ff" },
+   { "name": "down-holdEnd", "from": 5, "to": 5, "direction": "forward", "color": "#57b9f2ff" },
+   { "name": "up", "from": 6, "to": 6, "direction": "forward", "color": "#6acd5bff" },
+   { "name": "up-hold", "from": 7, "to": 7, "direction": "forward", "color": "#6acd5bff" },
+   { "name": "up-holdEnd", "from": 8, "to": 8, "direction": "forward", "color": "#6acd5bff" },
+   { "name": "right", "from": 9, "to": 9, "direction": "forward", "color": "#f7a547ff" },
+   { "name": "right-hold", "from": 10, "to": 10, "direction": "forward", "color": "#f7a547ff" },
+   { "name": "right-holdEnd", "from": 11, "to": 11, "direction": "forward", "color": "#f7a547ff" }
+  ],
+  "layers": [
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}

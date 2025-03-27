@@ -85,8 +85,7 @@ class NoteSpawner extends FlxGroup
         {
             if (strum.playerID == noteStruct.lane)
             {
-                // TODO: Get note skin system.
-                var note = new Note(noteStruct.data, noteStruct.time, noteStruct.type, 'v-slice', noteStruct.duration, conductor);
+                var note = new Note(noteStruct.data, noteStruct.time, noteStruct.type, strum.receptors.members[noteStruct.data].skin, noteStruct.duration, conductor);
                 note.speed = scrollSpeed;
                 note.lane = noteStruct.lane;
                 return note;

@@ -34,18 +34,7 @@
 	<set name="BUILD_DIR" value="export/release" unless="debug" />
 
 	<source path="source" />
-	<!-- Assets -->
-	<assets path="assets/data"          exclude="*.ogg" if="web"/>
-	<assets path="assets/data"          exclude="*.mp3" unless="web"/>
-	<assets path="assets/fonts" />
-	<assets path="assets/images"        exclude="*.ogg" if="web"/>
-	<assets path="assets/images"        exclude="*.mp3" unless="web"/>
-	<assets path="assets/music"         exclude="*.ogg" if="web"/>
-	<assets path="assets/music"         exclude="*.mp3" unless="web"/>
-	<assets path="assets/songs"         exclude="*.ogg" if="web"/>
-	<assets path="assets/songs"         exclude="*.mp3" unless="web"/>
-	<assets path="assets/sounds"        exclude="*.ogg" if="web"/>
-	<assets path="assets/sounds"        exclude="*.mp3" unless="web"/>
+	<assets path="assets" />
 
 	<!-- _______________________________ Libraries ______________________________ -->
 

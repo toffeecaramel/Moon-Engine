@@ -141,13 +141,13 @@ class Receptor extends FlxSpriteGroup
         
         // then play anims
         strumNote.playAnim('$dir-confirm', true);
-        if(judgement == 'sick' && !isCPU && !isSustain)
+        if(judgement == 'sick' && !isCPU && !isSustain && splash.animation.getAnimationList().length > 0)
         {
             splash.setPosition(strumCenterX - splash.width / 2, strumCenterY - splash.height / 2);
             splash.spawn();
         }
         
-        if(isSustain)
+        if(isSustain && sustainSplash.animation.getAnimationList().length > 0)
         {
             sustainSplash.setPosition(strumCenterX - sustainSplash.width / 2, strumCenterY - sustainSplash.height / 2);
             sustainSplash.spawn();
