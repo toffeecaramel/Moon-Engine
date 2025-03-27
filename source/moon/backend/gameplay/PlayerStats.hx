@@ -6,12 +6,12 @@ class PlayerStats
     /**
      * Used for storing total notes that got hit or missed by the player.
      */
-    @:isVar var totalNotes(default, set):Int = 0;
+    var totalNotes(default, set):Int = 0;
 
     /**
      * Used for checking a total accuracy you got on said judgement.
      */
-     @:isVar var accuracyCount(default, set):Float = 0;
+    var accuracyCount(default, set):Float = 0;
 
     /**
      * Total accuracy by said player.

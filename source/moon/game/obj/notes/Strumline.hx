@@ -16,7 +16,7 @@ class Strumline extends FlxGroup
      */
     public var playerID:String;
 
-    @:isVar public var skin(default, set):String;
+    public var skin(default, set):String;
 
     public var isCPU:Bool;
 

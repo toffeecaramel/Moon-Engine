@@ -27,7 +27,7 @@ class PauseScreen extends FlxSubState
     ];
 
     private final ACCESSIBILITY_ITEMS:Array<String> = [
-        'botplay', 'practice mode', 'change difficulty'
+        'botplay', 'practice mode', 'change difficulty', 'back'
     ];
 
     private var currentArray:Array<String> = [];
@@ -152,6 +152,7 @@ class PauseScreen extends FlxSubState
                     pf.restartSong();
                     close();
                 case 'accessibility settings': regenItems(ACCESSIBILITY_ITEMS);
+                case 'back': regenItems(DEFAULT_ITEMS);
             }
         }
 
@@ -172,6 +173,12 @@ class PauseScreen extends FlxSubState
         curSelected = FlxMath.wrap(curSelected + change, 0, pauseItems.members.length - 1);
         pauseItems.members[curSelected].x += 10;
         Paths.playSFX('scrollMenu', 'ui');
+
+        selector.text = switch(pauseItems.members[curSelected].text.toLowerCase())
+        {
+            case 'exit' | 'back': '<<';
+            default: '>>';
+        };
     }
 
     public function regenItems(items:Array<String>)
