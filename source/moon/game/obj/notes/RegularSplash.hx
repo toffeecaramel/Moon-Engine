@@ -2,13 +2,9 @@ package moon.game.obj.notes;
 
 import flixel.FlxG;
 import openfl.display.BlendMode;
-import moon.dependency.scripting.MoonScript;
 
 class RegularSplash extends MoonSprite
 {
-    private var script:MoonScript;
-
-    public var totalAnims(default, set):Int = 2;
     public var skin(default, set):String;
     public var data:Int;
 
@@ -16,7 +12,6 @@ class RegularSplash extends MoonSprite
     {
         super();
         
-        script = new MoonScript();
         this.data = data;
         this.skin = skin;
     }
@@ -25,10 +20,9 @@ class RegularSplash extends MoonSprite
 
     public function spawn():Void
     {
+        playAnim('splash' + FlxG.random.int(1, this.animation.getAnimationList().length - 1), true);
         if(this.alpha <= 0.1) alpha = 1;
         visible = active = true;
-
-        playAnim('splash${FlxG.random.int(1, totalAnims)}', true);
     }
 
     @:noCompletion public function set_skin(skn:String):String
@@ -38,24 +32,10 @@ class RegularSplash extends MoonSprite
         return skn;
     }
 
-    @:noCompletion public function set_totalAnims(total:Int)
-    {
-        this.totalAnims = total;
-        this.animation.destroyAnimations();
-        final direction = MoonUtils.intToDir(data);
-
-        for (i in 0...totalAnims)
-            animation.addByPrefix('splash${i+1}', '${direction}${i+1}0', 32, false);
-
-        return this.totalAnims;
-    }
-
     private function _updtGraphics()
     {
-        frames = Paths.getSparrowAtlas('ingame/UI/notes/$skin/splash');
-        alpha = 0.0001;
         animation.onFinish.add((anim) -> visible = active = false);
-        updateHitbox();
+        alpha = 0.0001;
         centerAnimations = true;
     }
 }

@@ -27,26 +27,11 @@ class SustainSplash extends MoonSprite
         return skn;
     }
 
-    var direction:String;
-
     /**
      * Updates all the animations to the current skin.
      */
     private function _updtGraphics()
     {
-        frames = Paths.getSparrowAtlas('ingame/UI/notes/$skin/holdSplash');
-        direction = MoonUtils.intToDir(data);
-
-        this.animation.addByPrefix('pre', 'pre', 24, false);
-        this.animation.addByPrefix('$direction-loop', '$direction-loop', 20, true);
-        this.animation.addByPrefix('$direction-end', '$direction-end', 24, false);
-
-        this.animation.onFinish.add(function(anim:String)
-        {
-            if(anim == '$direction-end') this.visible = this.active = false;
-            else if (anim == 'pre') this.playAnim('$direction-loop', true);
-        });
-        this.blend = BlendMode.ADD;
         this.alpha = 0.0001;
         this.updateHitbox();
         this.centerAnimations = true;
@@ -79,7 +64,7 @@ class SustainSplash extends MoonSprite
         {
             isOnLoop = false;
             if(insta) this.active = this.visible = false;
-            else this.playAnim('$direction-end', true);
+            else this.playAnim('${MoonUtils.intToDir(data)}-end', true);
         }
     }
 }

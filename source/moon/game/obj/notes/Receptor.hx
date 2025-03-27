@@ -99,6 +99,7 @@ class Receptor extends FlxSpriteGroup
 
         if(strumNote != null) strumNote.kill();
         strumNote = new StrumNote(skin, data, isCPU);
+        strumNote.centerAnimations = true;
         add(strumNote);
         
         script.set("strumNote", strumNote);
@@ -119,8 +120,10 @@ class Receptor extends FlxSpriteGroup
 
         script.set("sustainSplash", sustainSplash);
         
-        script.call("createReceptor");
+        script.get("createReceptor")(MoonUtils.intToDir(this.data));
         strumNote.updateHitbox();
+        splash.updateHitbox();
+        sustainSplash.updateHitbox();
     }
 
     /**

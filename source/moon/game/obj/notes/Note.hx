@@ -119,16 +119,8 @@ class Note extends MoonSprite
         final curSkin = (type != 'default' && Paths.fileExists('assets/images/ingame/UI/notes/$type')) ? type : skin;
         final dir:String = MoonUtils.intToDir(direction);
 
-        frames = Paths.getSparrowAtlas('ingame/UI/notes/$curSkin/staticArrows');
-
-        animation.addByPrefix(dir, '${dir}0', 24, true);
-        animation.addByPrefix('$dir-hold', '${dir}-hold0', 24, true);
-        animation.addByPrefix('$dir-holdEnd', '${dir}-holdend0', 24, true);
-
-        script.call("createStaticNote");
-
+        script.get("createStaticNote")(curSkin, dir);
         updateHitbox();
-
         playAnim(dir);
     }
 
