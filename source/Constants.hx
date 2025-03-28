@@ -1,5 +1,6 @@
 package;
 
+import moon.toolkit.chart_editor.ChartEditor;
 import flixel.FlxState;
 
 class Constants
@@ -13,5 +14,5 @@ class Constants
 	public static final SKIP_SPLASH:Bool = true;
 	public static final TRACE_DEBUG_INFO:Bool = true;
 
-    public static final INITIAL_STATE:Class<FlxState> = moon.game.PlayState;
+    public static final INITIAL_STATE:Class<FlxState> = ChartEditor;
 }

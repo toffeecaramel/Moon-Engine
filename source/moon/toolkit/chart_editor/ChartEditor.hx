@@ -1,5 +1,6 @@
 package moon.toolkit.chart_editor;
 
+import haxe.ui.ComponentBuilder;
 import flixel.FlxG;
 import moon.game.obj.Song;
 import flixel.FlxState;
@@ -16,7 +17,7 @@ class ChartEditor extends FlxState
     override public function create()
     {
         //TODO: get actual song selected by user.
-        final song = 'bittersweet sunset';
+        final song = 'darnell';
         final diff = 'hard';
         final mix = 'bf';
 
@@ -40,6 +41,9 @@ class ChartEditor extends FlxState
         add(grid);
 
         _playBack.state = PAUSE;
+
+        var taskbar = ComponentBuilder.fromFile('assets/data/ui/chart-editor/taskbar.xml');
+        add(taskbar);
     }
 
     override public function update(elapsed:Float)

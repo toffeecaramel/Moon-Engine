@@ -2,8 +2,8 @@ package;
 
 import haxe.ui.ComponentBuilder;
 import flixel.FlxG;
-import haxe.ui.macros.ComponentMacros;
 import flixel.FlxState;
+import haxe.ui.components.Button;
 
 class TestState extends FlxState
 {
