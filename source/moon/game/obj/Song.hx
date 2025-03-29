@@ -71,7 +71,7 @@ class Song extends FlxTypedGroup<MoonSound>
     private function steps(step)
     {
         for (i in 0...this.members.length)
-        if ((this.state == PLAY) && (this.members[i].time >= conductor.time + 20 || this.members[i].time <= conductor.time - 20))
+        if ((this.state == PLAY) && (this.members[i].time >= conductor.time + 14 || this.members[i].time <= conductor.time - 14))
 				resync(this.members[i]);
     }
 

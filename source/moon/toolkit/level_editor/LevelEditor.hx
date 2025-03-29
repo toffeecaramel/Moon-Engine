@@ -1,4 +1,4 @@
-package moon.toolkit.chart_editor;
+package moon.toolkit.level_editor;
 
 import haxe.ui.ComponentBuilder;
 import flixel.FlxG;
@@ -6,7 +6,7 @@ import moon.game.obj.Song;
 import flixel.FlxState;
 import flixel.util.FlxColor;
 
-class ChartEditor extends FlxState
+class LevelEditor extends FlxState
 {
     var _chart:MoonChart;
     var _conductor:Conductor;
@@ -42,7 +42,7 @@ class ChartEditor extends FlxState
 
         _playBack.state = PAUSE;
 
-        var taskbar = ComponentBuilder.fromFile('assets/data/ui/chart-editor/taskbar.xml');
+        var taskbar = ComponentBuilder.fromFile('assets/data/ui/level-editor/taskbar.xml');
         add(taskbar);
     }
 

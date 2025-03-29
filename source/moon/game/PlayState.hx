@@ -16,7 +16,7 @@ import flixel.util.FlxColor;
 import moon.game.obj.Stage;
 import moon.game.obj.PlayField;
 import moon.toolkit.ChartConvert;
-import moon.toolkit.chart_editor.ChartEditor;
+import moon.toolkit.level_editor.LevelEditor;
 
 class PlayState extends FlxState
 {	
@@ -129,7 +129,7 @@ class PlayState extends FlxState
 		camHUD.zoom = FlxMath.lerp(camHUD.zoom, 1, elapsed * 16);
 		
 		if(FlxG.keys.justPressed.NINE) FlxG.switchState(()->new ChartConvert());
-		if(FlxG.keys.justPressed.SEVEN) FlxG.switchState(() -> new ChartEditor());
+		if(FlxG.keys.justPressed.SEVEN) FlxG.switchState(() -> new LevelEditor());
 
 		if(MoonInput.justPressed(PAUSE))
 		{

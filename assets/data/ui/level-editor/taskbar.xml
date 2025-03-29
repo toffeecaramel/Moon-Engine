@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menubar id="menubar" width="100%" paddingLeft="10">
+    <menu text="File">
+        <menu-item id="newLevel" text="New Level" shortcutText="Ctrl+N" />
+
+        <menu-separator />
+        <menu-item id="openLevel" text="Open Level..." shortcutText="Ctrl+O" />
+        <menu-item id="saveLevel" text="Save Level" shortcutText="Ctrl+S" />
+        <menu-item id="saveLevelAs" text="Save Level As..." shortcutText="Ctrl+Shift+S" />
+        <menu-separator />
+
+        <!-- REMINDER FOR MYSELF: for a callback when clicking something onClick="func();   "-->
+        <menu-item id="exit" text="Exit" shortcutText="Ctrl+Q"/>
+    </menu>
+
+    <menu text="Edit">
+        <menu-item id="undo" text="Undo" shortcutText="Ctrl+Z" />
+        <menu-item id="redo" text="Redo" shortcutText="Ctrl+Y" />
+        <menu-separator />
+        <menu-item id="cut" text="Cut" shortcutText="Ctrl+X" />
+        <menu-item id="copy" text="Copy" shortcutText="Ctrl+C" />
+        <menu-item id="paste" text="Paste" shortcutText="Ctrl+V" />
+        <menu-item id="delete" text="Delete" shortcutText="Delete" />
+        <menu-separator />
+        <menu-item id="selectAll" text="Select All" shortcutText="Ctrl+A" />
+        <menu-item id="deselectAll" text="Deselect All" shortcutText="Ctrl+Shift+A" />
+    </menu>
+
+    <!-- TODO: Finish this (view) section :P -->
+    <menu text="View">
+        <menu text="Grid Settings">
+            <checkbox id="viewWaveform" text="Waveform" />
+        </menu>
+    </menu>
+
+    <menu text="Playback">
+        <menu-item id="playPause" text="Play / Pause" shortcutText="Space" />
+        <menu-item id="stop" text="Stop" />
+        <menu-item id="restart" text="Restart" shortcutText="R" />
+        <spacer height="5" />
+        <checkbox paddingLeft="12" id="metronomeToggle" text="Metronome"/>
+        <spacer height="5" />
+
+        <menu-separator />
+        <spacer height="5" />
+        <label paddingLeft="12" text="Playback Speed" verticalAlign="left" />
+        <slider paddingLeft="12" width="90%" id="playbackSpd" pos="0" direction="horizontal" />
+        <spacer height="5" />
+    </menu>
+
+    <menu text="Help">
+        <menu-item id="help" text="Help..." />
+        <menu-item id="about" text="About..." />
+    </menu>
+
+    <spacer width="100%" />
+    <label text="Moon Level Editor (PREVIEW)" verticalAlign="center" />
+</menubar>

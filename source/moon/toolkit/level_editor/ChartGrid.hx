@@ -1,4 +1,4 @@
-package moon.toolkit.chart_editor;
+package moon.toolkit.level_editor;
 
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
