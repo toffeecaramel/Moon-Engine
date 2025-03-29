@@ -38,13 +38,13 @@
         <menu-item id="stop" text="Stop" />
         <menu-item id="restart" text="Restart" shortcutText="R" />
         <spacer height="5" />
-        <checkbox paddingLeft="12" id="metronomeToggle" text="Metronome"/>
+        <checkbox paddingLeft="12" id="metronomeCheck" text="Metronome" />
         <spacer height="5" />
 
         <menu-separator />
         <spacer height="5" />
         <label paddingLeft="12" text="Playback Speed" verticalAlign="left" />
-        <slider paddingLeft="12" width="90%" id="playbackSpd" pos="0" direction="horizontal" />
+        <slider paddingLeft="12" width="90%" id="playbackSpd" pos="1.0" direction="horizontal" min="0.0" max="2.0" />
         <spacer height="5" />
     </menu>
 

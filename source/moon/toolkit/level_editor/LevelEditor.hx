@@ -1,5 +1,7 @@
 package moon.toolkit.level_editor;
 
+import haxe.ui.components.CheckBox;
+import haxe.ui.containers.menus.MenuBar;
 import haxe.ui.ComponentBuilder;
 import flixel.FlxG;
 import moon.game.obj.Song;
@@ -8,11 +10,15 @@ import flixel.util.FlxColor;
 
 class LevelEditor extends FlxState
 {
-    var _chart:MoonChart;
-    var _conductor:Conductor;
-    var _playBack:Song;
+    private var _chart:MoonChart;
+    private var _conductor:Conductor;
+    private var _playBack:Song;
+
+    public static var isMetronomeActive:Bool = false;
 
     var grid:ChartGrid;
+
+    var taskbar:MenuBar;
 
     override public function create()
     {
@@ -42,13 +48,15 @@ class LevelEditor extends FlxState
 
         _playBack.state = PAUSE;
 
-        var taskbar = ComponentBuilder.fromFile('assets/data/ui/level-editor/taskbar.xml');
+        taskbar = ComponentBuilder.fromFile('assets/data/ui/level-editor/taskbar.xml');
+        taskbar.findComponent('playbackSpd').onChange = (_) -> _playBack.pitch = taskbar.findComponent('playbackSpd').value;
         add(taskbar);
     }
 
     override public function update(elapsed:Float)
     {
         _conductor.time = _playBack.time;
+
         super.update(elapsed);
 
         //TODO: Remove this, it's debug only lol.

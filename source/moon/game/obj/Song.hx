@@ -14,9 +14,14 @@ enum SongState {
 class Song extends FlxTypedGroup<MoonSound>
 {
     /**
-	 * Sets the song's state, those being: `PLAY`, `PAUSE`, `STOP` & `KILL`.
+	 * The song's state, those being: `PLAY`, `PAUSE`, `STOP` & `KILL`.
 	 */
 	public var state(default, set):SongState = PLAY;
+
+    /**
+	 * The song's pitch.
+	 */
+	public var pitch(default, set):Float = 1;
 
 	/**
 	 * The song's current time.
@@ -91,9 +96,9 @@ class Song extends FlxTypedGroup<MoonSound>
 
     
 	@:noCompletion public function set_state(state:SongState = PLAY):SongState
-        {
-            this.state = state;
-            for (i in 0...members.length)
+    {
+        this.state = state;
+        for (i in 0...members.length)
         {
             switch(state)
             {
@@ -106,6 +111,16 @@ class Song extends FlxTypedGroup<MoonSound>
             }
         }
         return state;
+    }
+
+    @:noCompletion public function set_pitch(value:Float):Float
+    {
+        pitch = value;
+
+        for (i in 0...members.length)
+            members[i].pitch = pitch;
+
+        return value;
     }
 
     @:noCompletion public function get_time():Float
