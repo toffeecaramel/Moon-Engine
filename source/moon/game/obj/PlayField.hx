@@ -123,7 +123,7 @@ class PlayField extends FlxGroup
     var inCountdown:Bool = true;
     override public function update(dt:Float)
     {
-        conductor.time += dt * 1000;
+        conductor.time += (dt * 1000) * playback.pitch;
 
         super.update(dt);
         for (handler in inputHandlers.iterator())
@@ -150,6 +150,10 @@ class PlayField extends FlxGroup
             ];
             handler.update();
 		}
+
+        //TODO: REMOVE, PLACEHOLDER.
+        if(FlxG.keys.justPressed.I) playback.pitch -= 0.05;
+        else if (FlxG.keys.justPressed.O) playback.pitch += 0.05;
 
         healthBar.health = inputHandlers.get('p1').stats.health;
     }

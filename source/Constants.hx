@@ -1,5 +1,6 @@
 package;
 
+import moon.game.*;
 import moon.toolkit.level_editor.LevelEditor;
 import flixel.FlxState;
 
@@ -14,5 +15,5 @@ class Constants
 	public static final SKIP_SPLASH:Bool = true;
 	public static final TRACE_DEBUG_INFO:Bool = true;
 
-    public static final INITIAL_STATE:Class<FlxState> = LevelEditor;
+    public static final INITIAL_STATE:Class<FlxState> = PlayState;
 }
