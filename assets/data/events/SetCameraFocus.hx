@@ -7,9 +7,9 @@ function onExecute(values)
 {
     if(tween != null && tween.active) tween.cancel();
 
-    final charPos = getCamPos(values[0]);
+    final charPos = getCamPos(values.character);
     tween = FlxTween.tween(game.camFollower, {x: charPos[0], y: charPos[1]}, 
-    values[1], {ease: Reflect.field(FlxEase, values[2])});
+    values.duration, {ease: Reflect.field(FlxEase, values.ease)});
 }
 
 //for getting camera positions for the said character

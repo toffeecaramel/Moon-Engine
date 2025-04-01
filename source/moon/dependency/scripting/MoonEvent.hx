@@ -6,11 +6,11 @@ class MoonEvent extends MoonScript
 {
     public var time:Float;
     public var tag:String;
-    public var values:Array<Dynamic> = [];
+    public var values:Dynamic;
     
     public var PRESET_VARIABLES(default, set):Map<String, Dynamic>;
 
-    public function new(tag:String, values:Array<Dynamic>)
+    public function new(tag:String, values:Dynamic)
     {
         super();
         this.tag = tag;

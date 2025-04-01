@@ -26,7 +26,7 @@ typedef NoteStruct =
 typedef EventStruct = 
 {
     var tag:String;
-    var values:Array<Dynamic>;
+    var values:Dynamic;
     var time:Float;
 };
 
@@ -155,26 +155,26 @@ class MoonChart
             switch(event.e)
             {
                 case 'FocusCamera':
-                    final camVent = //mogus
+                    final camVent:EventStruct = //mogus
                     {
                         tag: 'SetCameraFocus',
-                        values: ([
-                            (event.v.char == 1) ? 'opponent' : 'player', 
-                            (event.v.ease == 'CLASSIC') ? 1.4 : event.v.duration,
-                            (event.v.ease == 'CLASSIC') ? 'expoOut' : event.v.ease
-                        ] : Array<Dynamic>),
+                        values: {
+                            character: (event.v.char == 1) ? 'opponent' : 'player', 
+                            duration: (event.v.ease == 'CLASSIC') ? 1.4 : event.v.duration,
+                            ease: (event.v.ease == 'CLASSIC') ? 'expoOut' : event.v.ease
+                        },
                         time: event.t
                     };
                 convertedChart.events.push(camVent);
 
                 case 'ZoomCamera':
-                    final camZoomVent = {
+                    final camZoomVent:EventStruct = {
                         tag: 'SetCameraZoom',
-                        values: ([
-                            event.v.zoom,
-                            event.v.duration / 16,
-                            event.v.ease
-                        ] : Array<Dynamic>),
+                        values: {
+                            zoom: event.v.zoom,
+                            duration: event.v.duration / 20,
+                            ease: event.v.ease
+                        },
                         time: event.t                    
                     };
                 convertedChart.events.push(camZoomVent);

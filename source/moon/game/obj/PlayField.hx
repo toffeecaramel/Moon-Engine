@@ -76,7 +76,7 @@ class PlayField extends FlxGroup
         final strumXs = [-xAddition, xAddition];
 
         final playerIDs = ["opponent", "p1"];
-        final isCPUPlayers = [true, false];
+        final isCPUPlayers = [true, true];
 
         for (i in 0...playerIDs.length)
         {

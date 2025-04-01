@@ -6,5 +6,5 @@ var tween:FlxTween;
 function onExecute(values)
 {
     if(tween != null && tween.active) tween.cancel();
-    tween = FlxTween.tween(game, {gameZoom: values[0]}, values[1], {ease: Reflect.field(FlxEase, values[2])});
+    tween = FlxTween.tween(game, {gameZoom: values.zoom}, values.duration, {ease: Reflect.field(FlxEase, values.ease)});
 }
