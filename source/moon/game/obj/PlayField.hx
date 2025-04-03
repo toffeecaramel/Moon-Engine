@@ -93,6 +93,7 @@ class PlayField extends FlxGroup
         }
 
         // Little text for testing out the accuracy.
+        // oh lol it doesn't even show accuracy anymore LMFAO
         tst = new FlxText(0, healthBar.y + 27);
         tst.text = 'Score: 0';
         tst.setFormat(Paths.font('vcr.ttf'), 16, FlxColor.WHITE, RIGHT);
