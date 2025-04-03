@@ -10,7 +10,6 @@ import flixel.FlxG;
 import flixel.group.FlxGroup;
 import moon.game.obj.notes.*;
 import moon.backend.gameplay.Timings;
-import haxe.ds.StringMap; // Import the StringMap type
 
 @:publicFields
 class PlayField extends FlxGroup
@@ -76,7 +75,7 @@ class PlayField extends FlxGroup
         final strumXs = [-xAddition, xAddition];
 
         final playerIDs = ["opponent", "p1"];
-        final isCPUPlayers = [true, true];
+        final isCPUPlayers = [true, false];
 
         for (i in 0...playerIDs.length)
         {
