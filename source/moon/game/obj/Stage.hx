@@ -6,6 +6,8 @@ import flixel.FlxBasic;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.group.FlxSpriteGroup;
 import openfl.display.BlendMode;
+import flixel.addons.display.FlxBackdrop;
+import flixel.util.FlxAxes;
 
 import moon.dependency.scripting.MoonScript;
 
@@ -58,7 +60,7 @@ class Stage extends FlxTypedGroup<FlxBasic>
     {
         super();
         this.conductor = conductor;
-        
+
         script = new MoonScript();
         this.stage = stage;
     }

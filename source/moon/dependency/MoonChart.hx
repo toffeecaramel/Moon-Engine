@@ -118,7 +118,7 @@ class MoonChart
                 final psy = new FNFPsych().fromFile(path, null, difficulty);
                 new FNFVSlice().fromFormat(psy);
             case 'codename': 
-                final code = new FNFCodename().fromFile(path, null, difficulty);
+                final code = new FNFCodename().fromFile(path, meta, difficulty);
                 new FNFVSlice().fromFormat(code);
             default: new FNFVSlice().fromFile(path, meta, difficulty);
         };

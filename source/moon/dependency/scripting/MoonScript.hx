@@ -20,7 +20,13 @@ class MoonScript
     public var DEFAULT_VARIABLES:Map<String, Dynamic> = [
         "Paths" => Paths,
         "Constants" => Constants,
-        "Reflect" => Reflect
+        "Reflect" => Reflect,
+
+        // Other stuff to be included.
+        "FlxBackdrop" => flixel.addons.display.FlxBackdrop,
+
+        "FlxEffectSprite" => flixel.addons.effects.chainable.FlxEffectSprite,
+        "FlxWaveEffect" => flixel.addons.effects.chainable.FlxWaveEffect,
     ];
 
     public function new(){}
