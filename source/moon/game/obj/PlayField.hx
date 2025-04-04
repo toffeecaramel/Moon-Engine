@@ -10,7 +10,6 @@ import flixel.FlxG;
 import flixel.group.FlxGroup;
 import moon.game.obj.notes.*;
 import moon.backend.gameplay.Timings;
-import haxe.ds.StringMap; // Import the StringMap type
 
 @:publicFields
 class PlayField extends FlxGroup
@@ -76,7 +75,7 @@ class PlayField extends FlxGroup
         final strumXs = [-xAddition, xAddition];
 
         final playerIDs = ["opponent", "p1"];
-        final isCPUPlayers = [true, true];
+        final isCPUPlayers = [true, false];
 
         for (i in 0...playerIDs.length)
         {
@@ -94,6 +93,7 @@ class PlayField extends FlxGroup
         }
 
         // Little text for testing out the accuracy.
+        // oh lol it doesn't even show accuracy anymore LMFAO
         tst = new FlxText(0, healthBar.y + 27);
         tst.text = 'Score: 0';
         tst.setFormat(Paths.font('vcr.ttf'), 16, FlxColor.WHITE, RIGHT);

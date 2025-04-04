@@ -147,7 +147,7 @@ class Receptor extends FlxSpriteGroup
             splash.spawn();
         }
         
-        if(isSustain && sustainSplash.animation.getAnimationList().length > 0)
+        if(isSustain && note.duration > 90 && sustainSplash.animation.getAnimationList().length > 0)
         {
             sustainSplash.setPosition(strumCenterX - sustainSplash.width / 2, strumCenterY - sustainSplash.height / 2);
             sustainSplash.spawn();
