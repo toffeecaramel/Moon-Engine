@@ -17,6 +17,7 @@ import openfl.display3D.textures.RectangleTexture;
 import sys.FileSystem;
 import sys.io.File;
 #end
+
 using StringTools;
 
 typedef AnimationData = {
@@ -294,43 +295,37 @@ class Paths
     /**
      * Returns a font file from the fonts path. (MUST INCLUDE FILE FORMAT!)
      * @param file
-     * @return return 'assets/fonts/$file'
      */
-    inline static public function font(file:String)
-        return 'assets/fonts/$file';
+     inline static public function font(file:String):String
+        return getPath('fonts/$file', TEXT);
 
     /**
      * Returns a file from the data path. (MUST INCLUDE FILE FORMAT!)
      * @param file
-     * @return return 'assets/data/$file'
      */
-    inline static public function data(file:String)
-        return 'assets/data/$file';
+     inline static public function data(file:String):String
+        return getPath('data/$file', TEXT);
 
     /**
      * Returns a shader (frag) file from the shaders path.
      * @param file
-     * @return return 'assets/shaders/$file.frag'
      */
     inline static public function frag(file:String)
-        return 'assets/shaders/$file.frag';
+        return getPath('shaders/$file.frag', TEXT);
 
     /**
      * Returns a entire parsed JSON content from a path.
      * @param file
      * @param from (can be either images, data, etc.)
-     * @return return (json content)
+     * @return (json content)
      */
-    inline static public function JSON(file:String, ?from:String = 'images'):Dynamic
+    inline static public function JSON(file:String, ?from:String = "images"):Dynamic
     {
-        var path = 'assets/$from/$file.json';
-        if (fileExists(path, TEXT))
-            return Json.parse(getFileContent(path));
-
+        final path = getPath('$from/$file.json', TEXT);
         return Json.parse(getFileContent(path));
     }
 
-        /**
+    /**
      * Loads a sound from the file system dynamically.
      * @param key The name of the sound file (without extension).
      * @param from The subdirectory within 'assets' (e.g., 'music', 'sounds').
@@ -402,9 +397,10 @@ class Paths
      */
     inline static public function getSparrowAtlas(key:String, ?from:String = 'images', ?library:String, ?textureCompression:Bool = false)
     {
-        var graphic:FlxGraphic = returnGraphic(key, from, library, textureCompression);
-        var xmlPath = file('$from/$key.xml', TEXT, library);
+        final graphic:FlxGraphic = returnGraphic(key, from, library, textureCompression);
+        final xmlPath = file('$from/$key.xml', TEXT, library);
         var xmlContent = "";
+
         if (fileExists(xmlPath, TEXT))
             xmlContent = getFileContent(xmlPath);
         else if (OpenFlAssets.exists(xmlPath, TEXT))
@@ -434,7 +430,6 @@ class Paths
 
         return getPreloadPath(file);
     }
-
 
     inline static function getPreloadPath(file:String)
     {

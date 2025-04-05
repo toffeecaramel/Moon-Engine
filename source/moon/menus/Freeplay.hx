@@ -2,6 +2,7 @@ package moon.menus;
 
 import flixel.tweens.FlxEase;
 import lime.app.Future;
+import moon.menus.obj.freeplay.FreeplayDJ;
 import flixel.FlxG;
 import flixel.math.FlxMath;
 import flixel.group.FlxGroup.FlxTypedGroup;
@@ -29,6 +30,7 @@ class Freeplay extends FlxSubState
     private final capsuleSeparator:Float = 7;
 
     private var capsules:FlxTypedGroup<MP3Capsule> = new FlxTypedGroup<MP3Capsule>();
+    public var thisDJ:FreeplayDJ;
 
     private var backgroundMus:MoonSound = new MoonSound();
 
@@ -36,6 +38,12 @@ class Freeplay extends FlxSubState
     {
         super();
         this.character = character;
+
+        thisDJ = new FreeplayDJ(character);
+        add(thisDJ);
+
+        thisDJ = new FreeplayDJ(character);
+        add(thisDJ);
 
         // Capsules Setup
         for(i in 0...songList.length)
