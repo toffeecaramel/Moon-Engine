@@ -28,7 +28,7 @@ class Freeplay extends FlxSubState
     private final capsuleOffsetX:Float = 150;
     private final capsuleOffsetY:Float = 310;
     private final capsuleSeparator:Float = 7;
-
+    
     private var capsules:FlxTypedGroup<MP3Capsule> = new FlxTypedGroup<MP3Capsule>();
     public var thisDJ:FreeplayDJ;
 

@@ -52,6 +52,7 @@
 
 	<haxelib name="moonchart" />
 	<haxelib name="flxanimate" />
+	<haxelib name="funkin.visfix" />
 
 	<!-- ______________________________ Haxedefines _____________________________ -->
 
