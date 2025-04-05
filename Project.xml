@@ -34,7 +34,7 @@
 	<set name="BUILD_DIR" value="export/release" unless="debug" />
 
 	<source path="source" />
-	<assets path="assets" />
+	<assets path="assets" rename="assets" />
 
 	<!-- _______________________________ Libraries ______________________________ -->
 
@@ -51,6 +51,7 @@
 	<haxedef name="hscriptPos"/>
 
 	<haxelib name="moonchart" />
+	<haxelib name="flxanimate" />
 
 	<!-- ______________________________ Haxedefines _____________________________ -->
 

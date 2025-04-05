@@ -1,5 +1,6 @@
 package moon.menus;
 
+import moon.menus.obj.freeplay.FreeplayDJ;
 import flixel.FlxG;
 import flixel.math.FlxMath;
 import flixel.group.FlxGroup.FlxTypedGroup;
@@ -27,11 +28,15 @@ class Freeplay extends FlxSubState
     private final capsuleSeparator:Float = 7;
 
     private var capsules:FlxTypedGroup<MP3Capsule> = new FlxTypedGroup<MP3Capsule>();
+    public var thisDJ:FreeplayDJ;
 
     public function new(character:String = 'bf')
     {
         super();
         this.character = character;
+
+        thisDJ = new FreeplayDJ(character);
+        add(thisDJ);
 
         for(i in 0...songList.length)
         {
