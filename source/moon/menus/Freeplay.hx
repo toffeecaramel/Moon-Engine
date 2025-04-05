@@ -1,5 +1,7 @@
 package moon.menus;
 
+import flixel.tweens.FlxEase;
+import lime.app.Future;
 import flixel.FlxG;
 import flixel.math.FlxMath;
 import flixel.group.FlxGroup.FlxTypedGroup;
@@ -28,11 +30,14 @@ class Freeplay extends FlxSubState
 
     private var capsules:FlxTypedGroup<MP3Capsule> = new FlxTypedGroup<MP3Capsule>();
 
+    private var backgroundMus:MoonSound = new MoonSound();
+
     public function new(character:String = 'bf')
     {
         super();
         this.character = character;
 
+        // Capsules Setup
         for(i in 0...songList.length)
         {
             //TODO 
@@ -68,6 +73,22 @@ class Freeplay extends FlxSubState
 
         for (i in 0...capsules.members.length)
             capsules.members[i].selected = (i == curSelected);
+
+        // Load the current selected song.
+        new Future(() -> 
+        {
+            if(backgroundMus != null)
+            {
+                FlxG.sound.list.remove(backgroundMus);
+                backgroundMus.stop();
+            }
+
+            backgroundMus.loadEmbedded(Paths.sound('${songList[curSelected]}/$character/Inst', 'songs'));
+            backgroundMus.play();
+            backgroundMus.pitch = 0;
+            backgroundMus.pitchTween(1, 1, FlxEase.quadOut);
+            FlxG.sound.list.add(backgroundMus);
+        }, true);
     }
 
     function updateCapsules(index:Int):Void
