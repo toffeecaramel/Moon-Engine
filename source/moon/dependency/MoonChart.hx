@@ -141,7 +141,7 @@ class MoonChart
                     time: note.t,
                     data: (note.d > 3) ? Std.int(note.d - 4) : note.d,
                     lane:  (note.d > 3) ? 'opponent' : 'p1',
-                    type: note.k,
+                    type: (note.k == '') ? null : note.k,
                     duration: note.l
                 };
                 convertedChart.notes.push(note);

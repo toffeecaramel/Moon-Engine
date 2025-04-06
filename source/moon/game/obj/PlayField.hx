@@ -73,7 +73,7 @@ class PlayField extends FlxGroup
         final xVal = (FlxG.width * 0.5);
         final xAddition = (FlxG.width * 0.25);
         final strumXs = [-xAddition, xAddition];
-
+		
         final playerIDs = ["opponent", "p1"];
         final isCPUPlayers = [true, false];
 

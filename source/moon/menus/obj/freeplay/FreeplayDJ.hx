@@ -11,6 +11,11 @@ class FreeplayDJ extends FlxAnimate
     public var AFK_TIMER:Float = 0;
 
     /**
+     * Wheter or not to allow the dj to dance on beat.
+     */
+    public var canDance:Bool = false;
+
+    /**
      * Script used for this DJ.
      */
     public var script:MoonScript;
