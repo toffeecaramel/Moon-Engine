@@ -66,7 +66,7 @@ class Freeplay extends FlxSubState
                 thisDJ.anim.play("idle", true);
         });
 
-        album = new AlbumCollection(1000, FlxG.height / 2 + 50);
+        album = new AlbumCollection(1135, FlxG.height / 2 + 50);
         add(album);
 
         // Capsules Setup
@@ -202,10 +202,10 @@ class Freeplay extends FlxSubState
             rankDisplay.playRank(rankOrder[currentNumb], true);
             
             // tween the camera zoom cause its nice, and shake it a lil is nice too
-            FlxTween.tween(FlxG.camera, {zoom: FlxG.camera.zoom + 0.1}, 0.4, {ease: FlxEase.backOut});
+            FlxTween.tween(FlxG.camera, {zoom: FlxG.camera.zoom + 0.1}, 0.2, {ease: FlxEase.backOut});
             FlxG.camera.shake(0.017, 0.2);
 
-            FlxTween.tween(rankVignette, {alpha: 0.0001}, 0.4);
+            FlxTween.tween(rankVignette, {alpha: 0.0001}, 0.27);
 
             // play the current rank sfx thing
             Paths.playSFX('${rankOrder[currentNumb]}', 'menus/freeplay/ranks');
@@ -215,7 +215,7 @@ class Freeplay extends FlxSubState
                 capsules.members[i].shakeEffect(7);
             
             //reset the timer if it isn't the supposed rank
-            if(rankOrder[currentNumb] != rank) timer.reset(0.6);
+            if(rankOrder[currentNumb] != rank) timer.reset(0.35);
             else // proceed to finish the anims and allow player to move (which is a currently todo)
             {
                 FlxTween.tween(overlay, {alpha: 0}, 1, {startDelay: 0.5});
