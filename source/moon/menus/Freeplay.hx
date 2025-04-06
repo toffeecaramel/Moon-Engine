@@ -1,5 +1,8 @@
 package moon.menus;
 
+import flixel.util.FlxTimer;
+import flixel.tweens.FlxTween;
+import moon.dependency.MoonChart.MetadataStruct;
 import flixel.tweens.FlxEase;
 import lime.app.Future;
 import moon.menus.obj.freeplay.FreeplayDJ;
@@ -20,7 +23,7 @@ class Freeplay extends FlxSubState
 {
     public static var appearType:FreeplayTransition = NONE;
 
-    public final songList = ['lit up', 'lit up', 'lit up', 'lit up', 'lit up', 'lit up'];
+    public final songList = ['lit up', 'lit up', 'lit up', 'lit up', 'lit up', 'lit up', 'lit up', 'lit up', 'lit up', 'lit up', 'lit up'];
     public var character:String;
 
     public var curSelected:Int = 0;
@@ -30,12 +33,15 @@ class Freeplay extends FlxSubState
     private final capsuleOffsetY:Float = 310;
     private final capsuleSeparator:Float = 7;
 
+    public var currentMetadata:MetadataStruct; // The metadata for the current selected song.
     private var conductor:Conductor;
     
     private var capsules:FlxTypedGroup<MP3Capsule> = new FlxTypedGroup<MP3Capsule>();
     public var thisDJ:FreeplayDJ;
 
     private var backgroundMus:MoonSound = new MoonSound();
+
+    private var album:MoonSprite;
 
     public function new(character:String = 'bf')
     {
@@ -66,8 +72,10 @@ class Freeplay extends FlxSubState
                 return caps;
             });
         }
-
         add(capsules);
+
+        album = new MoonSprite();
+        add(album);
         changeSelection(curSelected);
     }
 
@@ -76,15 +84,20 @@ class Freeplay extends FlxSubState
         conductor.time = backgroundMus.time;
         super.update(elapsed);
 
+        album.angle = FlxMath.lerp(album.angle, 16, 0.2);
+
         if (MoonInput.justPressed(UI_UP)) changeSelection(-1);
         if (MoonInput.justPressed(UI_DOWN)) changeSelection(1);
+
+        //(Debug)
+        if(FlxG.keys.justPressed.U) unlockNewRank('perfectGold');
 
         if (FlxG.mouse.wheel != 0)
             changeSelection(-FlxG.mouse.wheel);
 
-        if(backgroundMus != null) backgroundMus.volume = songVolume;
-
         updateCapsules(curSelected);
+
+        if(backgroundMus != null && backgroundMus.playing) backgroundMus.volume = songVolume;
     }
 
     function changeSelection(change:Int):Void
@@ -93,6 +106,15 @@ class Freeplay extends FlxSubState
 
         for (i in 0...capsules.members.length)
             capsules.members[i].selected = (i == curSelected);
+
+        //TODO: Difficulties change and shitt
+        final ch = new MoonChart(songList[curSelected], 'hard', character);
+        currentMetadata = ch.content.meta;
+
+        album.loadGraphic(Paths.image('menus/freeplay/albums/${currentMetadata.album}'));
+        album.x = (FlxG.width - album.width) - 32;
+        album.angle = 0;
+        album.screenCenter(Y);
 
         // Load the current selected song.
         new Future(() -> 
@@ -103,8 +125,6 @@ class Freeplay extends FlxSubState
                 backgroundMus.stop();
             }
 
-            final ch = new MoonChart(songList[curSelected], 'hard', character);
-
             backgroundMus.loadEmbedded(Paths.sound('${songList[curSelected]}/$character/Inst', 'songs'), true);
             backgroundMus.play();
             backgroundMus.pitch = 0;
@@ -113,8 +133,55 @@ class Freeplay extends FlxSubState
             FlxG.sound.list.add(backgroundMus);
 
             //TODO: GET SONGS TIME SIGNATURE TO WORK!!
-            conductor.changeBpmAt(0, ch.content.meta.bpm, 4, 4);
+            conductor.changeBpmAt(0, currentMetadata.bpm, 4, 4);
         }, true);
+    }
+
+    var timer:FlxTimer;
+    var currentNumb:Int = -1;
+    public function unlockNewRank(rank:String)
+    {
+        var rankVignette = new MoonSprite().loadGraphic(Paths.image('menus/freeplay/rankVignette'));
+        rankVignette.alpha = 0.0001;
+        rankVignette.blend = ADD;
+        //bro wtf
+        rankVignette.setGraphicSize(FlxG.width, FlxG.height);
+        rankVignette.scale.set(2, 2);
+        rankVignette.screenCenter();
+        add(rankVignette);
+
+        var rankDisplay = new MoonSprite();
+        rankDisplay.frames = Paths.getSparrowAtlas('menus/freeplay/rankbadges');
+        rankDisplay.animation.addByPrefix('loss', 'LOSS rank0', 24, false);
+        rankDisplay.animation.addByPrefix('good', 'GOOD rank0', 24, false);
+        rankDisplay.animation.addByPrefix('great', 'GREAT rank0', 24, false);
+        rankDisplay.animation.addByPrefix('excellent', 'EXCELLENT rank0', 24, false);
+        rankDisplay.animation.addByPrefix('perfect', 'PERFECT rank0', 24, false);
+        rankDisplay.animation.addByPrefix('perfectGold', 'PERFECT rank GOLD0', 24, false);
+        rankDisplay.centerAnimations = true;
+        rankDisplay.alpha = 0;
+        rankDisplay.antialiasing = true;
+        add(rankDisplay);
+
+        thisDJ.canDance = false;
+
+        final rankOrder = ['loss', 'good', 'great', 'excellent', 'perfect', 'perfectGold'];
+        timer = new FlxTimer().start(0.1, function(_)
+        {
+            currentNumb++;
+            thisDJ.anim.play('rankWin', true);
+            rankVignette.alpha = 0.9;
+            FlxTween.tween(rankVignette, {alpha: 0.0001}, 0.3);
+
+            rankDisplay.alpha = 1;
+            rankDisplay.scale.set(2, 2);
+            rankDisplay.screenCenter();
+            
+            rankDisplay.playAnim(rankOrder[currentNumb], true);
+            FlxG.camera.shake(0.03, 0.2);
+            
+            if(rankOrder[currentNumb] != rank) timer.reset(0.8);
+        });
     }
 
     function updateCapsules(index:Int):Void
