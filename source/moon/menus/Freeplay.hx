@@ -1,5 +1,6 @@
 package moon.menus;
 
+import moon.menus.obj.freeplay.FreeplayRank;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import flixel.tweens.FlxTween;
@@ -87,6 +88,7 @@ class Freeplay extends FlxSubState
         add(overlay);
     }
 
+    var sexo:Int = 0;
     override public function update(elapsed:Float):Void
     {
         conductor.time = backgroundMus.time;
@@ -98,7 +100,11 @@ class Freeplay extends FlxSubState
         if (MoonInput.justPressed(UI_DOWN)) changeSelection(1);
 
         //(Debug)
-        if(FlxG.keys.justPressed.U) unlockNewRank('perfectGold');
+        if(FlxG.keys.justPressed.U)
+        {
+            unlockNewRank(rankOrder[sexo]);
+            sexo++;
+        }
 
         if (FlxG.mouse.wheel != 0)
             changeSelection(-FlxG.mouse.wheel);
@@ -147,6 +153,7 @@ class Freeplay extends FlxSubState
 
     var timer:FlxTimer;
     var currentNumb:Int = -1;
+    final rankOrder = ['loss', 'good', 'great', 'excellent', 'perfect', 'perfectGold'];
     public function unlockNewRank(rank:String)
     {
         // Current numb is for tracking the current rank in a array
@@ -159,19 +166,7 @@ class Freeplay extends FlxSubState
         FlxTween.tween(overlay, {alpha: 0.6}, 0.6);
         
         // setup ranks
-        var rankDisplay = new MoonSprite();
-        rankDisplay.frames = Paths.getSparrowAtlas('menus/freeplay/rankbadges');
-
-        rankDisplay.animation.addByPrefix('loss', 'LOSS rank0', 24, false);
-        rankDisplay.animation.addByPrefix('good', 'GOOD rank0', 24, false);
-        rankDisplay.animation.addByPrefix('great', 'GREAT rank0', 24, false);
-        rankDisplay.animation.addByPrefix('excellent', 'EXCELLENT rank0', 24, false);
-        rankDisplay.animation.addByPrefix('perfect', 'PERFECT rank0', 24, false);
-        rankDisplay.animation.addByPrefix('perfectGold', 'PERFECT rank GOLD0', 24, false);
-        
-        rankDisplay.centerAnimations = true;
-        rankDisplay.alpha = 0;
-        rankDisplay.antialiasing = true;
+        var rankDisplay = new FreeplayRank();
         add(rankDisplay);
 
         //setup the vignette
@@ -181,41 +176,62 @@ class Freeplay extends FlxSubState
         //bro wtf
         rankVignette.setGraphicSize(FlxG.width, FlxG.height);
         rankVignette.scale.set(2, 2);
+        rankVignette.updateHitbox();
         rankVignette.screenCenter();
         add(rankVignette);
 
+        // makes it so the dj doesn't dance while we're on the rank display stuff.
         thisDJ.canDance = false;
 
-        final rankOrder = ['loss', 'good', 'great', 'excellent', 'perfect', 'perfectGold'];
         timer = new FlxTimer().start(0.1, function(_)
         {
             currentNumb++;
+
+            // play the dj anim based on current rank
             thisDJ.anim.play((rank != 'loss') ? 'rankWin' : 'rankLoss', true);
+
             rankVignette.alpha = 1;
+            
+            // update rank display size
+            rankDisplay.scale.set(2, 2);
+            rankDisplay.updateHitbox();
+            rankDisplay.screenCenter(); // and also center lol
+            rankDisplay.playRank(rankOrder[currentNumb], true);
+            
+            // tween the camera zoom cause its nice, and shake it a lil is nice too
+            FlxTween.tween(FlxG.camera, {zoom: FlxG.camera.zoom + 0.1}, 0.4, {ease: FlxEase.backOut});
+            FlxG.camera.shake(0.017, 0.2);
+
             FlxTween.tween(rankVignette, {alpha: 0.0001}, 0.4);
 
-            rankDisplay.alpha = 1;
-            rankDisplay.scale.set(2, 2);
-            rankDisplay.screenCenter();
-            
-            rankDisplay.playAnim(rankOrder[currentNumb], true);
-            FlxG.camera.shake(0.03, 0.2);
-
+            // play the current rank sfx thing
             Paths.playSFX('${rankOrder[currentNumb]}', 'menus/freeplay/ranks');
+
+            // shake em a lil
+            for(i in 0...capsules.members.length)
+                capsules.members[i].shakeEffect(7);
             
+            //reset the timer if it isn't the supposed rank
             if(rankOrder[currentNumb] != rank) timer.reset(0.6);
-            else
+            else // proceed to finish the anims and allow player to move (which is a currently todo)
             {
                 FlxTween.tween(overlay, {alpha: 0}, 1, {startDelay: 0.5});
                 new FlxTimer().start((rank != 'loss') ? 1.3 : 0.7, function(_)
                 {
+                    // reveal thing
                     final curCapsule = capsules.members[curSelected];
                     Paths.playSFX('${rank}Reveal', 'menus/freeplay/ranks');
-
+                    
                     FlxTween.tween(this, {songVolume: 1}, 1);
-                    FlxTween.tween(rankDisplay, {"scale.x": 1, "scale.y": 1, x: curCapsule.x + 400, y: curCapsule.y + 25}, 0.5, 
+                    FlxTween.tween(FlxG.camera, {zoom: 1}, 1, {ease: FlxEase.backInOut});
+                    FlxTween.tween(rankDisplay, {"scale.x": 1, "scale.y": 1, x: curCapsule.x + 400, y: curCapsule.y + 40}, 0.5, 
                     {ease: FlxEase.backIn, onComplete: function(_)
                     {
+                        for(i in 0...capsules.members.length)
+                            capsules.members[i].shakeEffect(16);
+
+                        curCapsule.setRank(rank, true);
+
                         rankDisplay.destroy();
                         rankVignette.destroy();
                     }});
@@ -231,9 +247,8 @@ class Freeplay extends FlxSubState
             var capsule = cast capsules.members[i];
             final offsetX = capsuleOffsetX + (capsuleSeparator * 100) / (Math.abs(i - index) + 3);
             final offsetY = capsuleOffsetY + (i - index) * 130;
-            final lerp = 0.3;
 
-            capsule.setPosition(FlxMath.lerp(capsule.x, offsetX, lerp), FlxMath.lerp(capsule.y, offsetY, lerp));
+            capsule.follower.setPosition(offsetX, offsetY);
         }
     }
 }
