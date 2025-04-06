@@ -1,5 +1,6 @@
 package moon.menus;
 
+import moon.menus.obj.freeplay.AlbumCollection;
 import moon.menus.obj.freeplay.FreeplayRank;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
@@ -26,7 +27,7 @@ class Freeplay extends FlxSubState
 {
     public static var appearType:FreeplayTransition = NONE;
 
-    public final songList = ['lit up', 'lit up', 'lit up', 'lit up', 'lit up', 'lit up', 'lit up', 'lit up', 'lit up', 'lit up', 'lit up'];
+    public final songList = ['lit up', 'test1', 'test2', 'test3', 'test4'];
     public var character:String;
 
     public var curSelected:Int = 0;
@@ -44,7 +45,7 @@ class Freeplay extends FlxSubState
 
     private var backgroundMus:MoonSound = new MoonSound();
 
-    private var album:MoonSprite;
+    private var album:AlbumCollection;
     private var overlay:MoonSprite;
 
     public function new(character:String = 'bf')
@@ -54,15 +55,19 @@ class Freeplay extends FlxSubState
         
         thisDJ = new FreeplayDJ(character);
         add(thisDJ);
+
         thisDJ.script.set('freeplayMusic', backgroundMus);
         thisDJ.script.set('freeplay', this);
 
         conductor = new Conductor(0, 4, 4);
         conductor.onBeat.add(function(beat)
         {
-            if (beat % 2 == 0 && thisDJ.canDance)
+            if ((beat % 2 == 0 || conductor.bpm < 120) && thisDJ.canDance)
                 thisDJ.anim.play("idle", true);
         });
+
+        album = new AlbumCollection(1000, FlxG.height / 2 + 50);
+        add(album);
 
         // Capsules Setup
         for(i in 0...songList.length)
@@ -78,8 +83,6 @@ class Freeplay extends FlxSubState
         }
         add(capsules);
 
-        album = new MoonSprite();
-        add(album);
         changeSelection(curSelected);
 
         overlay = new MoonSprite();
@@ -111,7 +114,11 @@ class Freeplay extends FlxSubState
 
         updateCapsules(curSelected);
 
-        if(backgroundMus != null && backgroundMus.playing) backgroundMus.volume = songVolume;
+        if(backgroundMus != null && backgroundMus.playing)
+        {
+            backgroundMus.volume = songVolume;
+            backgroundMus.pitch = FlxMath.lerp(backgroundMus.pitch, 1, 0.2);
+        }
     }
 
     function changeSelection(change:Int):Void
@@ -125,10 +132,7 @@ class Freeplay extends FlxSubState
         final ch = new MoonChart(songList[curSelected], 'hard', character);
         currentMetadata = ch.content.meta;
 
-        album.loadGraphic(Paths.image('menus/freeplay/albums/${currentMetadata.album}'));
-        album.x = (FlxG.width - album.width) - 32;
-        album.angle = 0;
-        album.screenCenter(Y);
+        album.switchToAlbum(currentMetadata.album);
 
         // Load the current selected song.
         new Future(() -> 
@@ -141,9 +145,8 @@ class Freeplay extends FlxSubState
 
             backgroundMus.loadEmbedded(Paths.sound('${songList[curSelected]}/$character/Inst', 'songs'), true);
             backgroundMus.play();
-            backgroundMus.pitch = 0;
+            backgroundMus.pitch = 0.1;
             backgroundMus.volume = songVolume;
-            backgroundMus.pitchTween(1, 1, FlxEase.quadOut);
             FlxG.sound.list.add(backgroundMus);
 
             //TODO: GET SONGS TIME SIGNATURE TO WORK!!

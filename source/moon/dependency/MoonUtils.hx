@@ -1,5 +1,5 @@
 package moon.dependency;
-
+using StringTools;
 /**
  * A class meant for utilities, there's a buncha cool helpful stuff here :3
  */
@@ -14,5 +14,15 @@ class MoonUtils
         // Repeat 2 times 'cause theres 4 more, usually for opponent.
         final directions = ['left', 'down', 'up', 'right', 'left', 'down', 'up', 'right'];
         return directions[int];
+    }
+
+    
+    public static function getArrayFromFile(path:String)
+    {
+        if (Paths.fileExists(path))
+            return Paths.getFileContent(path).split("\n").map((line) -> return line.trim());
+        else 
+            trace('File at $path not found!', "ERROR");
+        return null;
     }
 }

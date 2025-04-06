@@ -19,6 +19,11 @@ class MoonSprite extends FlxSprite
 	 */
 	public var centerAnimations:Bool = false;
 
+	/**
+	 * An ID but it uses a string instead of an int.
+	 */
+	public var strID:String;
+
 	public function new(x:Float = 0, y:Float = 0)
 	{
 		super(x, y);

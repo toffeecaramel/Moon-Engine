@@ -1,0 +1,29 @@
+{
+	"events": [],
+	"meta": {
+		"album": "luna-volume1",
+		"artist": "None :3",
+		"bpm": 155,
+		"charter": "None :T",
+		"diffRating": 6,
+		"displayName": "Darnell (Luna Mix)",
+		"generatedBy": "TOFEFEFEF",
+		"opponents": [
+			"darnell"
+		],
+		"players": [
+			"bf"
+		],
+		"preview": [
+			0,
+			0
+		],
+		"scrollSpd": 3,
+		"spectators": [
+			"gf"
+		],
+		"stage": "blegh",
+		"version": "2.2.4"
+	},
+	"notes": []
+}

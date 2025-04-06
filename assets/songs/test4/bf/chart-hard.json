@@ -1,0 +1,29 @@
+{
+	"events": [],
+	"meta": {
+		"album": "volume2",
+		"artist": "None :3",
+		"bpm": 180,
+		"charter": "None :T",
+		"diffRating": 6,
+		"displayName": "Dad Battle (Pico Mix)",
+		"generatedBy": "TOFEFEFEF",
+		"opponents": [
+			"daddyDearest"
+		],
+		"players": [
+			"bf"
+		],
+		"preview": [
+			0,
+			0
+		],
+		"scrollSpd": 3,
+		"spectators": [
+			"gf"
+		],
+		"stage": "blegh",
+		"version": "2.2.4"
+	},
+	"notes": []
+}
