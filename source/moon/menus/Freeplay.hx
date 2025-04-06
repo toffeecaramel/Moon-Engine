@@ -1,5 +1,6 @@
 package moon.menus;
 
+import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import flixel.tweens.FlxTween;
 import moon.dependency.MoonChart.MetadataStruct;
@@ -17,6 +18,7 @@ enum FreeplayTransition
 {
     FADE;
     STICKERS;
+    RANK;
     NONE;
 }
 class Freeplay extends FlxSubState
@@ -42,6 +44,7 @@ class Freeplay extends FlxSubState
     private var backgroundMus:MoonSound = new MoonSound();
 
     private var album:MoonSprite;
+    private var overlay:MoonSprite;
 
     public function new(character:String = 'bf')
     {
@@ -77,6 +80,11 @@ class Freeplay extends FlxSubState
         album = new MoonSprite();
         add(album);
         changeSelection(curSelected);
+
+        overlay = new MoonSprite();
+        overlay.makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+        overlay.alpha = 0;
+        add(overlay);
     }
 
     override public function update(elapsed:Float):Void
@@ -141,6 +149,32 @@ class Freeplay extends FlxSubState
     var currentNumb:Int = -1;
     public function unlockNewRank(rank:String)
     {
+        // Current numb is for tracking the current rank in a array
+        currentNumb = -1;
+
+        // lower the song volume cus its nicer
+        songVolume = 0.1;
+
+        // set the overlay alpha and stuff
+        FlxTween.tween(overlay, {alpha: 0.6}, 0.6);
+        
+        // setup ranks
+        var rankDisplay = new MoonSprite();
+        rankDisplay.frames = Paths.getSparrowAtlas('menus/freeplay/rankbadges');
+
+        rankDisplay.animation.addByPrefix('loss', 'LOSS rank0', 24, false);
+        rankDisplay.animation.addByPrefix('good', 'GOOD rank0', 24, false);
+        rankDisplay.animation.addByPrefix('great', 'GREAT rank0', 24, false);
+        rankDisplay.animation.addByPrefix('excellent', 'EXCELLENT rank0', 24, false);
+        rankDisplay.animation.addByPrefix('perfect', 'PERFECT rank0', 24, false);
+        rankDisplay.animation.addByPrefix('perfectGold', 'PERFECT rank GOLD0', 24, false);
+        
+        rankDisplay.centerAnimations = true;
+        rankDisplay.alpha = 0;
+        rankDisplay.antialiasing = true;
+        add(rankDisplay);
+
+        //setup the vignette
         var rankVignette = new MoonSprite().loadGraphic(Paths.image('menus/freeplay/rankVignette'));
         rankVignette.alpha = 0.0001;
         rankVignette.blend = ADD;
@@ -150,28 +184,15 @@ class Freeplay extends FlxSubState
         rankVignette.screenCenter();
         add(rankVignette);
 
-        var rankDisplay = new MoonSprite();
-        rankDisplay.frames = Paths.getSparrowAtlas('menus/freeplay/rankbadges');
-        rankDisplay.animation.addByPrefix('loss', 'LOSS rank0', 24, false);
-        rankDisplay.animation.addByPrefix('good', 'GOOD rank0', 24, false);
-        rankDisplay.animation.addByPrefix('great', 'GREAT rank0', 24, false);
-        rankDisplay.animation.addByPrefix('excellent', 'EXCELLENT rank0', 24, false);
-        rankDisplay.animation.addByPrefix('perfect', 'PERFECT rank0', 24, false);
-        rankDisplay.animation.addByPrefix('perfectGold', 'PERFECT rank GOLD0', 24, false);
-        rankDisplay.centerAnimations = true;
-        rankDisplay.alpha = 0;
-        rankDisplay.antialiasing = true;
-        add(rankDisplay);
-
         thisDJ.canDance = false;
 
         final rankOrder = ['loss', 'good', 'great', 'excellent', 'perfect', 'perfectGold'];
         timer = new FlxTimer().start(0.1, function(_)
         {
             currentNumb++;
-            thisDJ.anim.play('rankWin', true);
-            rankVignette.alpha = 0.9;
-            FlxTween.tween(rankVignette, {alpha: 0.0001}, 0.3);
+            thisDJ.anim.play((rank != 'loss') ? 'rankWin' : 'rankLoss', true);
+            rankVignette.alpha = 1;
+            FlxTween.tween(rankVignette, {alpha: 0.0001}, 0.4);
 
             rankDisplay.alpha = 1;
             rankDisplay.scale.set(2, 2);
@@ -179,8 +200,27 @@ class Freeplay extends FlxSubState
             
             rankDisplay.playAnim(rankOrder[currentNumb], true);
             FlxG.camera.shake(0.03, 0.2);
+
+            Paths.playSFX('${rankOrder[currentNumb]}', 'menus/freeplay/ranks');
             
-            if(rankOrder[currentNumb] != rank) timer.reset(0.8);
+            if(rankOrder[currentNumb] != rank) timer.reset(0.6);
+            else
+            {
+                FlxTween.tween(overlay, {alpha: 0}, 1, {startDelay: 0.5});
+                new FlxTimer().start((rank != 'loss') ? 1.3 : 0.7, function(_)
+                {
+                    final curCapsule = capsules.members[curSelected];
+                    Paths.playSFX('${rank}Reveal', 'menus/freeplay/ranks');
+
+                    FlxTween.tween(this, {songVolume: 1}, 1);
+                    FlxTween.tween(rankDisplay, {"scale.x": 1, "scale.y": 1, x: curCapsule.x + 400, y: curCapsule.y + 25}, 0.5, 
+                    {ease: FlxEase.backIn, onComplete: function(_)
+                    {
+                        rankDisplay.destroy();
+                        rankVignette.destroy();
+                    }});
+                });
+            }
         });
     }
 
