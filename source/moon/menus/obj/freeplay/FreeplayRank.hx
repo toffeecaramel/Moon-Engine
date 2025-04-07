@@ -21,7 +21,7 @@ class FreeplayRank extends FlxSpriteGroup
         rankSprite.animation.addByPrefix("perfectGold", "PERFECT rank GOLD0", 24, false);
 
         rankSprite.addOffset("loss", -3, 4);
-        rankSprite.addOffset("good", 0, 3);
+        rankSprite.addOffset("good", 0, 4);
         rankSprite.addOffset("great", 0, 3);
         rankSprite.addOffset("excellent", -2, 4);
         rankSprite.addOffset("perfect", 0, 2);

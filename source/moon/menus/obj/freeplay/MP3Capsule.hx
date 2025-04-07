@@ -103,18 +103,23 @@ class MP3Capsule extends FlxSpriteGroup
             {
                 spark.visible = true;
                 spark.playAnim('miau', true);
+                FlxG.camera.shake(0.03, 0.2);
             }
 
         rankDisplay.playRank(rank, true);
     }
 
+    private var smoothing:Float = 1;
     public function shakeEffect(intensity:Float = 30)
     {
-        new FlxTimer().start(0.03, function(_)
+        smoothing = 1;
+        new FlxTimer().start(0.015, function(_)
         {
-            follower.x = follower.x + FlxG.random.float(-5 * intensity, 5 * intensity);
-            follower.y = follower.y + FlxG.random.float(-5 * intensity, 5 * intensity);
-        }, 8);
+            final value = (intensity * 4) / (smoothing / 3);
+            follower.x += FlxG.random.float(-2 * value, 2 * value);
+            follower.y += FlxG.random.float(-2 * value, 2 * value);
+            smoothing++;
+        }, 24);
     }
 
     override public function update(elapsed)
