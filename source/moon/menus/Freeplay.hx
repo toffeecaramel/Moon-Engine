@@ -88,7 +88,7 @@ class Freeplay extends FlxSubState
             if(mainBG.script.exists('onBeat')) mainBG.script.get('onBeat')(beat);
         });
 
-        album = new AlbumCollection(1135, FlxG.height / 2 + 50);
+        album = new AlbumCollection(1150, FlxG.height / 2 + 50);
         add(album);
 
         // Capsules Setup

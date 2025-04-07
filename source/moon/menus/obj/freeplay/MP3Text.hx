@@ -123,7 +123,7 @@ class MP3Text extends FlxSpriteGroup
 
     public function initMove():Void
     {
-        if(width >= 250)
+        if(width >= 230)
         moveTimer = new FlxTimer().start(0.8, (_) -> moveTextRight());
     }
 

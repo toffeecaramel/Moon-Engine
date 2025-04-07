@@ -13,7 +13,7 @@ class AlbumCollection extends FlxSpriteGroup
     private var baseAngle:Float = 0;
     private var angleStep:Float = Math.PI / 4;
 
-    private final radiusX:Float = 65;
+    private final radiusX:Float = -65;
     private final radiusY:Float = 50;
 
     private final minScale:Float = 0.4;

@@ -36,6 +36,6 @@ class FreeplayBG extends FlxGroup
     {
         super();
         script = new MoonScript();
-        script.load(Paths.getPath('menus/freeplay/$character/BG.hx', TEXT));
+        script.load(Paths.getPath('images/menus/freeplay/$character/BG.hx', TEXT));
     }
 }
