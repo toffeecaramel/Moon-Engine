@@ -13,7 +13,7 @@ class AlbumCollection extends FlxSpriteGroup
     private var baseAngle:Float = 0;
     private var angleStep:Float = Math.PI / 4;
 
-    private final radiusX:Float = -65;
+    private final radiusX:Float = 65;
     private final radiusY:Float = 50;
 
     private final minScale:Float = 0.4;
@@ -30,12 +30,15 @@ class AlbumCollection extends FlxSpriteGroup
         for (i in 0...albumList.length)
         {
             // setup the album sproite
-            var sprite:MoonSprite = new MoonSprite();
-            sprite.loadGraphic(Paths.image("menus/freeplay/albums/" + albumList[i]));
-            sprite.updateHitbox();
-            sprite.strID = albumList[i];
-            add(sprite);
-            albumSprites.push(sprite);
+            this.recycle(MoonSprite, function():MoonSprite
+            {
+                var sprite = new MoonSprite();
+                sprite.loadGraphic(Paths.image('menus/freeplay/albums/${albumList[i]}'));
+                sprite.updateHitbox();
+                sprite.strID = albumList[i];
+                albumSprites.push(sprite);
+                return sprite;
+            });
         }
 
         // adjust angleStep to spread albums over some kindof horizontal range (like PI for semi-circle or smth)

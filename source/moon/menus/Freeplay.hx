@@ -1,5 +1,6 @@
 package moon.menus;
 
+import moon.menus.obj.freeplay.FreeplayBG;
 import moon.menus.obj.freeplay.AlbumCollection;
 import moon.menus.obj.freeplay.FreeplayRank;
 import flixel.util.FlxColor;
@@ -23,6 +24,7 @@ enum FreeplayTransition
     RANK;
     NONE;
 }
+
 class Freeplay extends FlxSubState
 {
     public static var appearType:FreeplayTransition = NONE;
@@ -40,19 +42,37 @@ class Freeplay extends FlxSubState
     public var currentMetadata:MetadataStruct; // The metadata for the current selected song.
     private var conductor:Conductor;
     
+    private var mainBG:FreeplayBG;
+    private var weekBG:MoonSprite;
     private var capsules:FlxTypedGroup<MP3Capsule> = new FlxTypedGroup<MP3Capsule>();
     public var thisDJ:FreeplayDJ;
-
-    private var backgroundMus:MoonSound = new MoonSound();
-
+    
     private var album:AlbumCollection;
     private var overlay:MoonSprite;
+    private var backgroundMus:MoonSound = new MoonSound();
 
     public function new(character:String = 'bf')
     {
         super();
         this.character = character;
+
+        mainBG = new FreeplayBG(character);
+
+        add(mainBG.behindBG);
+
+        //TODO: Week based BG.
+        //TODO: make animations for entering the freeplay
+        weekBG = new MoonSprite();
+        weekBG.loadGraphic(Paths.image('menus/freeplay/bgs/weekend1'));
+        weekBG.scale.set(1.5, 1.5);
+        weekBG.antialiasing = true;
+        weekBG.updateHitbox();
+        add(weekBG);
+
+        weekBG.x = FlxG.width - weekBG.width + 440;
         
+        add(mainBG.frontBG);
+
         thisDJ = new FreeplayDJ(character);
         add(thisDJ);
 
@@ -64,6 +84,8 @@ class Freeplay extends FlxSubState
         {
             if ((beat % 2 == 0 || conductor.bpm < 120) && thisDJ.canDance)
                 thisDJ.anim.play("idle", true);
+
+            if(mainBG.script.exists('onBeat')) mainBG.script.get('onBeat')(beat);
         });
 
         album = new AlbumCollection(1135, FlxG.height / 2 + 50);
@@ -82,13 +104,16 @@ class Freeplay extends FlxSubState
             });
         }
         add(capsules);
-
         changeSelection(curSelected);
+
+        add(mainBG.foreground);
 
         overlay = new MoonSprite();
         overlay.makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
         overlay.alpha = 0;
         add(overlay);
+
+        if(mainBG.script.exists('onCreate')) mainBG.script.call('onCreate');
     }
 
     var sexo:Int = 0;
@@ -119,6 +144,8 @@ class Freeplay extends FlxSubState
             backgroundMus.volume = songVolume;
             backgroundMus.pitch = FlxMath.lerp(backgroundMus.pitch, 1, 0.2);
         }
+
+        if(mainBG.script.exists('onUpdate')) mainBG.script.get('onUpdate')(elapsed);
     }
 
     function changeSelection(change:Int):Void

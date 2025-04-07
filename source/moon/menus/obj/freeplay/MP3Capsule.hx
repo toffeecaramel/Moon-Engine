@@ -55,10 +55,10 @@ class MP3Capsule extends FlxSpriteGroup
         capsule.centerAnimations = true;
         add(capsule);
 
-        text = new MP3Text(164, 44, meta.displayName, 32);
+        text = new MP3Text(162, 44, meta.displayName, 32);
         add(text);
 
-        icon = new PixelIcon(character);
+        icon = new PixelIcon(meta.opponents[0]);
         icon.updateHitbox();
         icon.setPosition(10, -40);
         icon.scale.x -= 0.2;

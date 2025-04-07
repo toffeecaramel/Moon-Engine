@@ -23,7 +23,7 @@ class MP3Text extends FlxSpriteGroup
     public var blurredText:FlxText;
     public var whiteText:FlxText;
     public var text(default, set):String;
-    public var clipWidth(default, set):Int = 255;
+    public var clipWidth(default, set):Int = 225;
     public var tooLong:Bool = false;
 
     private var maskShaderSongName:LeftMaskShader;
