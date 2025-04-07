@@ -42,13 +42,13 @@ class Freeplay extends FlxSubState
     public var currentMetadata:MetadataStruct; // The metadata for the current selected song.
     private var conductor:Conductor;
     
-    private var mainBG:FreeplayBG;
-    private var weekBG:MoonSprite;
-    private var capsules:FlxTypedGroup<MP3Capsule> = new FlxTypedGroup<MP3Capsule>();
+    public var mainBG:FreeplayBG;
+    public var weekBG:MoonSprite;
+    public var capsules:FlxTypedGroup<MP3Capsule> = new FlxTypedGroup<MP3Capsule>();
     public var thisDJ:FreeplayDJ;
     
-    private var album:AlbumCollection;
-    private var overlay:MoonSprite;
+    public var album:AlbumCollection;
+    public var overlay:MoonSprite;
     private var backgroundMus:MoonSound = new MoonSound();
 
     public function new(character:String = 'bf')
@@ -69,12 +69,14 @@ class Freeplay extends FlxSubState
         weekBG.updateHitbox();
         add(weekBG);
 
-        weekBG.x = FlxG.width - weekBG.width + 440;
+        weekBG.x = FlxG.width - weekBG.width + 350;
         
         add(mainBG.frontBG);
 
         thisDJ = new FreeplayDJ(character);
         add(thisDJ);
+
+        mainBG.script.set('freeplay', this);
 
         thisDJ.script.set('freeplayMusic', backgroundMus);
         thisDJ.script.set('freeplay', this);

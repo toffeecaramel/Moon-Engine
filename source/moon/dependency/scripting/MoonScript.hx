@@ -1,5 +1,6 @@
 package moon.dependency.scripting;
 
+import moon.global_obj.TextScroll;
 import openfl.display.BlendMode;
 import crowplexus.iris.Iris;
 import crowplexus.iris.IrisConfig;
@@ -21,6 +22,8 @@ class MoonScript
         "Paths" => Paths,
         "Constants" => Constants,
         "Reflect" => Reflect,
+
+        "TextScroll" => TextScroll,
 
         // Other stuff to be included.
         "FlxBackdrop" => flixel.addons.display.FlxBackdrop,

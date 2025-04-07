@@ -25,7 +25,7 @@ class FreeplayDJ extends FlxAnimate
         super();
 
         script = new MoonScript();
-        script.load(Paths.getPath('images/menus/freeplay/$character/DJ.hx', TEXT));
+        script.load(Paths.getPath('images/menus/freeplay/$character/scripts/DJ.hx', TEXT));
         script.set('dj', this);
         if(script.exists('onCreate')) script.call('onCreate');
     }
