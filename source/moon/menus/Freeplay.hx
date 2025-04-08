@@ -6,6 +6,7 @@ import moon.menus.obj.freeplay.FreeplayRank;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import flixel.tweens.FlxTween;
+import flixel.addons.effects.FlxSkewedSprite;
 import moon.dependency.MoonChart.MetadataStruct;
 import flixel.tweens.FlxEase;
 import lime.app.Future;
@@ -43,7 +44,7 @@ class Freeplay extends FlxSubState
     private var conductor:Conductor;
     
     public var mainBG:FreeplayBG;
-    public var weekBG:MoonSprite;
+    public var weekBG:FlxSkewedSprite;
     public var capsules:FlxTypedGroup<MP3Capsule> = new FlxTypedGroup<MP3Capsule>();
     public var thisDJ:FreeplayDJ;
     
@@ -60,21 +61,29 @@ class Freeplay extends FlxSubState
 
         add(mainBG.behindBG);
 
-        //TODO: Week based BG.
-        //TODO: make animations for entering the freeplay
-        weekBG = new MoonSprite();
-        weekBG.loadGraphic(Paths.image('menus/freeplay/bgs/weekend1'));
-        weekBG.scale.set(1.5, 1.5);
-        weekBG.antialiasing = true;
-        weekBG.updateHitbox();
-        add(weekBG);
-
-        weekBG.x = FlxG.width - weekBG.width + 350;
-        
-        add(mainBG.frontBG);
-
         thisDJ = new FreeplayDJ(character);
         add(thisDJ);
+
+        var behindWeekBG = new FlxSkewedSprite();
+        add(behindWeekBG);
+
+        //TODO: Week based BG.
+        //TODO: make animations for entering the freeplay
+        weekBG = new FlxSkewedSprite();
+        weekBG.loadGraphic(Paths.image('menus/freeplay/bgs/week3'));
+        weekBG.scale.set(1.4, 1.4);
+        weekBG.antialiasing = true;
+        weekBG.updateHitbox();
+        weekBG.skew.x = 5;
+        add(weekBG);
+
+        weekBG.x = FlxG.width - weekBG.width + 360;
+
+        behindWeekBG.makeGraphic(Std.int(weekBG.width), Std.int(weekBG.height), 0xFF000000);
+        behindWeekBG.setPosition(weekBG.x - 10, weekBG.y);
+        behindWeekBG.skew.x = weekBG.skew.x;
+
+        add(mainBG.frontBG);
 
         mainBG.script.set('freeplay', this);
 
@@ -222,8 +231,6 @@ class Freeplay extends FlxSubState
             // play the dj anim based on current rank
             thisDJ.anim.play((rank != 'loss') ? 'rankWin' : 'rankLoss', true);
 
-            rankVignette.alpha = 1;
-            
             // update rank display size
             rankDisplay.scale.set(2, 2);
             rankDisplay.updateHitbox();
@@ -233,7 +240,8 @@ class Freeplay extends FlxSubState
             // tween the camera zoom cause its nice, and shake it a lil is nice too
             FlxTween.tween(FlxG.camera, {zoom: FlxG.camera.zoom + 0.1}, 0.2, {ease: FlxEase.backOut});
             FlxG.camera.shake(0.017, 0.2);
-
+            
+            rankVignette.alpha = 1;
             FlxTween.tween(rankVignette, {alpha: 0.0001}, 0.27);
 
             // play the current rank sfx thing
@@ -264,8 +272,10 @@ class Freeplay extends FlxSubState
 
                         curCapsule.setRank(rank, true);
 
+                        rankVignette.alpha = 1;
+                        FlxTween.tween(rankVignette, {alpha: 0.0001}, 0.37, {ease: FlxEase.quadIn, onComplete: (_) -> rankVignette.destroy()});
+
                         rankDisplay.destroy();
-                        rankVignette.destroy();
                     }});
                 });
             }
