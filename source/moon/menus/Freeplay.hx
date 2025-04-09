@@ -52,7 +52,9 @@ class Freeplay extends FlxSubState
 
     public var album:AlbumCollection;
     public var overlay:MoonSprite;
+
     private var backgroundMus:MoonSound = new MoonSound();
+    private var scrollSnd:MoonSound = new MoonSound();
 
     public function new(character:String = 'bf')
     {
@@ -112,11 +114,15 @@ class Freeplay extends FlxSubState
 
             capsules.recycle(MP3Capsule, function():MP3Capsule
             {
-                var caps = new MP3Capsule(-600, 100 + (150 * i), character, chart.content.meta);
+                var caps = new MP3Capsule(1000, 100 + (200 * i), character, chart.content.meta);
                 return caps;
             });
         }
         add(capsules);
+
+        scrollSnd.loadEmbedded(Paths.sound('ui/scrollMenu', 'sounds'));
+        FlxG.sound.list.add(scrollSnd);
+
         changeSelection(curSelected);
 
         add(mainBG.foreground);
@@ -168,6 +174,9 @@ class Freeplay extends FlxSubState
         for (i in 0...capsules.members.length)
             capsules.members[i].selected = (i == curSelected);
 
+        scrollSnd.pitch = 1;
+        playScrollSFX();
+
         //TODO: Difficulties change and shitt
         final ch = new MoonChart(songList[curSelected], 'hard', character);
         currentMetadata = ch.content.meta;
@@ -199,12 +208,13 @@ class Freeplay extends FlxSubState
     var currentNumb:Int = -1;
     final rankOrder = ['loss', 'good', 'great', 'excellent', 'perfect', 'perfectGold'];
     
-    final baseDelay:Float = 0.02;
+    final baseDelay:Float = 0.0001;
     public function unlockNewRank(rank:String):Void
     {
         // Reset rank index and lower song volume for dramatic effect.
         currentNumb = -1;
         songVolume = 0.1;
+        scrollSnd.pitch = 0.6;
         FlxTween.tween(overlay, {alpha: 0.6}, 0.4);
         
         // Create a new rank display and vignette.
@@ -244,21 +254,19 @@ class Freeplay extends FlxSubState
             rankDisplay.updateHitbox();
             rankDisplay.screenCenter();
             rankDisplay.setRank(rankOrder[currentNumb], true);
+            rankDisplay.rankSprite.animation.curAnim.curFrame = 5; // :P
             
             // Camera ztuff
             FlxG.camera.zoom += 0.05;
-            FlxG.camera.shake(0.01, 0.2);
+            FlxG.camera.shake(0.002, 0.2);
 
-            Paths.playSFX('scrollMenu', 'ui');
-            
-            // Shake all capsules a lill
-            for (i in 0...capsules.members.length)
-                capsules.members[i].shakeEffect(7);
-            
+            scrollSnd.pitch += 0.07;
+            playScrollSFX();
+			
             loopCount++;
 
             // Increase delay gradually for the slowdown effect awerewae
-            delay = baseDelay + (0.03 * loopCount);
+            delay = baseDelay + (0.02 * loopCount);
             
             // Allow finishing only if at least minLoops are done AND the current rank equals the target,
             // or if a maximum loop count is reached
@@ -275,7 +283,6 @@ class Freeplay extends FlxSubState
 
     function finishRankUnlock(rank:String, rankDisplay:FreeplayRank, rankVignette:MoonSprite):Void
     {
-        thisDJ.anim.play((rankOrder[currentNumb] != 'loss') ? 'rankWin' : 'rankLoss', true);
         final curCapsule = capsules.members[curSelected];
 
         FlxFlicker.flicker(rankDisplay, 0.8, 0.06, true);
@@ -284,20 +291,22 @@ class Freeplay extends FlxSubState
         trail.color = rankDisplay.getRankColor();
         trail.blend = ADD;
         add(trail);
+		
+		rankDisplay.scale.set(0.2, 0.2);
+        Paths.playSFX('$rank', 'menus/freeplay/ranks');
 
         var trailShake = FlxTween.shake(trail, 0.02, 10, XY);
 
+		FlxTween.tween(rankDisplay, {"scale.x": 2, "scale.y": 2}, 0.5, {ease: FlxEase.backOut});
         FlxTween.tween(this, {songVolume: 1}, 1);
-        Paths.playSFX('$rank', 'menus/freeplay/ranks');
-
         FlxTween.tween(FlxG.camera, {zoom: FlxG.camera.zoom - 0.5}, 1, {ease: FlxEase.expoOut});
 
-        new FlxTimer().start(1.1, (_) -> Paths.playSFX('${rank}Reveal', 'menus/freeplay/ranks'));
+        new FlxTimer().start((rank != 'loss') ? 1.3 : 0.74, (_) -> Paths.playSFX('${rank}Reveal', 'menus/freeplay/ranks'));
 
         FlxTween.tween(rankDisplay, {"scale.x": 1, "scale.y": 1, x: curCapsule.x + 400, y: curCapsule.y + 40}, 0.5,
-        {ease: FlxEase.backIn, startDelay:(rank != 'loss') ? 1.3 : 0.7, onComplete: function(_):Void
+        {ease: FlxEase.backIn, startDelay: (rank != 'loss') ? 1.2 : 0.64, onComplete: function(_):Void
         {
-            FlxTween.tween(FlxG.camera, {zoom: 1}, 1, {ease: FlxEase.backInOut});
+            FlxTween.tween(FlxG.camera, {zoom: 1}, 0.8, {ease: FlxEase.expoOut});
 
             for (i in 0...capsules.members.length)
                 capsules.members[i].shakeEffect(16);
@@ -323,5 +332,11 @@ class Freeplay extends FlxSubState
 
             capsule.follower.setPosition(offsetX, offsetY);
         }
+    }
+
+    private function playScrollSFX()
+    {
+        if(scrollSnd.playing) scrollSnd.stop();
+        scrollSnd.play();
     }
 }
