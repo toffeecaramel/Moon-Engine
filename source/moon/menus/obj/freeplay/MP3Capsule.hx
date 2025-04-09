@@ -1,5 +1,8 @@
 package moon.menus.obj.freeplay;
 
+import flixel.tweens.FlxEase;
+import flixel.addons.effects.FlxTrail;
+import flixel.tweens.FlxTween;
 import flixel.FlxG;
 import flixel.util.FlxTimer;
 import flixel.math.FlxMath;
@@ -14,23 +17,52 @@ import flixel.group.FlxSpriteGroup;
  */
 class MP3Capsule extends FlxSpriteGroup
 {
+    /**
+     * The capsule sprite.
+     */
     public var capsule:MoonSprite;
-    public var text:MP3Text;
-    public var icon:PixelIcon;
-    public var rankDisplay:FreeplayRank;
 
+    /**
+     * The text displayed with the song name.
+     */
+    public var text:MP3Text;
+
+    /**
+     * The icon displayed on the left of the capsule.
+     */
+    public var icon:PixelIcon;
+    
+    //TODO: Once implemented, get song's rank.
+    /**
+     * The rank displayed (if there's any).
+     */
+    public var rankDisplay:FreeplayRank;
+    
+    /**
+     * The song's metadata, used for getting song's display name and other stuff.
+     */
+    public var meta:MetadataStruct;
+
+    /**
+     * The sparks that spawns when a new rank appears.
+     */
     private var sparks:Array<MoonSprite> = [];
 
+    /**
+     * Whether is this capsule selected or not.
+     */
     public var selected(default, set):Bool = false;
 
-    public var meta:MetadataStruct;
+    /**
+     * The rank for this Capsule.
+     */
+    public var rank:String;
 
     /**
      * Used for setting the mp3 position.
      * If you want to change this MP3's position on screen, change this follower position instead.
      */
     public var follower:FlxObject = new FlxObject();
-
 
     /**
      * Creates a MP3 Capsule.
@@ -98,6 +130,7 @@ class MP3Capsule extends FlxSpriteGroup
      */
     public function setRank(rank:String, animated:Bool = false)
     {
+        this.rank = rank;
         if(animated)
             for (spark in sparks)
             {
@@ -106,7 +139,30 @@ class MP3Capsule extends FlxSpriteGroup
                 FlxG.camera.shake(0.03, 0.2);
             }
 
-        rankDisplay.playRank(rank, true);
+        rankDisplay.setRank(rank, true);
+
+        if(rank != 'loss') doImpact();
+    }
+
+    public function doImpact()
+    {
+        var impact = new MoonSprite();
+        impact.frames = capsule.frames;
+        impact.frame = capsule.frame;
+        impact.scale.set(0.8, 0.8);
+        impact.alpha = 0.0001;
+        add(impact);
+        FlxTween.tween(impact.scale, {x: 2.5, y: 2.5}, 0.5);
+
+        var trail = new FlxTrail(impact, null, 18, 2, 0.01, 0.069); //of course its 0.069
+        trail.color = rankDisplay.getRankColor();
+        trail.blend = ADD;
+        add(trail);
+
+        FlxTween.tween(trail, {alpha: 0}, 0.7, {ease: FlxEase.quadOut, onComplete: function(_) {
+            trail.kill();
+            impact.kill();
+        }});
     }
 
     private var smoothing:Float = 1;

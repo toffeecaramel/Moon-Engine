@@ -1,11 +1,13 @@
 package moon.menus.obj.freeplay;
 
+import flixel.util.FlxColor;
 import flixel.group.FlxSpriteGroup;
 import moon.backend.Paths;
 
 class FreeplayRank extends FlxSpriteGroup
 {
     public var rankSprite:MoonSprite;
+    public var rank:String;
     
     public function new(?x:Float = 410, ?y:Float = 42)
     {
@@ -33,10 +35,26 @@ class FreeplayRank extends FlxSpriteGroup
 
         add(rankSprite);
     }
-    
-    public function playRank(animName:String, force:Bool = false):Void
+
+    public function getRankColor():FlxColor
     {
-        rankSprite.playAnim(animName, force);
+        switch (rank)
+        {
+            case 'loss': return 0xFF6044FF;
+            case 'good': return 0xFFEF8764;
+            case 'great' :return 0xFFEAF6FF;
+            case 'excellent': return 0xFFFDCB42;
+            case 'perfect': return 0xFFFF58B4;
+            case 'perfectGold': return 0xFFFFB619;
+        }
+
+        return FlxColor.WHITE; //little handler :T
+    }
+    
+    public function setRank(rank:String, force:Bool = false):Void
+    {
+        this.rank = rank;
+        rankSprite.playAnim(rank, force);
         rankSprite.visible = true;
     }
 }
