@@ -1,4 +1,4 @@
-package;
+package moon;
 
 import moon.menus.Freeplay;
 import moon.game.*;

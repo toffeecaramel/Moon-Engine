@@ -84,22 +84,25 @@ class MoonInput
 
     private static function checkBind(rawBind:MoonKeys, inputState:FlxInputState):Bool
     {
-        final bind = Std.string(rawBind);
-        if(!binds.exists(bind))
-            return false;
+        if(Global.allowInputs)
+        {
+            final bind = Std.string(rawBind);
+            if(!binds.exists(bind))
+                return false;
 
-        // for keyboards
-        final thisBind:Array<FlxKey> = cast binds.get(bind)[0];
-        for(key in thisBind)
-            if(FlxG.keys.checkStatus(key, inputState))
-                return true;
-
-        // for controllers
-        final thisControllerBind:Array<FlxPad> = cast binds.get(bind)[1];
-        if(FlxG.gamepads.lastActive != null)
-            for (key in thisControllerBind)
-                if(FlxG.gamepads.lastActive.checkStatus(key, inputState))
+            // for keyboards
+            final thisBind:Array<FlxKey> = cast binds.get(bind)[0];
+            for(key in thisBind)
+                if(FlxG.keys.checkStatus(key, inputState))
                     return true;
+
+            // for controllers
+            final thisControllerBind:Array<FlxPad> = cast binds.get(bind)[1];
+            if(FlxG.gamepads.lastActive != null)
+                for (key in thisControllerBind)
+                    if(FlxG.gamepads.lastActive.checkStatus(key, inputState))
+                        return true;
+        }
 
         return false;
     }

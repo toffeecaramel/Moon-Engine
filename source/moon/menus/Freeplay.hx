@@ -211,6 +211,7 @@ class Freeplay extends FlxSubState
     {
         var delay:Float = 0.05;
 
+        Global.allowInputs = false; //Disable inputs.
         songVolume = 0.1;
         scrollSnd.pitch = 0.6;
         FlxTween.tween(overlay, {alpha: 0.6}, 0.4);
@@ -313,6 +314,7 @@ class Freeplay extends FlxSubState
                 trailShake.cancel();
                 rankDisplay.destroy();
                 trail.kill();
+                Global.allowInputs = true; //Then allow inputs back.
             }
         });
         
