@@ -28,6 +28,7 @@ enum FreeplayTransition
     NONE;
 }
 
+//TODO: Doccument freeplay.
 class Freeplay extends FlxSubState
 {
     public static var appearType:FreeplayTransition = NONE;
@@ -42,7 +43,7 @@ class Freeplay extends FlxSubState
     private final capsuleOffsetY:Float = 310;
     private final capsuleSeparator:Float = 7;
 
-    public var currentMetadata:MetadataStruct; // The metadata for the current selected song.
+    public var currentMetadata:MetadataStruct;
     private var conductor:Conductor;
 
     public var mainBG:FreeplayBG;
@@ -135,6 +136,7 @@ class Freeplay extends FlxSubState
         if(mainBG.script.exists('onCreate')) mainBG.script.call('onCreate');
     }
 
+    var sexo:Int = 0;
     override public function update(elapsed:Float):Void
     {
         conductor.time = backgroundMus.time;
@@ -148,9 +150,8 @@ class Freeplay extends FlxSubState
         //(Debug)
         if(FlxG.keys.justPressed.U)
         {
-            final rando = rankOrder[FlxG.random.int(0, rankOrder.length-1)];
-            trace(rando);
-            unlockNewRank(rando);
+            unlockNewRank(rankOrder[sexo]);
+            sexo++;
         }
 
         if (FlxG.mouse.wheel != 0)
@@ -197,30 +198,27 @@ class Freeplay extends FlxSubState
             backgroundMus.pitch = 0.1;
             backgroundMus.volume = songVolume;
             FlxG.sound.list.add(backgroundMus);
-
+            
             //TODO: GET SONGS TIME SIGNATURE TO WORK!!
             conductor.changeBpmAt(0, currentMetadata.bpm, 4, 4);
         }, true);
     }
-
-    var trail:FlxTrail;
-    var timer:FlxTimer;
-    var currentNumb:Int = -1;
-    final rankOrder = ['loss', 'good', 'great', 'excellent', 'perfect', 'perfectGold'];
     
-    final baseDelay:Float = 0.0001;
+    var timer:FlxTimer;
+    var currentNumb:Int = 0;
+    final rankOrder = ['loss', 'good', 'great', 'excellent', 'perfect', 'perfectGold'];
     public function unlockNewRank(rank:String):Void
     {
-        // Reset rank index and lower song volume for dramatic effect.
-        currentNumb = -1;
+        var delay:Float = 0.05;
+
         songVolume = 0.1;
         scrollSnd.pitch = 0.6;
         FlxTween.tween(overlay, {alpha: 0.6}, 0.4);
-        
+
         // Create a new rank display and vignette.
         var rankDisplay:FreeplayRank = new FreeplayRank();
         add(rankDisplay);
-        
+
         var rankVignette:MoonSprite = new MoonSprite();
         rankVignette.loadGraphic(Paths.image('menus/freeplay/rankVignette'));
         rankVignette.alpha = 0.0001;
@@ -230,97 +228,97 @@ class Freeplay extends FlxSubState
         rankVignette.updateHitbox();
         rankVignette.screenCenter();
         add(rankVignette);
-        
-        // Prevent the DJ from dancing during the rank reveal.
+
+        // Prevent the DJ from dancing during the rank reveal
         thisDJ.canDance = false;
         
-        var loopCount:Int = 0;
-        var delay:Float = baseDelay;
+        final targetIndex = rankOrder.indexOf(rank);
+        currentNumb = 0; // always start at "loss"
         
-        // Minimum loops, at least two full cycles of rankOrder
-        var minLoops:Int = rankOrder.length * 2;
-        
-        // Create the timer thing
-        timer = new FlxTimer().start(delay, function(_)
+        // Start the timer loop
+        timer = new FlxTimer();
+        timer.start(delay, function(_)
         {
-            currentNumb++;
-            currentNumb %= rankOrder.length;
-            
-            // Play the DJ anims
-            thisDJ.anim.play((rankOrder[currentNumb] != 'loss') ? 'rankWin' : 'rankLoss', true);
-            
-            // Update the rank display
+            // Update the rank display with current rank.
             rankDisplay.scale.set(2, 2);
             rankDisplay.updateHitbox();
             rankDisplay.screenCenter();
             rankDisplay.setRank(rankOrder[currentNumb], true);
-            rankDisplay.rankSprite.animation.curAnim.curFrame = 5; // :P
+            
+            thisDJ.anim.play((rankOrder[currentNumb] != 'loss') ? 'rankWin' : 'rankLoss', true);
+            //Paths.playSFX('${rankOrder[currentNumb]}', 'menus/freeplay/ranks');
+            
+            // Slightly shake capsules.
+            for (i in 0...capsules.members.length)
+                capsules.members[i].shakeEffect(3);
             
             // Camera ztuff
-            FlxG.camera.zoom += 0.05;
+            FlxG.camera.zoom += 0.04;
             FlxG.camera.shake(0.002, 0.2);
 
-            scrollSnd.pitch += 0.07;
+            //scroll snd bc yeah its cool
+            scrollSnd.pitch += 0.2;
             playScrollSFX();
-			
-            loopCount++;
-
-            // Increase delay gradually for the slowdown effect awerewae
-            delay = baseDelay + (0.02 * loopCount);
             
-            // Allow finishing only if at least minLoops are done AND the current rank equals the target,
-            // or if a maximum loop count is reached
-            // this shit took me too long for some weird reasun
-            if ((loopCount >= minLoops && rankOrder[currentNumb] == rank) || loopCount > 20)
+            // If we have not yet reached the target rank, increment and reset the timer wrawrwaf
+            if (currentNumb < targetIndex)
+            {
+                currentNumb++;
+                delay += 0.1;
+                timer.reset(delay);
+            }
+            else
             {
                 timer.cancel();
                 finishRankUnlock(rank, rankDisplay, rankVignette);
             }
-            else
-                timer.reset(delay);
         });
     }
 
     function finishRankUnlock(rank:String, rankDisplay:FreeplayRank, rankVignette:MoonSprite):Void
     {
-        final curCapsule = capsules.members[curSelected];
-
+        final curCapsule:MP3Capsule = capsules.members[curSelected];
         FlxFlicker.flicker(rankDisplay, 0.8, 0.06, true);
 
-        trail = new FlxTrail(rankDisplay.rankSprite, null, 18, 2, 0.5, 0.069); //of course its 0.069
+        var trail = new FlxTrail(rankDisplay.rankSprite, null, 18, 2, 0.5, 0.069);
         trail.color = rankDisplay.getRankColor();
         trail.blend = ADD;
         add(trail);
-		
-		rankDisplay.scale.set(0.2, 0.2);
+        
+        rankDisplay.scale.set(0.2, 0.2);
+        FlxTween.tween(rankDisplay, {"scale.x": 2, "scale.y": 2}, 0.6, {ease: FlxEase.backOut});
         Paths.playSFX('$rank', 'menus/freeplay/ranks');
-
+        
         var trailShake = FlxTween.shake(trail, 0.02, 10, XY);
 
-		FlxTween.tween(rankDisplay, {"scale.x": 2, "scale.y": 2}, 0.5, {ease: FlxEase.backOut});
-        FlxTween.tween(this, {songVolume: 1}, 1);
-        FlxTween.tween(FlxG.camera, {zoom: FlxG.camera.zoom - 0.5}, 1, {ease: FlxEase.expoOut});
-
         new FlxTimer().start((rank != 'loss') ? 1.3 : 0.74, (_) -> Paths.playSFX('${rank}Reveal', 'menus/freeplay/ranks'));
-
-        FlxTween.tween(rankDisplay, {"scale.x": 1, "scale.y": 1, x: curCapsule.x + 400, y: curCapsule.y + 40}, 0.5,
-        {ease: FlxEase.backIn, startDelay: (rank != 'loss') ? 1.2 : 0.64, onComplete: function(_):Void
+        FlxTween.tween(rankDisplay, { "scale.x": 1, "scale.y": 1, x: curCapsule.x + 400, y: curCapsule.y + 40 }, 0.5,
         {
-            FlxTween.tween(FlxG.camera, {zoom: 1}, 0.8, {ease: FlxEase.expoOut});
-
-            for (i in 0...capsules.members.length)
-                capsules.members[i].shakeEffect(16);
-            curCapsule.setRank(rank, true);
-            
-            rankVignette.alpha = 0.6;
-            FlxTween.tween(rankVignette, {alpha: 0.0001}, 0.2, {ease: FlxEase.quadIn, onComplete: (_) -> rankVignette.destroy()});
-
-            trailShake.cancel();
-            rankDisplay.destroy();
-            trail.destroy();
-        }});
-        FlxTween.tween(overlay, {alpha: 0}, 0.6, {startDelay: 0.3});
-    }
+            ease: FlxEase.backIn,
+            startDelay: (rank != 'loss') ? 1.2 : 0.64,
+            onComplete: function(_)
+            {
+                FlxTween.tween(FlxG.camera, { zoom: 1 }, 0.8, { ease: FlxEase.expoOut });
+                for (i in 0...capsules.members.length)
+                    capsules.members[i].shakeEffect(16);
+                curCapsule.setRank(rank, true);
+                
+                rankVignette.alpha = 0.6;
+                FlxTween.tween(rankVignette, { alpha: 0.0001 }, 0.2, {
+                    ease: FlxEase.quadIn,
+                    onComplete: function(_:FlxTween):Void {
+                        rankVignette.destroy();
+                    }
+                });
+                trailShake.cancel();
+                rankDisplay.destroy();
+                trail.kill();
+            }
+        });
+        
+        FlxTween.tween(this, { songVolume: 1 }, 1);
+        FlxTween.tween(overlay, { alpha: 0 }, 0.6, { startDelay: 0.3 });
+    }   
 
     function updateCapsules(index:Int):Void
     {
