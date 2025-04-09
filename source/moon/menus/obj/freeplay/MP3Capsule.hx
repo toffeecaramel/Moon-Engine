@@ -92,9 +92,8 @@ class MP3Capsule extends FlxSpriteGroup
 
         icon = new PixelIcon(meta.opponents[0]);
         icon.updateHitbox();
-        icon.setPosition(10, -40);
-        icon.scale.x -= 0.2;
-        icon.scale.y -= 0.2;
+        icon.setPosition(50, -20);
+        icon.scale.set(2.3, 2.3);
         add(icon);
 
         rankDisplay = new FreeplayRank();
@@ -142,6 +141,12 @@ class MP3Capsule extends FlxSpriteGroup
         rankDisplay.setRank(rank, true);
 
         if(rank != 'loss') doImpact();
+    }
+
+    public function confirm()
+    {
+        icon.playAnim('select', true);
+        text.flickerText();    
     }
 
     public function doImpact()

@@ -121,7 +121,7 @@ class PauseScreen extends FlxSubState
 
         slideOutItems.push(displayIcon);
         
-        displayIcon.setPosition((metadata.x - displayIcon.width) + 6, (metadata.y - (displayIcon.height / 2)) + 12);
+        displayIcon.setPosition((metadata.x - displayIcon.width) - 16, (metadata.y - (displayIcon.height / 2)) + 16);
 
         final wawa = [metadata, displayIcon, cmetadata];
         for(i in 0...wawa.length)
@@ -255,6 +255,8 @@ class PauseScreen extends FlxSubState
     {
         pf.playback.state = PLAY;
         for(member in pf.playback.members) pf.playback.resync(member);
+
+        Paths.clearUnusedMemory();
         super.close();
     }
 

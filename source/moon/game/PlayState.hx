@@ -45,6 +45,19 @@ class PlayState extends FlxState
 
 	// Events (a array containing every MoonEvent, not the raw events from chart.)
 	public static var events:Array<MoonEvent> = [];
+
+	public var song:String;
+	public var difficulty:String;
+	public var mix:String;
+
+	public function new(song, difficulty, mix)
+	{
+		super();
+		this.song = song;
+		this.difficulty = difficulty;
+		this.mix = mix;
+		Global.allowInputs = true;
+	}
 	
 	override public function create()
 	{
@@ -68,7 +81,7 @@ class PlayState extends FlxState
 		camGAME.focusOn(camFollower.getPosition());
 		
 		//< -- PLAYFIELD SETUP -- >//
-		playField = new PlayField('lit up', 'hard', 'bf');
+		playField = new PlayField(song, difficulty, mix);
 		playField.camera = camHUD;
 		playField.conductor.onBeat.add(beatHit);
 		add(playField);

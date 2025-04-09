@@ -2,11 +2,12 @@ package moon.global_obj;
 
 class PixelIcon extends MoonSprite
 {
-    public var icon(default, set):String;
-    public function new(chara:String = 'dummy')
+    public var character(default, set):String;
+
+    public function new(?x:Float = 0, ?y:Float = 0, chara:String = 'dummy')
     {
-        super();
-        this.icon = chara;   
+        super(x, y);
+        this.character = chara;
     }
 
     override public function update(elapsed:Float)
@@ -15,31 +16,23 @@ class PixelIcon extends MoonSprite
     }
     
     var data:Dynamic;
-    @:noCompletion public function set_icon(iconName:String):String
+    @:noCompletion public function set_character(iconName:String):String
     {
-        final actualIcon = (Paths.fileExists('assets/images/ingame/characters/$iconName/icon-ui.png')) ? iconName : 'dummy';
-        this.icon = actualIcon;
+        this.origin.x = 100;
+        this.scale.set(2, 2);
 
-        data = Paths.JSON('ingame/characters/$actualIcon/icon-ui_data');
+        final actualIcon = (Paths.fileExists('assets/images/ingame/characters/$iconName/ui_icon.png')) ? iconName : 'dummy';
+        this.character = actualIcon;
 
-        this.loadGraphic(Paths.image('ingame/characters/$actualIcon/icon-ui'), true, data.frameSize, data.frameSize);
-        this.animation.add('idle', [0], 8, false);
-        this.animation.add('select', data.frames, 12, false);
-        this.antialiasing = data.antialiasing ?? false;
-        this.scale.set(data.scale ?? 1, data.scale ?? 1);
-        
-        updateHitbox();
-        
+        this.frames = Paths.getSparrowAtlas('ingame/characters/$actualIcon/ui_icon');
+        this.centerAnimations = true;
+        this.animation.addByPrefix('idle', 'idle0', 12, true);
+        this.animation.addByPrefix('select', 'confirm0', 12, false);
+        this.animation.addByPrefix('select-hold', 'confirm-hold0', 12, true);
+  
+        this.animation.onFinish.add((name) -> this.playAnim((name == 'select') ? 'select-hold' : null));
         this.playAnim('idle');
 
-        return this.icon;
-    }
-
-    override public function setPosition(x:Float = 0, y:Float = 0)
-    {
-        super.setPosition(x, y);
-
-        this.x += data.offsets[0] ?? 0;
-        this.y += data.offsets[1] ?? 0;
+        return this.character;
     }
 }

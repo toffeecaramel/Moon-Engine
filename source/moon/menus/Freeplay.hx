@@ -1,5 +1,6 @@
 package moon.menus;
 
+import moon.game.PlayState;
 import flixel.effects.FlxFlicker;
 import flixel.addons.effects.FlxTrail;
 import moon.menus.obj.freeplay.FreeplayBG;
@@ -43,6 +44,7 @@ class Freeplay extends FlxSubState
     private final capsuleOffsetY:Float = 310;
     private final capsuleSeparator:Float = 7;
 
+    public var currentCapsule:MP3Capsule;
     public var currentMetadata:MetadataStruct;
     private var conductor:Conductor;
 
@@ -147,15 +149,35 @@ class Freeplay extends FlxSubState
         if (MoonInput.justPressed(UI_UP)) changeSelection(-1);
         if (MoonInput.justPressed(UI_DOWN)) changeSelection(1);
 
+        if (MoonInput.justPressed(ACCEPT))
+        {
+            Global.allowInputs = false;
+            Paths.playSFX('confirmMenu', 'ui');
+
+            thisDJ.canDance = false;
+            thisDJ.anim.play("confirm", true);
+            if(mainBG.script.exists('onConfirm')) mainBG.script.call('onConfirm');
+
+            currentCapsule.confirm();
+
+            //TODO: difficulty support awawa!!
+            //TODO: loading screen
+            new FlxTimer().start(1.2, (_) -> FlxG.switchState(() -> 
+            {
+                Paths.clearStoredMemory();
+                new PlayState(songList[curSelected], 'hard', character);
+            }));
+        }
+
+        if (FlxG.mouse.wheel != 0 && Global.allowInputs)
+            changeSelection(-FlxG.mouse.wheel);
+
         //(Debug)
         if(FlxG.keys.justPressed.U)
         {
             unlockNewRank(rankOrder[sexo]);
             sexo++;
         }
-
-        if (FlxG.mouse.wheel != 0)
-            changeSelection(-FlxG.mouse.wheel);
 
         updateCapsules(curSelected);
 
@@ -168,12 +190,26 @@ class Freeplay extends FlxSubState
         if(mainBG.script.exists('onUpdate')) mainBG.script.get('onUpdate')(elapsed);
     }
 
+    function updateCapsules(index:Int):Void
+    {
+        for (i in 0...capsules.length)
+        {
+            var capsule = cast capsules.members[i];
+            final offsetX = capsuleOffsetX + (capsuleSeparator * 100) / (Math.abs(i - index) + 3);
+            final offsetY = capsuleOffsetY + (i - index) * 130;
+
+            capsule.follower.setPosition(offsetX, offsetY);
+        }
+    }
+
     function changeSelection(change:Int):Void
     {
         curSelected = FlxMath.wrap(curSelected + change, 0, capsules.length - 1);
 
         for (i in 0...capsules.members.length)
             capsules.members[i].selected = (i == curSelected);
+
+        currentCapsule = capsules.members[curSelected];
 
         scrollSnd.pitch = 1;
         playScrollSFX();
@@ -251,7 +287,7 @@ class Freeplay extends FlxSubState
             
             // Slightly shake capsules.
             for (i in 0...capsules.members.length)
-                capsules.members[i].shakeEffect(3);
+                capsules.members[i].shakeEffect(2);
             
             // Camera ztuff
             FlxG.camera.zoom += 0.04;
@@ -278,7 +314,6 @@ class Freeplay extends FlxSubState
 
     function finishRankUnlock(rank:String, rankDisplay:FreeplayRank, rankVignette:MoonSprite):Void
     {
-        final curCapsule:MP3Capsule = capsules.members[curSelected];
         FlxFlicker.flicker(rankDisplay, 0.8, 0.06, true);
 
         var trail = new FlxTrail(rankDisplay.rankSprite, null, 18, 2, 0.5, 0.069);
@@ -293,7 +328,7 @@ class Freeplay extends FlxSubState
         var trailShake = FlxTween.shake(trail, 0.02, 10, XY);
 
         new FlxTimer().start((rank != 'loss') ? 1.3 : 0.74, (_) -> Paths.playSFX('${rank}Reveal', 'menus/freeplay/ranks'));
-        FlxTween.tween(rankDisplay, { "scale.x": 1, "scale.y": 1, x: curCapsule.x + 400, y: curCapsule.y + 40 }, 0.5,
+        FlxTween.tween(rankDisplay, { "scale.x": 1, "scale.y": 1, x: currentCapsule.x + 400, y: currentCapsule.y + 40 }, 0.5,
         {
             ease: FlxEase.backIn,
             startDelay: (rank != 'loss') ? 1.2 : 0.64,
@@ -301,16 +336,12 @@ class Freeplay extends FlxSubState
             {
                 FlxTween.tween(FlxG.camera, { zoom: 1 }, 0.8, { ease: FlxEase.expoOut });
                 for (i in 0...capsules.members.length)
-                    capsules.members[i].shakeEffect(16);
-                curCapsule.setRank(rank, true);
+                    capsules.members[i].shakeEffect(24);
+                currentCapsule.setRank(rank, true);
                 
                 rankVignette.alpha = 0.6;
-                FlxTween.tween(rankVignette, { alpha: 0.0001 }, 0.2, {
-                    ease: FlxEase.quadIn,
-                    onComplete: function(_:FlxTween):Void {
-                        rankVignette.destroy();
-                    }
-                });
+                FlxTween.tween(rankVignette, { alpha: 0.0001 }, 0.2,
+                {ease: FlxEase.quadIn, onComplete: (_) -> rankVignette.destroy()});
                 trailShake.cancel();
                 rankDisplay.destroy();
                 trail.kill();
@@ -320,18 +351,6 @@ class Freeplay extends FlxSubState
         
         FlxTween.tween(this, { songVolume: 1 }, 1);
         FlxTween.tween(overlay, { alpha: 0 }, 0.6, { startDelay: 0.3 });
-    }   
-
-    function updateCapsules(index:Int):Void
-    {
-        for (i in 0...capsules.length)
-        {
-            var capsule = cast capsules.members[i];
-            final offsetX = capsuleOffsetX + (capsuleSeparator * 100) / (Math.abs(i - index) + 3);
-            final offsetY = capsuleOffsetY + (i - index) * 130;
-
-            capsule.follower.setPosition(offsetX, offsetY);
-        }
     }
 
     private function playScrollSFX()
