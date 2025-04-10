@@ -44,8 +44,8 @@ haxelib install hxcpp-debugger
 haxelib install hxcpp-debug-server 1.2.4
 haxelib set hxcpp-debug-server 1.2.4
 
-haxelib install moonchart 0.4.0
-haxelib set moonchart 0.4.0
+haxelib install moonchart 0.5.0
+haxelib set moonchart 0.5.0
 
 haxelib install hscript-iris
 
