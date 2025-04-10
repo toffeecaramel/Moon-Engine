@@ -4,7 +4,6 @@ import haxe.Json;
 import flixel.FlxG;
 import flixel.graphics.FlxGraphic;
 import flixel.graphics.frames.FlxAtlasFrames;
-import lime.utils.Assets;
 import openfl.display.BitmapData;
 import openfl.display3D.textures.Texture;
 import openfl.media.Sound;
@@ -20,6 +19,9 @@ import sys.io.File;
 
 using StringTools;
 
+/**
+ * An typedef for animation data, useful for spritesheets with jsons.
+ */
 typedef AnimationData = {
     var name:String;
     var prefix:String;
@@ -30,35 +32,71 @@ typedef AnimationData = {
     var ?looped:Bool;
 }
 
+@:publicFields
+
+/**
+ * A class containing mostly utilities for saving/loading files from specific types.
+ */
 class Paths
 {
     /**
-     * An map containing all the currently tracked assets.
+     * Map for cached graphics
      */
-    public static var currentTrackedAssets:Map<String, FlxGraphic> = [];
+    static var currentTrackedAssets:Map<String, FlxGraphic> = [];
 
     /**
-     * An map containing all the currently tracked textures.
+     * Map for cached GPU textures
      */
-    public static var currentTrackedTextures:Map<String, Texture> = [];
+    static var currentTrackedTextures:Map<String, Texture> = [];
 
     /**
-     * An map containing all the currently tracked sounds.
+     * Map for cached sounds
      */
-    public static var currentTrackedSounds:Map<String, Sound> = [];
+    static var currentTrackedSounds:Map<String, Sound> = [];
 
     /**
-     * An array containing all the locally tracked assets.
+     * List of asset keys currently in use
      */
-    public static var localTrackedAssets:Array<String> = [];
+    static var localTrackedAssets:Array<String> = [];
 
     /**
-     * On upon calling, this function will cache a bitmap in memory.
-     * @param file file path
-     * @param bitmap bitmap data
-     * @param allowGPU whether or not to load on GPU.
+     * Reference counts for the assets.
      */
-    static public function cacheBitmap(file:String, ?bitmap:BitmapData = null, ?allowGPU:Bool = true)
+    static var assetRefCounts:Map<String, Int> = [];
+
+    // ----------------------------
+    // Caching & Reference Counting
+    // ----------------------------
+
+    /**
+     * Increases the reference count for an asset.
+     * @param key The asset key.
+     */
+    static function addAssetRef(key:String):Void
+    {
+        if (assetRefCounts.exists(key))
+            assetRefCounts.set(key, assetRefCounts.get(key) + 1);
+        else
+            assetRefCounts.set(key, 1);
+    }
+
+    /**
+     * Decreases the reference count for an asset.
+     * @param key The asset key.
+     */
+    static function removeAssetRef(key:String):Void
+    {
+        if (assetRefCounts.exists(key))
+        {
+            var count = assetRefCounts.get(key) - 1;
+            (count <= 0) ? assetRefCounts.remove(key) : assetRefCounts.set(key, count);
+        }
+    }
+
+    /**
+     * Cache a bitmap to a FlxGraphic with optional texture compression.
+     */
+    static function cacheBitmap(file:String, ?bitmap:BitmapData = null, ?allowGPU:Bool = true)
     {
         if (bitmap == null)
         {
@@ -70,35 +108,44 @@ class Paths
                 bitmap = OpenFlAssets.getBitmapData(file);
                 #end
             }
-
             if(bitmap == null) return null;
         }
 
+        // Mark asset usage and increase reference count
         localTrackedAssets.push(file);
+        addAssetRef(file);
+
         if (allowGPU)
         {
-            var texture:RectangleTexture = FlxG.stage.context3D.createRectangleTexture(bitmap.width, bitmap.height, BGRA, true);
+            // Create a compressed texture on 'gpu'
+            final texture:RectangleTexture = FlxG.stage.context3D.createRectangleTexture(bitmap.width, bitmap.height, BGRA, true);
             texture.uploadFromBitmapData(bitmap);
             bitmap.image.data = null;
             bitmap.dispose();
             bitmap.disposeImage();
+            // Recreate the bitmap from the texture to use as a graphic source
             bitmap = BitmapData.fromTexture(texture);
         }
 
-        var newGraphic:FlxGraphic = FlxGraphic.fromBitmapData(bitmap, false, file);
+        final newGraphic = FlxGraphic.fromBitmapData(bitmap, false, file);
         newGraphic.persist = true;
         newGraphic.destroyOnNoUse = false;
         currentTrackedAssets.set(file, newGraphic);
-
         return newGraphic;
     }
 
-    public static function returnGraphic(key:String, ?from:String = 'images', ?library:String, ?textureCompression:Bool = false)
+    /**
+     * Returns a FlxGraphic by key.
+     * If not already loaded, loads it (with optional texture compression).
+     */
+    static function returnGraphic(key:String, ?from:String = 'images', ?library:String, ?textureCompression:Bool = false)
     {
         var path = getPath('$from/$key.png', IMAGE, library);
-
         if (fileExists(path, IMAGE))
         {
+            // Increase reference count on usage.
+            addAssetRef(key);
+
             if (!currentTrackedAssets.exists(key))
             {
                 var bitmap = BitmapData.fromFile(path);
@@ -110,14 +157,15 @@ class Paths
                     currentTrackedTextures.set(key, texture);
                     bitmap.dispose();
                     bitmap.disposeImage();
-                    bitmap = null;
-                    newGraphic = FlxGraphic.fromBitmapData(BitmapData.fromTexture(texture), false, key, false);
+                    bitmap = BitmapData.fromTexture(texture);
+                    newGraphic = FlxGraphic.fromBitmapData(bitmap, false, key, false);
                 }
                 else
                     newGraphic = FlxGraphic.fromBitmapData(bitmap, false, key, false);
 
                 currentTrackedAssets.set(key, newGraphic);
             }
+            
             localTrackedAssets.push(key);
             return currentTrackedAssets.get(key);
         }
@@ -125,91 +173,86 @@ class Paths
         return null;
     }
 
-    inline static function getLibraryPathForce(file:String, library:String)
-        return '$library/$file';
+    // ----------------------------
+    // Other Utility Methods
+    // ----------------------------
 
-
-    // - Other utilities. - //
-
-    public static inline function spaceToDash(string:String):String
+    static inline function spaceToDash(string:String):String
         return string.replace(" ", "-");
 
-    public static inline function dashToSpace(string:String):String
+    static inline function dashToSpace(string:String):String
         return string.replace("-", " ");
 
-    public static inline function swapSpaceDash(string:String):String
+    static inline function swapSpaceDash(string:String):String
         return string.contains('-') ? dashToSpace(string) : spaceToDash(string);
 
-    // - Cleanup utilities. - //
+    // ----------------------------
+    // Cleanup Utilities
+    // ----------------------------
 
     /**
      * Clears any asset that got loaded up but went unused.
-     * @param dumpExclusions
+     * dumpExclusions: keys to ignore.
      */
-    public static function clearUnusedMemory(?dumpExclusions:Array<String> = null)
+    static function clearUnusedMemory(?dumpExclusions:Array<String> = null)
     {
         if (dumpExclusions == null)
             dumpExclusions = [];
-
         var counter:Int = 0;
-
         for (key in currentTrackedAssets.keys())
         {
-            // - Check if the asset is not locally tracked and is not excluded
+            // Check if the asset is not locally tracked, not excluded, or has a low reference count.
             if (!localTrackedAssets.contains(key) && !dumpExclusions.contains(key))
             {
+                // Optionally, you can check the assetRefCounts here:
+                if (assetRefCounts.exists(key) && assetRefCounts.get(key) > 0)
+                    continue;
+
                 var obj = currentTrackedAssets.get(key);
                 if (obj != null)
                 {
                     obj.persist = false;
                     obj.destroyOnNoUse = true;
-
-                    // - Check if the asset has a texture and dispose of it
+                    // Dispose texture if present.
                     if (currentTrackedTextures.exists(key))
                     {
                         var texture = currentTrackedTextures.get(key);
                         texture.dispose();
                         currentTrackedTextures.remove(key);
                     }
-
-                    // - Remove cached bitmap data if present
+                    // Remove from the OpenFL cache.
                     @:privateAccess
                     if (openfl.Assets.cache.hasBitmapData(key))
                     {
                         openfl.Assets.cache.removeBitmapData(key);
                         FlxG.bitmap._cache.remove(key);
                     }
-
-                    // - Destroy the graphic and remove from tracked assets
                     obj.destroy();
                     currentTrackedAssets.remove(key);
                     counter++;
                 }
             }
         }
-
         System.gc();
         trace('$counter unused assets have been cleared.', "DEBUG");
     }
 
     /**
      * Clears every asset in the game's memory.
-     * @param cleanUnused
-     * @param dumpExclusions
+     * @param cleanUnused flag for aggressive cleanup.
+     * @param dumpExclusions keys to ignore.
      */
-    public static function clearStoredMemory(?cleanUnused:Bool = false, ?dumpExclusions:Array<String> = null)
+    static function clearStoredMemory(?cleanUnused:Bool = false, ?dumpExclusions:Array<String> = null)
     {
         var counter = 0;
-
         if (dumpExclusions == null)
             dumpExclusions = [];
 
-        // - Clear all cached bitmap data not in the tracked list
+        // Clear cached bitmap data not tracked.
         @:privateAccess
         for (key in FlxG.bitmap._cache.keys())
         {
             final obj = FlxG.bitmap._cache.get(key);
-
             if (obj != null && (!currentTrackedAssets.exists(key) || !cleanUnused))
             {
                 openfl.Assets.cache.removeBitmapData(key);
@@ -219,7 +262,7 @@ class Paths
             }
         }
 
-        // - Clear all cached sounds
+        // Clear cached sounds.
         for (key in currentTrackedSounds.keys())
         {
             if ((!localTrackedAssets.contains(key) && !dumpExclusions.contains(key)) || !cleanUnused)
@@ -229,14 +272,13 @@ class Paths
                     var sound = currentTrackedSounds.get(key);
                     if (sound != null)
                         sound.close();
-
                     counter++;
                     currentTrackedSounds.remove(key);
                 }
             }
         }
 
-        // - Clear all cached textures
+        // Clear cached textures.
         for (key in currentTrackedTextures.keys())
         {
             if ((!localTrackedAssets.contains(key) && !dumpExclusions.contains(key)) || !cleanUnused)
@@ -246,14 +288,12 @@ class Paths
                     var texture = currentTrackedTextures.get(key);
                     if (texture != null)
                         texture.dispose();
-
                     counter++;
                     currentTrackedTextures.remove(key);
                 }
             }
         }
 
-        // - Clear all tracked assets if not flagged as unused
         if (!cleanUnused)
         {
             localTrackedAssets = [];
@@ -264,81 +304,71 @@ class Paths
         trace('$counter assets have been cleared.', "DEBUG");
     }
 
-    // - Path-related utilities. - //
+    // ----------------------------
+    // Path & File Utilities
+    // ----------------------------
 
     /**
-     * Helper function to check if a file exists, handling sys/non-sys differences.
-     * @param path The path to the file.
-     * @param type The AssetType (can be null if only checking for existence, but useful for consistency)
+     * Helper function to check if a file exists.
      */
-     public inline static function fileExists(path:String, ?type:AssetType):Bool
+    inline static function fileExists(path:String, ?type:AssetType):Bool
         return #if sys FileSystem.exists(path); #else return OpenFlAssets.exists(path, type); #end
 
     /**
-     * Helper function to get file content as text, handling sys/non-sys differences.
-     * @param path The path to the file.
-     * @param type The AssetType (TEXT in most cases)
-     * @return The file content.
+     * Gets file content as text.
      */
-    public inline static function getFileContent(path:String):String
+    inline static function getFileContent(path:String):String
         return #if sys File.getContent(path); #else OpenFlAssets.getText(path); #end
 
-    public inline static function saveFileContent(path:String, content:Dynamic)
+    /**
+     * Saves file content on specified path.
+     */
+    inline static function saveFileContent(path:String, content:Dynamic)
         return #if sys File.saveContent(path, content); #else throw 'File Saving is only available on Desktop.'; #end
 
-    static public function getLibraryPath(file:String, library = "preload")
+    static function getLibraryPath(file:String, library = "preload")
         return (library == "preload" || library == "default") ? getPreloadPath(file) : getLibraryPathForce(file, library);
 
-    inline static public function file(file:String, type:AssetType = TEXT, ?library:String)
-        return getPath(file, type, library);
+    inline static function getLibraryPathForce(file:String, library:String)
+        return '$library/$file';
 
     /**
-     * Returns a font file from the fonts path. (MUST INCLUDE FILE FORMAT!)
-     * @param file
+     * Returns a font file from the fonts path.
      */
-     inline static public function font(file:String):String
+    inline static function font(file:String):String
         return getPath('fonts/$file', TEXT);
 
     /**
-     * Returns a file from the data path. (MUST INCLUDE FILE FORMAT!)
-     * @param file
+     * Returns a file from the data path.
      */
-     inline static public function data(file:String):String
+    inline static function data(file:String):String
         return getPath('data/$file', TEXT);
 
     /**
      * Returns a shader (frag) file from the shaders path.
-     * @param file
      */
-    inline static public function frag(file:String)
+    inline static function frag(file:String)
         return getPath('shaders/$file.frag', TEXT);
 
     /**
-     * Returns a entire parsed JSON content from a path.
-     * @param file
-     * @param from (can be either images, data, etc.)
-     * @return (json content)
+     * Returns parsed JSON content from a given path.
      */
-    inline static public function JSON(file:String, ?from:String = "images"):Dynamic
+    inline static function JSON(file:String, ?from:String = "images"):Dynamic
     {
         final path = getPath('$from/$file.json', TEXT);
         return Json.parse(getFileContent(path));
     }
 
     /**
-     * Loads a sound from the file system dynamically.
-     * @param key The name of the sound file (without extension).
-     * @param from The subdirectory within 'assets' (e.g., 'music', 'sounds').
-     * @param library Optional library.
-     * @return The loaded Sound object, or null if loading fails.
+     * Loads a sound from the file system.
      */
-    public static function sound(key:String, ?from:String = 'music', ?library:String):Null<Sound>
+    static function sound(key:String, ?from:String = 'music', ?library:String):Null<Sound>
     {
         var path = getPath('$from/$key.ogg', SOUND, library);
-
         if (currentTrackedSounds.exists(key))
         {
             localTrackedAssets.push(key);
+            addAssetRef(key);
             return currentTrackedSounds.get(key);
         }
 
@@ -347,6 +377,7 @@ class Paths
             var newSound = Sound.fromFile(path);
             currentTrackedSounds.set(key, newSound);
             localTrackedAssets.push(key);
+            addAssetRef(key);
             return newSound;
         }
 
@@ -355,20 +386,16 @@ class Paths
     }
 
     /**
-     * Returns a image graphic from a specified file path.
-     * @param key (path)
-     * @param from (can be either images, data, etc.)
-     * @param library
-     * @param allowGPU if the graphic will be gpu-loaded
-     * @return FlxGraphic
+     * Returns a FlxGraphic image.
      */
-    static public function image(key:String, ?from:String = 'images', ?library:String = null, ?allowGPU:Bool = true):FlxGraphic
+    static function image(key:String, ?from:String = 'images', ?library:String = null, ?allowGPU:Bool = true):FlxGraphic
     {
         var file:String = getPath('$from/$key.png', IMAGE, library);
 
         if (currentTrackedAssets.exists(file))
         {
             localTrackedAssets.push(file);
+            addAssetRef(file);
             return currentTrackedAssets.get(file);
         }
 
@@ -377,44 +404,40 @@ class Paths
             bitmap = BitmapData.fromFile(file);
         else if (OpenFlAssets.exists(file, IMAGE))
             bitmap = OpenFlAssets.getBitmapData(file);
-
         if (bitmap != null)
         {
             var retVal = cacheBitmap(file, bitmap, allowGPU);
             if (retVal != null) return retVal;
         }
-
+        
         trace('$file is returning null.', "ERROR");
         return null;
     }
 
     /**
-     * Returns a animated Sparrow Atlas from a specified path.
-     * @param key (path)
-     * @param from (can be either from images, data, etc.)
-     * @param library (can be null)
-     * @param textureCompression whether or not should the texture be compressed.
+     * Returns a Sparrow Atlas for animations.
      */
-    inline static public function getSparrowAtlas(key:String, ?from:String = 'images', ?library:String, ?textureCompression:Bool = false)
+    inline static function getSparrowAtlas(key:String, ?from:String = 'images', ?library:String, ?textureCompression:Bool = false)
     {
-        final graphic:FlxGraphic = returnGraphic(key, from, library, textureCompression);
-        final xmlPath = file('$from/$key.xml', TEXT, library);
-        var xmlContent = "";
+        var graphic:FlxGraphic = returnGraphic(key, from, library, textureCompression);
+        final xmlPath = getPath('$from/$key.xml', TEXT, library);
 
-        if (fileExists(xmlPath, TEXT))
-            xmlContent = getFileContent(xmlPath);
-        else if (OpenFlAssets.exists(xmlPath, TEXT))
-            xmlContent = OpenFlAssets.getText(xmlPath);
-
+        final xmlContent = (fileExists(xmlPath, TEXT)) ? getFileContent(xmlPath) : (OpenFlAssets.exists(xmlPath, TEXT)) ? OpenFlAssets.getText(xmlPath) : null;
         return (FlxAtlasFrames.fromSparrow(graphic, xmlContent));
     }
 
-    // < SOME FUNCTIONS RELATED TO PLAYING SOUNDS. > //
-
-    inline static public function playSFX(sound:String, type:String) //TODO: GET VOLUME FROM SETTINGS!
+    // ----------------------------
+    // Sound Playback Utilities
+    // ----------------------------
+    inline static function playSFX(sound:String, type:String) //TODO: Get volume from settings
         return FlxG.sound.play(Paths.sound('$type/$sound', 'sounds'), 0.8);
 
-    inline public static function getPath(file:String, type:AssetType, ?library:Null<String>)
+    //TODO: Other sound playback utils
+    // ----------------------------
+    // Others
+    // ----------------------------
+
+    inline static function getPath(file:String, type:AssetType, ?library:Null<String>)
     {
         if (library != null)
             return getLibraryPath(file, library);
@@ -423,11 +446,9 @@ class Paths
         if (fileExists(filePath, type))
             return filePath;
 
-
         var levelPath = getLibraryPathForce(file, "mods");
         if (OpenFlAssets.exists(levelPath, type))
             return levelPath;
-
         return getPreloadPath(file);
     }
 
