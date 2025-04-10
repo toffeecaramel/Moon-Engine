@@ -12,7 +12,7 @@ class LevelEditor extends FlxState
 {
     private var _chart:MoonChart;
     private var _conductor:Conductor;
-    private var _playBack:Song;
+    private var _playback:Song;
 
     public static var isMetronomeActive:Bool = false;
 
@@ -33,43 +33,44 @@ class LevelEditor extends FlxState
         _conductor = new Conductor(_chart.content.meta.bpm, 4, 4);
         _conductor.onBeat.add(beatHit);
         
-        _playBack = new Song(
-        [{name: song, mix: mix, type: Inst},
-        {name: song, mix: mix, type: Voices_Opponent},
-        {name: song, mix: mix, type: Voices_Player}],
-        _conductor);
+        _playback = new Song(
+            song,
+            mix,
+            (diff == 'erect' || diff == 'nightmare'),
+            _conductor
+        );
 
         var bg = new MoonSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.fromRGB(30, 29, 31));
         add(bg);
 
-        grid = new ChartGrid('opponent').createGrid(_chart.content.notes, _conductor, _playBack.fullLength);
+        grid = new ChartGrid('opponent').createGrid(_chart.content.notes, _conductor, _playback.fullLength);
         grid.screenCenter(X);
         add(grid);
 
-        _playBack.state = PAUSE;
+        _playback.state = PAUSE;
 
         taskbar = ComponentBuilder.fromFile('assets/data/ui/level-editor/taskbar.xml');
-        taskbar.findComponent('playbackSpd').onChange = (_) -> _playBack.pitch = taskbar.findComponent('playbackSpd').value;
+        taskbar.findComponent('playbackSpd').onChange = (_) -> _playback.pitch = taskbar.findComponent('playbackSpd').value;
         add(taskbar);
     }
 
     override public function update(elapsed:Float)
     {
-        _conductor.time = _playBack.time;
+        _conductor.time = _playback.time;
 
         super.update(elapsed);
 
         //TODO: Remove this, it's debug only lol.
         if(FlxG.keys.justPressed.R) grid.redrawGrid();
 
-        if(FlxG.keys.justPressed.SPACE) _playBack.state = (_playBack.state != PLAY) ? PLAY : PAUSE;
+        if(FlxG.keys.justPressed.SPACE) _playback.state = (_playback.state != PLAY) ? PLAY : PAUSE;
 
         final addition = (FlxG.keys.pressed.SHIFT) ? 3 : 1;
         final advanceSecs = 500 * addition;
-        if(MoonInput.justPressed(UI_LEFT)) _playBack.time -= advanceSecs;
-        else if (MoonInput.justPressed(UI_RIGHT)) _playBack.time += advanceSecs;
+        if(MoonInput.justPressed(UI_LEFT)) _playback.time -= advanceSecs;
+        else if (MoonInput.justPressed(UI_RIGHT)) _playback.time += advanceSecs;
 
-        grid.time = _playBack.time;
+        grid.time = _playback.time;
     }
 
     public function beatHit(curBeat)

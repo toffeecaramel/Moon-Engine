@@ -38,27 +38,36 @@ class Song extends FlxTypedGroup<MoonSound>
 
     /**
      * Creates a song insance, useful for gameplay Inst & Voices.
-     * @param audList 
+     * @param song The name of the song
+     * @param char The character mix
+     * @param useErect Whether or not to use the erect song 
      * @param conductor 
      */
-    public function new(audList:Array<{name:String, mix:String, type:MusicType}>, conductor:Conductor)
+    public function new(song:String, char:String, ?useErect:Bool, conductor:Conductor)
     {
         super();
         this.conductor = conductor;
 
+        var audList =
+        [
+            Voices_Opponent, Voices_Player, Inst
+        ];
+
         for(i in 0...audList.length)
         {
             final item = audList[i];
-            final items = '${item.name}/${item.mix}/${item.type}';
+
+            final erectOrNot = (useErect) ? "-erect" : "";
+            final items = '$song/$char/${audList[i]}$erectOrNot';
             final audPath = Paths.sound('$items', 'songs');
 
             if(Paths.fileExists('assets/songs/$items.ogg'))
             {
                 this.recycle(MoonSound, function():MoonSound
                 {
-                    var aud = cast new MoonSound().loadEmbedded(audPath, false, true, (onComplete != null) ? onComplete : null);
-                    aud.type = item.type;
-                    aud.strID = item.name;
+                    var aud = cast new MoonSound().loadEmbedded(audPath, false, true);
+                    aud.type = audList[i];
+                    aud.strID = song;
                     FlxG.sound.list.add(cast aud);
                     return aud;
                 });
@@ -76,7 +85,7 @@ class Song extends FlxTypedGroup<MoonSound>
     private function steps(step)
     {
         for (i in 0...this.members.length)
-        if ((this.state == PLAY) && (this.members[i].time >= conductor.time + 16 || this.members[i].time <= conductor.time - 16))
+        if ((this.state == PLAY) && (this.members[i].time >= conductor.time + 20 || this.members[i].time <= conductor.time - 20))
 				resync(this.members[i]);
     }
 

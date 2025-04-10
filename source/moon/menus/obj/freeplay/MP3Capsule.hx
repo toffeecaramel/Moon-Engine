@@ -187,9 +187,6 @@ class MP3Capsule extends FlxSpriteGroup
     {
         super.update(elapsed);
         this.setPosition(FlxMath.lerp(this.x, follower.x, 0.3), FlxMath.lerp(this.y, follower.y, 0.3));
-
-        for(blegh in this.members)
-            blegh.active = (blegh.visible || blegh.alpha >= 0.1); //kinda makes it more optimized-ish
     }
 
     @:noCompletion public function set_selected(selectedr:Bool):Bool

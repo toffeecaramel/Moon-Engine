@@ -178,6 +178,8 @@ class Freeplay extends FlxSubState
             unlockNewRank(rankOrder[sexo]);
             sexo++;
         }
+        if(FlxG.keys.justPressed.R)//lol
+            FlxG.switchState(() -> new PlayState('roses', 'nightmare', character));
 
         updateCapsules(curSelected);
 
@@ -194,7 +196,7 @@ class Freeplay extends FlxSubState
     {
         for (i in 0...capsules.length)
         {
-            var capsule = cast capsules.members[i];
+            final capsule = cast capsules.members[i];
             final offsetX = capsuleOffsetX + (capsuleSeparator * 100) / (Math.abs(i - index) + 3);
             final offsetY = capsuleOffsetY + (i - index) * 130;
 

@@ -54,9 +54,9 @@ class PlayField extends FlxGroup
         conductor.onBeat.add(beatHit);
         
         playback = new Song(
-            [{name: song, mix: mix, type: Inst},
-             {name: song, mix: mix, type: Voices_Opponent},
-             {name: song, mix: mix, type: Voices_Player}],
+            song,
+            mix,
+            (difficulty == 'erect' || difficulty == 'nightmare'),
             conductor
         );
         playback.state = PAUSE;
@@ -80,7 +80,7 @@ class PlayField extends FlxGroup
         for (i in 0...playerIDs.length)
         {
             //TODO: Skins lol
-            var strumline = new Strumline(xVal + strumXs[i], 80, 'v-slice', isCPUPlayers[i], playerIDs[i], conductor);
+            var strumline = new Strumline(xVal + strumXs[i], 80, 'pixel', isCPUPlayers[i], playerIDs[i], conductor);
             add(strumline);
             strumlines.push(strumline);
 

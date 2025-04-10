@@ -85,10 +85,10 @@ class Note extends MoonSprite
     public function new(direction, time, ?type = 'v-slice', ?skin = 'v-slice', duration, conductor) 
     {
         super();
-        centerAnimations = true;
         this.direction = direction;
         this.time = time;
         this.type = type;
+        centerAnimations = true;
 
         script = new MoonScript();
         script.load('assets/images/ingame/UI/notes/$skin/noteskin.hx');
@@ -110,7 +110,7 @@ class Note extends MoonSprite
             this.y = (downscrollLogic) ? receptor.y - time * speed : receptor.y + time * speed;
 
             if(child != null) child.downscroll = downscrollLogic;
-            this.x = receptor.x;
+            this.x = receptor.x + (receptor.width - this.width) * 0.5;
         }
     }
 

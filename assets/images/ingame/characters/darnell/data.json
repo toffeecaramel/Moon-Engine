@@ -4,7 +4,7 @@
     "flipX": false,
     "camOffsets": [-20, -120],
     "healthbarColors": [0, 0, 0],
-    "danceFrequency": 2,
+    "danceFrequency": 4,
     "animations": [
         {"name": "idle-0", "prefix": "Idle0", "x": 0, "y": 0, "fps": 24},
         {"name": "singLEFT", "prefix": "Pose Left0", "x": 1, "y": 0, "fps": 24},
