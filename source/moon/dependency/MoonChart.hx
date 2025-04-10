@@ -111,7 +111,7 @@ class MoonChart
         // So first, we'll get the chart format and convert 'em to
         // vslice, because vslice will be our main 'base' for converting.
         // (thanks moonchart for existing its BASED AF)
-        final chart:FNFVSlice = switch (type)
+        final chart = switch (type)
         {
             // This switch is a mess btw!!!
             case 'psych':
