@@ -1,5 +1,6 @@
 package moon;
 
+import moon.menus.Settings;
 import moon.menus.Freeplay;
 import moon.game.*;
 import moon.toolkit.level_editor.LevelEditor;
@@ -16,5 +17,5 @@ class Constants
 	public static final SKIP_SPLASH:Bool = true;
 	public static final TRACE_DEBUG_INFO:Bool = true;
 
-    public static final INITIAL_STATE:Class<FlxState> = Freeplay;
+    public static final INITIAL_STATE:Class<FlxState> = Settings;
 }

@@ -51,8 +51,5 @@ class Main extends Sprite
 
 		var game = new MoonGame(Constants.GAME_WIDTH, Constants.GAME_HEIGHT, Constants.INITIAL_STATE, Constants.GAME_FRAMERATE, Constants.GAME_FRAMERATE, Constants.SKIP_SPLASH);
 		addChild(game);
-
-		//Init settings
-		MoonSettings.init();
 	}
 }

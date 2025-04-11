@@ -94,9 +94,16 @@ class MoonSettings
         buildSettings();
         loadSettings();
 
-        updateGlobalSettings();
         //TODO: Keybinds set from save.
     }
+
+    /**
+     * Every category in order, just for the Settings Menu. :P
+     */
+    static final categoryOrder:Array<String> = [
+        "Sound Settings", "Gameplay Settings", "Graphic Settings", 
+        "Interface Settings", "Engine Settings"
+    ];
 
     /**
      * Build all the engine settings.
@@ -197,7 +204,7 @@ class MoonSettings
         // haha cat :3
         for (cat in categories.keys())
             for (s in categories.get(cat))
-                if(StringTools.trim(s.name) == StringTools.trim(name))
+                if(s.name.trim() == name.trim())
                     return s;
         
         return null;
