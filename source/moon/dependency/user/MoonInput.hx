@@ -1,4 +1,4 @@
-package moon.dependency;
+package moon.dependency.user;
 
 import flixel.FlxG;
 import flixel.input.gamepad.FlxGamepad;
