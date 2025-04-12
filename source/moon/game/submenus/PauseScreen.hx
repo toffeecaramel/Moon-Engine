@@ -1,5 +1,6 @@
 package moon.game.submenus;
 
+import moon.menus.Settings;
 import flixel.effects.FlxFlicker;
 import flixel.util.FlxTimer;
 import moon.global_obj.PixelIcon;
@@ -47,9 +48,9 @@ class PauseScreen extends FlxSubState
 
     public var pauseItems:FlxTypedGroup<FlxText> = new FlxTypedGroup<FlxText>();
     public var selector:FlxText = new FlxText();
-    var game(get, never):PlayState;
-
+    
     private var pf:PlayField;
+    var game(get, never):PlayState;
 
     public function new(camera:FlxCamera)
     {
@@ -151,6 +152,9 @@ class PauseScreen extends FlxSubState
                 case 'restart': 
                     pf.restartSong();
                     close();
+                case 'settings': 
+                    close();
+                    game.openSubState(new Settings(true));
                 case 'accessibility settings': regenItems(ACCESSIBILITY_ITEMS);
                 case 'back': regenItems(DEFAULT_ITEMS);
             }
@@ -236,7 +240,12 @@ class PauseScreen extends FlxSubState
         // - Starts the lil countdown.
         new FlxTimer().start(pf.conductor.crochet / 1000, function(_)
         {
-            if(counter == -1) close();
+            if(counter == -1)
+            {
+                pf.playback.state = PLAY;
+                for(member in pf.playback.members) pf.playback.resync(member);
+                close();
+            }
             else
             {
                 Paths.playSFX((counter == 0) ? 'pausecountdown-end' : 'pausecountdown-normal', 'game/pause');
@@ -249,15 +258,6 @@ class PauseScreen extends FlxSubState
             }
             counter--;
         }, 5);
-    }
-
-    override public function close()
-    {
-        pf.playback.state = PLAY;
-        for(member in pf.playback.members) pf.playback.resync(member);
-
-        Paths.clearUnusedMemory();
-        super.close();
     }
 
     @:noCompletion function get_game():PlayState

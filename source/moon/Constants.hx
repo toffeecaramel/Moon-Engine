@@ -17,5 +17,5 @@ class Constants
 	public static final SKIP_SPLASH:Bool = true;
 	public static final TRACE_DEBUG_INFO:Bool = true;
 
-    public static final INITIAL_STATE:Class<FlxState> = Settings;
+    public static final INITIAL_STATE:Class<FlxState> = Freeplay;
 }

@@ -63,7 +63,10 @@ class OptionObject extends FlxSpriteGroup
                 if (MoonInput.pressed(UI_RIGHT)) direction++;
 
                 if (direction != 0)
+                {
+                    Paths.playSFX('configClick', 'menus/settings');
                     changeValue(direction);
+                }
 
                 holdDelay = Math.max(holdDelay * 0.9, holdThreshold);
                 holdTimer = holdDelay;
@@ -98,7 +101,7 @@ class OptionObject extends FlxSpriteGroup
 
                 value.text = '< ${setting.value} >';
             case SLIDER:
-                final filledLength:Int = Math.round((setting.value - setting.options[0]) / (setting.options[1] - setting.options[0]) * 10);
+                var filledLength:Int = Math.round((setting.value - setting.options[0]) / (setting.options[1] - setting.options[0]) * 10);
                 var filled:String = "";
                 var unfilled:String = "";
                 for (i in 0...filledLength) filled += "|";
@@ -112,6 +115,9 @@ class OptionObject extends FlxSpriteGroup
         {
             MoonSettings.setSetting(setting.name, setting.value);
             MoonSettings.updateGlobalSettings();
+
+            if(setting.name == 'Window Resolution' || setting.name == 'Screen Mode')
+                MoonSettings.updateWindow();
         }
     }
 

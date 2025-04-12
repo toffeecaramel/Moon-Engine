@@ -1,5 +1,9 @@
 package moon.menus;
 
+import flixel.util.FlxGradient;
+import moon.menus.obj.settings.MusicPlayer;
+import moon.game.submenus.PauseScreen;
+import moon.game.PlayState;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.math.FlxMath;
@@ -15,27 +19,41 @@ import moon.dependency.user.MoonSettings.Setting;
 
 class Settings extends FlxSubState
 {
+    public static final textSharpness:Int = 200;
     //TODO: doccument thisssss
     public var isPlayState:Bool;
-
+    var curSelected:Int = 0;
+    var yPos:Float = 0;
+    
     var optionFollower:FlxSprite;
     var navOptions:Array<OptionObject> = new Array<OptionObject>();
     var optionsContainer:FlxSpriteGroup = new FlxSpriteGroup();
-    var curSelected:Int = 0;
+    var optionDesc:FlxText;
+    var bgm:MusicPlayer;
 
-    var yPos:Float = 0;
-
-    public static final textSharpness:Int = 200;
     public function new(isPlayState:Bool = false)
     {
         this.isPlayState = isPlayState;
         super();
+        
+        if(isPlayState)this.camera = PlayState.playgame.camALT;
+        Paths.playSFX('configEnter', 'menus/settings');
+
+        bgm = new MusicPlayer(1);
+        add(bgm);
 
         var back = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLUE);
         back.blend = ADD;
         back.alpha = 0.0001;
         add(back);
         FlxTween.tween(back, {alpha: 0.5}, 1.8);
+            
+        var itsjoever = new FlxSprite().makeGraphic(FlxG.width + 15, FlxG.height, FlxColor.BLACK);
+        itsjoever.screenCenter();
+        itsjoever.scale.x = 0;
+        itsjoever.alpha = 0.4;
+        add(itsjoever);
+        FlxTween.tween(itsjoever, {"scale.x": 1}, 1, {ease: FlxEase.circOut, startDelay: 0.2});
 
         optionFollower = new FlxSprite(0, 1000).makeGraphic(880, 30, 0xFF3850cd);
         add(optionFollower);
@@ -57,6 +75,36 @@ class Settings extends FlxSubState
         for(i in 0...MoonSettings.categoryOrder.length)
             createCategory(MoonSettings.categoryOrder[i]);
 
+        optionsContainer.y += 1000;
+        
+        var backGradient = FlxGradient.createGradientFlxSprite(FlxG.width + 10, FlxG.height + 10, 
+        [0x00000000, 0x00000000, 0x00000000, 0xFF000000], 2, 90);
+        backGradient.alpha = 0;
+        add(backGradient);
+        
+        optionDesc = new FlxText();
+        optionDesc.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.GRAY, RIGHT);
+        optionDesc.text = '';
+        optionDesc.textField.antiAliasType = ADVANCED;
+        optionDesc.antialiasing = false;
+        optionDesc.textField.sharpness = textSharpness;
+        optionDesc.alpha = 0;
+        add(optionDesc);
+        optionDesc.y = (FlxG.height - optionDesc.height) - 12;
+        
+        for (obj in [backGradient, optionDesc])
+            FlxTween.tween(obj, {alpha: 1}, 1);
+        
+        var info = new FlxText(-600);
+        info.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.GRAY, LEFT);
+        info.text = '[ESC] - Leave.\n[TAB] - Go to Next Category.';
+        info.textField.antiAliasType = ADVANCED;
+        info.antialiasing = false;
+        info.textField.sharpness = textSharpness;
+        add(info);
+        
+        info.y = (FlxG.height - info.height) - 12;
+        FlxTween.tween(info, {x: 12}, 1, {ease: FlxEase.circOut});
         changeSelection(0);
     }
 
@@ -107,11 +155,24 @@ class Settings extends FlxSubState
         final targetY:Float = FlxG.height / 2 - (cur.y + cur.height / 2 - optionsContainer.y);
         optionsContainer.y = FlxMath.lerp(optionsContainer.y, targetY, 0.17);
         optionFollower.y = FlxMath.lerp(optionFollower.y, cur.y, 0.4);
+
+        //exit
+        if(MoonInput.justPressed(BACK))
+        {
+            bgm.exit();
+            Paths.playSFX('configExit', 'menus/settings');
+            close();
+            if(isPlayState) PlayState.playgame.openSubState(new PauseScreen(PlayState.playgame.camALT));
+        }
     }
 
     function changeSelection(change:Int):Void
     {
         curSelected = FlxMath.wrap(curSelected + change, 0, navOptions.length - 1);
+        Paths.playSFX('configScroll', 'menus/settings');
+
+        optionDesc.text = navOptions[curSelected].setting.description;
+        optionDesc.x = (FlxG.width - optionDesc.width) - 12;
 
         for (i in 0...navOptions.length)
             navOptions[i].selected = (i == curSelected);

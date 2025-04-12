@@ -114,7 +114,10 @@ class MoonSettings
         categories.set("Video Settings",
         [
             new Setting("Screen Mode", SELECTOR, "Set your screen mode. (Borderless is not working atm! Sorry!)", ["Windowed", "Fullscreen", "Borderless Fullscreen"], "Windowed"),
-            new Setting("Window Resolution", SELECTOR, "Change your window resolution. (ONLY APPLIED IF ON WINDOWED!)", ["1600x800", "1280x720", "1920x1080"], "1280x720")
+
+            new Setting("Window Resolution", SELECTOR, "Change your window resolution. (ONLY APPLIED IF ON WINDOWED!)", 
+            ["800x600", "1024x768", "1280x720", "1280x800", "1366x768", "1440x900", 
+            "1600x900", "1680x1050", "1920x1080", "2560x1440", "3840x2160"], "1280x720")
         ]);
 
         categories.set("Sound Settings",
@@ -131,7 +134,7 @@ class MoonSettings
         categories.set("Gameplay Settings",
         [
             new Setting("Downscroll", CHECKMARK, "Places the judgement line at the bottom of the screen. Notes will descend into it.", null, false),
-            new Setting("Middlescroll", CHECKMARK, "Positions the judgement line at the middle of the screen, hiding opponent notes (does not apply on co-op mode).", null, false),
+            new Setting("Middlescroll", CHECKMARK, "Positions the judgement line at the middle of the screen, hiding opponent notes.", null, false),
             new Setting("Ghost Tapping", CHECKMARK, "Allows tapping freely when there are no notes (hey, I don't judge).", null, true),
             new Setting("Mechanics", CHECKMARK, "Toggles song-specific mechanics (such as dodging).", null, true),
             new Setting("Modchart", CHECKMARK, "Toggles modcharts (animated/moving notes).", null, true),
@@ -161,6 +164,7 @@ class MoonSettings
         categories.set("Engine Settings",
         [
             new Setting("Auto-Updates", SELECTOR, "When an update is released, select whether to automatically download it, redirect you to a browser or do nothing.", ["Off", "In-Game", "Redirect"], "In-Game"),
+            new Setting("Experimental Features", CHECKMARK, "Toggles features that are in a experimental phase. (SOME OF THEM MAY CRASH YOUR GAME!)", null, false),
             new Setting("Modding Tools", CHECKMARK, "Enable tools for modding (such as the chart and character editors).", null, false)
         ]);
 
@@ -179,17 +183,26 @@ class MoonSettings
         if (Main.fps != null) Main.fps.visible = callSetting("Show FPS");
 
         FlxG.updateFramerate = FlxG.drawFramerate = (!callSetting('V-Sync')) ? callSetting('FPS Cap') : 800;
+        //trace("Monitor resolution: " + Capabilities.screenResolutionX + " x " + Capabilities.screenResolutionY);
+    }
 
-        /**
-         * new Setting("Screen Mode", SELECTOR, "Set your screen mode.", ["Windowed", "Fullscreen", "Borderless Fullscreen"], "Windowed"),
-            new Setting("Window Resolution", SELECTOR, "Change your window resolution. (ONLY APPLIED IF ON WINDOWED!)", ["1600x800", "1280x720", "1920x1080"], "1280x720")
-         */
-        
+    static function updateWindow()
+    {
+        FlxG.fullscreen = (callSetting('Screen Mode') == 'Fullscreen');
         //Resolutions depending on the current, this is the best way I could think of.
+        // yea biggie map
         final resolutions:Map<String, Array<Int>> = [
-            "1600x800" => [1600, 800],
-            "1280x720" => [1280, 720],
-            "1920x1080" => [1920, 1080],
+            "800x600"     => [800, 600],
+            "1024x768"    => [1024, 768],
+            "1280x720"    => [1280, 720],
+            "1280x800"    => [1280, 800],
+            "1366x768"    => [1366, 768],
+            "1440x900"    => [1440, 900],
+            "1600x900"    => [1600, 900],
+            "1680x1050"   => [1680, 1050],
+            "1920x1080"   => [1920, 1080],
+            "2560x1440"   => [2560, 1440],
+            "3840x2160"   => [3840, 2160]
         ];
 
         final curWidth = resolutions.get(callSetting("Window Resolution"))[0];
@@ -197,13 +210,11 @@ class MoonSettings
         switch(callSetting('Screen Mode'))
         {
             case "Windowed":
-                FlxG.stage.window.borderless = false;
-                FlxG.fullscreen = false; //just in case
                 FlxG.stage.window.width = curWidth;
                 FlxG.stage.window.height = curHeight;
                 FlxG.stage.window.x = Std.int((Capabilities.screenResolutionX - curWidth) / 2);
                 FlxG.stage.window.y = Std.int((Capabilities.screenResolutionY - curHeight) / 2);
-            case "Borderless Fullscreen":
+            //case "Borderless Fullscreen":
                 // this for some reason is just broken.
                 // asked for help in the haxe server
                 // And it seems to be a windows issue
@@ -217,10 +228,9 @@ class MoonSettings
                 FlxG.fullscreen = false;
                 trace(FlxG.fullscreen);
                 */
-            case "Fullscreen": FlxG.stage.window.borderless = false; FlxG.fullscreen = true;
+            //case "Fullscreen": FlxG.stage.window.borderless = false; FlxG.fullscreen = true;
 
         }
-        //trace("Monitor resolution: " + Capabilities.screenResolutionX + " x " + Capabilities.screenResolutionY);
     }
 
     /**

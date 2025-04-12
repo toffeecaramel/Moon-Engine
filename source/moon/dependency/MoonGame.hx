@@ -1,5 +1,6 @@
 package moon.dependency;
 
+import flixel.FlxG;
 import flixel.FlxGame;
 
 class MoonGame extends FlxGame

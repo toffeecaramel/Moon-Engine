@@ -429,8 +429,8 @@ class Paths
     // ----------------------------
     // Sound Playback Utilities
     // ----------------------------
-    inline static function playSFX(sound:String, type:String) //TODO: Get volume from settings
-        return FlxG.sound.play(Paths.sound('$type/$sound', 'sounds'), 0.8);
+    inline static function playSFX(sound:String, type:String)
+        return FlxG.sound.play(Paths.sound('$type/$sound', 'sounds'), MoonSettings.callSetting('SFX Volume') / 100);
 
     //TODO: Other sound playback utils
     // ----------------------------
