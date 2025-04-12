@@ -49,6 +49,7 @@ class Settings extends FlxSubState
         sttDisplay.setFormat(Paths.font('vcr.ttf'), 48, CENTER);
         sttDisplay.screenCenter(X);
         sttDisplay.textField.antiAliasType = ADVANCED;
+        sttDisplay.antialiasing = false;
         sttDisplay.textField.sharpness = textSharpness;
         optionsContainer.add(sttDisplay);
         yPos += sttDisplay.height + 15;
@@ -65,6 +66,7 @@ class Settings extends FlxSubState
         var categoryTxt:FlxText = new FlxText(190, yPos, -1, category);
         categoryTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.YELLOW, CENTER);
         categoryTxt.textField.antiAliasType = ADVANCED;
+        categoryTxt.antialiasing = false;
         categoryTxt.textField.sharpness = textSharpness;
         optionsContainer.add(categoryTxt);
 

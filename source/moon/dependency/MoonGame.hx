@@ -9,9 +9,8 @@ class MoonGame extends FlxGame
         ?skipSplash:Bool, ?startFullscreen:Bool)
     {
         super(gameWidth, gameHeight, initialState, updateFramerate, drawFramerate, skipSplash, startFullscreen);
-        
+
         //Init settings
 		MoonSettings.init();
-		MoonSettings.updateGlobalSettings();    
     }
 }

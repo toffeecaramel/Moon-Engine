@@ -169,6 +169,7 @@ class MoonSettings
     static function updateGlobalSettings():Void
     {
         FlxG.sound.volume = callSetting("Master Volume") / 100;
+        if (Main.fps != null) Main.fps.visible = callSetting("Show FPS");
     }
 
     /**

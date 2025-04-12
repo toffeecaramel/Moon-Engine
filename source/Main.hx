@@ -9,6 +9,7 @@ import openfl.display.Sprite;
 using StringTools;
 class Main extends Sprite
 {
+	public static var fps:FPS;
 	public function new()
 	{
 		super();
@@ -51,5 +52,10 @@ class Main extends Sprite
 
 		var game = new MoonGame(Constants.GAME_WIDTH, Constants.GAME_HEIGHT, Constants.INITIAL_STATE, Constants.GAME_FRAMERATE, Constants.GAME_FRAMERATE, Constants.SKIP_SPLASH);
 		addChild(game);
+
+		fps = new FPS(10, 10);
+		addChild(fps);
+
+		MoonSettings.updateGlobalSettings();
 	}
 }

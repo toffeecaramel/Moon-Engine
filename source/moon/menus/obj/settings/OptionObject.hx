@@ -30,12 +30,14 @@ class OptionObject extends FlxSpriteGroup
         name = new FlxText(0, 0, halfWidth, setting.name);
         name.setFormat(Paths.font("vcr.ttf"), fontSize, FlxColor.WHITE, LEFT);
         name.textField.antiAliasType = ADVANCED;
+        name.antialiasing = false;
         name.textField.sharpness = Settings.textSharpness;
         add(name);
 
         value = new FlxText(halfWidth, 0, halfWidth, Std.string(setting.value));
         value.setFormat(Paths.font("vcr.ttf"), fontSize, FlxColor.WHITE, RIGHT);
         value.textField.antiAliasType = ADVANCED;
+        value.antialiasing = false;
         value.textField.sharpness = Settings.textSharpness;
         add(value);
 
@@ -107,7 +109,10 @@ class OptionObject extends FlxSpriteGroup
         }
 
         if(amount != 0)
+        {
             MoonSettings.setSetting(setting.name, setting.value);
+            MoonSettings.updateGlobalSettings();
+        }
     }
 
     @:noCompletion public function set_selected(value:Bool):Bool
