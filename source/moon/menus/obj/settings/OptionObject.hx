@@ -29,10 +29,14 @@ class OptionObject extends FlxSpriteGroup
 
         name = new FlxText(0, 0, halfWidth, setting.name);
         name.setFormat(Paths.font("vcr.ttf"), fontSize, FlxColor.WHITE, LEFT);
+        name.textField.antiAliasType = ADVANCED;
+        name.textField.sharpness = Settings.textSharpness;
         add(name);
 
         value = new FlxText(halfWidth, 0, halfWidth, Std.string(setting.value));
         value.setFormat(Paths.font("vcr.ttf"), fontSize, FlxColor.WHITE, RIGHT);
+        value.textField.antiAliasType = ADVANCED;
+        value.textField.sharpness = Settings.textSharpness;
         add(value);
 
         changeValue(0);
@@ -101,8 +105,6 @@ class OptionObject extends FlxSpriteGroup
                 setting.value = FlxMath.wrap(setting.value + amount, setting.options[0], setting.options[1]);
                 value.text = '< ${setting.value}% > [$filled$unfilled]';
         }
-    
-        trace('Setting ${setting.name} value is now ${MoonSettings.callSetting(setting.name)}', "DEBUG");
 
         if(amount != 0)
             MoonSettings.setSetting(setting.name, setting.value);

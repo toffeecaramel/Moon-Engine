@@ -35,7 +35,5 @@ class Postbuild
     }
 
     static function roundToTwoDecimals(value:Float):Float
-    {
         return Math.round(value * 100) / 100;
-    }
 }

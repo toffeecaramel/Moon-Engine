@@ -1,5 +1,7 @@
 package moon.menus;
 
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
 import flixel.math.FlxMath;
 import flixel.group.FlxSpriteGroup;
 import flixel.FlxG;
@@ -16,16 +18,40 @@ class Settings extends FlxSubState
     //TODO: doccument thisssss
     public var isPlayState:Bool;
 
+    var optionFollower:FlxSprite;
     var navOptions:Array<OptionObject> = new Array<OptionObject>();
     var optionsContainer:FlxSpriteGroup = new FlxSpriteGroup();
     var curSelected:Int = 0;
-    
+
+    var yPos:Float = 0;
+
+    public static final textSharpness:Int = 200;
     public function new(isPlayState:Bool = false)
     {
         this.isPlayState = isPlayState;
         super();
 
+        var back = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLUE);
+        back.blend = ADD;
+        back.alpha = 0.0001;
+        add(back);
+        FlxTween.tween(back, {alpha: 0.5}, 1.8);
+
+        optionFollower = new FlxSprite(0, 1000).makeGraphic(880, 30, 0xFF3850cd);
+        add(optionFollower);
+        optionFollower.screenCenter(X);
+        FlxTween.tween(optionFollower, {alpha: 0.5}, 5, {type: PINGPONG, ease: FlxEase.quadIn});
+
         add(optionsContainer);
+
+        var sttDisplay = new FlxText(0, yPos);
+        sttDisplay.text = 'SETTINGS';
+        sttDisplay.setFormat(Paths.font('vcr.ttf'), 48, CENTER);
+        sttDisplay.screenCenter(X);
+        sttDisplay.textField.antiAliasType = ADVANCED;
+        sttDisplay.textField.sharpness = textSharpness;
+        optionsContainer.add(sttDisplay);
+        yPos += sttDisplay.height + 15;
 
         for(i in 0...MoonSettings.categoryOrder.length)
             createCategory(MoonSettings.categoryOrder[i]);
@@ -33,21 +59,23 @@ class Settings extends FlxSubState
         changeSelection(0);
     }
 
-    var yPos:Float = 0;
     public function createCategory(category:String):Void
     {
-        var categoryTxt = new FlxText(0, yPos, FlxG.width, category);
-        categoryTxt.setFormat(Paths.font('vcr.ttf'), 32, FlxColor.YELLOW, CENTER);
-        categoryTxt.text = category;
-        categoryTxt.screenCenter(X);
+        final separation = 10;
+        var categoryTxt:FlxText = new FlxText(190, yPos, -1, category);
+        categoryTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.YELLOW, CENTER);
+        categoryTxt.textField.antiAliasType = ADVANCED;
+        categoryTxt.textField.sharpness = textSharpness;
         optionsContainer.add(categoryTxt);
 
-        var categorySep = new FlxSprite(0, yPos + categoryTxt.height + 5).makeGraphic(FlxG.width, 4, FlxColor.YELLOW);
-        categorySep.screenCenter(X);
+        final fixedEndX = 550 * 2;
+        final sepStartX = categoryTxt.x + categoryTxt.width + separation;
+
+        var categorySep = new FlxSprite(sepStartX, yPos + 15).makeGraphic(Std.int(fixedEndX - sepStartX), 8, FlxColor.YELLOW);
         optionsContainer.add(categorySep);
-
-        yPos += categoryTxt.height + categorySep.height + 20;
-
+    
+        yPos += categoryTxt.height + separation;
+    
         final settings:Array<Setting> = MoonSettings.categories.get(category);
         for (i in 0...settings.length)
         {
@@ -55,10 +83,10 @@ class Settings extends FlxSubState
             option.screenCenter(X);
             optionsContainer.add(option);
             navOptions.push(option);
-            yPos += option.height + 10;
+            yPos += option.height + separation;
         }
-
-        yPos += 10;
+    
+        yPos += separation;
     }
 
     override public function update(elapsed:Float):Void
@@ -75,7 +103,8 @@ class Settings extends FlxSubState
         // center current selected option
         final cur = navOptions[curSelected];
         final targetY:Float = FlxG.height / 2 - (cur.y + cur.height / 2 - optionsContainer.y);
-        optionsContainer.y = FlxMath.lerp(optionsContainer.y, targetY, 0.26);
+        optionsContainer.y = FlxMath.lerp(optionsContainer.y, targetY, 0.17);
+        optionFollower.y = FlxMath.lerp(optionFollower.y, cur.y, 0.4);
     }
 
     function changeSelection(change:Int):Void
