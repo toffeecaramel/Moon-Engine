@@ -1,4 +1,5 @@
 package moon.dependency.user;
+import openfl.system.Capabilities;
 import flixel.FlxG;
 import flixel.util.FlxSave;
 
@@ -101,8 +102,8 @@ class MoonSettings
      * Every category in order, just for the Settings Menu. :P
      */
     static final categoryOrder:Array<String> = [
-        "Sound Settings", "Gameplay Settings", "Graphic Settings", 
-        "Interface Settings", "Engine Settings"
+        "Video Settings", "Sound Settings", "Gameplay Settings",
+        "Graphic Settings", "Interface Settings", "Engine Settings"
     ];
 
     /**
@@ -110,6 +111,12 @@ class MoonSettings
      */
     private static function buildSettings():Void
     {
+        categories.set("Video Settings",
+        [
+            new Setting("Screen Mode", SELECTOR, "Set your screen mode. (Borderless is not working atm! Sorry!)", ["Windowed", "Fullscreen", "Borderless Fullscreen"], "Windowed"),
+            new Setting("Window Resolution", SELECTOR, "Change your window resolution. (ONLY APPLIED IF ON WINDOWED!)", ["1600x800", "1280x720", "1920x1080"], "1280x720")
+        ]);
+
         categories.set("Sound Settings",
         [
             new Setting("Master Volume", SLIDER, "Changes the game's main volume (affects everything).", [0, 100], 100),
@@ -170,6 +177,50 @@ class MoonSettings
     {
         FlxG.sound.volume = callSetting("Master Volume") / 100;
         if (Main.fps != null) Main.fps.visible = callSetting("Show FPS");
+
+        FlxG.updateFramerate = FlxG.drawFramerate = (!callSetting('V-Sync')) ? callSetting('FPS Cap') : 800;
+
+        /**
+         * new Setting("Screen Mode", SELECTOR, "Set your screen mode.", ["Windowed", "Fullscreen", "Borderless Fullscreen"], "Windowed"),
+            new Setting("Window Resolution", SELECTOR, "Change your window resolution. (ONLY APPLIED IF ON WINDOWED!)", ["1600x800", "1280x720", "1920x1080"], "1280x720")
+         */
+        
+        //Resolutions depending on the current, this is the best way I could think of.
+        final resolutions:Map<String, Array<Int>> = [
+            "1600x800" => [1600, 800],
+            "1280x720" => [1280, 720],
+            "1920x1080" => [1920, 1080],
+        ];
+
+        final curWidth = resolutions.get(callSetting("Window Resolution"))[0];
+        final curHeight = resolutions.get(callSetting("Window Resolution"))[1];
+        switch(callSetting('Screen Mode'))
+        {
+            case "Windowed":
+                FlxG.stage.window.borderless = false;
+                FlxG.fullscreen = false; //just in case
+                FlxG.stage.window.width = curWidth;
+                FlxG.stage.window.height = curHeight;
+                FlxG.stage.window.x = Std.int((Capabilities.screenResolutionX - curWidth) / 2);
+                FlxG.stage.window.y = Std.int((Capabilities.screenResolutionY - curHeight) / 2);
+            case "Borderless Fullscreen":
+                // this for some reason is just broken.
+                // asked for help in the haxe server
+                // And it seems to be a windows issue
+                // welp. nothing I can do about it for now, sooo...
+
+                /*
+                FlxG.stage.window.borderless = true;
+                FlxG.stage.window.width = Std.int(Capabilities.screenResolutionX);
+                FlxG.stage.window.height = Std.int(Capabilities.screenResolutionY);
+                FlxG.stage.window.x = FlxG.stage.window.y = 0;
+                FlxG.fullscreen = false;
+                trace(FlxG.fullscreen);
+                */
+            case "Fullscreen": FlxG.stage.window.borderless = false; FlxG.fullscreen = true;
+
+        }
+        //trace("Monitor resolution: " + Capabilities.screenResolutionX + " x " + Capabilities.screenResolutionY);
     }
 
     /**
