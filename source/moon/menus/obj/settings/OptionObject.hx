@@ -14,7 +14,6 @@ class OptionObject extends FlxSpriteGroup
     
     public var name:FlxText;
     public var value:FlxText;
-    public var extra:FlxText;
 
     public var selected(default, set):Bool = false;
 
@@ -39,14 +38,35 @@ class OptionObject extends FlxSpriteGroup
         changeValue(0);
     }
 
+    private var holdTimer:Float = 0;
+    private var holdDelay:Float = 0.40;
+    private final holdThreshold:Float = 0.04;
     override public function update(elapsed:Float)
     {
         super.update(elapsed);
 
-        if(selected)
+        if (selected && (MoonInput.pressed(UI_LEFT) || MoonInput.pressed(UI_RIGHT)))
         {
-            if(MoonInput.justPressed(UI_LEFT)) changeValue(-1);
-            else if (MoonInput.justPressed(UI_RIGHT)) changeValue(1);
+            holdTimer -= elapsed;
+
+            if (holdTimer <= 0)
+            {
+                var direction:Int = 0;
+
+                if (MoonInput.pressed(UI_LEFT)) direction--;
+                if (MoonInput.pressed(UI_RIGHT)) direction++;
+
+                if (direction != 0)
+                    changeValue(direction);
+
+                holdDelay = Math.max(holdDelay * 0.9, holdThreshold);
+                holdTimer = holdDelay;
+            }
+        }
+        else
+        {
+            holdTimer = 0;
+            holdDelay = 0.25;
         }
     }
 
@@ -72,7 +92,14 @@ class OptionObject extends FlxSpriteGroup
 
                 value.text = '< ${setting.value} >';
             case SLIDER:
-                value.text = "WIP!!";
+                final filledLength:Int = Math.round((setting.value - setting.options[0]) / (setting.options[1] - setting.options[0]) * 10);
+                var filled:String = "";
+                var unfilled:String = "";
+                for (i in 0...filledLength) filled += "|";
+                for (i in filledLength...10) unfilled += "-";
+
+                setting.value = FlxMath.wrap(setting.value + amount, setting.options[0], setting.options[1]);
+                value.text = '< ${setting.value}% > [$filled$unfilled]';
         }
     
         trace('Setting ${setting.name} value is now ${MoonSettings.callSetting(setting.name)}', "DEBUG");

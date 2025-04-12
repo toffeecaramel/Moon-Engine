@@ -168,8 +168,7 @@ class MoonSettings
      */
     static function updateGlobalSettings():Void
     {
-        var masterVol = callSetting("Master Volume");
-        FlxG.sound.volume = masterVol / 100;
+        FlxG.sound.volume = callSetting("Master Volume") / 100;
     }
 
     /**
