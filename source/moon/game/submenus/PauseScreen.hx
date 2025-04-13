@@ -128,7 +128,7 @@ class PauseScreen extends FlxSubState
         for(i in 0...wawa.length)
             FlxTween.tween(wawa[i], {x: wawa[i].x + 30, alpha: 1}, pf.conductor.crochet / 2000, {ease: FlxEase.quadOut, startDelay: 0.1 * i});
 
-        Paths.playSFX('onPause', 'game/pause');
+        Paths.playSFX('game/pause/onPause');
     }
 
     override public function update(elapsed:Float)
@@ -148,7 +148,7 @@ class PauseScreen extends FlxSubState
             {
                 case 'resume': 
                     prepareToClose();
-                    Paths.playSFX('confirmMenu', 'ui');
+                    Paths.playSFX('ui/confirmMenu');
                 case 'restart': 
                     pf.restartSong();
                     close();
@@ -176,7 +176,7 @@ class PauseScreen extends FlxSubState
     {
         curSelected = FlxMath.wrap(curSelected + change, 0, pauseItems.members.length - 1);
         pauseItems.members[curSelected].x += 10;
-        Paths.playSFX('scrollMenu', 'ui');
+        Paths.playSFX('ui/scrollMenu');
 
         selector.text = switch(pauseItems.members[curSelected].text.toLowerCase())
         {
@@ -248,7 +248,7 @@ class PauseScreen extends FlxSubState
             }
             else
             {
-                Paths.playSFX((counter == 0) ? 'pausecountdown-end' : 'pausecountdown-normal', 'game/pause');
+                Paths.playSFX((counter == 0) ? 'game/pause/pausecountdown-end' : 'game/pause/pausecountdown-normal');
                 wah.color = colors[counter];
                 wah.text = txtDisplay[counter];
                 wah.alpha = 1;

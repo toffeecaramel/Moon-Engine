@@ -152,7 +152,7 @@ class Freeplay extends FlxSubState
         if (MoonInput.justPressed(ACCEPT))
         {
             Global.allowInputs = false;
-            Paths.playSFX('confirmMenu', 'ui');
+            Paths.playSFX('ui/confirmMenu');
 
             thisDJ.canDance = false;
             thisDJ.anim.play("confirm", true);
@@ -325,11 +325,11 @@ class Freeplay extends FlxSubState
         
         rankDisplay.scale.set(0.2, 0.2);
         FlxTween.tween(rankDisplay, {"scale.x": 2, "scale.y": 2}, 0.6, {ease: FlxEase.backOut});
-        Paths.playSFX('$rank', 'menus/freeplay/ranks');
+        Paths.playSFX('menus/freeplay/ranks/$rank');
         
         var trailShake = FlxTween.shake(trail, 0.02, 10, XY);
 
-        new FlxTimer().start((rank != 'loss') ? 1.3 : 0.74, (_) -> Paths.playSFX('${rank}Reveal', 'menus/freeplay/ranks'));
+        new FlxTimer().start((rank != 'loss') ? 1.3 : 0.74, (_) -> Paths.playSFX('menus/freeplay/ranks/${rank}Reveal'));
         FlxTween.tween(rankDisplay, { "scale.x": 1, "scale.y": 1, x: currentCapsule.x + 400, y: currentCapsule.y + 40 }, 0.5,
         {
             ease: FlxEase.backIn,

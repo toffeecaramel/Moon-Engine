@@ -90,16 +90,10 @@ class Song extends FlxTypedGroup<MoonSound>
     }
 
     /**
-	 * Pauses all the songs playing and syncs their time.
+	 * Sets said member to it's supposed song position.
 	 */
 	public function resync(member:MoonSound):Void
-    {
-        //trace('Music is resyncing! from ${this.members[i].time} to ${conductor.time}', 'WARNING');
-
-        state = PAUSE;
         (member.type == Inst) ? conductor.time = member.time : member.time = conductor.time;
-        state = PLAY;
-    }
 
     ////////////////////////////////////////////////////////////////////////////////////
 
