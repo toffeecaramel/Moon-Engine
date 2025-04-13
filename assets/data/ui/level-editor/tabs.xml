@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<vbox width="100%" style="padding: 10px;">
+    <tabview id="charterTabs" width="400" height="550" tabPosition="op">
+        <box text="Main Settings">
+            <button text="WAAAAAAAAAAAAAAAAAAAAAHH?!?!?!?" />
+        </box>
+    </tabview>
+</vbox>

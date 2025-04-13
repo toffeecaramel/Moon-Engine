@@ -1,5 +1,7 @@
 package moon.toolkit.level_editor;
 
+import haxe.ui.containers.VBox;
+import haxe.ui.containers.TabView;
 import haxe.ui.components.CheckBox;
 import haxe.ui.containers.menus.MenuBar;
 import haxe.ui.ComponentBuilder;
@@ -19,11 +21,12 @@ class LevelEditor extends FlxState
     var grid:ChartGrid;
 
     var taskbar:MenuBar;
+    var tabs:VBox;
 
     override public function create()
     {
         //TODO: get actual song selected by user.
-        final song = 'darnell';
+        final song = 'lit up';
         final diff = 'hard';
         final mix = 'bf';
 
@@ -50,8 +53,14 @@ class LevelEditor extends FlxState
         _playback.state = PAUSE;
 
         taskbar = ComponentBuilder.fromFile('assets/data/ui/level-editor/taskbar.xml');
-        taskbar.findComponent('playbackSpd').onChange = (_) -> _playback.pitch = taskbar.findComponent('playbackSpd').value;
+        final playback= taskbar.findComponent('playbackSpd');
+        playback.onChange = (_) -> _playback.pitch = playback.value;
         add(taskbar);
+
+        tabs = ComponentBuilder.fromFile('assets/data/ui/level-editor/tabs.xml');
+        add(tabs);
+
+        tabs.y = FlxG.height - tabs.height - 10;
     }
 
     override public function update(elapsed:Float)

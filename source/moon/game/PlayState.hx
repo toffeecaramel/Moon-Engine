@@ -117,7 +117,7 @@ class PlayState extends FlxState
 		if(stage.script.exists('onPostCreate')) stage.script.call('onPostCreate');
 		
 		final mainSpec = stage.spectators.members[0];
-		camFollower.setPosition(stage.cameraSettings.startX ?? (mainSpec.x ?? 0), stage.cameraSettings.startY ?? (mainSpec.y ?? 0));
+		camFollower.setPosition(stage.cameraSettings?.startX ?? (mainSpec.x ?? 0), stage.cameraSettings?.startY ?? (mainSpec.y ?? 0));
 		gameZoom = stage.cameraSettings.zoom ?? 1;
 
 		//playField.playback.state = PLAY;
