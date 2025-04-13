@@ -51,7 +51,7 @@ class OptionObject extends FlxSpriteGroup
     {
         super.update(elapsed);
 
-        if (selected && (MoonInput.pressed(UI_LEFT) || MoonInput.pressed(UI_RIGHT)))
+        if (selected && setting.type != INFO && (MoonInput.pressed(UI_LEFT) || MoonInput.pressed(UI_RIGHT)))
         {
             holdTimer -= elapsed;
 
@@ -109,6 +109,10 @@ class OptionObject extends FlxSpriteGroup
 
                 setting.value = FlxMath.wrap(setting.value + amount, setting.options[0], setting.options[1]);
                 value.text = '< ${setting.value}% > [$filled$unfilled]';
+            case UNCAP_SLIDER:
+                setting.value += amount;
+                value.text = '< ${setting.value} >';
+            case INFO: value.text = '( ${setting.defaultValue} )';
         }
 
         if(amount != 0)
@@ -124,7 +128,7 @@ class OptionObject extends FlxSpriteGroup
     @:noCompletion public function set_selected(value:Bool):Bool
     {
         this.selected = value;
-        this.color = (selected) ? 0xFFfea711 : 0xffffffff;
+        this.color = (selected) ? ((setting.type == INFO) ? 0xff947642 : 0xFFfea711) : 0xffffffff;
         return selected;
     }
 }

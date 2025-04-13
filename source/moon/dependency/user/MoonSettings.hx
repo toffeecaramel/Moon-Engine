@@ -7,9 +7,11 @@ using StringTools;
 
 enum abstract SettingType(String) to String
 {
-    var CHECKMARK = 'checkmark'; // for boolean options (true or false most likely)
-    var SELECTOR = 'selector';   // for multiple choices
-    var SLIDER = 'slider';       // for a numeric slider option
+    var CHECKMARK = 'checkmark';        // for boolean options (true or false most likely)
+    var SELECTOR = 'selector';          // for multiple choices
+    var SLIDER = 'slider';              // for a numeric slider option
+    var UNCAP_SLIDER = 'uncap_slider';  // for a numeric slider option, but uncapped
+    var INFO = 'info';                  // for a non selectable option
 }
 
 /**
@@ -65,6 +67,8 @@ class Setting
         this.options = options;
         this.defaultValue = defaultValue;
         this.value = defaultValue;
+
+        if(type == INFO) reset(); //so its always updated.
     }
 
     public function reset():Void
@@ -138,7 +142,7 @@ class MoonSettings
             new Setting("Ghost Tapping", CHECKMARK, "Allows tapping freely when there are no notes (hey, I don't judge).", null, true),
             new Setting("Mechanics", CHECKMARK, "Toggles song-specific mechanics (such as dodging).", null, true),
             new Setting("Modchart", CHECKMARK, "Toggles modcharts (animated/moving notes).", null, true),
-            //TODO new Setting("Offset", SLIDER, "Changes the delay of the notes (NEGATIVE: LATE, POSITIVE: EARLY).", [-1500, 1500], 0)
+            new Setting("Offset", UNCAP_SLIDER, "Changes the delay of the notes (NEGATIVE: LATE, POSITIVE: EARLY).", null, 0)
         ]);
 
         categories.set("Graphic Settings",
@@ -165,7 +169,8 @@ class MoonSettings
         [
             new Setting("Auto-Updates", SELECTOR, "When an update is released, select whether to automatically download it, redirect you to a browser or do nothing.", ["Off", "In-Game", "Redirect"], "In-Game"),
             new Setting("Experimental Features", CHECKMARK, "Toggles features that are in a experimental phase. (SOME OF THEM MAY CRASH YOUR GAME!)", null, false),
-            new Setting("Modding Tools", CHECKMARK, "Enable tools for modding (such as the chart and character editors).", null, false)
+            new Setting("Modding Tools", CHECKMARK, "Enable tools for modding (such as the chart and character editors).", null, false),
+            new Setting("Moon Engine Version", INFO, "Moon Engine's current version. Thanks for using!", null, 'v.${Constants.VERSION}')
         ]);
 
         // A category that's not visible on the settings, it's mostly just for internal use
