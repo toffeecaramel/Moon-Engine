@@ -97,7 +97,6 @@ class Song extends FlxTypedGroup<MoonSound>
 
     ////////////////////////////////////////////////////////////////////////////////////
 
-    
 	@:noCompletion public function set_state(state:SongState = PLAY):SongState
     {
         this.state = state;

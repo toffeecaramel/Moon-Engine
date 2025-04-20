@@ -77,6 +77,8 @@ class OptionObject extends FlxSpriteGroup
             holdTimer = 0;
             holdDelay = 0.25;
         }
+
+        if(FlxG.keys.justPressed.ANY) changeValue(0);
     }
 
     public function changeValue(amount:Int)

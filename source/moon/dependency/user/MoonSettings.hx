@@ -142,7 +142,7 @@ class MoonSettings
             new Setting("Ghost Tapping", CHECKMARK, "Allows tapping freely when there are no notes (hey, I don't judge).", null, true),
             new Setting("Mechanics", CHECKMARK, "Toggles song-specific mechanics (such as dodging).", null, true),
             new Setting("Modchart", CHECKMARK, "Toggles modcharts (animated/moving notes).", null, true),
-            new Setting("Offset", UNCAP_SLIDER, "Changes the delay of the notes (NEGATIVE: LATE, POSITIVE: EARLY).", null, 0)
+            new Setting("Note Offset", UNCAP_SLIDER, "Changes the delay of the notes. (NEGATIVE: LATE, POSITIVE: EARLY)", null, 0)
         ]);
 
         categories.set("Graphic Settings",
@@ -185,8 +185,8 @@ class MoonSettings
     static function updateGlobalSettings():Void
     {
         FlxG.sound.volume = callSetting("Master Volume") / 100;
-        if (Main.fps != null) Main.fps.visible = callSetting("Show FPS");
 
+        if (Main.fps != null) Main.fps.visible = callSetting("Show FPS");
         FlxG.updateFramerate = FlxG.drawFramerate = (!callSetting('V-Sync')) ? callSetting('FPS Cap') : 800;
         //trace("Monitor resolution: " + Capabilities.screenResolutionX + " x " + Capabilities.screenResolutionY);
     }
@@ -244,6 +244,8 @@ class MoonSettings
     static function callSetting(name:String):Dynamic
     {
         var s:Setting = findSetting(name);
+        
+        if(s == null) trace('Setting $name was not found when calling for it!', "ERROR");
         return s != null ? s.value : null;
     }
 

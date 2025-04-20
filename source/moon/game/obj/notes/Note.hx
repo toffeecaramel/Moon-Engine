@@ -2,18 +2,39 @@ package moon.game.obj.notes;
 
 import flixel.FlxG;
 import moon.dependency.scripting.MoonScript;
-import haxe.Json;
-import flixel.FlxSprite;
 import flixel.util.FlxColor;
 import flixel.tweens.FlxTween;
 import flixel.tweens.FlxEase;
+import flixel.FlxSprite;
 
+/**
+ * The state of a note in the game.
+ */
 enum NoteState 
 {
+    /**
+     * Means that the note won't be updated in any way.
+     */
     CHART_EDITOR;
+
+    /**
+     * When a note is hit.
+     */
     GOT_HIT;
+
+    /**
+     * When a note is too late.
+     */
     TOO_LATE;
+
+    /**
+     * When a note is missed.
+     */
     MISSED;
+
+    /**
+     * None state.
+     */
     NONE;
 }
 
@@ -69,65 +90,72 @@ class Note extends MoonSprite
      * This note's sustain.
      */
     public var child:NoteSustain;
-
+ 
     public var conductor:Conductor;
     public var script:MoonScript;
 
-    /**
-     * Creates a note on screen.
-     * @param direction
-     * @param time
-     * @param type
-     * @param skin
-     * @param duration
-     * @param conductor
-     */
-    public function new(direction, time, ?type = 'v-slice', ?skin = 'v-slice', duration, conductor) 
+    private static var sharedScripts:Map<String, MoonScript> = new Map();
+
+    public function new(direction:Int, time:Float, ?type:String = "v-slice", ?skinName:String = "v-slice", 
+        duration:Float, conductor:Conductor)
     {
         super();
         this.direction = direction;
         this.time = time;
         this.type = type;
-        centerAnimations = true;
-
-        script = new MoonScript();
-        script.load('assets/images/ingame/UI/notes/$skin/noteskin.hx');
-        script.set("staticNote", this);
-
-        this.skin = skin;
         this.duration = duration;
         this.conductor = conductor;
-    }
-
-    override public function update(dt:Float):Void
-    {
-        super.update(dt);
-        if((receptor != null || state != CHART_EDITOR) && this.state == NONE)
-        {
-            final downscrollLogic:Bool = (receptor.y > FlxG.height / 2);
-            final time = (this.time - conductor.time);
-            this.visible = true;
-            this.y = (downscrollLogic) ? receptor.y - time * speed : receptor.y + time * speed;
-
-            if(child != null) child.downscroll = downscrollLogic;
-            this.x = receptor.x + (receptor.width - this.width) * 0.5;
-        }
+        centerAnimations = true;
+        
+        this.skin = skinName;
     }
 
     private function _updateGraphics():Void
     {
-        final curSkin = (type != 'default' && Paths.fileExists('assets/images/ingame/UI/notes/$type')) ? type : skin;
-        final dir:String = MoonUtils.intToDir(direction);
+        var curSkin = (type != "default" && Paths.fileExists('assets/images/ingame/UI/notes/$type')) ? type : skin;
+        var dir = MoonUtils.intToDir(direction);
 
+        if (!sharedScripts.exists(curSkin))
+        {
+            var wawa = new MoonScript();
+            wawa.load('assets/images/ingame/UI/notes/$curSkin/noteskin.hx');
+            sharedScripts.set(curSkin, wawa);
+        }
+
+        script = sharedScripts.get(curSkin);
+        script.set("staticNote", this);
         script.get("createStaticNote")(curSkin, dir);
         updateHitbox();
         playAnim(dir);
     }
 
-    @:noCompletion public function set_skin(skinName:String)
+    @:noCompletion public function set_skin(skinName:String):String
     {
         this.skin = skinName;
         _updateGraphics();
         return skinName;
+    }
+
+    override public function update(dt:Float):Void
+    {
+        super.update(dt);
+        if (receptor != null && state == NoteState.NONE)
+        {
+            visible = active = true;
+
+            var timeDiff = (time - conductor.time);
+            var ypos = receptor.y + timeDiff * speed;
+
+            if (receptor.y > FlxG.height * 0.5) ypos = receptor.y - timeDiff * speed;
+            
+            y = ypos;
+            x = receptor.x + (receptor.width - width) * 0.5;
+            if (child != null) child.downscroll = (receptor.y > FlxG.height * 0.5);
+        }
+    }
+
+    override function destroy():Void {
+        child = null;
+        super.destroy();
     }
 }

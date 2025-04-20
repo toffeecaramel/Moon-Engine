@@ -1,7 +1,6 @@
 package moon.game;
 
-import moon.dependency.scripting.MoonEvent;
-import moon.game.submenus.PauseScreen;
+import openfl.filters.ShaderFilter;
 import moon.game.obj.Character;
 import flixel.FlxObject;
 import flixel.FlxSprite;
@@ -16,6 +15,8 @@ import flixel.util.FlxColor;
 import moon.game.obj.Stage;
 import moon.game.obj.PlayField;
 import moon.toolkit.ChartConvert;
+import moon.dependency.scripting.MoonEvent;
+import moon.game.submenus.PauseScreen;
 import moon.toolkit.level_editor.LevelEditor;
 
 class PlayState extends FlxState
@@ -126,7 +127,7 @@ class PlayState extends FlxState
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
-		
+
 		// EVENTS CHECK
 		for (event in events)
 		{

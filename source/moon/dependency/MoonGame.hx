@@ -1,5 +1,6 @@
 package moon.dependency;
 
+import flixel.input.keyboard.FlxKey;
 import flixel.FlxG;
 import flixel.FlxGame;
 
@@ -13,5 +14,18 @@ class MoonGame extends FlxGame
 
         //Init settings
 		MoonSettings.init();
+
+        FlxG.stage.addEventListener(openfl.events.KeyboardEvent.KEY_DOWN, (e) ->
+		{
+            final kc = e.keyCode;
+			// prevents keyboard presses when going on fullscreen
+            // got from FE, by crowplexus and nebulazorua
+			if (kc == FlxKey.ENTER && e.altKey)
+				e.stopImmediatePropagation();
+
+            // update volume settings when the volume is changed.
+            if((kc == FlxKey.PLUS || kc == FlxKey.NUMPADPLUS) || (kc == FlxKey.MINUS || kc == FlxKey.NUMPADMINUS))
+                MoonSettings.setSetting("Master Volume", FlxG.sound.volume * 100);
+		}, false, 100);
     }
 }

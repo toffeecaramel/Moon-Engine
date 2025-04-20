@@ -53,15 +53,18 @@ class TiledSprite extends MoonSprite
 	 * Sets the tail frame for this sprite.
 	 * @param animation Animation containing the desired tail frames. If `null`, no tail is rendered.
 	 */
-	public function setTail(animation:String):Void {
-	    if (animation == null) {
+	public function setTail(animation:String):Void
+	{
+	    if (animation == null)
+		{
 	        _tailFrame = null;
 	        return;
 	    }
 	    
 	    var anim:FlxAnimation = this.animation.getByName(animation);
 	    
-	    if (anim == null) {
+	    if (anim == null)
+		{
 	        FlxG.log.warn('TiledSprite: Could not find tail animation "${animation}"!');
 	        _tailFrame = null;
 	        return;
@@ -77,7 +80,8 @@ class TiledSprite extends MoonSprite
 	}
 
 	@:inheritDoc(flixel.FlxSprite.getScreenBounds)
-	override function getScreenBounds(?newRect:FlxRect, ?camera:FlxCamera):FlxRect {
+	override function getScreenBounds(?newRect:FlxRect, ?camera:FlxCamera):FlxRect
+	{
 		if (newRect == null)
 			newRect = FlxRect.get();
 		
@@ -99,8 +103,10 @@ class TiledSprite extends MoonSprite
 		return newRect.getRotatedBounds(angle, _scaledOrigin, newRect);
 	}
 
-	override function draw():Void {
-		if (_clippingDirty) {
+	override function draw():Void
+	{
+		if (_clippingDirty)
+		{
 			regenerateClippedFrame();
 			_clippingDirty = false;
 		}
@@ -108,7 +114,8 @@ class TiledSprite extends MoonSprite
 		super.draw();
 	}
 
-	override function drawComplex(camera:FlxCamera):Void {
+	override function drawComplex(camera:FlxCamera):Void
+	{
 	    getScreenPosition(_point, camera).subtractPoint(offset);
 		_point.add(origin.x, origin.y);
         
@@ -118,34 +125,36 @@ class TiledSprite extends MoonSprite
 		var drawItem:FlxDrawQuadsItem = camera.startQuadBatch(_frame.parent, colorTransform?.hasRGBMultipliers(), colorTransform?.hasRGBAOffsets(), blend, antialiasing, shader);
 		var screenOffset:Float = (flipY ? tileHeight() : 0);
 
-		for (i in getFirstTileOnScreen(camera)..._quadAmount) {
+		for (i in getFirstTileOnScreen(camera)..._quadAmount)
+		{
 			drawTile(i, drawItem);
 
 			// if it's offscreen, stop rendering
-			if (_matrix.ty >= camera.viewMarginBottom + screenOffset) {
+			if (_matrix.ty >= camera.viewMarginBottom + screenOffset)
 				break;
-			}
 		}
     }
 
-	function drawTile(tile:Int, item:FlxDrawQuadsItem):Void {
+	function drawTile(tile:Int, item:FlxDrawQuadsItem):Void
+	{
 		var frame:FlxFrame = _frame;
 		var isTail:Bool = isTail(tile);
 		
-		if (isTileClipped(tile)) {
+		if (isTileClipped(tile))
+		{
 			frame = _clippedTileFrame;
-			if (_clippingOffset > 0) {
+			if (_clippingOffset > 0)
 				matrixTranslate(-_clippingOffset);
-			}
-		} else if (isTail) {
-			frame = _tailFrame;
 		}
+		else if (isTail)
+			frame = _tailFrame;
 
 		item.addQuad(frame, isTail ? _tailMatrix : _matrix, colorTransform);
 		matrixTranslate(frame.frame.height * Math.abs(scale.y));
 	}
 
-	function regenerateClippedFrame():Void {
+	function regenerateClippedFrame():Void
+	{
 		var parentFrame:FlxFrame = (_tailFrame != null && _quadAmount == 1) ? _tailFrame : _frame;
 		var reduction:Float = parentFrame.frame.height * (_quadAmount - tiles);
 
@@ -156,7 +165,8 @@ class TiledSprite extends MoonSprite
 		_clippingOffset = (flipY ? reduction * Math.abs(scale.y) : 0);
 	}
 
-	function prepareMatrix(frame:FlxFrame, matrix:FlxMatrix):Void {
+	function prepareMatrix(frame:FlxFrame, matrix:FlxMatrix):Void
+	{
 	    if (frame == null) return;
 
 	    frame.prepareMatrix(matrix, FlxFrameAngle.ANGLE_0, checkFlipX(), checkFlipY());
@@ -169,13 +179,15 @@ class TiledSprite extends MoonSprite
 
 		matrix.translate(_point.x, _point.y);
 
-		if (isPixelPerfectRender(camera)) {
+		if (isPixelPerfectRender(camera))
+		{
 			matrix.tx = Math.floor(matrix.tx);
 			matrix.ty = Math.floor(matrix.ty);
 		}
 	}
 
-	function matrixTranslate(y:Float):Void {
+	function matrixTranslate(y:Float):Void 
+	{
 	    var translateX:Float = -y * _sinAngle;
 	    var translateY:Float = y * _cosAngle;
 	    
@@ -185,14 +197,16 @@ class TiledSprite extends MoonSprite
 	    _matrix.translate(translateX, translateY);
 	}
 
-	function getFirstTileOnScreen(camera:FlxCamera):Int {
+	function getFirstTileOnScreen(camera:FlxCamera):Int
+	{
 		var offscreenHeight:Float = camera.viewMarginTop - _point.y;
 		if (offscreenHeight <= 0) return 0;
 
 		var nextTileHeight:Float = getHeightForTile(0);
 		var output:Int = 0;
 
-		while (offscreenHeight >= nextTileHeight) {
+		while (offscreenHeight >= nextTileHeight)
+		{
 			matrixTranslate(nextTileHeight);
 			offscreenHeight -= nextTileHeight;
 			nextTileHeight = getHeightForTile(++output);

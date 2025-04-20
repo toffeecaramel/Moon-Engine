@@ -41,7 +41,7 @@ class NoteSpawner extends FlxGroup
         spawnThreshold = (scrollSpeed <= 0.9) ? 2000 : 700;
         super.update(dt);
 
-        while (nextNoteIndex < _notes.length && _notes[nextNoteIndex].time <= conductor.time + spawnThreshold)
+        while (nextNoteIndex < _notes.length && (_notes[nextNoteIndex].time) <= conductor.time + spawnThreshold)
         {
             recycleNote(_notes[nextNoteIndex]);
             nextNoteIndex++;
@@ -78,14 +78,15 @@ class NoteSpawner extends FlxGroup
         });
     }
 
-
     private function createNoteFromStruct(noteStruct:NoteStruct):Note
     {
         for (strum in strumlines)
         {
             if (strum.playerID == noteStruct.lane)
             {
-                var note = new Note(noteStruct.data, noteStruct.time, noteStruct.type, strum.receptors.members[noteStruct.data].skin, noteStruct.duration, conductor);
+                var note = new Note(noteStruct.data, noteStruct.time,
+                noteStruct.type, strum.receptors.members[noteStruct.data].skin, noteStruct.duration, conductor);
+
                 note.speed = scrollSpeed;
                 note.lane = noteStruct.lane;
                 return note;
