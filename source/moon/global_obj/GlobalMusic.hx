@@ -1,5 +1,6 @@
 package moon.global_obj;
 
+import moon.dependency.MoonSound.Metadata;
 import flixel.FlxG;
 import flixel.group.FlxGroup.FlxTypedGroup;
 
@@ -10,8 +11,8 @@ import flixel.group.FlxGroup.FlxTypedGroup;
  */
 class GlobalMusic
 {
+    static var metadata:Metadata;
     static var song(default, set):String;
-
     static var sound:MoonSound;
     static var conductor:Conductor;
 
@@ -27,7 +28,7 @@ class GlobalMusic
 
     static function update()
     {
-        if(song != null && conductor != null) conductor.time = sound.time;
+        if(FlxG.sound.music != null && conductor != null) conductor.time = FlxG.sound.music.time;
     }
 
     /**
@@ -38,9 +39,15 @@ class GlobalMusic
     {
         if (sound != null && !sound.playing)
         {
-            sound.volume = (fade) ? 0 : MoonSettings.callSetting('Music Volume');
-            sound.play();
-            if (fade) sound.fadeIn(4, 0, MoonSettings.callSetting('Music Volume'));
+            FlxG.sound.playMusic(Paths.sound(song), (fade) ? 0 : MoonSettings.callSetting('Music Volume'), true);
+            if (fade) FlxG.sound.music.fadeIn(4, 0, MoonSettings.callSetting('Music Volume'));
+
+            if(sound.metadata != null)
+            {
+                conductor.reset();
+                conductor.changeBpmAt(0, sound.metadata.bpm ?? 0, sound.metadata.timeSignature[0] ?? 0, sound.metadata.timeSignature[1] ?? 0);
+                FlxG.sound.music.looped = sound.metadata.looped;
+            }
         }
     }
 
@@ -49,20 +56,7 @@ class GlobalMusic
         if(song != songi)
         {
             song = songi;
-            if(sound != null)
-            {
-                (sound.playing) ? sound.stop() : null;
-                sound.loadEmbedded(Paths.sound(songi));
-                sound.stop();
-                sound.metadata = (Paths.fileExists('$songi-metadata.json', TEXT)) ? Paths.JSON('$songi-metadata') : null;
-
-                if(sound.metadata != null)
-                {
-                    conductor.changeBpmAt(0, sound.metadata.bpm ?? 0, sound.metadata.timeSignature[0] ?? 0, sound.metadata.timeSignature[1] ?? 0);
-                    sound.looped = sound.metadata.looped;
-                }
-            }
-            else trace('Global Song is null. To fix, call init() before changing the song.', "WARNING");
+            metadata = (Paths.fileExists('$songi-metadata.json', TEXT)) ? Paths.JSON('$songi-metadata') : null;
         }
         return song;
     }

@@ -186,11 +186,11 @@ class MoonSettings
     static function updateGlobalSettings():Void
     {
         FlxG.sound.volume = callSetting("Master Volume") / 100;
+        FlxG.sound.music.volume = callSetting('Music Volume') / 100;
 
         if (Main.fps != null) Main.fps.visible = callSetting("Show FPS");
         FlxG.updateFramerate = FlxG.drawFramerate = (!callSetting('V-Sync')) ? callSetting('FPS Cap') : 999;
-
-        GlobalMusic.sound.volume = callSetting('Music Volume');
+        
         //trace("Monitor resolution: " + Capabilities.screenResolutionX + " x " + Capabilities.screenResolutionY);
     }
 

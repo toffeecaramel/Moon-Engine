@@ -1,31 +1,26 @@
-package moon.menus.obj.freeplay;
+package moon.menus.obj;
 
+import flixel.group.FlxSpriteGroup;
 import openfl.display.BlendMode;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup;
-import flixel.group.FlxGroup.FlxTypedGroup;
+import flixel.group.FlxGroup;
 import flixel.util.FlxColor;
 import funkin.vis.dsp.SpectralAnalyzer;
 import lime.media.AudioSource;
 
-class BarsVisualizer extends FlxGroup
+@:publicFields
+class BarsVisualizer extends FlxSpriteGroup
 {
-    var grpBars:FlxTypedGroup<FlxSprite>;
-    var peakLines:FlxTypedGroup<FlxSprite>;
     var analyzer:SpectralAnalyzer;
+    var barCount:Int = 0;
     var debugMode:Bool = false;
 
-    public function new(audioSource:AudioSource, barCount:Int = 16)
+    public function new(barCount:Int = 16)
     {
         super();
-
-        analyzer = new SpectralAnalyzer(audioSource, barCount + 1, 0.1, 10);
-
-        grpBars = new FlxTypedGroup<FlxSprite>();
-		add(grpBars);
-        peakLines = new FlxTypedGroup<FlxSprite>();
-        add(peakLines);
+        this.barCount = barCount;
 
 		for (i in 0...barCount)
 		{
@@ -33,10 +28,14 @@ class BarsVisualizer extends FlxGroup
             spr.origin.set(0, FlxG.height);
             spr.blend = ADD;
             spr.alpha = 0.6;
-			grpBars.add(spr);
+			add(spr);
             //spr = new FlxSprite((i / barCount) * FlxG.width, 0).makeGraphic(Std.int((1 / barCount) * FlxG.width) - 4, 1, 0xaaffffff);
             //peakLines.add(spr);
 		}
+    }
+
+    function setAudioSource(audioSrc:AudioSource){
+        return analyzer = new SpectralAnalyzer(audioSrc, barCount + 1, 0.1, 10);
     }
 
     @:generic
@@ -47,8 +46,8 @@ class BarsVisualizer extends FlxGroup
     {
         var levels = analyzer.getLevels();
 
-        for (i in 0...min(grpBars.members.length, levels.length))
-            grpBars.members[i].scale.y = flixel.math.FlxMath.lerp(grpBars.members[i].scale.y, levels[i].value, FlxG.elapsed * 16);
+        for (i in 0...min(this.members.length, levels.length))
+            this.members[i].scale.y = flixel.math.FlxMath.lerp(this.members[i].scale.y, levels[i].value, FlxG.elapsed * 16);
         super.draw();
     }
 

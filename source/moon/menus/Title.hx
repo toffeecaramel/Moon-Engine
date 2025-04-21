@@ -1,5 +1,6 @@
 package moon.menus;
 
+import moon.menus.obj.BarsVisualizer;
 import moon.global_obj.GlobalMusic;
 import flixel.math.FlxMath;
 import flixel.addons.display.shapes.FlxShapeCircle;
@@ -25,12 +26,19 @@ class Title extends FlxState
         var bg = new MoonSprite().makeGraphic(FlxG.width, FlxG.height, 0xff0c0c15);
         add(bg);
 
+        var backVis = new BarsVisualizer(8);
+        backVis.color = FlxColor.BLUE;
+        backVis.blend = ADD;
+        backVis.alpha = 0.1;
+        add(backVis);
+        
         var gradient = FlxGradient.createGradientFlxSprite(
             FlxG.width, FlxG.height,
-            [0xff1022c1, FlxColor.TRANSPARENT, FlxColor.TRANSPARENT, FlxColor.TRANSPARENT, 0xffca15ac]
+            [0xff1022c1, FlxColor.TRANSPARENT, 0xffca15ac]
         );
         gradient.alpha = 0.2;
         add(gradient);
+            
 
         // grids
         grid1 = new FlxBackdrop(null, X, 0, 0);
@@ -73,19 +81,25 @@ class Title extends FlxState
 
         GlobalMusic.song = 'menus/freakyMenu';
         GlobalMusic.start(true);
+        
+        @:privateAccess
+        backVis.setAudioSource(cast FlxG.sound.music._channel.__audioSource);
 
-        GlobalMusic.conductor.onBeat.add((beat) -> 
+        if(GlobalMusic.conductor != null)
         {
-            trace('agwa');
-            logo.scale.set(1.1, 1.1);
-        });
+            GlobalMusic.conductor.onBeat.add((beat) -> 
+            {
+                trace('agwa');
+                logo.scale.set(1.1, 1.1);
+            });
+        }
     }
 
     final orbitDistance:Float = 130 * 2;
     override public function update(elapsed:Float):Void
     {
-        super.update(elapsed);
         GlobalMusic.update();
+        super.update(elapsed);
 
         logo.scale.x = logo.scale.y = FlxMath.lerp(logo.scale.x, 1, elapsed * 10);
 
