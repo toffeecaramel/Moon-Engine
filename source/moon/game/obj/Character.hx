@@ -20,6 +20,7 @@ class Character extends MoonSprite
     public var data:CharacterData;
     public var idleAnims:Array<String>;
 
+    public var conductor:Conductor;
     public var character(default, set):String;
 
     public var animationHold:Float = 0;
@@ -32,12 +33,14 @@ class Character extends MoonSprite
      * @param x         X Position.
      * @param y         Y Position.
      * @param character The character name.
+     * @param conductor The conductor instance.
      */
-    public function new(?x:Float = 0, ?y:Float = 0, ?character:String = 'dad')
+    public function new(?x:Float = 0, ?y:Float = 0, ?character:String = 'dad', conductor:Conductor)
     {
         super(x, y);
+        this.conductor = conductor;
         this.character = character;
-        Conductor.onBeat.add(checkDance);
+        conductor.onBeat.add(checkDance);
     }
     
     public function flipLeftRight():Void 
@@ -54,22 +57,23 @@ class Character extends MoonSprite
         }
     }
 
-    public function checkDance()
+    public function checkDance(curBeat:Float)
     {
         if (animation.curAnim == null) return;
         if (animation.curAnim.name.startsWith('sing') || animation.curAnim.name.startsWith('miss'))
-            animationHold += Conductor.stepLength;
+            animationHold += conductor.stepCrochet;
+        var beatInt = Std.int(curBeat);
         if ((animation.curAnim.name.startsWith("idle") || animation.curAnim.name.startsWith("dance"))
-            && (Conductor.curBeat % data.danceFrequency == 0) && (Conductor.curBeat != lastDanceBeat))
+            && (beatInt % data.danceFrequency == 0) && (beatInt != lastDanceBeat))
         {
-            lastDanceBeat = Conductor.curBeat;
+            lastDanceBeat = beatInt;
             this.dance(true);
         }
     }
         
     override public function update(elapsed:Float)
     {        
-        if (animationHold >= Conductor.stepLength * 3) 
+        if (animationHold >= conductor.stepCrochet * 3) 
         {
             dance(true);
             animationHold = 0;

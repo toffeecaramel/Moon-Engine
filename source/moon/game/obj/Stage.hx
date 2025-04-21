@@ -47,13 +47,19 @@ class Stage extends FlxTypedGroup<FlxBasic>
     public var chars:Array<Character> = [];
 
     /**
+     * Conductor used for calling beat hit and amongst other stuff.
+     */
+    public var conductor:Conductor;
+
+    /**
      * The stage script.
      */
     public var script:MoonScript;
 
-    public function new(stage:String = 'stage')
+    public function new(stage:String = 'stage', conductor:Conductor)
     {
         super();
+        this.conductor = conductor;
 
         script = new MoonScript();
         this.stage = stage;
@@ -91,7 +97,7 @@ class Stage extends FlxTypedGroup<FlxBasic>
     {
         group.recycle(Character, function():Character
         {
-            var char = new Character(0 + (800 * group.members.length), 0, charName);
+            var char = new Character(0 + (800 * group.members.length), 0, charName, conductor);
             char.ID = index;
             chars.push(char);
             

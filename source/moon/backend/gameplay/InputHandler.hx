@@ -33,6 +33,11 @@ class InputHandler
     public var strumline:Strumline;
 
     /**
+     * The conductor class, used for many things among with note timings.
+     */
+    public var conductor:Conductor;
+
+    /**
      * Map for the sustain notes.
      */
     private var heldSustains:Map<Int, Note> = new Map<Int, Note>();
@@ -92,12 +97,14 @@ class InputHandler
      * @param thisNotes The notes array that it will read.
      * @param playerID  The ID for the player. currently supported are [`opponent, p1`]
      * @param strumline The strumline, used for triggering animations on it.
+     * @param conductor The conductor instance, used for many things.
      */
-    public function new(thisNotes:Array<Note>, playerID:String, strumline:Strumline)
+    public function new(thisNotes:Array<Note>, playerID:String, strumline:Strumline, conductor:Conductor)
     {
         this.thisNotes = thisNotes;
         this.playerID = playerID;
         this.strumline = strumline;
+        this.conductor = conductor;
         this.stats = new PlayerStats(playerID);
     }
 
@@ -122,7 +129,7 @@ class InputHandler
             final possibleNotes = thisNotes.filter(note ->
             return (note.direction == i &&
                 note.lane == playerID &&
-                note.time - Conductor.time <= 0 &&
+                note.time - conductor.time <= 0 &&
                 note.state == NONE)
             );
 
@@ -263,7 +270,7 @@ class InputHandler
                     stats.score += 2;
                 }
 
-                if (Conductor.time >= heldNote.time + heldNote.duration)
+                if (conductor.time >= heldNote.time + heldNote.duration)
                 {
                     heldNote.child.visible = heldNote.child.active = false;
                     heldSustains.remove(direction);
@@ -283,7 +290,7 @@ class InputHandler
         // iterates through all notes and checks if they're too late.
         for (note in thisNotes)
             if (note.state != GOT_HIT && note.state != NoteState.TOO_LATE && note.lane == playerID &&
-                Conductor.time > note.time + Timings.getParameters('miss')[1])
+                conductor.time > note.time + Timings.getParameters('miss')[1])
                 onMiss(note);
 
     /**
@@ -302,7 +309,7 @@ class InputHandler
      */
     private function checkTiming(note:Note):String
     {
-        final timeDifference = Math.abs(note.time - Conductor.time);
+        final timeDifference = Math.abs(note.time - conductor.time);
         for (jt in Timings.values)
             if (timeDifference <= Timings.getParameters(jt)[1])
                 return jt;

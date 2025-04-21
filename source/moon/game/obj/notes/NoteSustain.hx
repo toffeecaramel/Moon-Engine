@@ -32,7 +32,7 @@ class NoteSustain extends TiledSprite
         if(parent.state == GOT_HIT)
         {
             this.visible = true;
-            var timeSinceHit:Float = Conductor.time - parent.time;
+            var timeSinceHit:Float = parent.receptor.conductor.time - parent.time;
             var remainingDuration:Float = Math.max(parent.duration - timeSinceHit, 0);
             expectedHeight = remainingDuration;
             expectedHeight *= parent.speed;

@@ -13,6 +13,7 @@ class GlobalMusic
     static var song(default, set):String;
 
     static var sound:MoonSound;
+    static var conductor:Conductor;
 
     /**
      * Initiates the class. Necessary for everything to work.
@@ -20,12 +21,13 @@ class GlobalMusic
     static function init()
     {
         sound = new MoonSound();
+        conductor = new Conductor();
         FlxG.sound.list.add(sound);
     }
 
     static function update()
     {
-        if(song != null && sound.metadata != null) Conductor.time = sound.time;
+        if(song != null && conductor != null) conductor.time = sound.time;
     }
 
     /**
@@ -56,8 +58,7 @@ class GlobalMusic
 
                 if(sound.metadata != null)
                 {
-                    Conductor.bpm = sound.metadata.bpm ?? 0;
-                    Conductor.timeSignature = TimeSignature.fromString('${sound.metadata.timeSignature[0] ?? 0}/${sound.metadata.timeSignature[1] ?? 0}');
+                    conductor.changeBpmAt(0, sound.metadata.bpm ?? 0, sound.metadata.timeSignature[0] ?? 0, sound.metadata.timeSignature[1] ?? 0);
                     sound.looped = sound.metadata.looped;
                 }
             }
@@ -70,5 +71,6 @@ class GlobalMusic
     {
         FlxG.sound.list.remove(sound);
         sound.destroy();
+        conductor = null;
     }
 }

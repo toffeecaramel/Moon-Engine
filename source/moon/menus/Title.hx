@@ -73,8 +73,8 @@ class Title extends FlxState
 
         GlobalMusic.song = 'menus/freakyMenu';
         GlobalMusic.start(true);
-        Conductor.init();
-        Conductor.onBeat.add(() -> 
+
+        GlobalMusic.conductor.onBeat.add((beat) -> 
         {
             trace('agwa');
             logo.scale.set(1.1, 1.1);

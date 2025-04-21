@@ -91,18 +91,20 @@ class Note extends MoonSprite
      */
     public var child:NoteSustain;
  
+    public var conductor:Conductor;
     public var script:MoonScript;
 
     private static var sharedScripts:Map<String, MoonScript> = new Map();
 
     public function new(direction:Int, time:Float, ?type:String = "v-slice", ?skinName:String = "v-slice", 
-        duration:Float)
+        duration:Float, conductor:Conductor)
     {
         super();
         this.direction = direction;
         this.time = time;
         this.type = type;
         this.duration = duration;
+        this.conductor = conductor;
         centerAnimations = true;
         
         this.skin = skinName;
@@ -141,7 +143,7 @@ class Note extends MoonSprite
         {
             visible = active = true;
 
-            var timeDiff = (time - Conductor.time);
+            var timeDiff = (time - conductor.time);
             var ypos = receptor.y + timeDiff * speed;
 
             if (receptor.y > FlxG.height * 0.5) ypos = receptor.y - timeDiff * speed;

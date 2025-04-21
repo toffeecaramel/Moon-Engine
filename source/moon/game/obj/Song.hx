@@ -34,18 +34,24 @@ class Song extends FlxTypedGroup<MoonSound>
 	@:isVar public var fullLength(get, never):Float = 0;
 
     public var onComplete:()->Void;
+    private var conductor:Conductor;
 
     /**
      * Creates a song insance, useful for gameplay Inst & Voices.
      * @param song The name of the song
      * @param char The character mix
-     * @param useErect Whether or not to use the erect version of the song 
+     * @param useErect Whether or not to use the erect song 
+     * @param conductor 
      */
-    public function new(song:String, char:String, ?useErect:Bool)
+    public function new(song:String, char:String, ?useErect:Bool, conductor:Conductor)
     {
         super();
+        this.conductor = conductor;
 
-        var audList =[Voices_Opponent, Voices_Player, Inst];
+        var audList =
+        [
+            Voices_Opponent, Voices_Player, Inst
+        ];
 
         for(i in 0...audList.length)
         {
@@ -68,7 +74,7 @@ class Song extends FlxTypedGroup<MoonSound>
             }
         }
 
-        Conductor.onStep.add(steps);
+        conductor.onStep.add(steps);
     }
 
     override public function update(dt:Float)
@@ -76,10 +82,10 @@ class Song extends FlxTypedGroup<MoonSound>
         super.update(dt);
     }
 
-    private function steps()
+    private function steps(step)
     {
         for (i in 0...this.members.length)
-        if ((this.state == PLAY) && (this.members[i].time >= Conductor.time + 20 || this.members[i].time <= Conductor.time - 20))
+        if ((this.state == PLAY) && (this.members[i].time >= conductor.time + 20 || this.members[i].time <= conductor.time - 20))
 				resync(this.members[i]);
     }
 
@@ -87,7 +93,7 @@ class Song extends FlxTypedGroup<MoonSound>
 	 * Sets said member to it's supposed song position.
 	 */
 	public function resync(member:MoonSound):Void
-        (member.type == Inst) ? Conductor.time = member.time : member.time = Conductor.time;
+        (member.type == Inst) ? conductor.time = member.time : member.time = conductor.time;
 
     ////////////////////////////////////////////////////////////////////////////////////
 

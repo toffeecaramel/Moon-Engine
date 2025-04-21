@@ -1,160 +1,155 @@
 package moon.backend;
 
-/**
- * Conductor class. Made by Cobalt for their retired Horizon Engine.
- * and I still can't make a conductor myself btw </3
- * I mean... I *can* but, I don't know how
- * 
- * anyways credits to cobalt! :3
- * https://github.com/CCobaltDev/FNF-Horizon-Engine/blob/rewrite/source/horizon/backend/Conductor.hx
- */
+import lime.app.Event;
 
-import flixel.FlxG;
-import flixel.sound.FlxSound;
-import flixel.util.FlxSignal;
-import sys.thread.Thread;
-using StringTools;
+/**
+	The conductor. Steps, beats, and measures use floats because this class was carried over from the original version from fnf zenith.
+	Also, time signature changing math was implemented here.
+
+    Class made entirely by @SomeGuyWhoLovesCoding (https://github.com/SomeGuyWhoLovesCoding)
+	Revamped math by @sword_352 (https://github.com/Sword352)
+	
+	All I made here was to make some few changes that I am comfortable with, so all credits goes to them ^^
+**/
 @:publicFields
 class Conductor
 {
-	static var bpm(default, set):Float;
+	// - Conductor's events.
+	var onStep:Event<Float->Void> = new Event<Float->Void>();
+	var onBeat:Event<Float->Void> = new Event<Float->Void>();
+	var onMeasure:Event<Float->Void> = new Event<Float->Void>();
 
-	static var curStep:Int = 0;
-	static var curBeat:Int = 0;
-	static var curMeasure:Int = 0;
+	// - Crochet values.
+	var stepCrochet(default, null):Float = 150;
+	var crochet(default, null):Float = 600;
+	var measureCrochet(default, null):Float = 2400;
 
-	static var time:Float = 0;
-	static var song(default, set):FlxSound;
-	static var timeSignature(default, set):TimeSignature = TimeSignature.fromString('4/4');
-	static var switchToMusic:Bool = true;
+	// - Beats per Minute.
+	var bpm(default, null):Float = 100;
 
-	static var stepLength:Float = -1;
-	static var beatLength:Float = -1;
-	static var measureLength:Float = -1;
+	//- Whenever the conductor's active.
+	var active:Bool;
 
-	static var onStep:FlxSignal;
-	static var onBeat:FlxSignal;
-	static var onMeasure:FlxSignal;
+	// - And the time (usually based on song position.)
+	var time(default, set):Float = 0;
 
-	private static var stepTracker:Float = 0;
-	private static var beatTracker:Float = 0;
-	private static var measureTracker:Float = 0;
-
-	private static var lastTime:Float = 0;
-	private static var startTime:Float = 0;
-	@:unreflective private static var thread:Thread;
-
-	static function init()
+	function set_time(value:Float):Float
 	{
-		onStep = new FlxSignal();
-		onBeat = new FlxSignal();
-		onMeasure = new FlxSignal();
+		time = value;
 
-		reset();
+		final calc = (time - offsetTime);
+		_stepTracker = Math.ffloor(stepOffset + calc / stepCrochet);
+		_beatTracker = Math.ffloor(beatOffset + calc / crochet);
+		_measureTracker = Math.ffloor(measureOffset + calc / measureCrochet);
 
-		startTime = Sys.time();
-		thread = Thread.create(() -> while (true)
+		if (active)
+        {
+			if (curStep != _stepTracker)
+			{
+				curStep = _stepTracker;
+				onStep.dispatch(curStep);
+			}
+
+			if (curBeat != _beatTracker)
+			{
+				curBeat = _beatTracker;
+				onBeat.dispatch(curBeat);
+			}
+
+			if (curMeasure != _measureTracker)
+			{
+				curMeasure = _measureTracker;
+				onMeasure.dispatch(curMeasure);
+			}
+		} else {
+			curStep = _stepTracker;
+			curBeat = _beatTracker;
+			curMeasure = _measureTracker;
+		}
+
+		return value;
+	}
+
+	/**
+		The step counter.
+	**/
+	var curStep(default, null):Float = 0;
+
+	/**
+		The beat counter.
+	**/
+	var curBeat(default, null):Float = 0;
+
+	/**
+		The measure counter.
+	**/
+	var curMeasure(default, null):Float = 0;
+
+	/**
+		The step tracker.
+	**/
+	private var _stepTracker(default, null):Float = 0;
+
+	/**
+		The beat tracker.
+	**/
+	private var _beatTracker(default, null):Float = 0;
+	private var _measureTracker(default, null):Float = 0;
+	private var offsetTime(default, null):Float = 0;
+	private var stepOffset(default, null):Float = 0;
+	private var beatOffset(default, null):Float = 0;
+	private var measureOffset(default, null):Float = 0;
+
+	// - These are for time signature's steps/beats.
+	var numerator:Float = 4;
+	var denominator:Float = 4;
+
+	/**
+		Change the conductor's beats per minute.
+		This also includes time signatures.
+		@param position The position you want to execute the event on.
+		@param newBpm The new beats per minute.
+		@param newNumerator The new numerator of the time signature.
+		@param newDenominator The new denominator of the time signature.
+	**/
+	inline function changeBpmAt(position:Float, newBpm:Float = 0, newNumerator:Float = 4, newDenominator:Float = 4):Void
+	{
+		final calc = (position - offsetTime);
+		stepOffset += calc / stepCrochet;
+		beatOffset += calc / crochet;
+		measureOffset += calc / measureCrochet;
+		offsetTime = position;
+
+		if (newBpm > 0) 
 		{
-			var dt = Sys.time() - startTime;
-
-			if (song != null)
-			{
-				if (song.playing)
-				{
-					if (song.time == lastTime)
-						time += dt * 1000;
-					else
-					{
-						time = song.time;
-						lastTime = song.time;
-					}
-				}
-			}
-			else if (FlxG.sound.music != null && switchToMusic)
-				song = FlxG.sound.music;
-
-			while (time >= stepTracker + stepLength)
-			{
-				stepTracker += stepLength;
-				curStep++;
-				onStep.dispatch();
-			}
-
-			while (time >= beatTracker + beatLength)
-			{
-				beatTracker += beatLength;
-				curBeat++;
-				onBeat.dispatch();
-			}
-
-			while (time >= measureTracker + measureLength)
-			{
-				measureTracker += measureLength;
-				curMeasure++;
-				onMeasure.dispatch();
-			}
-
-			var remainingTime = (1 / 240) - (Sys.time() - startTime);
-			startTime = Sys.time();
-			if (remainingTime > 0)
-				Sys.sleep(remainingTime);
-		});
+			bpm = newBpm;
+			stepCrochet = 60000 / (bpm * 4);
+		}
+		
+		numerator = newNumerator;
+		denominator = newDenominator;
+		
+		crochet = stepCrochet * numerator;
+		measureCrochet = crochet * denominator;
 	}
 
-	static function reset():Void
+	/**
+		Reset the conductor.
+	**/
+	inline function reset():Void
 	{
-		timeSignature = TimeSignature.fromString('4/4');
-		bpm = 100;
-		switchToMusic = true;
-		stepTracker = beatTracker = measureTracker = time = lastTime = startTime = 0;
+		offsetTime = stepOffset = beatOffset = measureOffset = time = 0.0;
 		curStep = curBeat = curMeasure = 0;
-		song = null;
+		changeBpmAt(0);
 	}
 
-	static inline function recalculateLengths():Void
+	/**
+		Constructs a conductor.
+		@param initialBpm The initial beats per minute.
+	**/
+	inline function new(initialBpm:Float = 100, initialNumerator:Float = 4, initialDenominator:Float = 4):Void
 	{
-		beatLength = 60 / bpm * 1000 * (4 / timeSignature.denominator);
-		stepLength = beatLength * .25;
-		measureLength = beatLength * timeSignature.numerator;
+		changeBpmAt(0, initialBpm, initialNumerator, initialDenominator);
+		active = true;
 	}
-
-	@:noCompletion static function set_bpm(val:Float):Float
-	{
-		bpm = val;
-		recalculateLengths();
-		return val;
-	}
-
-	@:noCompletion static function set_song(val:FlxSound):FlxSound
-	{
-		if (val != null)
-			val.onComplete = reset;
-		return song = val;
-	}
-
-	@:noCompletion static function set_timeSignature(val:TimeSignature):TimeSignature
-	{
-		timeSignature = val;
-		recalculateLengths();
-		return val;
-	}
-}
-
-@:structInit
-class TimeSignature
-{
-	public var numerator:Float;
-	public var denominator:Float;
-
-	public static function fromString(sig:String):TimeSignature
-	{
-		if (!sig.contains('/'))
-			return {numerator: 4, denominator: 4}
-
-		var split = sig.trim().split('/');
-		return {numerator: Std.parseFloat(split[0].trim()), denominator: Std.parseFloat(split[1].trim())}
-	}
-
-	public function toString(sig:TimeSignature):String
-		return '$numerator/$denominator';
 }

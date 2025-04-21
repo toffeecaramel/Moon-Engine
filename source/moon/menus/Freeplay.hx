@@ -46,6 +46,7 @@ class Freeplay extends FlxSubState
 
     public var currentCapsule:MP3Capsule;
     public var currentMetadata:MetadataStruct;
+    private var conductor:Conductor;
 
     public var mainBG:FreeplayBG;
     public var weekBG:FlxSkewedSprite;
@@ -96,12 +97,13 @@ class Freeplay extends FlxSubState
         thisDJ.script.set('freeplayMusic', backgroundMus);
         thisDJ.script.set('freeplay', this);
 
-        Conductor.onBeat.add(function()
+        conductor = new Conductor(0, 4, 4);
+        conductor.onBeat.add(function(beat)
         {
-            if ((Conductor.curBeat % 2 == 0 || Conductor.bpm < 120) && thisDJ.canDance)
+            if ((beat % 2 == 0 || conductor.bpm < 120) && thisDJ.canDance)
                 thisDJ.anim.play("idle", true);
 
-            if(mainBG.script.exists('onBeat')) mainBG.script.get('onBeat')(Conductor.curBeat);
+            if(mainBG.script.exists('onBeat')) mainBG.script.get('onBeat')(beat);
         });
 
         album = new AlbumCollection(1150, FlxG.height / 2 + 50);
@@ -139,7 +141,7 @@ class Freeplay extends FlxSubState
     var sexo:Int = 0;
     override public function update(elapsed:Float):Void
     {
-        Conductor.time = backgroundMus.time;
+        conductor.time = backgroundMus.time;
         super.update(elapsed);
 
         album.angle = FlxMath.lerp(album.angle, 16, 0.2);
@@ -236,7 +238,7 @@ class Freeplay extends FlxSubState
             FlxG.sound.list.add(backgroundMus);
             
             //TODO: GET SONGS TIME SIGNATURE TO WORK!!
-            Conductor.bpm = currentMetadata.bpm;
+            conductor.changeBpmAt(0, currentMetadata.bpm, 4, 4);
         }, true);
     }
     

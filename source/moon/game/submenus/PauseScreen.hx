@@ -63,13 +63,13 @@ class PauseScreen extends FlxSubState
         backGradient = FlxGradient.createGradientFlxSprite(FlxG.width, FlxG.height, [0x00000000, 0xFF001A83], 1, 180);
         backGradient.alpha = 0;
         add(backGradient);
-        FlxTween.tween(backGradient, {alpha: 0.7}, Conductor.beatLength / 1000);
+        FlxTween.tween(backGradient, {alpha: 0.7}, pf.conductor.crochet / 1000);
 
         back = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, 0xFF000000);
         back.alpha = 0;
         back.blend = BlendMode.DIFFERENCE;
         add(back);
-        FlxTween.tween(back, {alpha: 0.5}, Conductor.beatLength / 1000);
+        FlxTween.tween(back, {alpha: 0.5}, pf.conductor.crochet / 1000);
 
         paused = new FlxSprite(-800, 45).loadGraphic(Paths.image('menus/pause/pause'));
         paused.scale.set(2, 2);
@@ -77,7 +77,7 @@ class PauseScreen extends FlxSubState
         paused.updateHitbox();
         add(paused);
         slideOutItems.push(paused);
-        FlxTween.tween(paused, {x: 55}, Conductor.beatLength / 1000, {ease: FlxEase.expoOut});
+        FlxTween.tween(paused, {x: 55}, pf.conductor.crochet / 1000, {ease: FlxEase.expoOut});
 
         // < SELECTABLE ITEMS SETUP > //
         regenItems(DEFAULT_ITEMS);
@@ -126,7 +126,7 @@ class PauseScreen extends FlxSubState
 
         final wawa = [metadata, displayIcon, cmetadata];
         for(i in 0...wawa.length)
-            FlxTween.tween(wawa[i], {x: wawa[i].x + 30, alpha: 1}, Conductor.beatLength / 2000, {ease: FlxEase.quadOut, startDelay: 0.1 * i});
+            FlxTween.tween(wawa[i], {x: wawa[i].x + 30, alpha: 1}, pf.conductor.crochet / 2000, {ease: FlxEase.quadOut, startDelay: 0.1 * i});
 
         Paths.playSFX('game/pause/onPause');
     }
@@ -200,7 +200,7 @@ class PauseScreen extends FlxSubState
                 hi.alpha = 0;
                 hi.textField.antiAliasType = ADVANCED;
                 hi.textField.sharpness = 400;
-                FlxTween.tween(hi, {alpha: 1}, Conductor.beatLength / 1500, {ease: FlxEase.quadOut, startDelay: 0.1 * i});
+                FlxTween.tween(hi, {alpha: 1}, pf.conductor.crochet / 1500, {ease: FlxEase.quadOut, startDelay: 0.1 * i});
                 return hi;
             });
         }
@@ -231,14 +231,14 @@ class PauseScreen extends FlxSubState
         //wah.textField.sharpness = 400;
         add(wah);
 
-        new FlxTimer().start(Conductor.beatLength / 1000 * 2, function(_)
+        new FlxTimer().start(pf.conductor.crochet / 1000 * 2, function(_)
         {
-            for (bg in [backGradient, back]) FlxTween.tween(bg, {alpha: 0}, Conductor.beatLength / 1000 * 2);
-            for (item in slideOutItems) FlxTween.tween(item, {x: item.x - 700}, Conductor.beatLength / 1000, {ease: FlxEase.expoIn});
+            for (bg in [backGradient, back]) FlxTween.tween(bg, {alpha: 0}, pf.conductor.crochet / 1000 * 2);
+            for (item in slideOutItems) FlxTween.tween(item, {x: item.x - 700}, pf.conductor.crochet / 1000, {ease: FlxEase.expoIn});
         });
 
         // - Starts the lil countdown.
-        new FlxTimer().start(Conductor.beatLength / 1000, function(_)
+        new FlxTimer().start(pf.conductor.crochet / 1000, function(_)
         {
             if(counter == -1)
             {
