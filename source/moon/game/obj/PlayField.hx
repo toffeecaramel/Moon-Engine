@@ -15,7 +15,6 @@ import moon.backend.gameplay.Timings;
 class PlayField extends FlxGroup
 {
     public static var playfield:PlayField;
-    var conductor:Conductor;
     var playback:Song;
 
     var noteSpawner:NoteSpawner;
@@ -49,15 +48,16 @@ class PlayField extends FlxGroup
 
         //< -- SONG SETUP -- >//
         chart = new MoonChart(song, difficulty, mix);
-        
-        conductor = new Conductor(chart.content.meta.bpm, 4, 4);
-        conductor.onBeat.add(beatHit);
+        //TODO: Time signature support.
+
+        Conductor.bpm = chart.content.meta.bpm;
+        Conductor.timeSignature = TimeSignature.fromString('4/4');
+        Conductor.onBeat.add(beatHit);
         
         playback = new Song(
             song,
             mix,
             (difficulty == 'erect' || difficulty == 'nightmare'),
-            conductor
         );
         playback.state = PAUSE;
 
@@ -80,11 +80,11 @@ class PlayField extends FlxGroup
         for (i in 0...playerIDs.length)
         {
             //TODO: Skins lol
-            var strumline = new Strumline(xVal + strumXs[i], 80, 'v-slice', isCPUPlayers[i], playerIDs[i], conductor);
+            var strumline = new Strumline(xVal + strumXs[i], 80, 'v-slice', isCPUPlayers[i], playerIDs[i]);
             add(strumline);
             strumlines.push(strumline);
 
-            var inputHandler = new InputHandler(null, playerIDs[i], strumline, conductor);
+            var inputHandler = new InputHandler(null, playerIDs[i], strumline);
 			inputHandler.CPUMode = isCPUPlayers[i];
             inputHandlers.set(playerIDs[i], inputHandler);
 
@@ -104,7 +104,7 @@ class PlayField extends FlxGroup
         //< -- NOTES SETUP -- >//
 
         // Add the note spawner.
-        noteSpawner = new NoteSpawner(chart.content.notes, strumlines, conductor);
+        noteSpawner = new NoteSpawner(chart.content.notes, strumlines);
         noteSpawner.scrollSpeed = chart.content.meta.scrollSpd;
         add(noteSpawner);
 
@@ -112,7 +112,7 @@ class PlayField extends FlxGroup
         for (handler in inputHandlers.iterator())
             handler.thisNotes = noteSpawner.notes;
 
-        conductor.time = -(conductor.crochet * 6);
+        Conductor.time = -(Conductor.beatLength * 6);
     }
 
     function restartSong()
@@ -123,7 +123,7 @@ class PlayField extends FlxGroup
     var inCountdown:Bool = true;
     override public function update(dt:Float)
     {
-        conductor.time += (dt * 1000) * playback.pitch;
+        Conductor.time += (dt * 1000) * playback.pitch;
 
         super.update(dt);
         for (handler in inputHandlers.iterator())
@@ -179,7 +179,7 @@ class PlayField extends FlxGroup
         tst.x = FlxG.width / 2 + 120;
     }
 
-    function beatHit(beat:Float):Void
+    function beatHit():Void
     {
         healthBar.oppIcon.scale.set(1, 1);
         healthBar.playerIcon.scale.set(1, 1);
@@ -187,13 +187,13 @@ class PlayField extends FlxGroup
        // <- COUNTDOWN STUFF -> //
        if(inCountdown)
        {
-            switch(beat)
+            switch(Conductor.curBeat)
             {
                 case 0: playback.state = PLAY;
                 inCountdown = false;
                 case -1: FlxG.sound.play(Paths.sound('game/countdown/intro-0', 'sounds'));
 
-                default: if(beat >= -4)FlxG.sound.play(Paths.sound('game/countdown/intro${beat+1}', 'sounds'));
+                default: if(Conductor.curBeat >= -4)FlxG.sound.play(Paths.sound('game/countdown/intro${Conductor.curBeat+1}', 'sounds'));
             }
        }
     }

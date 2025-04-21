@@ -13,7 +13,6 @@ import flixel.util.FlxColor;
 class LevelEditor extends FlxState
 {
     private var _chart:MoonChart;
-    private var _conductor:Conductor;
     private var _playback:Song;
 
     public static var isMetronomeActive:Bool = false;
@@ -33,20 +32,19 @@ class LevelEditor extends FlxState
         _chart = new MoonChart(song, diff, mix);
 
         //TODO: get chart's time signature.
-        _conductor = new Conductor(_chart.content.meta.bpm, 4, 4);
-        _conductor.onBeat.add(beatHit);
+        Conductor.bpm = _chart.content.meta.bpm;
+        Conductor.onBeat.add(beatHit);
         
         _playback = new Song(
             song,
             mix,
-            (diff == 'erect' || diff == 'nightmare'),
-            _conductor
+            (diff == 'erect' || diff == 'nightmare')
         );
 
         var bg = new MoonSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.fromRGB(30, 29, 31));
         add(bg);
 
-        grid = new ChartGrid('opponent').createGrid(_chart.content.notes, _conductor, _playback.fullLength);
+        grid = new ChartGrid('opponent').createGrid(_chart.content.notes, _playback.fullLength);
         grid.screenCenter(X);
         add(grid);
 
@@ -65,7 +63,7 @@ class LevelEditor extends FlxState
 
     override public function update(elapsed:Float)
     {
-        _conductor.time = _playback.time;
+        Conductor.time = _playback.time;
 
         super.update(elapsed);
 
@@ -82,6 +80,6 @@ class LevelEditor extends FlxState
         grid.time = _playback.time;
     }
 
-    public function beatHit(curBeat)
+    public function beatHit()
     {}
 }

@@ -29,9 +29,6 @@ class PlayState extends FlxState
 	// The main gameplay interface
 	public var playField:PlayField;
 
-	// Just the conductor :P poor little guy,,
-	public var conductor:Conductor;
-	
 	// Background (stage)
 	public var stage:Stage;
 	
@@ -84,12 +81,11 @@ class PlayState extends FlxState
 		//< -- PLAYFIELD SETUP -- >//
 		playField = new PlayField(song, difficulty, mix);
 		playField.camera = camHUD;
-		playField.conductor.onBeat.add(beatHit);
+		Conductor.onBeat.add(beatHit);
 		add(playField);
-		this.conductor = playField.conductor;
 		
 		//< -- BACKGROUND SETUP -- >//
-		stage = new Stage(playField.chart.content.meta.stage, conductor);
+		stage = new Stage(playField.chart.content.meta.stage);
 		add(stage);
 		
 		final chartMeta = playField.chart.content.meta;
@@ -97,7 +93,7 @@ class PlayState extends FlxState
 		for (plyr in chartMeta.players) stage.addCharTo(plyr, stage.players, playField.inputHandlers.get('p1'));
 		for (spct in chartMeta.spectators) stage.addCharTo(spct, stage.spectators);
 
-		if(stage.script.exists("onBeat")) conductor.onBeat.add(stage.script.get('onBeat'));
+		if(stage.script.exists("onBeat")) Conductor.onBeat.add(stage.script.get('onBeat'));
 
 		//< -- EVENTS SETUP -- >//
 		for(event in playField.chart.content.events)
@@ -131,7 +127,7 @@ class PlayState extends FlxState
 		// EVENTS CHECK
 		for (event in events)
 		{
-			if (event.time <= conductor.time)
+			if (event.time <= Conductor.time)
 			{
 				event.exec();
 				events.remove(event);
@@ -152,12 +148,12 @@ class PlayState extends FlxState
 		}
 	}
 
-	public function beatHit(curBeat:Float)
+	public function beatHit()
 	{
-		if (((curBeat % playField.conductor.numerator) == 0) && !playField.inCountdown)
+		/*if (((curBeat % playField.conductor.numerator) == 0) && !playField.inCountdown)
 		{
 			camGAME.zoom += 0.025;
 			camHUD.zoom += 0.030;
-		}
+		}*/
 	}
 }

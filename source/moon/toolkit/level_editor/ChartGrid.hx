@@ -17,7 +17,6 @@ import flixel.math.FlxMath;
 class ChartGrid extends FlxSpriteGroup
 {
     @:isVar public var time(default,set):Float = 0;
-    public var conductor:Conductor;
     public var songLength:Float;
     public var lane:String;
 
@@ -37,16 +36,9 @@ class ChartGrid extends FlxSpriteGroup
         this.lane = lane;
     }
 
-    public function createGrid(notesData:Array<NoteStruct>, conductor:Conductor, songLength:Float = 0):ChartGrid
+    public function createGrid(notesData:Array<NoteStruct>, songLength:Float = 0):ChartGrid
     {
-        this.conductor = conductor;
         this.songLength = songLength;
-
-        if (conductor == null)
-        {
-            trace("Conductor is null. Cannot create grid.", "ERROR");
-            return null;
-        }
 
         if (songLength <= 0)
         {
@@ -73,7 +65,7 @@ class ChartGrid extends FlxSpriteGroup
     {
         notes.recycle(Note, function():Note
         {
-            var note = new Note(data.data, data.time, data.type, 'v-slice', data.duration, conductor);
+            var note = new Note(data.data, data.time, data.type, 'v-slice', data.duration);
             note.state = CHART_EDITOR;
             note.setGraphicSize(gridSize, gridSize);
             note.updateHitbox();
@@ -92,7 +84,7 @@ class ChartGrid extends FlxSpriteGroup
         fullGrid = new FlxTiledSprite(null, gridSize * lanes, gridSize);
         fullGrid.loadGraphic(base.graphic);
         fullGrid.alpha = 0.7;
-        fullGrid.height = Math.ceil((songLength / conductor.stepCrochet) * gridSize);
+        fullGrid.height = Math.ceil((songLength / Conductor.stepLength) * gridSize);
         add(fullGrid);
     }
     
@@ -110,5 +102,5 @@ class ChartGrid extends FlxSpriteGroup
     }
 
     public function getTimePos(time:Float)
-        return FlxMath.remapToRange(time, 0, songLength, 0, (songLength / conductor.stepCrochet) * gridSize);
+        return FlxMath.remapToRange(time, 0, songLength, 0, (songLength / Conductor.stepLength) * gridSize);
 }

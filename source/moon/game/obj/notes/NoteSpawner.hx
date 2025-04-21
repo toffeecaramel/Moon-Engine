@@ -11,18 +11,16 @@ class NoteSpawner extends FlxGroup
     private var _notes:Array<Note> = [];
 
     private var strumlines:Array<Strumline> = [];
-    private var conductor:Conductor;
 
     public var scrollSpeed(default, set):Float = 1;
 
     private var nextNoteIndex:Int = 0;
 
-    public function new(noteStructs:Array<NoteStruct>, strumlines:Array<Strumline>, conductor:Conductor)
+    public function new(noteStructs:Array<NoteStruct>, strumlines:Array<Strumline>)
     {
         super();
         notes = _notes;
         this.strumlines = strumlines;
-        this.conductor = conductor;
 
         for (noteStruct in noteStructs)
         {
@@ -41,7 +39,7 @@ class NoteSpawner extends FlxGroup
         spawnThreshold = (scrollSpeed <= 0.9) ? 2000 : 700;
         super.update(dt);
 
-        while (nextNoteIndex < _notes.length && (_notes[nextNoteIndex].time) <= conductor.time + spawnThreshold)
+        while (nextNoteIndex < _notes.length && (_notes[nextNoteIndex].time) <= Conductor.time + spawnThreshold)
         {
             recycleNote(_notes[nextNoteIndex]);
             nextNoteIndex++;
@@ -85,7 +83,7 @@ class NoteSpawner extends FlxGroup
             if (strum.playerID == noteStruct.lane)
             {
                 var note = new Note(noteStruct.data, noteStruct.time,
-                noteStruct.type, strum.receptors.members[noteStruct.data].skin, noteStruct.duration, conductor);
+                noteStruct.type, strum.receptors.members[noteStruct.data].skin, noteStruct.duration);
 
                 note.speed = scrollSpeed;
                 note.lane = noteStruct.lane;
