@@ -1,5 +1,7 @@
 package moon.dependency;
 
+import moon.global_obj.GlobalMusic;
+import moon.global_obj.Alphabet;
 import flixel.input.keyboard.FlxKey;
 import flixel.FlxG;
 import flixel.FlxGame;
@@ -12,8 +14,9 @@ class MoonGame extends FlxGame
     {
         super(gameWidth, gameHeight, initialState, updateFramerate, drawFramerate, skipSplash, startFullscreen);
 
-        //Init settings
+        GlobalMusic.init();
 		MoonSettings.init();
+        Alphabet.init();
 
         FlxG.stage.addEventListener(openfl.events.KeyboardEvent.KEY_DOWN, (e) ->
 		{

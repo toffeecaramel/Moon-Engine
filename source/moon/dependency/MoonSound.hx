@@ -1,5 +1,6 @@
 package moon.dependency;
 
+import flixel.system.FlxAssets.FlxSoundAsset;
 import flixel.sound.FlxSound;
 import flixel.util.FlxTimer;
 import flixel.tweens.FlxTween;
@@ -11,6 +12,14 @@ enum MusicType {
     Voices_Opponent;
 }
 
+typedef Metadata = {
+    var displayName:String;
+    var ?looped:Bool;
+    var ?artist:String;
+    var ?bpm:Float;
+    var ?timeSignature:Array<Int>;
+}
+
 /**
  * This class basically is an extension of FlxSound, and
  * aims to add more utilities/functionalities to the already existing FlxSound;
@@ -19,6 +28,13 @@ enum MusicType {
  **/
 class MoonSound extends FlxSound
 {
+    // ----------- SONG DATA STUFF ----------- //
+
+    /**
+     * A metadata typedef, which contains important song INFO (if the file exists).
+     */
+    public var metadata:Metadata;
+
     /**
      * Used for recognizing whether the audio is inst or voices.
      */
@@ -28,6 +44,10 @@ class MoonSound extends FlxSound
      * An string ID, used for some neat thingies.
      */
     public var strID:String;
+
+    @:inheritDoc(FlxSound.loadEmbedded)
+    override public function loadEmbedded(EmbeddedSound:FlxSoundAsset, Looped:Bool = false, AutoDestroy:Bool = false, ?OnComplete:() -> Void):MoonSound
+        return cast super.loadEmbedded(EmbeddedSound, Looped, AutoDestroy, OnComplete);
 
     // ---------- TWEENS AND TIMERS ---------- //
 

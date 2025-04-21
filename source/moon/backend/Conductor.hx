@@ -121,16 +121,16 @@ class Conductor
 		offsetTime = position;
 
 		if (newBpm > 0) 
-        {
+		{
 			bpm = newBpm;
 			stepCrochet = 60000 / (bpm * 4);
 		}
-
-		crochet = stepCrochet * numerator;
-		measureCrochet = crochet * denominator;
-
+		
 		numerator = newNumerator;
 		denominator = newDenominator;
+		
+		crochet = stepCrochet * numerator;
+		measureCrochet = crochet * denominator;
 	}
 
 	/**
