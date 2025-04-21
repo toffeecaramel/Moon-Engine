@@ -47,7 +47,7 @@ class BarsVisualizer extends FlxSpriteGroup
         var levels = analyzer.getLevels();
 
         for (i in 0...min(this.members.length, levels.length))
-            this.members[i].scale.y = flixel.math.FlxMath.lerp(this.members[i].scale.y, levels[i].value, FlxG.elapsed * 16);
+            this.members[i].scale.y = flixel.math.FlxMath.lerp(this.members[i].scale.y, levels[i].value, FlxG.elapsed * 24);
         super.draw();
     }
 

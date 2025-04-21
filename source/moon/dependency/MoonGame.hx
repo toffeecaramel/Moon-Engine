@@ -14,7 +14,6 @@ class MoonGame extends FlxGame
     {
         super(gameWidth, gameHeight, initialState, updateFramerate, drawFramerate, skipSplash, startFullscreen);
 
-        GlobalMusic.init();
 		MoonSettings.init();
         Alphabet.init();
 

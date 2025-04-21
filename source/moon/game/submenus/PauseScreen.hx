@@ -44,7 +44,7 @@ class PauseScreen extends FlxSubState
     private var backGradient:FlxSprite;
     private var back:FlxSprite;
 
-    private var displayIcon:PixelIcon;
+    public var displayIcon:PixelIcon;
 
     public var pauseItems:FlxTypedGroup<FlxText> = new FlxTypedGroup<FlxText>();
     public var selector:FlxText = new FlxText();
