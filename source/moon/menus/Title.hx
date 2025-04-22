@@ -1,5 +1,7 @@
 package moon.menus;
 
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
 import flixel.text.FlxText;
 import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 import flixel.group.FlxGroup.FlxTypedGroup;
@@ -22,6 +24,7 @@ class Title extends FlxState
     var grid1:FlxBackdrop;
     var grid2:FlxBackdrop;
     var logo:MoonSprite;
+    var ctlogo:MoonSprite;
     var circles:FlxTypedSpriteGroup<FlxShapeCircle> = new FlxTypedSpriteGroup<FlxShapeCircle>();
     var objects:Array<FlxBasic> = []; // the objects that are hidden on start
     var displayTxt:FlxText;
@@ -32,20 +35,20 @@ class Title extends FlxState
 
     var songMeta:Metadata;
 
+    var gridPos:Float = 0;
     var onTitle:Bool = false; //For tracking when the alphabet isnt on screensies
     override public function create():Void
     {
         super.create();
         
+        // -- CREATE BG ELEMENTS
         var backVis = new BarsVisualizer(16);
-        backVis.blend = ADD;
-        backVis.alpha = 0.4;
+        backVis.alpha = 0.2;
         add(backVis);
         objects.push(backVis);
 
-        // bg
-        var bg = new MoonSprite().makeGraphic(FlxG.width, FlxG.height, 0xff1e1e39);
-        bg.alpha = 0.8;
+        var bg = new MoonSprite().makeGraphic(FlxG.width, FlxG.height, 0xff121224);
+        bg.alpha = 0.9;
         add(bg);
         objects.push(bg);
         
@@ -57,7 +60,6 @@ class Title extends FlxState
         add(gradient);
         objects.push(gradient);
 
-        // grids
         grid1 = new FlxBackdrop(null, X, 0, 0);
         grid1.loadGraphic(Paths.image('menus/title/bgGrid'));
         grid1.antialiasing = true;
@@ -75,9 +77,6 @@ class Title extends FlxState
         grid2.y = grid1.y + grid1.height;
         add(grid2);
         objects.push(grid2);
-
-        grid1.velocity.x = 12;
-        grid2.velocity.x = -12;
 
         add(circles);
         // create clock circles
@@ -98,10 +97,20 @@ class Title extends FlxState
         logo.screenCenter();
         add(logo);
         objects.push(logo);
+        
+        ctlogo = new MoonSprite().loadGraphic(Paths.image('menus/CTLogo'));
+        ctlogo.screenCenter();
+        ctlogo.visible = false;
+        ctlogo.scale.set(0, 0);
+        ctlogo.alpha = 0.2;
+        add(ctlogo);
 
         displayTxt = new FlxText(0, 0);
-        displayTxt.setFormat(Paths.font('monsterrat/Montserrat-ExtraBold.ttf'), 32, FlxColor.WHITE, CENTER);
+        displayTxt.setFormat(Paths.font('monsterrat/Montserrat-ExtraBold.ttf'), 48, FlxColor.WHITE, CENTER);
+        displayTxt.antialiasing = true;
         add(displayTxt);
+
+        // -- SETUP THE SONG
 
         //GlobalMusic.song = 'menus/freakyMenu';
         //GlobalMusic.start(true);
@@ -114,56 +123,47 @@ class Title extends FlxState
             FlxG.sound.music.looped = songMeta.looped;
         }
         
+        // (visualizer audio source stuff)
         @:privateAccess
         backVis.setAudioSource(cast FlxG.sound.music._channel.__audioSource);
 
+        // -- ON CONDUCTOR'S BEAT HIT
         conductor.onBeat.add((beat) -> 
         {
-            trace(beat);
             logo.scale.set(1.1, 1.1);
+            gridPos += 10;
 
             for(i in 0...circles.members.length)
             {
                 var c = circles.members[i];
-                c.scale.set(c.scale.x + 0.1, c.scale.y - 0.1);
+                c.scale.set(c.scale.x + 0.3, c.scale.y + 0.3);
             }
 
-            switch(beat)
+            if(!onTitle)
             {
-                case 1:
-                    setTxt('ninjamuffin\nphantomArcade\nkawaisprite\nevilsk8er');
-                case 3:
-                    setTxt('present');
-                // credTextShit.text += '\npresent...';
-                // credTextShit.addText();
-                case 4:
-                    setTxt(true);
-                case 5:
-                    setTxt('In association\nwith');
-                case 7:
-                    setTxt('newgrounds');
-                case 8:
-                    setTxt(true);
-                case 9:
-                    setTxt(randomText[0]);
-                case 11:
-                    setTxt(randomText[1]);
-                case 12:
-                    setTxt('Friday', true);
-                // credTextShit.visible = true;
-                case 13:
-                    setTxt('Night');
-                // credTextShit.text += '\nNight';
-                case 14:
-                    setTxt('Funkin');
-                case 15: setTxt('Moon Engine');
-                case 16: 
-                    if(!onTitle)
-                    {
-                        displayTxt.destroy();
-                        onTitle = true;
-                        FlxG.camera.flash(FlxColor.WHITE, conductor.crochet / 1000 * 4);
-                    }
+                switch(beat)
+                {
+                    // intro stuff
+                    // biggie!!
+                    case 1: setTxt('The Funkin\' Crew');
+                    case 3: setTxt('presents');
+                    case 4: setTxt(true);
+                    case 5: setTxt('(NOT) In association\nwith');
+                    case 7: 
+                        ctlogo.visible = true;
+                        FlxTween.tween(ctlogo, {"scale.x": 1, "scale.y": 1}, conductor.crochet / 1010, {ease: FlxEase.backOut});
+                        setTxt('Chaotic Team');
+                    case 8:
+                        ctlogo.destroy();
+                        setTxt(true);
+                    case 9: setTxt(randomText[0]);
+                    case 11: setTxt(randomText[1]);
+                    case 12: setTxt('Friday', true);
+                    case 13: setTxt('Night');
+                    case 14: setTxt('Funkin');
+                    case 15: setTxt('Moon Engine');
+                    case 16: endIntro();
+                }
             }
         });
 
@@ -171,11 +171,19 @@ class Title extends FlxState
         trace('Text of the day: $randomText', "DEBUG");
     }
 
+    var txTwn:FlxTween;
     public function setTxt(?text:String = '', ?clear:Bool = false)
     {
-        if(clear)displayTxt.text = '';
-        displayTxt.text += '\n' + text;
-        displayTxt.screenCenter();
+        if(!onTitle)
+        {
+            if(clear)displayTxt.text = '';
+            displayTxt.text += '\n' + text.toUpperCase();
+            displayTxt.screenCenter();
+            displayTxt.y -= 35;
+
+            if(txTwn != null && txTwn.active) txTwn.cancel();
+            txTwn = FlxTween.tween(displayTxt, {y: displayTxt.y - 15}, 1.1, {ease: FlxEase.expoOut});
+        }
     }
 
     final orbitDistance:Float = 130 * 2;
@@ -185,10 +193,20 @@ class Title extends FlxState
         conductor.time = FlxG.sound.music.time;
 
         //GlobalMusic.update();
+        if(MoonInput.justPressed(ACCEPT))
+        {
+            (!onTitle) ? endIntro() : {
+                //nothing cause we dont have a menu yet :[
+            }
+        }
 
         if(onTitle)
         {
+            grid1.x = FlxMath.lerp(grid1.x, gridPos, elapsed * 4);
+            grid2.x = FlxMath.lerp(grid2.x, -gridPos, elapsed * 4);
             logo.scale.x = logo.scale.y = FlxMath.lerp(logo.scale.x, 1, elapsed * 10);
+
+            // make the circles position based on time
             for(i in 0...circles.members.length)
             {
                 // my brain got eated
@@ -211,13 +229,25 @@ class Title extends FlxState
             obj.visible = onTitle;
     }
 
+    function endIntro()
+    {
+        if(ctlogo != null) ctlogo.destroy();
+
+        FlxG.camera.flash(FlxColor.WHITE, conductor.crochet / 1000 * 4);
+        onTitle = true;
+
+        displayTxt.setFormat(Paths.font('ARACNE CONDENSED REGULAR.TTF'), 64, CENTER);
+        displayTxt.text = 'PRESS ENTER TO START';
+        if(txTwn != null && txTwn.active) txTwn.cancel();
+        displayTxt.y = FlxG.height - displayTxt.height;
+        FlxTween.tween(displayTxt, {alpha: 0.2}, conductor.crochet / 1000 * 2, {ease: FlxEase.quadInOut, type: PINGPONG});
+    }
+
     public function getRandomTXT()
     {
         var allTxts = MoonUtils.getArrayFromFile(Paths.data('introTexts.txt'));
         var lines = [];
-        for (i in allTxts)
-            lines.push(i.split('--'));
-
+        for (i in allTxts) lines.push(i.split('--'));
         randomText = FlxG.random.getObject(lines);
     }
 }
