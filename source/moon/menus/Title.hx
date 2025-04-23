@@ -9,7 +9,6 @@ import flixel.FlxBasic;
 import flixel.util.FlxTimer;
 import moon.dependency.MoonSound.Metadata;
 import moon.menus.obj.BarsVisualizer;
-import moon.global_obj.GlobalMusic;
 import flixel.math.FlxMath;
 import flixel.addons.display.shapes.FlxShapeCircle;
 import flixel.addons.display.FlxBackdrop;
@@ -32,8 +31,6 @@ class Title extends FlxState
     var conductor:Conductor;
 
     var randomText:Array<String> = [];
-
-    var songMeta:Metadata;
 
     var gridPos:Float = 0;
     var onTitle:Bool = false; //For tracking when the alphabet isnt on screensies
@@ -106,7 +103,7 @@ class Title extends FlxState
         add(ctlogo);
 
         displayTxt = new FlxText(0, 0);
-        displayTxt.setFormat(Paths.font('monsterrat/Montserrat-ExtraBold.ttf'), 48, FlxColor.WHITE, CENTER);
+        displayTxt.setFormat(Paths.font('phantomuff/difficulty.ttf'), 56, FlxColor.WHITE, CENTER);
         displayTxt.antialiasing = true;
         add(displayTxt);
 
@@ -114,8 +111,8 @@ class Title extends FlxState
 
         //GlobalMusic.song = 'menus/freakyMenu';
         //GlobalMusic.start(true);
-        GlobalMusic.start('menus/freakyMenu', true);
-        songMeta = (Paths.fileExists('assets/music/menus/freakyMenu-metadata.json', TEXT)) ? Paths.JSON('menus/freakyMenu-metadata', "music") : null;
+        MoonUtils.playGlobalMusic('menus/freakierMenu', true);
+        var songMeta = Paths.JSON('menus/freakierMenu-metadata', "music");
 
         if(songMeta != null)
         {
@@ -236,10 +233,11 @@ class Title extends FlxState
         FlxG.camera.flash(FlxColor.WHITE, conductor.crochet / 1000 * 4);
         onTitle = true;
 
+        if(txTwn != null && txTwn.active) txTwn.cancel();
         displayTxt.setFormat(Paths.font('ARACNE CONDENSED REGULAR.TTF'), 64, CENTER);
         displayTxt.text = 'PRESS ENTER TO START';
-        if(txTwn != null && txTwn.active) txTwn.cancel();
-        displayTxt.y = FlxG.height - displayTxt.height;
+        displayTxt.y = FlxG.height - displayTxt.height - 16;
+        displayTxt.screenCenter(X);
         FlxTween.tween(displayTxt, {alpha: 0.2}, conductor.crochet / 1000 * 2, {ease: FlxEase.quadInOut, type: PINGPONG});
     }
 
