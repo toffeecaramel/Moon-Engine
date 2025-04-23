@@ -243,7 +243,7 @@ class PauseScreen extends FlxSubState
             if(counter == -1)
             {
                 pf.playback.state = PLAY;
-                for(member in pf.playback.members) pf.playback.resync(member);
+                pf.playback.resync();
                 close();
             }
             else

@@ -1,4 +1,3 @@
-// in PlayField.hx
 package moon.game.obj;
 
 import flixel.util.FlxTimer;

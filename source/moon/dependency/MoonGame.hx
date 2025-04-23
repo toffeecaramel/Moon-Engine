@@ -1,6 +1,5 @@
 package moon.dependency;
 
-import moon.global_obj.GlobalMusic;
 import moon.global_obj.Alphabet;
 import flixel.input.keyboard.FlxKey;
 import flixel.FlxG;

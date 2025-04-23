@@ -1,5 +1,5 @@
 package moon.dependency.user;
-import moon.global_obj.GlobalMusic;
+
 import openfl.system.Capabilities;
 import flixel.FlxG;
 import flixel.util.FlxSave;
@@ -186,6 +186,8 @@ class MoonSettings
     static function updateGlobalSettings():Void
     {
         FlxG.sound.volume = callSetting("Master Volume") / 100;
+
+        if(FlxG.sound.music != null)
         FlxG.sound.music.volume = callSetting('Music Volume') / 100;
 
         if (Main.fps != null) Main.fps.visible = callSetting("Show FPS");

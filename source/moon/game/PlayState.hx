@@ -133,14 +133,13 @@ class PlayState extends FlxState
 		{
 			if (event.time <= conductor.time)
 			{
-				event.exec();
+				(event.valid) ? event.exec() : onHardcodedEvent(event);
 				events.remove(event);
 			}
 		}
 		
-		//TODO: enhance this so camGAME is able to have custom zooms while bump is active.
-		camGAME.zoom = FlxMath.lerp(camGAME.zoom, gameZoom, elapsed * 16);
-		camHUD.zoom = FlxMath.lerp(camHUD.zoom, 1, elapsed * 16);
+		camGAME.zoom = FlxMath.lerp(camGAME.zoom, gameZoom, elapsed * 6);
+		camHUD.zoom = FlxMath.lerp(camHUD.zoom, 1, elapsed * 6);
 		
 		if(FlxG.keys.justPressed.NINE) FlxG.switchState(()->new ChartConvert());
 		if(FlxG.keys.justPressed.SEVEN) FlxG.switchState(() -> new LevelEditor());
@@ -152,12 +151,56 @@ class PlayState extends FlxState
 		}
 	}
 
+	var camMov:FlxTween;
+	var	camZoom:FlxTween;
+	public function onHardcodedEvent(event:MoonEvent)
+	{
+		trace('[ Hardcoded Event call - (${event.tag}) - ]', "DEBUG");
+		switch(event.tag)
+		{
+			case 'SetCameraFocus':
+				if(camMov != null && camMov.active) camMov.cancel();
+
+				final charPos = getCamPos(event.values.character);
+				camMov = FlxTween.tween(camFollower, {x: charPos[0], y: charPos[1]}, 
+				event.values.duration, {ease: Reflect.field(FlxEase, event.values.ease)});
+			
+			case 'SetCameraZoom':
+				if(camZoom != null && camZoom.active) camZoom.cancel();
+				camZoom = FlxTween.tween(this, {gameZoom: event.values.zoom}, 
+				event.values.duration, {ease: Reflect.field(FlxEase, event.values.ease)});
+		}
+	}
+
+	var awa:Character;
+	function getCamPos(charName:String):Array<Float>
+	{
+		final chars = stage.chars;
+		for (c in chars)
+		{
+			if (c.character + ('-$c.ID') == charName)
+				return [c.getMidpoint().x + c.data.camOffsets[0], c.getMidpoint().y + c.data.camOffsets[1]];
+			else
+			{
+				//these are for mainly converted charts, since its the possibly best way to get them working haha :'3
+				switch(charName)
+				{
+					case 'opponent': awa = cast stage.opponents.members[0];
+					case 'spectator': awa = cast stage.spectators.members[0];
+					case 'player': awa = cast stage.players.members[0];
+				}
+				return [awa.getMidpoint().x + awa.data.camOffsets[0], awa.getMidpoint().y + awa.data.camOffsets[1]];
+			}
+		}
+		return [0, 0];
+	}
+
 	public function beatHit(curBeat:Float)
 	{
 		if (((curBeat % playField.conductor.numerator) == 0) && !playField.inCountdown)
 		{
-			camGAME.zoom += 0.025;
-			camHUD.zoom += 0.030;
+			camGAME.zoom += 0.010;
+			camHUD.zoom += 0.020;
 		}
 	}
 }

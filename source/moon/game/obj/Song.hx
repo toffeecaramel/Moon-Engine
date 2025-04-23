@@ -33,6 +33,9 @@ class Song extends FlxTypedGroup<MoonSound>
 	 */
 	@:isVar public var fullLength(get, never):Float = 0;
 
+    public var inst:Array<MoonSound> = [];
+    public var voices:Array<MoonSound> = [];
+
     public var onComplete:()->Void;
     private var conductor:Conductor;
 
@@ -69,6 +72,8 @@ class Song extends FlxTypedGroup<MoonSound>
                     aud.type = audList[i];
                     aud.strID = song;
                     FlxG.sound.list.add(cast aud);
+
+                    (aud.type == Inst) ? inst.push(aud) : voices.push(aud);
                     return aud;
                 });
             }
@@ -82,18 +87,39 @@ class Song extends FlxTypedGroup<MoonSound>
         super.update(dt);
     }
 
+    final threshold = 25;
     private function steps(step)
-    {
-        for (i in 0...this.members.length)
-        if ((this.state == PLAY) && (this.members[i].time >= conductor.time + 20 || this.members[i].time <= conductor.time - 20))
-				resync(this.members[i]);
-    }
+        if (this.state == PLAY)
+            for (i in inst)
+                if ((i.time >= conductor.time + threshold || i.time <= conductor.time - threshold))
+                    resync();
 
     /**
-	 * Sets said member to it's supposed song position.
+	 * Resyncs every member in this instance to their supposed time position based on conductor.
 	 */
-	public function resync(member:MoonSound):Void
-        (member.type == Inst) ? conductor.time = member.time : member.time = conductor.time;
+	public function resync():Void
+    {
+        for(v in voices)
+            for(i in inst)
+            {
+                i.time = conductor.time;
+                v.time = i.time;
+            }
+        //(member.type == Inst) ? conductor.time = member.time : member.time = conductor.time;
+    }
+
+    override public function kill()
+    {
+        super.kill();
+
+        for (member in this.members)
+        {
+            FlxG.sound.list.remove(member, true);
+            remove(member);
+            member.destroy();
+        }
+        inst = voices = null;
+    }
 
     ////////////////////////////////////////////////////////////////////////////////////
 
