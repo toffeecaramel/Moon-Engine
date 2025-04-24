@@ -51,6 +51,34 @@ class MoonEvent extends MoonScript
         if(valid)
             get('onExecute')(values);
 
+    public function getCamFocusValues(charFocus:String, duration:Float, ease:String)
+    {
+        this.tag = 'SetCameraFocus';
+
+        this.values = {
+            character: charFocus,
+            duration: duration,
+            ease: ease
+        };
+        
+        this.time = 0;
+        return this;
+    }
+
+    public function getCamZoomValues(zoom:Float, duration:Float, ease:String)
+    {
+        this.tag = 'SetCameraZoom';
+
+        this.values = {
+            zoom: zoom,
+            duration: duration,
+            ease: ease
+        };
+
+        this.time = 0;
+        return this;
+    }
+
     @:noCompletion public function set_PRESET_VARIABLES(vars)
     {
         PRESET_VARIABLES = vars;

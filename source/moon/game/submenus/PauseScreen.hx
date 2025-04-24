@@ -153,6 +153,9 @@ class PauseScreen extends FlxSubState
                     prepareToClose();
                     Paths.playSFX('ui/confirmMenu');
                 case 'restart': 
+                    //TODO: This isn't actually visible due to how fast it resets lol
+                    // so uhhh... get it to be shown!!
+                    paused.loadGraphic(Paths.image('menus/pause/reset'));
                     pf.restartSong();
                     close();
                 case 'settings': 

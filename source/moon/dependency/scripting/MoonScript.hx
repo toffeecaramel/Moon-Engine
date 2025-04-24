@@ -52,19 +52,19 @@ class MoonScript
         else trace('Script path at $path was not found!', "ERROR");
     }
 
-    @:inheritDoc(crowplexus.iris.Iris.get)
+    @:inheritDoc(Iris.get)
     public function get(variable:String):Dynamic
-        return (exists(variable)) ? code.get(variable) : null;
+        return (code != null) ? ((exists(variable)) ? code.get(variable) : null) : null;
 
-    @:inheritDoc(crowplexus.iris.Iris.set)
+    @:inheritDoc(Iris.set)
     public function set(variable:String, value:Dynamic, ?allowOverride:Bool = true)
-        return code.set(variable, value, allowOverride);
+        return (code != null) ? code.set(variable, value, allowOverride) : null;
 
-    @:inheritDoc(crowplexus.iris.Iris.exists)
+    @:inheritDoc(Iris.exists)
     public function exists(variable:String):Bool
-        return code.exists(variable);
+        return (code != null) ? code.exists(variable) : false;
 
-    @:inheritDoc(crowplexus.iris.Iris.call)
+    @:inheritDoc(Iris.call)
     public function call(func:String, ?args:Null<Array<Dynamic>>)
-        return return (exists(func)) ? code.call(func, args) : null;
+        return (code != null) ? ((exists(func)) ? code.call(func, args) : null) : null;
 }

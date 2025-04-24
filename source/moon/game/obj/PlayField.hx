@@ -1,5 +1,6 @@
 package moon.game.obj;
 
+import moon.backend.gameplay.PlayerStats;
 import flixel.FlxSprite;
 import flixel.util.FlxTimer;
 import haxe.ui.styles.Style.StyleBorderType;
@@ -14,13 +15,17 @@ import moon.backend.gameplay.Timings;
 @:publicFields
 class PlayField extends FlxGroup
 {
+    // -- VARIBALES
+
     public static var playfield:PlayField;
+
     var conductor:Conductor;
     var playback:Song;
 
     var noteSpawner:NoteSpawner;
     var chart:MoonChart;
 
+    var inCutscene:Bool = true;
     var song:String;
     var mix:String;
     var difficulty:String;
@@ -34,8 +39,42 @@ class PlayField extends FlxGroup
 
     var alpha(default, set):Float = 1;
 
-    // -- CALLBACKS
+    // -- CALLBACKS //
+
+    /**
+     * Called whenever a song is started.
+     */
+    var onSongStart:Void->Void;
+
+    /**
+     * Called whenever the song is restarted
+     */
     var onSongRestart:Void->Void;
+
+    /**
+     * Called whenever a song is completed.
+     */
+    var onSongEnd:Void->Void; //TODO
+
+    /**
+     * Called when countdown is happening.
+     */
+    var onSongCountdown:Int->Void;
+
+    /**
+     * Called whenever a note gets hit (Good Hit.)
+     */
+    var onNoteHit:(String, Note, String, Bool)->Void;
+
+    /**
+     * Called whenever a note is missed (Bad Hit.)
+     */
+    var onNoteMiss:(String, Note)->Void;
+    
+    /**
+     * Called whenever a key is pressed (if ghost tapping is off, it'll call onNoteMiss right after.)
+     */
+    var onGhostTap:Int->Void;
 
     /**
      * Creates a gameplay scene on screen.
@@ -85,7 +124,7 @@ class PlayField extends FlxGroup
         for (i in 0...playerIDs.length)
         {
             //TODO: Skins lol
-            var strumline = new Strumline(xVal + strumXs[i], 80, 'pixel', isCPUPlayers[i], playerIDs[i], conductor);
+            var strumline = new Strumline(xVal + strumXs[i], 68, 'pixel', isCPUPlayers[i], playerIDs[i], conductor);
             add(strumline);
             strumlines.push(strumline);
 
@@ -93,8 +132,9 @@ class PlayField extends FlxGroup
 			inputHandler.CPUMode = isCPUPlayers[i];
             inputHandlers.set(playerIDs[i], inputHandler);
 
-            inputHandler.onNoteHit = (note, timing, isSustain) -> onNoteHit(playerIDs[i], note, timing, isSustain);
-            inputHandler.onNoteMiss = (note) -> onNoteMiss(playerIDs[i], note);
+            inputHandler.onNoteHit = (note, timing, isSustain) -> onHit(playerIDs[i], note, timing, isSustain);
+            inputHandler.onNoteMiss = (note) -> onMiss(playerIDs[i], note);
+            inputHandler.onGhostTap = (keyDir) -> if(onGhostTap != null) onGhostTap(keyDir);
         }
 
         // Little text for testing out the accuracy.
@@ -160,7 +200,8 @@ class PlayField extends FlxGroup
     var inCountdown:Bool = true;
     override public function update(dt:Float)
     {
-        conductor.time += (dt * 1000) * playback.pitch;
+        if(!inCutscene) conductor.time += (dt * 1000) * playback.pitch;
+        Global.allowInputs = !inCutscene;
 
         super.update(dt);
         for (handler in inputHandlers.iterator())
@@ -195,18 +236,21 @@ class PlayField extends FlxGroup
         healthBar.health = inputHandlers.get('p1').stats.health;
     }
 
-    function onNoteHit(playerID:String, note:Note, timing:String, isSustain:Bool)
+    function onHit(playerID:String, note:Note, timing:String, isSustain:Bool)
     {
         if (playerID == 'p1')
             updateP1Stats();
+
+        if(onNoteHit != null) onNoteHit(playerID, note, timing, isSustain);
 
         //final input = inputHandlers.get(playerID);
         //input.attachedChar
     }
 
-    function onNoteMiss(playerID:String, note:Note)
+    function onMiss(playerID:String, note:Note)
     {
         if (playerID == 'p1') updateP1Stats();
+        if(onNoteMiss != null) onNoteMiss(playerID, note);
     }
 
     private function updateP1Stats():Void
@@ -222,16 +266,20 @@ class PlayField extends FlxGroup
         healthBar.playerIcon.scale.set(1, 1);
 
        // <- COUNTDOWN STUFF -> //
-       if(inCountdown)
+       if(inCountdown && !inCutscene)
        {
             switch(beat)
             {
-                case 0: playback.state = PLAY;
-                inCountdown = false;
+                case 0: 
+                    playback.state = PLAY;
+                    inCountdown = false;
+                    if(onSongStart != null) onSongStart();
                 case -1: FlxG.sound.play(Paths.sound('game/countdown/intro-0', 'sounds'));
 
                 default: if(beat >= -4)FlxG.sound.play(Paths.sound('game/countdown/intro${beat+1}', 'sounds'));
             }
+
+            if(onSongCountdown != null) onSongCountdown(Std.int(beat));
        }
     }
 

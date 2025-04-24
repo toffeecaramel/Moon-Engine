@@ -1,4 +1,6 @@
 import flixel.FlxG;
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
 
 final scale = 5;
 
@@ -56,6 +58,7 @@ function createStaticNote(skin, direction)
     staticNote.updateHitbox();
 }
 
+var arrTwn:FlxTween;
 function onNoteHit(note, judgement, isSustain)
 {
     if(judgement == 'sick' && !isSustain && note.lane != 'opponent')
@@ -69,6 +72,12 @@ function onNoteHit(note, judgement, isSustain)
 
     final strumCenterX = strumNote.x + strumNote.width / 2;
     final strumCenterY = strumNote.y + strumNote.height / 2;
+
+    if(arrTwn != null && arrTwn.active)
+        arrTwn.cancel();
+    
+    strumNote.scale.set(scale + 1.2, scale + 1.2);
+    arrTwn = FlxTween.tween(strumNote, {"scale.x": scale, "scale.y": scale}, 0.5, {ease: FlxEase.expoOut});
 
     if(isSustain)
         sustainSplash.setPosition(strumCenterX - sustainSplash.width / 2 + 135, strumCenterY - sustainSplash.height / 2 - 5);

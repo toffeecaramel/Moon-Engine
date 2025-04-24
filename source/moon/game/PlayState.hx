@@ -1,5 +1,6 @@
 package moon.game;
 
+import moon.dependency.scripting.MoonScript;
 import openfl.filters.ShaderFilter;
 import moon.game.obj.Character;
 import flixel.FlxObject;
@@ -41,11 +42,15 @@ class PlayState extends FlxState
 	public var camGAME:MoonCamera = new MoonCamera();
 	public var camFollower:FlxObject = new FlxObject();
 	
-	// Some other values
+	// -- Some other values --
+
+	//Game's Zoom.
 	public var gameZoom:Float = 1;
 
 	// Events (a array containing every MoonEvent, not the raw events from chart.)
 	public static var events:Array<MoonEvent> = [];
+
+	public var songScript:MoonScript = new MoonScript();
 
 	public var song:String;
 	public var difficulty:String;
@@ -110,12 +115,44 @@ class PlayState extends FlxState
 		camFollower.setPosition(stage.cameraSettings?.startX ?? (mainSpec.x ?? 0), stage.cameraSettings?.startY ?? (mainSpec.y ?? 0));
 		gameZoom = stage.cameraSettings.zoom ?? 1;
 
+		songScript.load(Paths.getPath('songs/$song/$mix/script.hx', TEXT));
+		callScriptField('onCreate');
+
 		playField.onSongRestart = () -> {
 			events = [];
 			setEvents();
+			callScriptField('onSongRestart');
 		};
 
-		//playField.playback.state = PLAY;
+		songScript.set('game', this);
+		songScript.set('playField', playField);
+
+		// -- Script Calls
+		playField.onGhostTap = (keyDir) -> callScriptField('onGhostTap', [keyDir]);
+		playField.onNoteHit = (playerID, note, timing, isSustain) -> callScriptField('onNoteHit', [playerID, note, timing, isSustain]);
+		playField.onNoteMiss = (playerID, note) -> callScriptField('onNoteMiss', [playerID, note]);
+		playField.onSongCountdown = (number) -> callScriptField('onSongCountdown', [number]);
+
+		playField.onSongStart = () -> callScriptField('onSongStart');
+		playField.onSongEnd = () -> callScriptField('onSongEnd');
+
+		playField.inCutscene = (callScriptField('onCutsceneStart'));
+	}
+	
+	/**
+	 * Calls a field in the script if it exists.
+	 * @param field The field's name. Can be a function or a variable.
+	 * @return true or false depending if the field exists or not.
+	 */
+	public function callScriptField(field:String, ?args:Null<Array<Dynamic>>):Bool
+	{
+		if (songScript != null && songScript.exists(field)) 
+		{
+			songScript.call(field, args);
+			return true;
+		}
+
+		return false;
 	}
 
 	public function setEvents()
@@ -143,6 +180,7 @@ class PlayState extends FlxState
 		{
 			if (event.time <= conductor.time)
 			{
+				callScriptField('onEvent', [event.tag]);
 				(event.valid) ? event.exec() : onHardcodedEvent(event);
 				events.remove(event);
 			}
@@ -159,6 +197,8 @@ class PlayState extends FlxState
 			openSubState(new PauseScreen(camALT));
 			playField.playback.state = PAUSE;
 		}
+
+		callScriptField('onUpdate', [elapsed]);
 	}
 
 	var camMov:FlxTween;
@@ -206,6 +246,7 @@ class PlayState extends FlxState
 
 	public function beatHit(curBeat:Float)
 	{
+		callScriptField('onBeat', [curBeat]);
 		if (((curBeat % playField.conductor.numerator) == 0) && !playField.inCountdown)
 		{
 			camGAME.zoom += 0.010;
