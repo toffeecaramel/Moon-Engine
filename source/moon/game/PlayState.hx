@@ -83,7 +83,6 @@ class PlayState extends FlxState
 		
 		//< -- PLAYFIELD SETUP -- >//
 		playField = new PlayField(song, difficulty, mix);
-		playField.alpha = 0;
 		playField.camera = camHUD;
 		playField.conductor.onBeat.add(beatHit);
 		add(playField);
@@ -100,6 +99,27 @@ class PlayState extends FlxState
 
 		if(stage.script.exists("onBeat")) conductor.onBeat.add(stage.script.get('onBeat'));
 
+		setEvents();
+		
+		// call on post create for scripts
+		stage.script.set('game', this);
+
+		if(stage.script.exists('onPostCreate')) stage.script.call('onPostCreate');
+		
+		final mainSpec = stage.spectators.members[0];
+		camFollower.setPosition(stage.cameraSettings?.startX ?? (mainSpec.x ?? 0), stage.cameraSettings?.startY ?? (mainSpec.y ?? 0));
+		gameZoom = stage.cameraSettings.zoom ?? 1;
+
+		playField.onSongRestart = () -> {
+			events = [];
+			setEvents();
+		};
+
+		//playField.playback.state = PLAY;
+	}
+
+	public function setEvents()
+	{
 		//< -- EVENTS SETUP -- >//
 		for(event in playField.chart.content.events)
 		{
@@ -112,17 +132,6 @@ class PlayState extends FlxState
 			ev.time = event.time;
 			events.push(ev);
 		}
-		
-		// call on post create for scripts
-		stage.script.set('game', this);
-
-		if(stage.script.exists('onPostCreate')) stage.script.call('onPostCreate');
-		
-		final mainSpec = stage.spectators.members[0];
-		camFollower.setPosition(stage.cameraSettings?.startX ?? (mainSpec.x ?? 0), stage.cameraSettings?.startY ?? (mainSpec.y ?? 0));
-		gameZoom = stage.cameraSettings.zoom ?? 1;
-
-		//playField.playback.state = PLAY;
 	}
 
 	override public function update(elapsed:Float):Void

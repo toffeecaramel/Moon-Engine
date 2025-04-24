@@ -34,6 +34,9 @@ class PlayField extends FlxGroup
 
     var alpha(default, set):Float = 1;
 
+    // -- CALLBACKS
+    var onSongRestart:Void->Void;
+
     /**
      * Creates a gameplay scene on screen.
      * @param song        The song that'll be played on the directory.
@@ -97,12 +100,11 @@ class PlayField extends FlxGroup
         // Little text for testing out the accuracy.
         // oh lol it doesn't even show accuracy anymore LMFAO
         tst = new FlxText(0, healthBar.y + 27);
-        tst.text = 'Score: 0';
         tst.setFormat(Paths.font('vcr.ttf'), 16, FlxColor.WHITE, RIGHT);
         tst.setBorderStyle(OUTLINE, FlxColor.BLACK, 2);
-        tst.screenCenter(X);
         add(tst);
 
+        updateP1Stats();
         setupNotes();
 
         conductor.time = -(conductor.crochet * 6);
@@ -149,8 +151,9 @@ class PlayField extends FlxGroup
         remove(noteSpawner, true);
 
         setupNotes();
-
         updateP1Stats();
+
+        if(onSongRestart != null) onSongRestart();
         inCountdown = true;
     }
 
