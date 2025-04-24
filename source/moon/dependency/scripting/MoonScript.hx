@@ -1,5 +1,6 @@
 package moon.dependency.scripting;
 
+import moon.hardcoded_shaders.DropShadowShader;
 import moon.global_obj.TextScroll;
 import openfl.display.BlendMode;
 import crowplexus.iris.Iris;
@@ -30,6 +31,8 @@ class MoonScript
 
         "FlxEffectSprite" => flixel.addons.effects.chainable.FlxEffectSprite,
         "FlxWaveEffect" => flixel.addons.effects.chainable.FlxWaveEffect,
+        "FlxSpriteGroup" => flixel.group.FlxSpriteGroup,
+        "DropShadowShader" => DropShadowShader,
     ];
 
     public function new(){}

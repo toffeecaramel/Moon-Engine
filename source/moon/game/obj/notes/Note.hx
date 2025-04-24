@@ -1,5 +1,6 @@
 package moon.game.obj.notes;
 
+import sys.FileSystem;
 import flixel.FlxG;
 import moon.dependency.scripting.MoonScript;
 import flixel.util.FlxColor;
@@ -96,7 +97,7 @@ class Note extends MoonSprite
 
     private static var sharedScripts:Map<String, MoonScript> = new Map();
 
-    public function new(direction:Int, time:Float, ?type:String = "v-slice", ?skinName:String = "v-slice", 
+    public function new(direction:Int, time:Float, ?type:String = "default", ?skinName:String = "v-slice", 
         duration:Float, conductor:Conductor)
     {
         super();
@@ -112,7 +113,7 @@ class Note extends MoonSprite
 
     private function _updateGraphics():Void
     {
-        var curSkin = (type != "default" && Paths.fileExists('assets/images/ingame/UI/notes/$type')) ? type : skin;
+        var curSkin = ((type != "default" || type != null) && FileSystem.exists('assets/images/ingame/UI/notes/$type')) ? type : skin;
         var dir = MoonUtils.intToDir(direction);
 
         if (!sharedScripts.exists(curSkin))

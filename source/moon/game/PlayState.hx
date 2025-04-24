@@ -51,7 +51,7 @@ class PlayState extends FlxState
 	public var difficulty:String;
 	public var mix:String;
 
-	public function new(song, difficulty, mix)
+	public function new(?song:String = 'roses', ?difficulty:String = 'nightmare', ?mix:String = 'bf')
 	{
 		super();
 		this.song = song;
@@ -155,7 +155,6 @@ class PlayState extends FlxState
 	var	camZoom:FlxTween;
 	public function onHardcodedEvent(event:MoonEvent)
 	{
-		trace('[ Hardcoded Event call - (${event.tag}) - ]', "DEBUG");
 		switch(event.tag)
 		{
 			case 'SetCameraFocus':

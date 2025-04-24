@@ -19,8 +19,8 @@ import moon.dependency.user.MoonSettings.Setting;
 
 class Settings extends FlxSubState
 {
-    public static final textSharpness:Int = 200;
     //TODO: doccument thisssss
+    public static final textSharpness:Int = 200;
     public var isPlayState:Bool;
     var curSelected:Int = 0;
     var yPos:Float = 0;

@@ -87,12 +87,23 @@ class Song extends FlxTypedGroup<MoonSound>
         super.update(dt);
     }
 
-    final threshold = 25;
+    final threshold = 30;
     private function steps(step)
+    {
         if (this.state == PLAY)
+        {
+            //resync if its off compared to conductor
             for (i in inst)
                 if ((i.time >= conductor.time + threshold || i.time <= conductor.time - threshold))
                     resync();
+
+            for(v in voices)
+                for(i in inst)
+                    if(Math.abs(v.time - i.time) > threshold)
+                        v.time = i.time;
+            //resync if the vocals are off to inst
+        }
+    }
 
     /**
 	 * Resyncs every member in this instance to their supposed time position based on conductor.
@@ -101,10 +112,7 @@ class Song extends FlxTypedGroup<MoonSound>
     {
         for(v in voices)
             for(i in inst)
-            {
-                i.time = conductor.time;
-                v.time = i.time;
-            }
+                conductor.time = v.time = i.time;
         //(member.type == Inst) ? conductor.time = member.time : member.time = conductor.time;
     }
 
