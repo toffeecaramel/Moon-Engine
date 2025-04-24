@@ -83,6 +83,7 @@ class PlayState extends FlxState
 		
 		//< -- PLAYFIELD SETUP -- >//
 		playField = new PlayField(song, difficulty, mix);
+		playField.alpha = 0;
 		playField.camera = camHUD;
 		playField.conductor.onBeat.add(beatHit);
 		add(playField);

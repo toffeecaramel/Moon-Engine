@@ -116,6 +116,9 @@ class PauseScreen extends FlxSubState
         cmetadata.antialiasing = false;
         cmetadata.setPosition(metadata.x, (metadata.y + cmetadata.height));
 
+        //! FIX TODO!!!
+        //! FOR SOME REASON WHEN RE-ENTERING THE MENU THE ICON ISNT LOADED.
+        //! MAYBE COULD BE SOMETHING RELATED TO HOW IT'S HANDLED.
         displayIcon = new PixelIcon(cc.meta.opponents[0]);
         displayIcon.alpha = 0;
         add(displayIcon);

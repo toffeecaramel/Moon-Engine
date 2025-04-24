@@ -40,7 +40,7 @@ class InputHandler
     /**
      * Map for the sustain notes.
      */
-    private var heldSustains:Map<Int, Note> = new Map<Int, Note>();
+    public var heldSustains:Map<Int, Note> = new Map<Int, Note>();
 
     /**
      * Array for the notes in this class, needed for reading their timings and such.

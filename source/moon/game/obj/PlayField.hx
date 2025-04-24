@@ -1,5 +1,6 @@
 package moon.game.obj;
 
+import flixel.FlxSprite;
 import flixel.util.FlxTimer;
 import haxe.ui.styles.Style.StyleBorderType;
 import flixel.util.FlxColor;
@@ -30,6 +31,8 @@ class PlayField extends FlxGroup
     var healthBar:HealthBar;
     
     var tst:FlxText;
+
+    var alpha(default, set):Float = 1;
 
     /**
      * Creates a gameplay scene on screen.
@@ -97,11 +100,17 @@ class PlayField extends FlxGroup
         tst.text = 'Score: 0';
         tst.setFormat(Paths.font('vcr.ttf'), 16, FlxColor.WHITE, RIGHT);
         tst.setBorderStyle(OUTLINE, FlxColor.BLACK, 2);
-        tst.x = FlxG.width / 2 + 120;
+        tst.screenCenter(X);
         add(tst);
 
-        //< -- NOTES SETUP -- >//
+        setupNotes();
 
+        conductor.time = -(conductor.crochet * 6);
+    }
+
+    function setupNotes()
+    {
+        //< -- NOTES SETUP -- >//
         // Add the note spawner.
         noteSpawner = new NoteSpawner(chart.content.notes, strumlines, conductor);
         noteSpawner.scrollSpeed = chart.content.meta.scrollSpd;
@@ -110,13 +119,39 @@ class PlayField extends FlxGroup
         // Set each input handler's notes.
         for (handler in inputHandlers.iterator())
             handler.thisNotes = noteSpawner.notes;
-
-        conductor.time = -(conductor.crochet * 6);
     }
 
     function restartSong()
     {
-        //TODO
+        playback.time = 0;
+        playback.state = PAUSE;
+        conductor.time = -(conductor.crochet * 6);
+        
+        for (handler in inputHandlers.iterator())
+            handler.stats.reset();
+
+        for(strum in strumlines)
+            for(receptor in strum.receptors)
+            {
+                receptor.notesGroup.clear();
+                receptor.sustainsGroup.clear();
+                receptor.sustainSplash.despawn(true);
+            }
+        
+        for (handler in inputHandlers.iterator())
+        {
+            handler.thisNotes = [];
+            handler.heldSustains.clear();
+        }
+
+        noteSpawner.clear();
+        noteSpawner.killMembers();
+        remove(noteSpawner, true);
+
+        setupNotes();
+
+        updateP1Stats();
+        inCountdown = true;
     }
 
     var inCountdown:Bool = true;
@@ -174,8 +209,8 @@ class PlayField extends FlxGroup
     private function updateP1Stats():Void
     {
         final stat = inputHandlers.get('p1').stats;
-        tst.text = 'Score: ${stat.score}';
-        tst.x = FlxG.width / 2 + 120;
+        tst.text = 'Score: ${stat.score} // Misses: ${stat.misses} // Accuracy: ${stat.accuracy}%';
+        tst.screenCenter(X);
     }
 
     function beatHit(beat:Float):Void
@@ -195,5 +230,23 @@ class PlayField extends FlxGroup
                 default: if(beat >= -4)FlxG.sound.play(Paths.sound('game/countdown/intro${beat+1}', 'sounds'));
             }
        }
+    }
+
+    @:noCompletion public function set_alpha(val:Float):Float
+    {
+        this.alpha = val;
+        for (obj in this.members)
+        {
+            if(Std.isOfType(obj, FlxSprite))
+                cast(obj, FlxSprite).alpha = this.alpha;
+        }
+
+        //gotta apply separately :T
+        // eh.
+        for(strum in strumlines)
+            for(receptor in strum.receptors)
+                receptor.alpha = this.alpha;
+
+        return this.alpha;
     }
 }

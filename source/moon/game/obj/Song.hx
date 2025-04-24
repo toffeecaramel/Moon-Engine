@@ -97,11 +97,11 @@ class Song extends FlxTypedGroup<MoonSound>
                 if ((i.time >= conductor.time + threshold || i.time <= conductor.time - threshold))
                     resync();
 
+            //resync if the vocals are off compared to inst
             for(v in voices)
                 for(i in inst)
-                    if(Math.abs(v.time - i.time) > threshold)
+                    if(Math.abs(v.time - i.time) > 5) //has to be at 5 just to make sure its in time :P
                         v.time = i.time;
-            //resync if the vocals are off to inst
         }
     }
 
