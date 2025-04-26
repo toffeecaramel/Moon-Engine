@@ -13,6 +13,7 @@ enum abstract SettingType(String) to String
     var SLIDER = 'slider';              // for a numeric slider option
     var UNCAP_SLIDER = 'uncap_slider';  // for a numeric slider option, but uncapped
     var INFO = 'info';                  // for a non selectable option
+    var SELECTABLE = 'selectable';      // for a option that you can press enter and be redirected to somewhere.
 }
 
 /**
@@ -99,8 +100,7 @@ class MoonSettings
         save.bind("ME-Settings");
         buildSettings();
         loadSettings();
-
-        //TODO: Keybinds set from save.
+        MoonInput.loadControls();
     }
 
     /**
@@ -138,6 +138,7 @@ class MoonSettings
 
         categories.set("Gameplay Settings",
         [
+            new Setting("Keybinds...", SELECTABLE, "Change your gameplay/menus keybinds.", null, null),
             new Setting("Downscroll", CHECKMARK, "Places the judgement line at the bottom of the screen. Notes will descend into it.", null, false),
             new Setting("Middlescroll", CHECKMARK, "Positions the judgement line at the middle of the screen, hiding opponent notes.", null, false),
             new Setting("Ghost Tapping", CHECKMARK, "Allows tapping freely when there are no notes (hey, I don't judge).", null, true),

@@ -98,10 +98,11 @@ class Song extends FlxTypedGroup<MoonSound>
                     resync();
 
             //resync if the vocals are off compared to inst
-            for(v in voices)
-                for(i in inst)
-                    if(Math.abs(v.time - i.time) > 5) //has to be at 5 just to make sure its in time :P
-                        v.time = i.time;
+            if(voices.length > 0)
+                for(v in voices)
+                    for(i in inst)
+                        if(Math.abs(v.time - i.time) > 5) //has to be at 5 just to make sure its in time :P
+                            v.time = i.time;
         }
     }
 
@@ -110,9 +111,11 @@ class Song extends FlxTypedGroup<MoonSound>
 	 */
 	public function resync():Void
     {
-        for(v in voices)
-            for(i in inst)
-                conductor.time = v.time = i.time;
+        for(i in inst)
+        {
+            conductor.time = i.time;
+            if(voices.length > 0) for(v in voices) v.time = i.time;
+        }
         //(member.type == Inst) ? conductor.time = member.time : member.time = conductor.time;
     }
 

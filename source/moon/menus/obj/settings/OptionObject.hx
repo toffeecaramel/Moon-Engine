@@ -34,7 +34,7 @@ class OptionObject extends FlxSpriteGroup
         name.textField.sharpness = Settings.textSharpness;
         add(name);
 
-        value = new FlxText(halfWidth, 0, halfWidth, Std.string(setting.value));
+        value = new FlxText(halfWidth, 0, halfWidth, (setting.type != SELECTABLE) ? Std.string(setting.value) : '');
         value.setFormat(Paths.font("vcr.ttf"), fontSize, FlxColor.WHITE, RIGHT);
         value.textField.antiAliasType = ADVANCED;
         value.antialiasing = false;
@@ -78,7 +78,16 @@ class OptionObject extends FlxSpriteGroup
             holdDelay = 0.25;
         }
 
-        if(FlxG.keys.justPressed.ANY) changeValue(0);
+        if(FlxG.keys.justPressed.ANY && Global.allowInputs && setting.type != SELECTABLE) changeValue(0);
+
+        if(MoonInput.justPressed(ACCEPT) && setting.type == SELECTABLE && selected)
+        {
+            // IF YOUR OPTION IS SELECTABLE YOU MUST ADD WHAT IT DOES HERE!@!@
+            switch(setting.name)
+            {
+                case 'Keybinds...': FlxG.state.openSubState(new Keybinds(this.camera));
+            }
+        } 
     }
 
     public function changeValue(amount:Int)
@@ -115,6 +124,8 @@ class OptionObject extends FlxSpriteGroup
                 setting.value += amount;
                 value.text = '< ${setting.value} >';
             case INFO: value.text = '( ${setting.defaultValue} )';
+
+            case SELECTABLE: return;
         }
 
         if(amount != 0)

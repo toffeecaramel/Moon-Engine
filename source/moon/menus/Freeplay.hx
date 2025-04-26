@@ -61,6 +61,7 @@ class Freeplay extends FlxSubState
 
     public function new(character:String = 'bf')
     {
+        //TODO: make animations for entering the freeplay
         super();
         this.character = character;
 
@@ -75,7 +76,6 @@ class Freeplay extends FlxSubState
         add(behindWeekBG);
 
         //TODO: Week based BG.
-        //TODO: make animations for entering the freeplay
         weekBG = new FlxSkewedSprite();
         weekBG.loadGraphic(Paths.image('menus/freeplay/bgs/week1'));
         weekBG.scale.set(1.4, 1.4);

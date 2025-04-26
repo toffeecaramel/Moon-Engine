@@ -1,5 +1,6 @@
 package moon;
 
+import moon.menus.MainMenu;
 import moon.menus.Title;
 import moon.menus.Settings;
 import moon.menus.Freeplay;
@@ -18,5 +19,5 @@ class Constants
 	public static final SKIP_SPLASH:Bool = true;
 	public static final TRACE_DEBUG_INFO:Bool = true;
 
-    public static final INITIAL_STATE:Class<FlxState> = PlayState;
+    public static final INITIAL_STATE:Class<FlxState> = MainMenu;
 }
