@@ -1,7 +1,10 @@
 {
     "judgementScale": 0.71,
+	
     "numberScale": 0.56,
-    "numberSpacing": 16,
+    "numberSpacing": 2,
+	"rollOffsets": [-15, -46],
+	
     "antialiasing": true,
 	
 	"note": "hello :3"

@@ -1,5 +1,7 @@
 package moon.game.obj;
 
+import moon.game.obj.judgements.JudgementSprite;
+import moon.game.obj.judgements.ComboNumbers;
 import moon.backend.gameplay.PlayerStats;
 import flixel.FlxSprite;
 import flixel.util.FlxTimer;
@@ -35,7 +37,9 @@ class PlayField extends FlxGroup
 
     var healthBar:HealthBar;
     
-    var tst:FlxText;
+    var p1Judgements:JudgementSprite;
+    var p1Combo:ComboNumbers;
+    var stats:FlxText;
 
     var alpha(default, set):Float = 1;
 
@@ -105,6 +109,20 @@ class PlayField extends FlxGroup
         );
         playback.state = PAUSE;
 
+        //< -- COMBO SETUP -- >//
+        //TODO: Skin for this one too :p
+        p1Judgements = new JudgementSprite().init('moon-engine');
+        p1Judgements.alpha = 0.0001;
+        //just for preloading :p
+        
+        for(judgement => judgementVals in Timings.judgementsMap)
+            p1Judgements.showJudgement(judgement, true, true);
+
+        add(p1Judgements);
+
+        p1Combo = new ComboNumbers().init('moon-engine');
+        add(p1Combo);
+
         //< -- HEALTHBAR SETUP -- >//
         healthBar = new HealthBar(chart.content.meta.opponents[0], chart.content.meta.players[0]);
         add(healthBar);
@@ -124,7 +142,7 @@ class PlayField extends FlxGroup
         for (i in 0...playerIDs.length)
         {
             //TODO: Skins lol
-            var strumline = new Strumline(xVal + strumXs[i], 68, 'pixel', isCPUPlayers[i], playerIDs[i], conductor);
+            var strumline = new Strumline(xVal + strumXs[i], 68, 'v-slice', isCPUPlayers[i], playerIDs[i], conductor);
             add(strumline);
             strumlines.push(strumline);
 
@@ -139,12 +157,12 @@ class PlayField extends FlxGroup
 
         // Little text for testing out the accuracy.
         // oh lol it doesn't even show accuracy anymore LMFAO
-        tst = new FlxText(0, healthBar.y + 27);
-        tst.setFormat(Paths.font('vcr.ttf'), 16, FlxColor.WHITE, RIGHT);
-        tst.setBorderStyle(OUTLINE, FlxColor.BLACK, 2);
-        add(tst);
+        stats = new FlxText(0, healthBar.y + 27);
+        stats.setFormat(Paths.font('vcr.ttf'), 16, FlxColor.WHITE, RIGHT);
+        stats.setBorderStyle(OUTLINE, FlxColor.BLACK, 2);
+        add(stats);
 
-        updateP1Stats();
+        updateP1Stats(null);
         setupNotes();
 
         conductor.time = -(conductor.crochet * 6);
@@ -191,7 +209,7 @@ class PlayField extends FlxGroup
         remove(noteSpawner, true);
 
         setupNotes();
-        updateP1Stats();
+        updateP1Stats(null);
 
         if(onSongRestart != null) onSongRestart();
         inCountdown = true;
@@ -239,7 +257,7 @@ class PlayField extends FlxGroup
     function onHit(playerID:String, note:Note, timing:String, isSustain:Bool)
     {
         if (playerID == 'p1')
-            updateP1Stats();
+            updateP1Stats(timing);
 
         if(onNoteHit != null) onNoteHit(playerID, note, timing, isSustain);
 
@@ -249,15 +267,36 @@ class PlayField extends FlxGroup
 
     function onMiss(playerID:String, note:Note)
     {
-        if (playerID == 'p1') updateP1Stats();
+        if (playerID == 'p1')
+        {
+            updateP1Stats('miss');
+            p1Combo.comboRoll(0, 2, true);
+            inputHandlers.get('p1').stats.combo = 0;
+        }
         if(onNoteMiss != null) onNoteMiss(playerID, note);
     }
 
-    private function updateP1Stats():Void
+    private function updateP1Stats(judgement):Void
     {
         final stat = inputHandlers.get('p1').stats;
-        tst.text = 'Score: ${stat.score} // Misses: ${stat.misses} // Accuracy: ${stat.accuracy}%';
-        tst.screenCenter(X);
+        stats.text = 'Score: ${stat.score} // Misses: ${stat.misses} // Accuracy: ${stat.accuracy}%';
+        stats.screenCenter(X);
+        stat.combo++;
+
+        if(judgement != null)
+        {
+            p1Judgements.color = Timings.getParameters(judgement)[4];
+            
+            p1Judgements.screenCenter();
+            p1Judgements.y -= 60;
+            p1Judgements.showJudgement(judgement, true, true);
+        }
+        
+        //TODO: custom positioning
+        p1Combo.combo = stat.combo;
+        p1Combo.displayCombo(true, true);
+        p1Combo.numsColor = p1Judgements.color;
+        p1Combo.screenCenter();
     }
 
     function beatHit(beat:Float):Void

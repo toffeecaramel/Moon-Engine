@@ -21,6 +21,11 @@ typedef JudgementsJSON = {
     var numberSpacing:Float;
 
     /**
+     * The offsets for the roll animation. Not necessary if it doesn't exist.
+     */
+    var ?rollOffsets:Array<Float>;
+
+    /**
      * Whether the combos and judgements should have antialiasing or not.
      */
     var antialiasing:Bool;

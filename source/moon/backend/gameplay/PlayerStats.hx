@@ -29,6 +29,11 @@ class PlayerStats
     var score:Int = 0;
 
     /**
+     * The combo of notes hit in a row without missing.
+     */
+    var combo:Int = 0;
+
+    /**
      * The total health by said player.
      */
     var health:Float = 50;
@@ -59,6 +64,7 @@ class PlayerStats
      */
     function reset()
     {
+        combo = 0;
         accuracyCount = totalNotes = 0;
         accuracy = misses = score = 0;
         health = 50;

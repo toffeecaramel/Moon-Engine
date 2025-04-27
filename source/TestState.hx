@@ -14,7 +14,7 @@ class TestState extends FlxState
         super.create();
         FlxG.mouse.useSystemCursor = true;
 
-        testCombo = new ComboNumbers().init('moon-engine');
+        testCombo = new ComboNumbers(50, 50).init('moon-engine');
         add(testCombo);
     }
 
@@ -24,9 +24,13 @@ class TestState extends FlxState
 
         if(FlxG.keys.justPressed.O)
         {
-            testCombo.combo = FlxG.random.int(0, 999999999);
+            testCombo.combo++;
             testCombo.displayCombo(true);
-            testCombo.screenCenter();
+        }
+
+        if(FlxG.keys.justPressed.P)
+        {
+            testCombo.comboRoll(0, 2, true);
         }
     }
 }
