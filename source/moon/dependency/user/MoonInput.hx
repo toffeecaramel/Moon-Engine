@@ -82,7 +82,7 @@ class MoonInput
         'PAUSE' => [[FlxKey.ENTER, FlxKey.ESCAPE], [FlxPad.START]]
     ];
 
-    private static function checkBind(rawBind:MoonKeys, inputState:FlxInputState):Bool
+    public static function checkBind(rawBind:MoonKeys, inputState:FlxInputState):Bool
     {
         if(Global.allowInputs)
         {

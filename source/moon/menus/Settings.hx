@@ -34,7 +34,7 @@ class Settings extends FlxSubState
         this.isPlayState = isPlayState;
         super();
         
-        if(isPlayState)this.camera = PlayState.playgame.camALT;
+        if(isPlayState)this.camera = PlayState.instance.camALT;
         Paths.playSFX('menus/settings/configEnter');
 
         var back = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLUE);
@@ -157,7 +157,7 @@ class Settings extends FlxSubState
         {
             Paths.playSFX('menus/settings/configExit');
             close();
-            if(isPlayState) PlayState.playgame.openSubState(new PauseScreen(PlayState.playgame.camALT));
+            if(isPlayState) PlayState.instance.openSubState(new PauseScreen(PlayState.instance.camALT));
         }
     }
 

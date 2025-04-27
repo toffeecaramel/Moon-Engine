@@ -22,8 +22,8 @@ import moon.toolkit.level_editor.LevelEditor;
 
 class PlayState extends FlxState
 {	
-	// Just a variable for getting playstate. nothing much.
-	public static var playgame:PlayState;
+	// Just a variable for the current instance so you can get all the vars.
+	public static var instance:PlayState;
 
 	//-- Gameplay main variables --//
 
@@ -68,7 +68,7 @@ class PlayState extends FlxState
 	override public function create()
 	{
 		super.create();
-		playgame = this;
+		instance = this;
 		
 		this.persistentUpdate = false;
 		//this.persistentDraw = false;

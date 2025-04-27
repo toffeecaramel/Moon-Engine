@@ -1,5 +1,6 @@
 package moon.menus;
 
+import flixel.util.FlxTimer;
 import flixel.FlxCamera;
 import flixel.FlxSubState;
 import flixel.FlxG;
@@ -16,6 +17,12 @@ import moon.dependency.user.MoonInput.MoonKeys;
 using StringTools;
 class Keybinds extends FlxSubState
 {
+    /**
+     * TODO for this menu:
+     * * Kinda revamp it. It should work like FPS plus, in which you can add up to... i think 5 keybinds? idk yet.
+     * * and when holding backspace/delete it removes the last binded key.
+     * * I'm so demotivated to work on it right now.
+     */
     private var curSelection:Int = 0;
     private var curAltSelection:Int = 0;
     private var keysGrp:FlxTypedGroup<FlxText>;
@@ -110,8 +117,8 @@ class Keybinds extends FlxSubState
     var curText:String;
     private function openRebindMode():Void
     {
-        FlxFlicker.flicker(altKeysGrp.members[curSelection * 2 + curAltSelection], 0.5, 0.04 * 2, true, false, function(ok:FlxFlicker)
-        {
+        // must have a timer otherwise it'll recognize the enter key you just pressed
+        new FlxTimer().start(0.1, (_) -> {
             rebindMode = true;
             curText = altKeysGrp.members[curSelection * 2 + curAltSelection].text;
         });
@@ -127,6 +134,7 @@ class Keybinds extends FlxSubState
         }
         else
         {
+            //TODO: Controllers rebinding work
             txt.text = '...';
             final pressedKeys = FlxG.keys.getIsDown();
             if (pressedKeys.length > 0)
@@ -174,7 +182,7 @@ class Keybinds extends FlxSubState
     }
 
     private function getKeyString(key:FlxKey):String
-    return key.toString().replace("_", " ");
+        return key.toString().replace("_", " ");
 
     private function getGamepadString(gamepadKey:FlxPad):String
         return gamepadKey.toString().replace("_", " ");
