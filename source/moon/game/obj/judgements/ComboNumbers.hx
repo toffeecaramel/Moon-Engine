@@ -19,7 +19,7 @@ class ComboNumbers extends FlxSpriteGroup
     /**
      * The combo's skin display.
      */
-    var skin:String = '';
+    var skin(default, set):String = '';
 
     /**
      * All the data for this.
@@ -30,21 +30,6 @@ class ComboNumbers extends FlxSpriteGroup
      * The color for all the alive numbers;
      */
     var numsColor(default, set):FlxColor;
-
-    /**
-     * Starts the combo and reads its data (if exists.)
-     * @param skin This combo's skin name.
-     */
-    function init(skin:String)
-    {
-        this.skin = skin;
-
-        if(Paths.fileExists('assets/images/ingame/UI/judgements_combo/$skin/config.json'))
-            data = Paths.JSON('ingame/UI/judgements_combo/$skin/config');
-        else throw 'The data .JSON file for the combo and judgements were not found!';
-
-        return this;
-    }
 
     var xSep:Float = 0;
 
@@ -66,12 +51,12 @@ class ComboNumbers extends FlxSpriteGroup
             numbe.y = 0;
             numbe.x = xSep;
             numbe.loadGraphic(Paths.image('ingame/UI/judgements_combo/$skin/numbers/${Std.parseInt(stringArray[i])}'));
-            numbe.scale.set(data.numberScale, data.numberScale);
+            numbe.scale.set(data?.numberScale ?? 1, data?.numberScale ?? 1);
             numbe.updateHitbox();
-            numbe.antialiasing = data.antialiasing;
+            numbe.antialiasing = data?.antialiasing ?? true;
 			this.add(numbe);
 
-            xSep += numbe.width + data.numberSpacing;
+            xSep += numbe.width + data?.numberSpacing ?? 0;
             
             if(animate)
             {
@@ -136,6 +121,17 @@ class ComboNumbers extends FlxSpriteGroup
                 num.y = pos[1] + FlxG.random.float(-6, 6);
             });
         }
+    }
+
+    @:noCompletion public function set_skin(skin:String):String
+    {
+        this.skin = skin;
+
+        if(Paths.fileExists('assets/images/ingame/UI/judgements_combo/$skin/config.json'))
+            data = Paths.JSON('ingame/UI/judgements_combo/$skin/config');
+        else throw 'The data .JSON file for the combo and judgements were not found!';
+
+        return this.skin;
     }
 
     @:noCompletion public function set_numsColor(color:FlxColor):FlxColor

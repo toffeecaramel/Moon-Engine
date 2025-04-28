@@ -35,6 +35,11 @@ class Receptor extends FlxSpriteGroup
     public var playerID:String;
 
     /**
+     * The skin for the judgements. Here so they can be defined per noteskin.
+     */
+    public var judgementsSkin:String = 'moon-engine';
+
+    /**
      * The conductor for this class.
      */
     public var conductor:Conductor;
@@ -138,6 +143,7 @@ class Receptor extends FlxSpriteGroup
         sustainSplash = new SustainSplash(_skin, data);
         splashGroup.add(sustainSplash);
         script.set("sustainSplash", sustainSplash);
+        script.set("judgementsSkin", judgementsSkin);
 
         script.get("createReceptor")(MoonUtils.intToDir(data));
 

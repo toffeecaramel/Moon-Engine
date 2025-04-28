@@ -103,7 +103,7 @@ class MoonChart
     public function new(song:String, difficulty:String = 'hard', mix:String = 'bf')
     {
         final modifier = (difficulty == 'erect' || difficulty == 'nightmare') ? '-erect' : '';
-        events = (Paths.fileExists('assets/songs/$song/$mix/events$modifier.json')) ? Paths.JSON('$song/$mix/events$modifier', 'songs').events : [];
+        events = (Paths.fileExists('assets/songs/$song/$mix/events$modifier.json')) ? Paths.JSON('$song/$mix/events$modifier', 'songs') : [];
         content = Paths.JSON('$song/$mix/chart-$difficulty', 'songs');
     }
 
@@ -170,8 +170,10 @@ class MoonChart
                         tag: 'SetCameraFocus',
                         values: {
                             character: (event.v.char == 1) ? 'opponent' : 'player', 
-                            duration: (event.v.ease == 'CLASSIC') ? 1.4 : event.v.duration,
-                            ease: (event.v.ease == 'CLASSIC') ? 'expoOut' : event.v.ease
+                            duration: (event.v.ease == 'CLASSIC') ? 26 : event.v.duration,
+                            ease: (event.v.ease == 'CLASSIC') ? 'expoOut' : event.v.ease,
+                            x: event.v.x ?? 0,
+                            y: event.v.y ?? 0
                         },
                         time: event.t
                     };
@@ -182,7 +184,7 @@ class MoonChart
                         tag: 'SetCameraZoom',
                         values: {
                             zoom: event.v.zoom,
-                            duration: event.v.duration / 20,
+                            duration: event.v.duration,
                             ease: event.v.ease
                         },
                         time: event.t                    

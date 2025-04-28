@@ -186,7 +186,7 @@ class PlayState extends FlxState
 			}
 		}
 		
-		camGAME.zoom = FlxMath.lerp(camGAME.zoom, gameZoom, elapsed * 6);
+		//camGAME.zoom = FlxMath.lerp(camGAME.zoom, gameZoom, elapsed * 6);
 		camHUD.zoom = FlxMath.lerp(camHUD.zoom, 1, elapsed * 6);
 		
 		if(FlxG.keys.justPressed.NINE) FlxG.switchState(()->new ChartConvert());
@@ -208,16 +208,17 @@ class PlayState extends FlxState
 		switch(event.tag)
 		{
 			case 'SetCameraFocus':
+				//TODO: make these a separate function
 				if(camMov != null && camMov.active) camMov.cancel();
 
 				final charPos = getCamPos(event.values.character);
-				camMov = FlxTween.tween(camFollower, {x: charPos[0], y: charPos[1]}, 
-				event.values.duration, {ease: Reflect.field(FlxEase, event.values.ease)});
+				camMov = FlxTween.tween(camFollower, {x: charPos[0] + event.values?.x ?? 0, y: charPos[1] + event.values?.y ?? 0}, 
+				(event.values.ease != 'INSTANT') ? conductor.stepCrochet / 1000 * event.values.duration : 0.0001, {ease: Reflect.field(FlxEase, event.values.ease)});
 			
 			case 'SetCameraZoom':
 				if(camZoom != null && camZoom.active) camZoom.cancel();
-				camZoom = FlxTween.tween(this, {gameZoom: event.values.zoom}, 
-				event.values.duration, {ease: Reflect.field(FlxEase, event.values.ease)});
+				camZoom = FlxTween.tween(camGAME, {zoom: event.values.zoom}, 
+				conductor.stepCrochet / 1000 * event.values.duration, {ease: Reflect.field(FlxEase, event.values.ease)});
 		}
 	}
 
@@ -227,7 +228,7 @@ class PlayState extends FlxState
 		final chars = stage.chars;
 		for (c in chars)
 		{
-			if (c.character + ('-$c.ID') == charName)
+			if (c.character + ('-${c.ID}') == charName)
 				return [c.getMidpoint().x + c.data.camOffsets[0], c.getMidpoint().y + c.data.camOffsets[1]];
 			else
 			{
@@ -249,7 +250,7 @@ class PlayState extends FlxState
 		callScriptField('onBeat', [curBeat]);
 		if (((curBeat % playField.conductor.numerator) == 0) && !playField.inCountdown)
 		{
-			camGAME.zoom += 0.010;
+			//camGAME.zoom += 0.010;
 			camHUD.zoom += 0.020;
 		}
 	}

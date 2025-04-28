@@ -9,27 +9,12 @@ class JudgementSprite extends MoonSprite
     /**
      * The judgement's skin display.
      */
-    var skin:String = '';
+    var skin(default, set):String = '';
 
      /**
       * All the data for this.
       */
     var data:JudgementsJSON;
-
-    /**
-     * Starts the judgement and reads its data (if exists.)
-     * @param skin This judgement's skin name.
-     */
-    function init(skin:String)
-    {
-        this.skin = skin;
-
-        if(Paths.fileExists('assets/images/ingame/UI/judgements_combo/$skin/config.json'))
-            data = Paths.JSON('ingame/UI/judgements_combo/$skin/config');
-        else throw 'The data .JSON file for the combo and judgements were not found!';
-
-        return this;
-    }
 
     var yTwn:FlxTween;
     var fadeTwn:FlxTween;
@@ -44,8 +29,8 @@ class JudgementSprite extends MoonSprite
     {
         if(this.alpha <= 1) this.alpha = 1;
         this.loadGraphic(Paths.image('ingame/UI/judgements_combo/$skin/$judgement'));
-        this.antialiasing = data.antialiasing;
-        this.scale.set(data.judgementScale, data.judgementScale);
+        this.antialiasing = data?.antialiasing ?? true;
+        this.scale.set(data?.judgementScale ?? 1, data?.judgementScale ?? 1);
         this.updateHitbox();
 
         if(fadeTwn != null && fadeTwn.active) fadeTwn.cancel();
@@ -59,5 +44,15 @@ class JudgementSprite extends MoonSprite
 
         if(fade)
             fadeTwn = FlxTween.tween(this, {alpha: 0}, 0.4, {startDelay: 0.6});
+    }
+
+    @:noCompletion public function set_skin(skin:String):String
+    {
+        this.skin = skin;
+
+        if(Paths.fileExists('assets/images/ingame/UI/judgements_combo/$skin/config.json'))
+            data = Paths.JSON('ingame/UI/judgements_combo/$skin/config');
+
+        return this.skin;
     }
 }

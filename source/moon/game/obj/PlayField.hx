@@ -111,7 +111,7 @@ class PlayField extends FlxGroup
 
         //< -- COMBO SETUP -- >//
         //TODO: Skin for this one too :p
-        p1Judgements = new JudgementSprite().init('moon-engine');
+        p1Judgements = new JudgementSprite();
         p1Judgements.alpha = 0.0001;
         //just for preloading :p
         
@@ -120,7 +120,7 @@ class PlayField extends FlxGroup
 
         add(p1Judgements);
 
-        p1Combo = new ComboNumbers().init('moon-engine');
+        p1Combo = new ComboNumbers();
         add(p1Combo);
 
         //< -- HEALTHBAR SETUP -- >//
@@ -142,7 +142,7 @@ class PlayField extends FlxGroup
         for (i in 0...playerIDs.length)
         {
             //TODO: Skins lol
-            var strumline = new Strumline(xVal + strumXs[i], 68, 'v-slice', isCPUPlayers[i], playerIDs[i], conductor);
+            var strumline = new Strumline(xVal + strumXs[i], 68, 'pixel', isCPUPlayers[i], playerIDs[i], conductor);
             add(strumline);
             strumlines.push(strumline);
 
@@ -154,6 +154,8 @@ class PlayField extends FlxGroup
             inputHandler.onNoteMiss = (note) -> onMiss(playerIDs[i], note);
             inputHandler.onGhostTap = (keyDir) -> if(onGhostTap != null) onGhostTap(keyDir);
         }
+
+        p1Judgements.skin = p1Combo.skin = strumlines[0].receptors.members[0].judgementsSkin;
 
         // Little text for testing out the accuracy.
         // oh lol it doesn't even show accuracy anymore LMFAO

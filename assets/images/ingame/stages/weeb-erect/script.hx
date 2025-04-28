@@ -9,7 +9,6 @@ import moon.hardcoded_shaders.DropShadowShader;
 
 final p = 'ingame/stages/weeb-erect/';
 
-var trafficLights:MoonSprite;
 var shouldReverse:Bool = false;
 function onCreate()
 {	
@@ -64,6 +63,8 @@ function onPostCreate()
         startX: 30,
         startY: 100
 	};
+
+	game.camHUD.pixelPerfectRender = game.camGAME.pixelPerfectRender = true;
 	
 	for(member in background.members) member.antialiasing = false; //just to make sure
 	background.spectators.setPosition(-115, -30);
