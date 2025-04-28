@@ -1,5 +1,6 @@
 package moon.dependency;
 
+import moon.dependency.scripting.MoonEvent;
 import haxe.Json;
 #if sys
 import moonchart.formats.fnf.legacy.FNFPsych;
@@ -61,9 +62,8 @@ typedef MetadataStruct =
  */
 typedef ChartStruct =
 {
-    var notes:Array<NoteStruct>;
-    var events:Array<EventStruct>;
     var meta:MetadataStruct;
+    var notes:Array<NoteStruct>;
 };
 
 /**
@@ -85,9 +85,14 @@ class MoonChart
     ];
 
     /**
-     * All of the chart content.
+     * All of the chart content, except for the events.
      */
     public var content:ChartStruct;
+
+    /**
+     * All of the chart's events.
+     */
+    public var events:Array<EventStruct>;
 
     /**
      * Loads a chart from a path.
@@ -96,7 +101,11 @@ class MoonChart
      * @param mix         The song's mix. (e.g. bf)
      */
     public function new(song:String, difficulty:String = 'hard', mix:String = 'bf')
+    {
+        final modifier = (difficulty == 'erect' || difficulty == 'nightmare') ? '-erect' : '';
+        events = (Paths.fileExists('assets/songs/$song/$mix/events$modifier.json')) ? Paths.JSON('$song/$mix/events$modifier', 'songs').events : [];
         content = Paths.JSON('$song/$mix/chart-$difficulty', 'songs');
+    }
 
     /**
      * Converts a chart type to Moon Engine's chart type.
@@ -127,7 +136,8 @@ class MoonChart
         final metadata = Json.parse(chart.stringify().meta);
 
         // Now we create a variable for the converted chart.
-        var convertedChart:ChartStruct = {events: [], notes: [], meta: null};
+        var convertedChart:ChartStruct = {notes: [], meta: null};
+        var convertedEvents:Array<EventStruct> = [];
 
         // Now we convert the notes and add them to the chart.
         if (Reflect.hasField(data.notes, difficulty))
@@ -165,7 +175,7 @@ class MoonChart
                         },
                         time: event.t
                     };
-                convertedChart.events.push(camVent);
+                convertedEvents.push(camVent);
 
                 case 'ZoomCamera':
                     final camZoomVent:EventStruct = {
@@ -177,7 +187,7 @@ class MoonChart
                         },
                         time: event.t                    
                     };
-                convertedChart.events.push(camZoomVent);
+                convertedEvents.push(camZoomVent);
             }
         }
 
@@ -203,6 +213,7 @@ class MoonChart
         };
 
         Paths.saveFileContent('assets/data/chart-converter/mychart-$difficulty-converted.json', Json.stringify(convertedChart, "\t"));
+        Paths.saveFileContent('assets/data/chart-converter/mychart_events-$difficulty-converted.json', Json.stringify(convertedEvents, "\t"));
         #else
         throw 'Chart conversion is currently only available for Desktop.';
         #end

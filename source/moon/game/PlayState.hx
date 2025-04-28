@@ -158,7 +158,7 @@ class PlayState extends FlxState
 	public function setEvents()
 	{
 		//< -- EVENTS SETUP -- >//
-		for(event in playField.chart.content.events)
+		for(event in playField.chart.events)
 		{
 			var ev = new MoonEvent(event.tag, event.values);
 			ev.PRESET_VARIABLES = [
