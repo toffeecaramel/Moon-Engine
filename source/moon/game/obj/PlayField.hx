@@ -315,7 +315,7 @@ class PlayField extends FlxGroup
             stats.scale.set(1.2, 1.2);
 
             // green means GOOD!!! so yeah!!! (its lime actually lol)
-            setStatsColor(FlxColor.LIME);
+            if(timing != null) setStatsColor(Timings.getParameters(timing)[4]);
             updateP1Stats(timing);
         }
 
