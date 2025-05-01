@@ -314,7 +314,7 @@ class PlayField extends FlxGroup
             inputHandlers.get('p1').stats.combo++;
             stats.scale.set(1.2, 1.2);
 
-            // green means GOOD!!! so yeah!!! (its lime actually lol)
+            // actually its colored by judgement now so fuck
             if(timing != null) setStatsColor(Timings.getParameters(timing)[4]);
             updateP1Stats(timing);
         }
