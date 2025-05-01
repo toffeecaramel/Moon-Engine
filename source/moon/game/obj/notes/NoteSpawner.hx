@@ -45,7 +45,7 @@ class NoteSpawner extends FlxGroup
         offset = MoonSettings.callSetting('Note Offset');
         super.update(dt);
 
-        while (nextNoteIndex < _notes.length && (_notes[nextNoteIndex].time - offset) <= conductor.time + spawnThreshold)
+        while (nextNoteIndex < _notes.length && (_notes[nextNoteIndex].time) <= conductor.time + spawnThreshold)
         {
             recycleNote(_notes[nextNoteIndex]);
             nextNoteIndex++;
