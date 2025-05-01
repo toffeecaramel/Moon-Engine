@@ -33,11 +33,11 @@ class JudgementSprite extends MoonSprite
         this.scale.set(data?.judgementScale ?? 1, data?.judgementScale ?? 1);
         this.updateHitbox();
 
-        if(fadeTwn != null && fadeTwn.active) fadeTwn.cancel();
+        MoonUtils.cancelActiveTwn(fadeTwn);
+        MoonUtils.cancelActiveTwn(yTwn);
 
         if(animate)
         {
-            if(yTwn != null && yTwn.active) yTwn.cancel();
             this.y -= 25;
             yTwn = FlxTween.tween(this, {y:this.y + 25}, 0.24, {ease: FlxEase.quadOut});
         }

@@ -1,4 +1,5 @@
 package moon.dependency;
+import flixel.tweens.FlxTween;
 import flixel.FlxG;
 using StringTools;
 
@@ -20,7 +21,10 @@ class MoonUtils
         return directions[int];
     }
 
-    
+    /**
+     * Returns an array from a file, which breaks per line.
+     * @param path the file path.
+     */
     static function getArrayFromFile(path:String)
     {
         if (Paths.fileExists(path))
@@ -29,6 +33,13 @@ class MoonUtils
             trace('File at $path not found!', "ERROR");
         return null;
     }
+
+    /**
+     * Cancels a tween that's active, preventing overlapping tweens if you're going to play another.
+     * @param tween The active tween.
+     */
+    static function cancelActiveTwn(tween:FlxTween)
+        if (tween != null && tween.active) tween.cancel();
 
     /**
      * Starts a song upon calling, does nothing if already playing.

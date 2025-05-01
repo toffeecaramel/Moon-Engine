@@ -76,10 +76,12 @@ class Freeplay extends FlxSubState
         'S For Senpai Noimix\n' +
         'R for Roses Noimix\n' +
         'T for Thorns Noimix\n' +
+        'A for thorns erect by agua thanks aguacrunch you are so fucking gay\n' +
         'F for Final Stretch (Indie Cross)\n' +
 		'U for Unbeatable not indie cross but marios madness' + 
 		'\n Chicos... estoy comendo mortadelaa,,,';
-        txt.setFormat(Paths.font('vcr.ttf'), 32, FlxColor.GREEN, CENTER);
+        txt.setFormat(Paths.font('vcr.ttf'), 32, FlxColor.BLACK, CENTER);
+        txt.setBorderStyle(OUTLINE, FlxColor.CYAN, 10);
         add(txt);
         txt.screenCenter();
 
@@ -98,6 +100,9 @@ class Freeplay extends FlxSubState
 
         if(FlxG.keys.justPressed.T)//lol
             FlxG.switchState(() -> new PlayState('thorns', 'hard', 'noimix'));
+
+        if(FlxG.keys.justPressed.A)//lol
+            FlxG.switchState(() -> new PlayState('thorns', 'erect', 'agua'));
 
         if(FlxG.keys.justPressed.F)//lol
             FlxG.switchState(() -> new PlayState('final stretch', 'hard', 'bf'));

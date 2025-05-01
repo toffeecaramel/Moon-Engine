@@ -178,7 +178,7 @@ class Title extends FlxState
             displayTxt.screenCenter();
             displayTxt.y -= 35;
 
-            if(txTwn != null && txTwn.active) txTwn.cancel();
+            MoonUtils.cancelActiveTwn(txTwn);
             txTwn = FlxTween.tween(displayTxt, {y: displayTxt.y - 15}, 1.1, {ease: FlxEase.expoOut});
         }
     }
@@ -233,7 +233,7 @@ class Title extends FlxState
         FlxG.camera.flash(FlxColor.WHITE, conductor.crochet / 1000 * 4);
         onTitle = true;
 
-        if(txTwn != null && txTwn.active) txTwn.cancel();
+        MoonUtils.cancelActiveTwn(txTwn);
         displayTxt.setFormat(Paths.font('ARACNE CONDENSED REGULAR.TTF'), 64, CENTER);
         displayTxt.text = 'PRESS ENTER TO START';
         displayTxt.y = FlxG.height - displayTxt.height - 16;

@@ -1,5 +1,7 @@
 package moon.game.obj;
 
+import flixel.tweens.FlxTween;
+import flixel.math.FlxMath;
 import moon.game.obj.judgements.JudgementSprite;
 import moon.game.obj.judgements.ComboNumbers;
 import moon.backend.gameplay.PlayerStats;
@@ -167,7 +169,7 @@ class PlayField extends FlxGroup
         // Little text for testing out the accuracy.
         // oh lol it doesn't even show accuracy anymore LMFAO
         stats = new FlxText(0, 0);
-        stats.setFormat(Paths.font('vcr.ttf'), 16, FlxColor.WHITE, RIGHT);
+        stats.setFormat(Paths.font('vcr.ttf'), 16, FlxColor.WHITE, CENTER);
         stats.setBorderStyle(OUTLINE, FlxColor.BLACK, 2);
         add(stats);
 
@@ -215,9 +217,6 @@ class PlayField extends FlxGroup
 
     function restartSong()
     {
-        for (handler in inputHandlers.iterator())
-            handler.stats.reset();
-
         playback.time = 0;
         playback.state = PAUSE;
         conductor.time = -(conductor.crochet * 6);
@@ -253,10 +252,13 @@ class PlayField extends FlxGroup
     var inCountdown:Bool = true;
     override public function update(dt:Float)
     {
+        // updates some stuff when not in cutscene.
         if(!inCutscene) conductor.time += (dt * 1000) * playback.pitch;
         Global.allowInputs = !inCutscene;
 
         super.update(dt);
+
+        // set the input keys.
         for (handler in inputHandlers.iterator())
 		{
 			handler.justPressed = [
@@ -286,14 +288,24 @@ class PlayField extends FlxGroup
         if(FlxG.keys.justPressed.I) playback.pitch -= 0.05;
         else if (FlxG.keys.justPressed.O) playback.pitch += 0.05;
 
+        // update health based on p1's health.
         healthBar.health = inputHandlers.get('p1').stats.health;
+
+        // uhhmmm yeah stats scaling thats p much all
+        stats.scale.x = stats.scale.y = FlxMath.lerp(stats.scale.x, 1, dt * 12);
     }
 
     function onHit(playerID:String, note:Note, timing:String, isSustain:Bool)
     {
-        inputHandlers.get('p1').stats.combo++;
         if (playerID == 'p1')
+        {
+            inputHandlers.get('p1').stats.combo++;
+            stats.scale.set(1.2, 1.2);
+
+            // green means GOOD!!! so yeah!!! (its lime actually lol)
+            setStatsColor(FlxColor.LIME);
             updateP1Stats(timing);
+        }
 
         if(onNoteHit != null) onNoteHit(playerID, note, timing, isSustain);
 
@@ -301,13 +313,22 @@ class PlayField extends FlxGroup
         //input.attachedChar
     }
 
+    var statShake:FlxTween;
     function onMiss(playerID:String, note:Note)
     {
         if (playerID == 'p1')
         {
+            // update stats
             updateP1Stats('miss');
             p1Combo.comboRoll(0, 2, true);
+
+            // set the player combo to 0
             inputHandlers.get('p1').stats.combo = 0;
+
+            // and do a lil cool thing to the stats
+            setStatsColor(FlxColor.RED);
+            MoonUtils.cancelActiveTwn(statShake);
+            statShake = FlxTween.shake(stats, 0.05, 0.2, X);
         }
         if(onNoteMiss != null) onNoteMiss(playerID, note);
     }
@@ -341,6 +362,13 @@ class PlayField extends FlxGroup
             p1Combo.numsColor = p1Judgements.color;
             p1Combo.screenCenter();
         }
+    }
+
+    var statsColor:FlxTween;
+    function setStatsColor(color:FlxColor)
+    {
+        MoonUtils.cancelActiveTwn(statsColor);
+        statsColor = FlxTween.color(stats, 0.4, color, FlxColor.WHITE, {startDelay: 0.05});
     }
 
     function beatHit(beat:Float):Void
