@@ -16,13 +16,16 @@ class NoteSpawner extends FlxGroup
     public var scrollSpeed(default, set):Float = 1;
 
     private var nextNoteIndex:Int = 0;
-
+    
+    public var offset:Float;
     public function new(noteStructs:Array<NoteStruct>, strumlines:Array<Strumline>, conductor:Conductor)
     {
         super();
         notes = _notes;
         this.strumlines = strumlines;
         this.conductor = conductor;
+
+        offset = MoonSettings.callSetting('Note Offset');
 
         for (noteStruct in noteStructs)
         {
@@ -34,14 +37,15 @@ class NoteSpawner extends FlxGroup
         _notes.sort((a, b) ->  Std.int(a.time - b.time));
     }
 
-    public var spawnThreshold:Float; 
+    public var spawnThreshold:Float;
 
     override public function update(dt:Float)
     {
         spawnThreshold = (scrollSpeed <= 0.9) ? 2000 : 700;
+        offset = MoonSettings.callSetting('Note Offset');
         super.update(dt);
 
-        while (nextNoteIndex < _notes.length && (_notes[nextNoteIndex].time) <= conductor.time + spawnThreshold)
+        while (nextNoteIndex < _notes.length && (_notes[nextNoteIndex].time - offset) <= conductor.time + spawnThreshold)
         {
             recycleNote(_notes[nextNoteIndex]);
             nextNoteIndex++;
@@ -84,7 +88,7 @@ class NoteSpawner extends FlxGroup
         {
             if (strum.playerID == noteStruct.lane)
             {
-                var note = new Note(noteStruct.data, noteStruct.time,
+                var note = new Note(noteStruct.data, noteStruct.time - offset,
                 noteStruct.type, strum.members[noteStruct.data].skin, noteStruct.duration, conductor);
 
                 note.speed = scrollSpeed;

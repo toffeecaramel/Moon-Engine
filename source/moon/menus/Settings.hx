@@ -62,8 +62,8 @@ class Settings extends FlxSubState
         sttDisplay.setFormat(Paths.font('vcr.ttf'), 48, CENTER);
         sttDisplay.screenCenter(X);
         sttDisplay.textField.antiAliasType = ADVANCED;
-        sttDisplay.antialiasing = false;
         sttDisplay.textField.sharpness = textSharpness;
+        sttDisplay.antialiasing = false;
         optionsContainer.add(sttDisplay);
         yPos += sttDisplay.height + 15;
 
@@ -81,8 +81,8 @@ class Settings extends FlxSubState
         optionDesc.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.GRAY, RIGHT);
         optionDesc.text = '';
         optionDesc.textField.antiAliasType = ADVANCED;
-        optionDesc.antialiasing = false;
         optionDesc.textField.sharpness = textSharpness;
+        optionDesc.antialiasing = false;
         optionDesc.alpha = 0;
         add(optionDesc);
         optionDesc.y = (FlxG.height - optionDesc.height) - 12;
