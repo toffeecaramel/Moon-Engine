@@ -64,9 +64,8 @@ class PlayerStats
      */
     function reset()
     {
-        combo = 0;
         accuracyCount = totalNotes = 0;
-        accuracy = misses = score = 0;
+        accuracy = misses = score = combo = 0;
         health = 50;
     }
 

@@ -14,6 +14,8 @@ class HealthBar extends FlxSpriteGroup
     public var opponent(default, set):String;
     public var player(default, set):String;
 
+    public var icons:Array<HealthIcon> = [];
+
     public var oppIcon:HealthIcon;
     public var playerIcon:HealthIcon;
 
@@ -54,11 +56,16 @@ class HealthBar extends FlxSpriteGroup
         add(oppIcon);
         add(playerIcon);
 
+        icons.push(oppIcon);
+        icons.push(playerIcon);
+
         this.opponent = opponent;
         this.player = player;
 
         bar.createFilledBar(getRGBData(opponent), getRGBData(player));
     }
+
+    public var updateIconsPos:Bool = true;
 
     override public function update(elapsed:Float)
     {
@@ -66,18 +73,22 @@ class HealthBar extends FlxSpriteGroup
 
         bar.value = FlxMath.lerp(bar.value, health, elapsed * 8);
 
-        final percent:Float = 1 - (health / 100);
-        final value = bar.x + (bar.width * percent);
+        if(updateIconsPos)
+        {
+            final percent:Float = 1 - (health / 100);
+            final value = bar.x + (bar.width * percent);
+            
+            oppIcon.x = FlxMath.lerp(oppIcon.x, value - 100, elapsed * 8);
+            playerIcon.x = FlxMath.lerp(playerIcon.x, value, elapsed * 8);
+
+            //oppIcon.updateHitbox();
+            //playerIcon.updateHitbox();
+            
+            oppIcon.y = bar.y - (oppIcon.height * 0.5);
+            playerIcon.y = bar.y - (playerIcon.height * 0.5);
+        }
         
-        oppIcon.x = FlxMath.lerp(oppIcon.x, value - 100, elapsed * 8);
-        playerIcon.x = FlxMath.lerp(playerIcon.x, value, elapsed * 8);
-
-        //oppIcon.updateHitbox();
-        //playerIcon.updateHitbox();
         oppIcon.scale.x = oppIcon.scale.y = playerIcon.scale.x = playerIcon.scale.y = FlxMath.lerp(playerIcon.scale.x, 0.8, elapsed * 12);
-
-        oppIcon.y = bar.y - (oppIcon.height * 0.5);
-        playerIcon.y = bar.y - (playerIcon.height * 0.5);
     }
 
     public function updateBarStats()

@@ -2,6 +2,7 @@ package moon.menus.obj.settings;
 
 import flixel.math.FlxMath;
 import moon.dependency.user.MoonSettings.Setting;
+import moon.game.obj.*;
 import flixel.FlxG;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
@@ -135,6 +136,9 @@ class OptionObject extends FlxSpriteGroup
 
             if(setting.name == 'Window Resolution' || setting.name == 'Screen Mode')
                 MoonSettings.updateWindow();
+
+            if(PlayField.instance != null)
+               PlayField.instance.settingsUpdate(); 
         }
     }
 

@@ -1,0 +1,1080 @@
+[
+	{
+		"tag": "SetCameraFocus",
+		"time": 0,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 13426.5734265734,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 20139.8601398601,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 33566.4335664336,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 40279.7202797203,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 46993.006993007,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 53706.2937062937,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 60419.5804195804,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 67132.8671328671,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 73846.1538461538,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 80559.4405594405,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 90629.3706293706,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 93986.013986014,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 97342.6573426573,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 100699.300699301,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 104055.944055944,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 107412.587412587,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 110769.230769231,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 114125.874125874,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 120839.160839161,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 127552.447552448,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 134265.734265734,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 140979.020979021,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 150019.305847527,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 161798.446951821,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 167688.017503968,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 175255.909734437,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 183647.518126046,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 187004.161482689,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 190360.804839333,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 193717.448195976,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 197074.091552619,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 200430.734909263,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 207144.021622549,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 213857.308335836,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 220570.595049123,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 227283.88176241,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 230640.525119053,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 233997.168475697,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 237353.81183234,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 242388.776867305,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 247423.74190227,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 250780.385258913,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 254137.028615557,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 257493.6719722,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 260850.315328844,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 264206.958685487,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 267563.60204213,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 270920.245398774,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 274276.888755417,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 277633.532112061,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 280990.175468704,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 287703.462181991,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 291060.105538634,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 294416.748895277,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 302808.357286886,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 306165.000643529,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 309521.644000173,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 312878.287356816,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 319591.574070103,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 322948.217426746,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 324626.539105068,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 326304.86078339,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 336374.79085332,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 339731.434209963,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 346444.72092325,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 353158.007636537,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 356514.65099318,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 359871.294349823,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 363227.937706467,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 366584.58106311,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 369941.224419754,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 373297.867776397,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 380011.154489684,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 386724.441202971,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 393437.727916257,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 400151.014629544,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 405185.979664509,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 408542.623021153,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 411899.266377796,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 421969.196447726,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 427004.161482691,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 435395.7698743,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 442109.056587586,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 489102.063580594,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 503717.233686561,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 508134.411600672,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 515496.374790856,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 521385.945343003,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 527275.51589515,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 533165.086447298,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 539054.656999445,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 544944.227551593,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 550833.79810374,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 556723.368655888,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 562612.939208035,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 592060.791968772,
+		"values": {
+			"character": "opponent",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	},
+	{
+		"tag": "SetCameraFocus",
+		"time": 630343.000557731,
+		"values": {
+			"character": "player",
+			"duration": 26,
+			"ease": "expoOut",
+			"x": 0,
+			"y": 0
+		}
+	}
+]

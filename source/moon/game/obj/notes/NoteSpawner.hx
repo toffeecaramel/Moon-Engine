@@ -54,10 +54,10 @@ class NoteSpawner extends FlxGroup
         {
             if (strum.playerID == note.lane)
             {
-                final group = strum.receptors.members[note.direction];
+                final group = strum.members[note.direction];
                 group.notesGroup.recycle(Note, function():Note
                 {
-                    note.receptor = strum.receptors.members[note.direction];
+                    note.receptor = strum.members[note.direction];
                     note.visible = false;
                     note.speed = scrollSpeed;
                     note.state = NONE;
@@ -85,7 +85,7 @@ class NoteSpawner extends FlxGroup
             if (strum.playerID == noteStruct.lane)
             {
                 var note = new Note(noteStruct.data, noteStruct.time,
-                noteStruct.type, strum.receptors.members[noteStruct.data].skin, noteStruct.duration, conductor);
+                noteStruct.type, strum.members[noteStruct.data].skin, noteStruct.duration, conductor);
 
                 note.speed = scrollSpeed;
                 note.lane = noteStruct.lane;

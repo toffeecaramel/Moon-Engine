@@ -76,8 +76,10 @@ class Freeplay extends FlxSubState
         'S For Senpai Noimix\n' +
         'R for Roses Noimix\n' +
         'T for Thorns Noimix\n' +
-        'F for Final Stretch (Indie Cross)';
-        txt.setFormat(Paths.font('vcr.ttf'), 32, FlxColor.BLUE, CENTER);
+        'F for Final Stretch (Indie Cross)\n' +
+		'U for Unbeatable not indie cross but marios madness' + 
+		'\n Chicos... estoy comendo mortadelaa,,,';
+        txt.setFormat(Paths.font('vcr.ttf'), 32, FlxColor.GREEN, CENTER);
         add(txt);
         txt.screenCenter();
 
@@ -99,7 +101,10 @@ class Freeplay extends FlxSubState
 
         if(FlxG.keys.justPressed.F)//lol
             FlxG.switchState(() -> new PlayState('final stretch', 'hard', 'bf'));
-
+			
+        if(FlxG.keys.justPressed.U)//lol
+            FlxG.switchState(() -> new PlayState('unbeatable', 'hard', 'bf'));
+			
         if(mainBG.script.exists('onUpdate')) mainBG.script.get('onUpdate')(elapsed);
     }
 }

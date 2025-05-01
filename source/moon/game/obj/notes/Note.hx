@@ -140,6 +140,11 @@ class Note extends MoonSprite
     override public function update(dt:Float):Void
     {
         super.update(dt);
+        updateNotePos();
+    }
+
+    public function updateNotePos()
+    {
         if (receptor != null && state == NoteState.NONE)
         {
             visible = active = true;
@@ -147,11 +152,12 @@ class Note extends MoonSprite
             var timeDiff = (time - conductor.time);
             var ypos = receptor.y + timeDiff * speed;
 
-            if (receptor.y > FlxG.height * 0.5) ypos = receptor.y - timeDiff * speed;
-            
+            if (MoonSettings.callSetting('Downscroll')) ypos = receptor.y - timeDiff * speed;
+
             y = ypos;
             x = receptor.x + (receptor.width - width) * 0.5;
-            if (child != null) child.downscroll = (receptor.y > FlxG.height * 0.5);
+
+            if (child != null) child.downscroll = MoonSettings.callSetting('Downscroll');
         }
     }
 

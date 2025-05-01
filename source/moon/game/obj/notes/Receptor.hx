@@ -17,7 +17,7 @@ class Receptor extends FlxSpriteGroup
     /**
      * Skin used for the receptor; changing this at runtime will rebuild the receptor.
      */
-    @:isVar public var skin(get, set):String;
+    public var skin(get, set):String;
 
     /**
      * The direction data (e.g. 0, 1, 2, 3...)
@@ -38,6 +38,11 @@ class Receptor extends FlxSpriteGroup
      * The skin for the judgements. Here so they can be defined per noteskin.
      */
     public var judgementsSkin:String = 'moon-engine';
+	
+	/**
+	 * The X Spacing between each note.
+	 */
+	public var spacing:Float = 0;
 
     /**
      * The conductor for this class.
@@ -142,11 +147,13 @@ class Receptor extends FlxSpriteGroup
         // -- Create Sustain Splash -- //
         sustainSplash = new SustainSplash(_skin, data);
         splashGroup.add(sustainSplash);
+		
         script.set("sustainSplash", sustainSplash);
-        script.set("judgementsSkin", judgementsSkin);
 
         script.get("createReceptor")(MoonUtils.intToDir(data));
 
+		spacing = script.get("spacing") ?? 0;
+        judgementsSkin = script.get("judgementsSkin") ?? 'moon-engine';
         // update hitboxes
         strumNote.updateHitbox();
         splash.updateHitbox();
@@ -178,7 +185,7 @@ class Receptor extends FlxSpriteGroup
         }
         
         // splash for sustains
-        if (isSustain && note.duration > 90
+        if (note.duration > 90
             && sustainSplash.animation.getAnimationList().length > 0)
         {
             sustainSplash.setPosition(cx - sustainSplash.width / 2, cy - sustainSplash.height / 2);

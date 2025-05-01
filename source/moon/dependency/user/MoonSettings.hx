@@ -149,8 +149,8 @@ class MoonSettings
 
         categories.set("Graphic Settings",
         [
-            new Setting("Anti-Aliasing", CHECKMARK, "Smooths out jagged polygon edges.", null, true),
-            new Setting("V-Sync", CHECKMARK, "Uncaps the FPS and removes horizontal cuts on the screen (may increase input delay).", null, false),
+            // removing for now.
+            //new Setting("V-Sync", CHECKMARK, "Uncaps the FPS and removes horizontal cuts on the screen (may increase input delay).", null, false),
             new Setting("FPS Cap", SELECTOR, "The maximum amount your framerate can reach.", [30, 60, 120, 144, 240, 360], 60),
             new Setting("Shaders", CHECKMARK, "Toggles shaders (may affect performance on low-end devices).", null, true),
             new Setting("Flashing Lights", CHECKMARK, "Toggles flashing effects. Recommended to turn OFF in case of high photosensitivity.", null, true),

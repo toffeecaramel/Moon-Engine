@@ -64,7 +64,7 @@ function onPostCreate()
         startY: 100
 	};
 
-	game.camHUD.pixelPerfectRender = game.camGAME.pixelPerfectRender = true;
+	game.camGAME.pixelPerfectRender = true;
 	
 	for(member in background.members) member.antialiasing = false; //just to make sure
 	background.spectators.setPosition(-115, -30);

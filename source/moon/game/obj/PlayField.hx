@@ -18,8 +18,7 @@ import moon.backend.gameplay.Timings;
 class PlayField extends FlxGroup
 {
     // -- VARIBALES
-
-    public static var playfield:PlayField;
+    public static var instance:PlayField;
 
     var conductor:Conductor;
     var playback:Song;
@@ -93,7 +92,7 @@ class PlayField extends FlxGroup
         this.mix = mix;
         this.difficulty = difficulty;
 
-        playfield = this;
+        instance = this;
 
         //< -- SONG SETUP -- >//
         chart = new MoonChart(song, difficulty, mix);
@@ -126,7 +125,7 @@ class PlayField extends FlxGroup
         //< -- HEALTHBAR SETUP -- >//
         healthBar = new HealthBar(chart.content.meta.opponents[0], chart.content.meta.players[0]);
         add(healthBar);
-        healthBar.setPosition(0, FlxG.height - healthBar.height + 32);
+        healthBar.setPosition(0, 0);
         healthBar.screenCenter(X);
     
         //< -- STRUMLINES & INPUTS SETUP -- >//
@@ -144,6 +143,14 @@ class PlayField extends FlxGroup
             //TODO: Skins lol
             var strumline = new Strumline(xVal + strumXs[i], 68, 'pixel', isCPUPlayers[i], playerIDs[i], conductor);
             add(strumline);
+
+            for(receptor in strumline.members)
+            {
+                add(receptor.sustainsGroup);
+                add(receptor.notesGroup);
+                add(receptor.splashGroup);
+            }
+
             strumlines.push(strumline);
 
             var inputHandler = new InputHandler(null, playerIDs[i], strumline, conductor);
@@ -155,17 +162,18 @@ class PlayField extends FlxGroup
             inputHandler.onGhostTap = (keyDir) -> if(onGhostTap != null) onGhostTap(keyDir);
         }
 
-        p1Judgements.skin = p1Combo.skin = strumlines[0].receptors.members[0].judgementsSkin;
+        p1Judgements.skin = p1Combo.skin = strumlines[0].members[0].judgementsSkin;
 
         // Little text for testing out the accuracy.
         // oh lol it doesn't even show accuracy anymore LMFAO
-        stats = new FlxText(0, healthBar.y + 27);
+        stats = new FlxText(0, 0);
         stats.setFormat(Paths.font('vcr.ttf'), 16, FlxColor.WHITE, RIGHT);
         stats.setBorderStyle(OUTLINE, FlxColor.BLACK, 2);
         add(stats);
 
-        updateP1Stats(null);
         setupNotes();
+        settingsUpdate();
+        updateP1Stats(null, true);
 
         conductor.time = -(conductor.crochet * 6);
     }
@@ -183,17 +191,39 @@ class PlayField extends FlxGroup
             handler.thisNotes = noteSpawner.notes;
     }
 
+    var playerStrum:Strumline;
+    public function settingsUpdate()
+    {
+        final downscroll = MoonSettings.callSetting('Downscroll');
+
+        for (strum in strumlines)
+        {
+            if(strum.playerID == 'p1')
+                playerStrum = strum;
+
+            strum.y = (!downscroll) ? 80 : FlxG.height - strum.height - 80;
+        }
+
+        healthBar.y = (downscroll) ? 64 : FlxG.height - healthBar.height + 32;
+
+        // also this is just so much offsetted it looks like ASS
+        stats.y = (MoonSettings.callSetting('Stats Position') == 'On Player Lane')
+        ? ((downscroll) ? playerStrum.y + playerStrum.height + stats.height : playerStrum.y - stats.height)
+        : healthBar.y + stats.height + 16;
+        updateP1Stats(null, false);
+    }
+
     function restartSong()
     {
-        playback.time = 0;
-        playback.state = PAUSE;
-        conductor.time = -(conductor.crochet * 6);
-        
         for (handler in inputHandlers.iterator())
             handler.stats.reset();
 
+        playback.time = 0;
+        playback.state = PAUSE;
+        conductor.time = -(conductor.crochet * 6);
+
         for(strum in strumlines)
-            for(receptor in strum.receptors)
+            for(receptor in strum.members)
             {
                 receptor.notesGroup.clear();
                 receptor.sustainsGroup.clear();
@@ -212,6 +242,9 @@ class PlayField extends FlxGroup
 
         setupNotes();
         updateP1Stats(null);
+
+        for (handler in inputHandlers.iterator())
+            handler.stats.reset();
 
         if(onSongRestart != null) onSongRestart();
         inCountdown = true;
@@ -258,6 +291,7 @@ class PlayField extends FlxGroup
 
     function onHit(playerID:String, note:Note, timing:String, isSustain:Bool)
     {
+        inputHandlers.get('p1').stats.combo++;
         if (playerID == 'p1')
             updateP1Stats(timing);
 
@@ -278,27 +312,35 @@ class PlayField extends FlxGroup
         if(onNoteMiss != null) onNoteMiss(playerID, note);
     }
 
-    private function updateP1Stats(judgement):Void
+    private function updateP1Stats(judgement, ?statsOnly = false):Void
     {
+        // get the stat and update them
         final stat = inputHandlers.get('p1').stats;
         stats.text = 'Score: ${stat.score} // Misses: ${stat.misses} // Accuracy: ${stat.accuracy}%';
-        stats.screenCenter(X);
-        stat.combo++;
-
-        if(judgement != null)
-        {
-            p1Judgements.color = Timings.getParameters(judgement)[4];
-            
-            p1Judgements.screenCenter();
-            p1Judgements.y -= 60;
-            p1Judgements.showJudgement(judgement, true, true);
-        }
         
-        //TODO: custom positioning
-        p1Combo.combo = stat.combo;
-        p1Combo.displayCombo(true, true);
-        p1Combo.numsColor = p1Judgements.color;
-        p1Combo.screenCenter();
+        // set stats X based on what setting it is.
+        final sx = playerStrum.x + playerStrum.width / 2;
+
+        ((MoonSettings.callSetting('Stats Position') != 'On Player Lane')) ? stats.screenCenter(X)
+        : stats.x = sx - stats.width;
+
+        if(!statsOnly)
+        {
+            if(judgement != null)
+            {
+                p1Judgements.color = Timings.getParameters(judgement)[4];
+                
+                p1Judgements.screenCenter();
+                p1Judgements.y -= 60;
+                p1Judgements.showJudgement(judgement, true, true);
+            }
+            
+            //TODO: custom positioning
+            p1Combo.combo = stat.combo;
+            p1Combo.displayCombo(true, true);
+            p1Combo.numsColor = p1Judgements.color;
+            p1Combo.screenCenter();
+        }
     }
 
     function beatHit(beat:Float):Void
@@ -332,12 +374,6 @@ class PlayField extends FlxGroup
             if(Std.isOfType(obj, FlxSprite))
                 cast(obj, FlxSprite).alpha = this.alpha;
         }
-
-        //gotta apply separately :T
-        // eh.
-        for(strum in strumlines)
-            for(receptor in strum.receptors)
-                receptor.alpha = this.alpha;
 
         return this.alpha;
     }
