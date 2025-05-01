@@ -8,6 +8,7 @@ function createReceptor(direction)
 {
     final p = 'ingame/UI/notes/pixel/';
 	spacing = 8;
+    judgementsSkin = 'moon-pixel';
 
     // strum notes
     strumNote.frames = Paths.getSparrowAtlas(p + 'strumline');

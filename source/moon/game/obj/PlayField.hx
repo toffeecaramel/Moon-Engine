@@ -34,6 +34,7 @@ class PlayField extends FlxGroup
     var difficulty:String;
 
     var inputHandlers:Map<String, InputHandler> = [];
+    var strumsBG:Array<MoonSprite> = [];
     var strumlines:Array<Strumline> = [];
 
     var healthBar:HealthBar;
@@ -142,9 +143,15 @@ class PlayField extends FlxGroup
 
         for (i in 0...playerIDs.length)
         {
+            var strumBG = new MoonSprite();
+            add(strumBG);
+            strumsBG.push(strumBG);
             //TODO: Skins lol
             var strumline = new Strumline(xVal + strumXs[i], 68, 'pixel', isCPUPlayers[i], playerIDs[i], conductor);
             add(strumline);
+
+            strumBG.makeGraphic(Std.int(strumline.width + 64), Std.int(FlxG.height) + 32, FlxColor.BLACK);
+            strumBG.setPosition(strumline.members[0].x - 32, 0);
 
             for(receptor in strumline.members)
             {
@@ -162,15 +169,17 @@ class PlayField extends FlxGroup
             inputHandler.onNoteHit = (note, timing, isSustain) -> onHit(playerIDs[i], note, timing, isSustain);
             inputHandler.onNoteMiss = (note) -> onMiss(playerIDs[i], note);
             inputHandler.onGhostTap = (keyDir) -> if(onGhostTap != null) onGhostTap(keyDir);
-        }
 
-        p1Judgements.skin = p1Combo.skin = strumlines[0].members[0].judgementsSkin;
+            p1Judgements.skin = p1Combo.skin = strumline.members[0].judgementsSkin;
+        }
 
         // Little text for testing out the accuracy.
         // oh lol it doesn't even show accuracy anymore LMFAO
         stats = new FlxText(0, 0);
         stats.setFormat(Paths.font('vcr.ttf'), 16, FlxColor.WHITE, CENTER);
         stats.setBorderStyle(OUTLINE, FlxColor.BLACK, 2);
+        stats.textField.antiAliasType = ADVANCED;
+        stats.textField.sharpness = 200;
         add(stats);
 
         setupNotes();
@@ -205,6 +214,9 @@ class PlayField extends FlxGroup
 
             strum.y = (!downscroll) ? 80 : FlxG.height - strum.height - 80;
         }
+        
+        for(strumBG in strumsBG)
+            strumBG.alpha = MoonSettings.callSetting('Lane Background Visibility');
 
         healthBar.y = (downscroll) ? 64 : FlxG.height - healthBar.height + 32;
 
@@ -238,12 +250,12 @@ class PlayField extends FlxGroup
         noteSpawner.clear();
         noteSpawner.killMembers();
         remove(noteSpawner, true);
+        for (handler in inputHandlers.iterator())
+            handler.stats.reset();
 
         setupNotes();
         updateP1Stats(null);
 
-        for (handler in inputHandlers.iterator())
-            handler.stats.reset();
 
         if(onSongRestart != null) onSongRestart();
         inCountdown = true;
@@ -343,7 +355,7 @@ class PlayField extends FlxGroup
         final sx = playerStrum.x + playerStrum.width / 2;
 
         ((MoonSettings.callSetting('Stats Position') != 'On Player Lane')) ? stats.screenCenter(X)
-        : stats.x = sx - stats.width;
+        : stats.x = sx - (stats.width / 2);
 
         if(!statsOnly)
         {

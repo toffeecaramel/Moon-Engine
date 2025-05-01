@@ -150,7 +150,7 @@ class Receptor extends FlxSpriteGroup
 		
         script.set("sustainSplash", sustainSplash);
 
-        script.get("createReceptor")(MoonUtils.intToDir(data));
+        script.call("createReceptor", [MoonUtils.intToDir(data)]);
 
 		spacing = script.get("spacing") ?? 0;
         judgementsSkin = script.get("judgementsSkin") ?? 'moon-engine';

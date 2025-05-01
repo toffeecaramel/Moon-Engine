@@ -1,5 +1,6 @@
 package moon.game.obj.notes;
 
+import flixel.util.FlxColor;
 import flixel.FlxBasic;
 import flixel.FlxG;
 import flixel.tweens.FlxEase;
@@ -57,7 +58,7 @@ class Strumline extends FlxTypedSpriteGroup<Receptor>
     {
         this.skin = skin;
         this.clear();
-
+        
         for (i in 0...4)
         {
             this.recycle(Receptor, () ->
