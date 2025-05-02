@@ -38,6 +38,7 @@ typedef MetadataStruct =
 {
     // Game data
     var bpm:Float;
+    var timeSignature:Array<Int>;
     var scrollSpd:Float;
     var stage:String;
     var players:Array<String>;
@@ -170,8 +171,8 @@ class MoonChart
                         tag: 'SetCameraFocus',
                         values: {
                             character: (event.v.char == 1) ? 'opponent' : 'player', 
-                            duration: (event.v.ease == 'CLASSIC') ? 26 : event.v.duration,
-                            ease: (event.v.ease == 'CLASSIC') ? 'expoOut' : event.v.ease,
+                            duration: (event.v.ease == 'CLASSIC') ? 26 : event.v.duration ?? 26,
+                            ease: (event.v.ease == 'CLASSIC') ? 'expoOut' : event.v.ease ?? 'expoOut',
                             x: event.v.x ?? 0,
                             y: event.v.y ?? 0
                         },
@@ -193,10 +194,31 @@ class MoonChart
             }
         }
 
+        final tChanges = metadata.timeChanges;
+        // Convert time signature/bpm changes
+        for (i in 0...tChanges.length)
+        {
+            // because the first time change is applied to the metadata instead
+            if(i != 0)
+            {
+                final event:EventStruct = {
+                    tag: 'ChangeBPM',
+                    values: {
+                        bpm: tChanges[i].bpm,
+                        timeSignature: [tChanges[i]?.n ?? 4, tChanges[i]?.d ?? 4]
+                    },
+                    time: tChanges[i].t
+                };
+
+                convertedEvents.push(event);
+            }
+        }
+
         // Now let's convert the metadata as well.
         convertedChart.meta =
         {
             bpm: metadata.timeChanges[0].bpm,
+            timeSignature: [metadata.timeChanges[0]?.n ?? 4, metadata.timeChanges[0]?.d ?? 4],
             scrollSpd: Reflect.field(data.scrollSpeed, difficulty),
             stage: metadata.playData.stage,
             players: [metadata.playData.characters.player],

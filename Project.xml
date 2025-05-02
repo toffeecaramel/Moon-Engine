@@ -48,9 +48,12 @@
 	<haxelib name="discord_rpc" if="cpp" />
 	
 	<haxelib name="hscript-iris"/>
-	<haxedef name="hscriptPos"/>
-
 	<haxelib name="moonchart" />
+	
+	<section if="cpp">
+		<haxelib name="hxvlc" if="desktop || mobile" />
+	</section>
+
 	<haxelib name="flxanimate" />
 	<haxelib name="funkin.visfix" />
 
@@ -100,7 +103,9 @@
 
 	<!-- _________________________________ Custom _______________________________ -->
 
-	<!-- Makes it run a script before compiling and after compiling. -->
+	<!-- Makes it run a script before and after compiling. -->
 	<prebuild haxe="Prebuild.hx"/>
 	<postbuild haxe="Postbuild.hx"/>
+
+	<haxedef name="hscriptPos"/>
 </project>

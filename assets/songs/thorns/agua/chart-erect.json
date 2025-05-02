@@ -3,6 +3,10 @@
 		"album": null,
 		"artist": "AguaCrunch",
 		"bpm": 210,
+		"timeSignature": [
+			4,
+			4
+		],
 		"charter": "AguaCrunch",
 		"diffRating": 0,
 		"displayName": "Thorns-Erect (Agua Mix)",

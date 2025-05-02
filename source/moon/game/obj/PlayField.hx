@@ -100,7 +100,7 @@ class PlayField extends FlxGroup
         //< -- SONG SETUP -- >//
         chart = new MoonChart(song, difficulty, mix);
         
-        conductor = new Conductor(chart.content.meta.bpm, 4, 4);
+        conductor = new Conductor(chart.content.meta.bpm, chart.content.meta.timeSignature[0], chart.content.meta.timeSignature[1]);
         conductor.onBeat.add(beatHit);
         
         playback = new Song(

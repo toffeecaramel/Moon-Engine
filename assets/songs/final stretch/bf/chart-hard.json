@@ -3,6 +3,10 @@
 		"album": null,
 		"artist": "Unknown",
 		"bpm": 175,
+		"timeSignature": [
+			4,
+			4
+		],
 		"charter": "Unknown",
 		"diffRating": 0,
 		"displayName": "Final-Stretch",

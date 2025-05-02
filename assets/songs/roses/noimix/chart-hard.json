@@ -3,6 +3,10 @@
 		"album": null,
 		"artist": "Noichi",
 		"bpm": 128,
+		"timeSignature": [
+			4,
+			4
+		],
 		"charter": "Sammy The Goog",
 		"diffRating": 5,
 		"displayName": "Roses (Noimix)",

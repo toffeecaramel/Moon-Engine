@@ -350,6 +350,9 @@ class Paths
     inline static function frag(file:String)
         return getPath('shaders/$file.frag', TEXT);
 
+    inline static function mp4(file:String)
+        return getPath('videos/$file.mp4', null);
+
     /**
      * Returns parsed JSON content from a given path.
      */

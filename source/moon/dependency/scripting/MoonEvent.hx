@@ -30,7 +30,7 @@ class MoonEvent extends MoonScript
     /**
      * A list of hardcoded events (by tag) that won't be handled from a script, but by code instead.
      */
-    public var HARDCODED_EVENTS:Array<String> = ['SetCameraFocus', 'SetCameraZoom'];
+    public var HARDCODED_EVENTS:Array<String> = ['SetCameraFocus', 'SetCameraZoom', 'ChangeBPM'];
 
     /**
      * Whenever the event is valid as a script.

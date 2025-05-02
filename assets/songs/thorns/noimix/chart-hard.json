@@ -3,6 +3,10 @@
 		"album": null,
 		"artist": "Noichi",
 		"bpm": 190,
+		"timeSignature": [
+			4,
+			4
+		],
 		"charter": "Sammy The Goog",
 		"diffRating": 5,
 		"displayName": "Thorns (Noimix)",

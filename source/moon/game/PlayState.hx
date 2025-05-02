@@ -219,6 +219,8 @@ class PlayState extends FlxState
 				if(camZoom != null && camZoom.active) camZoom.cancel();
 				camZoom = FlxTween.tween(camGAME, {zoom: event.values.zoom}, 
 				conductor.stepCrochet / 1000 * event.values.duration, {ease: Reflect.field(FlxEase, event.values.ease)});
+
+			case 'ChangeBPM': conductor.changeBpmAt(event.time, event.values.bpm, event.values.timeSignature[0], event.values.timeSignature[1]);
 		}
 	}
 

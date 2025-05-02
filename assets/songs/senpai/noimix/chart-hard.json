@@ -3,6 +3,10 @@
 		"album": null,
 		"artist": "Noichi",
 		"bpm": 150,
+		"timeSignature": [
+			4,
+			4
+		],
 		"charter": "Sammy The Goog",
 		"diffRating": 4,
 		"displayName": "Senpai (Noimix)",

@@ -3,6 +3,10 @@
 		"album": "volume3",
 		"artist": "Kawai Sprite",
 		"bpm": 128,
+		"timeSignature": [
+			4,
+			4
+		],
 		"charter": "Jenny + Fabs + SpazKid",
 		"diffRating": 9,
 		"displayName": "Roses Erect",

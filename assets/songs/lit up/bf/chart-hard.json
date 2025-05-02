@@ -3,6 +3,10 @@
 		"album": "expansion2",
 		"artist": "Saruky",
 		"bpm": 176,
+		"timeSignature": [
+			4,
+			4
+		],
 		"charter": "Fabs + Spazkid",
 		"diffRating": 6,
 		"displayName": "Lit Up (BF Mix)",
