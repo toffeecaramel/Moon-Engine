@@ -1,5 +1,6 @@
 package moon.dependency;
 
+import moonchart.formats.fnf.legacy.FNFLegacy;
 import moon.dependency.scripting.MoonEvent;
 import haxe.Json;
 #if sys
@@ -7,6 +8,7 @@ import moonchart.formats.fnf.legacy.FNFPsych;
 import moonchart.formats.fnf.FNFCodename;
 import moonchart.formats.fnf.FNFVSlice;
 #end
+import haxe.io.Path;
 using StringTools;
 
 /**
@@ -56,6 +58,15 @@ typedef MetadataStruct =
     // MISC
     var generatedBy:String;
     var version:String;
+};
+
+/**
+ * Structure for the result of a conversion.
+ */
+typedef ConvertResult =
+{
+    var chartJson:String;
+    var eventsJson:String;
 };
 
 /**
@@ -114,13 +125,15 @@ class MoonChart
      * @param path The chart's path
      * @param difficulty The chart's difficulty
      */
-    public static function convert(type:String, path:String, difficulty:String, ?meta)
+    public static function convert(type:String, path:String, difficulty:String, ?metaPath:String):ConvertResult
     {
         // gotta do that since moonchart uses filesystem.
         #if sys
         // So first, we'll get the chart format and convert 'em to
         // vslice, because vslice will be our main 'base' for converting.
         // (thanks moonchart for existing its BASED AF)
+
+        trace('choosing format', "DEBUG");
         final chart = switch (type)
         {
             // This switch is a mess btw!!!
@@ -128,14 +141,20 @@ class MoonChart
                 final psy = new FNFPsych().fromFile(path, null, difficulty);
                 new FNFVSlice().fromFormat(psy);
             case 'codename': 
-                final code = new FNFCodename().fromFile(path, meta, difficulty);
+                final code = new FNFCodename().fromFile(path, metaPath, difficulty);
                 new FNFVSlice().fromFormat(code);
-            default: new FNFVSlice().fromFile(path, meta, difficulty);
+            case 'legacy':
+                final code = new FNFLegacy().fromFile(path, null, difficulty);
+                new FNFVSlice().fromFormat(code);
+            default: new FNFVSlice().fromFile(path, metaPath, difficulty);
         };
+
+        trace('done! reading content', "DEBUG");
 
         final data = Json.parse(chart.stringify().data);
         final metadata = Json.parse(chart.stringify().meta);
 
+        trace('content read! now, converting notes', "DEBUG");
         // Now we create a variable for the converted chart.
         var convertedChart:ChartStruct = {notes: [], meta: null};
         var convertedEvents:Array<EventStruct> = [];
@@ -158,6 +177,8 @@ class MoonChart
                 convertedChart.notes.push(note);
             }
         }
+
+        trace('converting events', "DEBUG");
 
         // time to convert some basic events (such as camera and stuff)
         final events:Array<Dynamic> = data.events;
@@ -214,6 +235,8 @@ class MoonChart
             }
         }
 
+        trace('converting metadata', "DEBUG");
+
         // Now let's convert the metadata as well.
         convertedChart.meta =
         {
@@ -236,10 +259,13 @@ class MoonChart
             version: metadata.version
         };
 
-        Paths.saveFileContent('assets/data/chart-converter/mychart-$difficulty-converted.json', Json.stringify(convertedChart, "\t"));
-        Paths.saveFileContent('assets/data/chart-converter/mychart_events-$difficulty-converted.json', Json.stringify(convertedEvents, "\t"));
+        return {
+            chartJson: Json.stringify(convertedChart, "\t"),
+            eventsJson: Json.stringify(convertedEvents, "\t"),
+        };
         #else
         throw 'Chart conversion is currently only available for Desktop.';
+        return null;
         #end
     }
 }
