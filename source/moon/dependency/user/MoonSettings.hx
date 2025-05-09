@@ -1,4 +1,5 @@
 package moon.dependency.user;
+import moon.menus.Settings;
 import openfl.system.Capabilities;
 import flixel.FlxG;
 import flixel.util.FlxSave;
@@ -139,6 +140,8 @@ class MoonSettings
         [
             new Setting("Downscroll", CHECKMARK, "Places the judgement line at the bottom of the screen. Notes will descend into it.", null, false),
             new Setting("Middlescroll", CHECKMARK, "Positions the judgement line at the middle of the screen, hiding opponent notes.", null, false),
+            new Setting("Note Splashes", CHECKMARK, "Toggles the visibility of the note splashes.", null, true),
+            new Setting("Hold Note Splashes", CHECKMARK,"Toggles the visibility of the hold note splashes.", null, true),
             new Setting("Ghost Tapping", CHECKMARK, "Allows tapping freely when there are no notes (hey, I don't judge).", null, true),
             new Setting("Mechanics", CHECKMARK, "Toggles song-specific mechanics (such as dodging).", null, true),
             new Setting("Modchart", CHECKMARK, "Toggles modcharts (animated/moving notes).", null, true),
