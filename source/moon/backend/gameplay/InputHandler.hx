@@ -40,7 +40,7 @@ class InputHandler
     /**
      * Map for the sustain notes.
      */
-    private var heldSustains:Map<Int, Note> = new Map<Int, Note>();
+    public var heldSustains:Map<Int, Note> = new Map<Int, Note>();
 
     /**
      * Array for the notes in this class, needed for reading their timings and such.
@@ -176,10 +176,10 @@ class InputHandler
                 }
                 else // and this is called when you ghost tap.
                 {
-                    //TODO: Ghost tapping support, like, the options yea
                     if(onGhostTap != null) onGhostTap(i);
-                    strumline.receptors.members[i].strumNote.playAnim('${MoonUtils.intToDir(i)}-press', true);
-                    onMiss(null);
+
+                    strumline.members[i].strumNote.playAnim('${MoonUtils.intToDir(i)}-press', true);
+                    if(!MoonSettings.callSetting('Ghost Tapping')) onMiss(null);
                 }
             }
         }
@@ -191,13 +191,13 @@ class InputHandler
             {
                 // call on release if a released key is detected (like that one vs hex song yes its defnitely a reference hahaha laugh now.)
                 if (onKeyRelease != null) onKeyRelease(i);
-                strumline.receptors.members[i].strumNote.playAnim('${MoonUtils.intToDir(i)}-static', true);
+                strumline.members[i].strumNote.playAnim('${MoonUtils.intToDir(i)}-static', true);
 
                 // now all this does is check if a key got released early while holding a sustain
                 // then 'kill' it (not necessarily kill. we dont kill notes around here...)
                 if (heldSustains.exists(i))
                 {
-                    strumline.receptors.members[i].sustainSplash.despawn(true);
+                    strumline.members[i].sustainSplash.despawn(true);
                     final heldNote = heldSustains.get(i);
                     heldSustains.remove(i);
 
@@ -216,15 +216,18 @@ class InputHandler
         {
             note.state = GOT_HIT;
             note.visible = note.active = false;
-            if (note.duration > 0) heldSustains.set(ID, note);
+            if (note.duration > 0) {
+                heldSustains.set(ID, note);
+                lastSustainStep.set(ID, conductor.curStep);
+            }
         }
         
         stats.health += (!isSustain) ? Timings.getParameters(timing)[3] : 0.5;
         stats.score += (!isSustain) ? Timings.getParameters(timing)[2] : 2;
-        strumline.receptors.members[note.direction].onNoteHit(note, timing, isSustain);
+        strumline.members[note.direction].onNoteHit(note, timing, isSustain);
         
         // little workaround if it doesnt despawn, which may happen sometimes...
-        if(!isSustain) strumline.receptors.members[note.direction].sustainSplash.despawn((CPUMode));
+        if(!isSustain) strumline.members[note.direction].sustainSplash.despawn((CPUMode));
         
         if(attachedChar != null) 
         {
@@ -251,7 +254,8 @@ class InputHandler
         if(onNoteMiss != null) onNoteMiss(note);
     }
 
-    private var sustainCounters:Map<Int, Int> = new Map<Int, Int>(); // for tracking sustain stuffies
+    // Map for tracking the last conductor step a sustain note was hit on.
+     private var lastSustainStep:Map<Int, Float> = new Map<Int, Float>();
     private function checkSustains():Void
     {
         for (direction in heldSustains.keys())
@@ -260,13 +264,10 @@ class InputHandler
             // on hold note hit
             if (heldNote != null && heldNote.state == GOT_HIT && heldNote.child != null && heldNote.child.active)
             {
-                var counter = sustainCounters.exists(direction) ? sustainCounters.get(direction) : 0;
-                counter++;
-                sustainCounters.set(direction, counter);
-                
-                if (counter % 6 == 0)
+                if (lastSustainStep.exists(direction) && conductor.curStep > lastSustainStep.get(direction))
                 {
                     onHit(heldNote, direction, null, (CPUMode), true);
+                    lastSustainStep.set(direction, conductor.curStep);
                     stats.score += 2;
                 }
 
@@ -274,13 +275,14 @@ class InputHandler
                 {
                     heldNote.child.visible = heldNote.child.active = false;
                     heldSustains.remove(direction);
+                    lastSustainStep.remove(direction);
                 }
             }
             // on sustain note complete, basically, when you hold it till the end.
-            else if (heldNote == null || heldNote.state != GOT_HIT || heldNote.child == null || !heldNote.child.active)
+            else
             {
                 heldSustains.remove(direction);
-                strumline.receptors.members[heldNote.direction].sustainSplash.despawn((CPUMode));
+                strumline.members[heldNote.direction].sustainSplash.despawn((CPUMode));
                 if(onSustainComplete != null) onSustainComplete(heldNote);
             }
         }

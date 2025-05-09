@@ -23,17 +23,12 @@ class MP3Text extends FlxSpriteGroup
     public var blurredText:FlxText;
     public var whiteText:FlxText;
     public var text(default, set):String;
-    public var clipWidth(default, set):Int = 225;
     public var tooLong:Bool = false;
 
     private var maskShaderSongName:LeftMaskShader;
 
     //TODO: Color for every character.
     private var glowColor:FlxColor = 0xff00fff2;
-    private var moveTimer:FlxTimer;
-    private var moveTween:FlxTween;
-    private var flickerTimer:FlxTimer;
-    private var flickerState:Bool = false;
 
     public function new(?x:Float = 0, ?y:Float = 0, songTitle:String, size:Float)
     {
@@ -51,7 +46,6 @@ class MP3Text extends FlxSpriteGroup
         add(blurredText);
         add(whiteText);
 
-        initMove();
         applyStyle();
 
         this.text = songTitle;
@@ -79,32 +73,6 @@ class MP3Text extends FlxSpriteGroup
         ];
     }
 
-    function set_clipWidth(value:Int):Int
-    {
-        resetText();
-        checkClipWidth(value);
-        return clipWidth = value;
-    }
-
-    function checkClipWidth(?wid:Int):Void
-    {
-        wid = wid ?? clipWidth;
-
-        if (whiteText.width > wid)
-        {
-            tooLong = true;
-            var clipRect = new FlxRect(0, 0, wid, whiteText.height);
-            blurredText.clipRect = clipRect;
-            whiteText.clipRect = clipRect;
-        }
-        else
-        {
-            tooLong = false;
-            blurredText.clipRect = null;
-            whiteText.clipRect = null;
-        }
-    }
-
     function set_text(value:String):String
     {
         if (value == null) return value;
@@ -115,75 +83,8 @@ class MP3Text extends FlxSpriteGroup
         }
 
         blurredText.text = whiteText.text = value;
-        checkClipWidth();
         updateTextFilters();
 
         return text = value;
-    }
-
-    public function initMove():Void
-    {
-        if(width >= 230)
-        moveTimer = new FlxTimer().start(0.8, (_) -> moveTextRight());
-    }
-
-    function moveTextRight():Void
-    {
-        var distToMove:Float = whiteText.width - clipWidth;
-        moveTween = FlxTween.tween(whiteText.offset, {x: distToMove}, 2,
-        {
-            onUpdate: updateTextClip,
-            onComplete: (_) -> moveTimer.start(0.8, (_) -> moveTextLeft()),
-            ease: FlxEase.sineInOut
-        });
-    }
-
-    function moveTextLeft():Void
-    {
-        moveTween = FlxTween.tween(whiteText.offset, {x: 0}, 2,
-        {
-            onUpdate: updateTextClip,
-            onComplete: (_) -> moveTimer.start(0.8, (_) -> moveTextRight()),
-            ease: FlxEase.sineInOut
-        });
-    }
-
-    function updateTextClip(_):Void
-    {
-        var clipRect = new FlxRect(whiteText.offset.x, 0, clipWidth, whiteText.height);
-        whiteText.clipRect = clipRect;
-        blurredText.offset = whiteText.offset;
-        blurredText.clipRect = clipRect;
-    }
-
-    public function resetText():Void
-    {
-        if (moveTween != null) moveTween.cancel();
-        if (moveTimer != null) moveTimer.cancel();
-        whiteText.offset.x = blurredText.offset.x = 0;
-        updateTextClip(null);
-    }
-
-    public function flickerText():Void
-    {
-        resetText();
-        flickerTimer = new FlxTimer().start(1 / 24, flickerProgress, 19);
-    }
-
-    function flickerProgress(_):Void
-    {
-        if (flickerState)
-        {
-            whiteText.blend = blurredText.blend = BlendMode.ADD;
-            blurredText.color = whiteText.color = FlxColor.WHITE;
-            whiteText.textField.filters = [new GlowFilter(FlxColor.WHITE, 1, 5, 5, 210, BitmapFilterQuality.MEDIUM)];
-        }
-        else
-        {
-            blurredText.color = glowColor;
-            whiteText.color = 0xFFDDDDDD;
-            updateTextFilters();
-        }
-        flickerState = !flickerState;
     }
 }

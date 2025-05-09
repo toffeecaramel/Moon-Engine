@@ -44,7 +44,7 @@ class PauseScreen extends FlxSubState
     private var backGradient:FlxSprite;
     private var back:FlxSprite;
 
-    private var displayIcon:PixelIcon;
+    public var displayIcon:PixelIcon;
 
     public var pauseItems:FlxTypedGroup<FlxText> = new FlxTypedGroup<FlxText>();
     public var selector:FlxText = new FlxText();
@@ -116,6 +116,9 @@ class PauseScreen extends FlxSubState
         cmetadata.antialiasing = false;
         cmetadata.setPosition(metadata.x, (metadata.y + cmetadata.height));
 
+        //! FIX TODO!!!
+        //! FOR SOME REASON WHEN RE-ENTERING THE MENU THE ICON ISNT LOADED.
+        //! MAYBE COULD BE SOMETHING RELATED TO HOW IT'S HANDLED.
         displayIcon = new PixelIcon(cc.meta.opponents[0]);
         displayIcon.alpha = 0;
         add(displayIcon);
@@ -150,6 +153,9 @@ class PauseScreen extends FlxSubState
                     prepareToClose();
                     Paths.playSFX('ui/confirmMenu');
                 case 'restart': 
+                    //TODO: This isn't actually visible due to how fast it resets lol
+                    // so uhhh... get it to be shown!!
+                    paused.loadGraphic(Paths.image('menus/pause/reset'));
                     pf.restartSong();
                     close();
                 case 'settings': 
@@ -243,7 +249,7 @@ class PauseScreen extends FlxSubState
             if(counter == -1)
             {
                 pf.playback.state = PLAY;
-                for(member in pf.playback.members) pf.playback.resync(member);
+                pf.playback.resync();
                 close();
             }
             else
@@ -261,5 +267,5 @@ class PauseScreen extends FlxSubState
     }
 
     @:noCompletion function get_game():PlayState
-        return PlayState.playgame;
+        return PlayState.instance;
 }

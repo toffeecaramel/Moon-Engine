@@ -29,6 +29,11 @@ class PlayerStats
     var score:Int = 0;
 
     /**
+     * The combo of notes hit in a row without missing.
+     */
+    var combo:Int = 0;
+
+    /**
      * The total health by said player.
      */
     var health:Float = 50;
@@ -45,9 +50,7 @@ class PlayerStats
     public function new(playerID:String = 'p1')
     {
         this.playerID = playerID;
-        accuracy = 0;
-        score = 0;
-        misses = 0;
+        reset();
     }
 
     /**
@@ -55,6 +58,16 @@ class PlayerStats
      */
     function updtAccuracy()
         accuracy = Math.round((accuracyCount / totalNotes) * 10000) / 100;
+
+    /**
+     * Resets all stats on upon calling.
+     */
+    function reset()
+    {
+        accuracyCount = totalNotes = 0;
+        accuracy = misses = score = combo = 0;
+        health = 50;
+    }
 
     @:noCompletion function set_accuracyCount(value:Float):Float
     {

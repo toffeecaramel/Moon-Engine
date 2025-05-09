@@ -1,7 +1,6 @@
 package moon.menus;
 
 import flixel.util.FlxGradient;
-import moon.menus.obj.settings.MusicPlayer;
 import moon.game.submenus.PauseScreen;
 import moon.game.PlayState;
 import flixel.tweens.FlxEase;
@@ -19,8 +18,8 @@ import moon.dependency.user.MoonSettings.Setting;
 
 class Settings extends FlxSubState
 {
-    public static final textSharpness:Int = 200;
     //TODO: doccument thisssss
+    public static final textSharpness:Int = 200;
     public var isPlayState:Bool;
     var curSelected:Int = 0;
     var yPos:Float = 0;
@@ -29,18 +28,14 @@ class Settings extends FlxSubState
     var navOptions:Array<OptionObject> = new Array<OptionObject>();
     var optionsContainer:FlxSpriteGroup = new FlxSpriteGroup();
     var optionDesc:FlxText;
-    var bgm:MusicPlayer;
 
     public function new(isPlayState:Bool = false)
     {
         this.isPlayState = isPlayState;
         super();
         
-        if(isPlayState)this.camera = PlayState.playgame.camALT;
+        if(isPlayState)this.camera = PlayState.instance.camALT;
         Paths.playSFX('menus/settings/configEnter');
-
-        bgm = new MusicPlayer(1);
-        add(bgm);
 
         var back = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLUE);
         back.blend = ADD;
@@ -67,8 +62,8 @@ class Settings extends FlxSubState
         sttDisplay.setFormat(Paths.font('vcr.ttf'), 48, CENTER);
         sttDisplay.screenCenter(X);
         sttDisplay.textField.antiAliasType = ADVANCED;
-        sttDisplay.antialiasing = false;
         sttDisplay.textField.sharpness = textSharpness;
+        sttDisplay.antialiasing = false;
         optionsContainer.add(sttDisplay);
         yPos += sttDisplay.height + 15;
 
@@ -86,8 +81,8 @@ class Settings extends FlxSubState
         optionDesc.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.GRAY, RIGHT);
         optionDesc.text = '';
         optionDesc.textField.antiAliasType = ADVANCED;
-        optionDesc.antialiasing = false;
         optionDesc.textField.sharpness = textSharpness;
+        optionDesc.antialiasing = false;
         optionDesc.alpha = 0;
         add(optionDesc);
         optionDesc.y = (FlxG.height - optionDesc.height) - 12;
@@ -132,6 +127,7 @@ class Settings extends FlxSubState
             var option:OptionObject = new OptionObject(0, yPos, settings[i], category);
             option.screenCenter(X);
             optionsContainer.add(option);
+            option.camera = this.camera;
             navOptions.push(option);
             yPos += option.height + separation;
         }
@@ -153,16 +149,15 @@ class Settings extends FlxSubState
         // center current selected option
         final cur = navOptions[curSelected];
         final targetY:Float = FlxG.height / 2 - (cur.y + cur.height / 2 - optionsContainer.y);
-        optionsContainer.y = FlxMath.lerp(optionsContainer.y, targetY, 0.17);
-        optionFollower.y = FlxMath.lerp(optionFollower.y, cur.y, 0.4);
+        optionsContainer.y = FlxMath.lerp(optionsContainer.y, targetY, elapsed * 13);
+        optionFollower.y = FlxMath.lerp(optionFollower.y, cur.y, elapsed * 11);
 
         //exit
         if(MoonInput.justPressed(BACK))
         {
-            bgm.exit();
             Paths.playSFX('menus/settings/configExit');
             close();
-            if(isPlayState) PlayState.playgame.openSubState(new PauseScreen(PlayState.playgame.camALT));
+            if(isPlayState) PlayState.instance.openSubState(new PauseScreen(PlayState.instance.camALT));
         }
     }
 

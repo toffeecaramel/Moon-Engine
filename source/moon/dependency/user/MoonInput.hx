@@ -82,7 +82,7 @@ class MoonInput
         'PAUSE' => [[FlxKey.ENTER, FlxKey.ESCAPE], [FlxPad.START]]
     ];
 
-    private static function checkBind(rawBind:MoonKeys, inputState:FlxInputState):Bool
+    public static function checkBind(rawBind:MoonKeys, inputState:FlxInputState):Bool
     {
         if(Global.allowInputs)
         {
@@ -105,6 +105,22 @@ class MoonInput
         }
 
         return false;
+    }
+
+    public static function loadControls():Void
+    {
+        if ((MoonSettings.save.data.binds != null) && (Lambda.count(MoonSettings.save.data.binds) == Lambda.count(binds)))
+            binds = cast MoonSettings.save.data.binds;
+        else
+            trace("Control settings do not match or are missing. Loading defaults.", "WARNING");
+
+        saveControls();
+    }
+
+    public static function saveControls():Void
+    {
+        MoonSettings.save.data.binds = binds;
+        MoonSettings.saveSettings();
     }
 
     public static function justPressed(bind:MoonKeys):Bool

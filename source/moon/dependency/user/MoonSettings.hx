@@ -13,6 +13,7 @@ enum abstract SettingType(String) to String
     var SLIDER = 'slider';              // for a numeric slider option
     var UNCAP_SLIDER = 'uncap_slider';  // for a numeric slider option, but uncapped
     var INFO = 'info';                  // for a non selectable option
+    var SELECTABLE = 'selectable';      // for a option that you can press enter and be redirected to somewhere.
 }
 
 /**
@@ -99,8 +100,7 @@ class MoonSettings
         save.bind("ME-Settings");
         buildSettings();
         loadSettings();
-
-        //TODO: Keybinds set from save.
+        MoonInput.loadControls();
     }
 
     /**
@@ -138,20 +138,22 @@ class MoonSettings
 
         categories.set("Gameplay Settings",
         [
+            new Setting("Keybinds...", SELECTABLE, "Change your gameplay/menus keybinds.", null, null),
+            new Setting("Note Offset", UNCAP_SLIDER, "Changes the delay of the notes. Negative: Late, Positive: Early (MUST RESTART SONG TO APPLY!)", null, 0),
             new Setting("Downscroll", CHECKMARK, "Places the judgement line at the bottom of the screen. Notes will descend into it.", null, false),
             new Setting("Middlescroll", CHECKMARK, "Positions the judgement line at the middle of the screen, hiding opponent notes.", null, false),
             new Setting("Note Splashes", CHECKMARK, "Toggles the visibility of the note splashes.", null, true),
             new Setting("Hold Note Splashes", CHECKMARK,"Toggles the visibility of the hold note splashes.", null, true),
+            new Setting("Lane Background Visibility", SELECTOR, "Adds a lane behind your strumlines.", [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1], 0),
             new Setting("Ghost Tapping", CHECKMARK, "Allows tapping freely when there are no notes (hey, I don't judge).", null, true),
             new Setting("Mechanics", CHECKMARK, "Toggles song-specific mechanics (such as dodging).", null, true),
-            new Setting("Modchart", CHECKMARK, "Toggles modcharts (animated/moving notes).", null, true),
-            new Setting("Offset", UNCAP_SLIDER, "Changes the delay of the notes (NEGATIVE: LATE, POSITIVE: EARLY).", null, 0)
+            new Setting("Modchart", CHECKMARK, "Toggles modcharts (animated/moving notes).", null, true)
         ]);
 
         categories.set("Graphic Settings",
         [
-            new Setting("Anti-Aliasing", CHECKMARK, "Smooths out jagged polygon edges.", null, true),
-            new Setting("V-Sync", CHECKMARK, "Uncaps the FPS and removes horizontal cuts on the screen (may increase input delay).", null, false),
+            // removing for now.
+            //new Setting("V-Sync", CHECKMARK, "Uncaps the FPS and removes horizontal cuts on the screen (may increase input delay).", null, false),
             new Setting("FPS Cap", SELECTOR, "The maximum amount your framerate can reach.", [30, 60, 120, 144, 240, 360], 60),
             new Setting("Shaders", CHECKMARK, "Toggles shaders (may affect performance on low-end devices).", null, true),
             new Setting("Flashing Lights", CHECKMARK, "Toggles flashing effects. Recommended to turn OFF in case of high photosensitivity.", null, true),
@@ -188,17 +190,25 @@ class MoonSettings
     static function updateGlobalSettings():Void
     {
         FlxG.sound.volume = callSetting("Master Volume") / 100;
-        if (Main.fps != null) Main.fps.visible = callSetting("Show FPS");
 
-        FlxG.updateFramerate = FlxG.drawFramerate = (!callSetting('V-Sync')) ? callSetting('FPS Cap') : 800;
+        if(FlxG.sound.music != null)
+        FlxG.sound.music.volume = callSetting('Music Volume') / 100;
+
+        if (Main.fps != null) Main.fps.visible = callSetting("Show FPS");
+        //FlxG.updateFramerate = FlxG.drawFramerate = (!callSetting('V-Sync')) ? callSetting('FPS Cap') : 999;
+        FlxG.updateFramerate = FlxG.drawFramerate = callSetting('FPS Cap');
         //trace("Monitor resolution: " + Capabilities.screenResolutionX + " x " + Capabilities.screenResolutionY);
     }
 
     static function updateWindow()
     {
         FlxG.fullscreen = (callSetting('Screen Mode') == 'Fullscreen');
+
         //Resolutions depending on the current, this is the best way I could think of.
         // yea biggie map
+
+        // uhh also, todo
+        // not allow the user to go to a bigger resolution than the monitor's.
         final resolutions:Map<String, Array<Int>> = [
             "800x600"     => [800, 600],
             "1024x768"    => [1024, 768],
@@ -225,7 +235,7 @@ class MoonSettings
             //case "Borderless Fullscreen":
                 // this for some reason is just broken.
                 // asked for help in the haxe server
-                // And it seems to be a windows issue
+                // And it seems to be a opengl* issue
                 // welp. nothing I can do about it for now, sooo...
 
                 /*
@@ -247,6 +257,8 @@ class MoonSettings
     static function callSetting(name:String):Dynamic
     {
         var s:Setting = findSetting(name);
+        
+        if(s == null) trace('Setting $name was not found when calling for it!', "ERROR");
         return s != null ? s.value : null;
     }
 

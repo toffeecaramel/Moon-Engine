@@ -1,5 +1,7 @@
 package moon.dependency;
 
+import flixel.util.FlxColor;
+import flixel.system.FlxAssets.FlxGraphicAsset;
 import flixel.FlxSprite;
 
 /**
@@ -48,6 +50,14 @@ class MoonSprite extends FlxSprite
         	centerOrigin();
 		}
 	}
+
+	@:inheritDoc(FlxSprite.loadGraphic)
+	override public function loadGraphic(graphic:FlxGraphicAsset, animated:Bool = false, frameWidth:Int = 0, frameHeight:Int = 0, unique:Bool = false, ?key:String):MoonSprite
+		return cast super.loadGraphic(graphic, animated, frameWidth, frameHeight, unique, key);
+
+	@:inheritDoc(FlxSprite.makeGraphic)
+	override public function makeGraphic(width:Int, height:Int, color:FlxColor = FlxColor.WHITE, unique:Bool = false, ?key:String):MoonSprite
+		return cast super.makeGraphic(width, height, color, unique, key);
 
 	/**
 	 * Adds an offset to a animation. (IMPORTANT NOTE: For offsets to apply, use `playAnim()` instead of `animation.play()`.)

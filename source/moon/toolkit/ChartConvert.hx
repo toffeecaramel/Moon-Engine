@@ -1,11 +1,8 @@
 package moon.toolkit;
 
 import flixel.util.FlxTimer;
+import moon.dependency.MoonChart;
 import lime.ui.FileDialog;
-import openfl.filesystem.File;
-import openfl.net.FileReference;
-import flixel.tweens.FlxTween;
-import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.util.FlxColor;
 import flixel.text.FlxText;
 import flixel.FlxG;
@@ -13,68 +10,259 @@ import flixel.FlxState;
 import flixel.math.FlxMath;
 
 using StringTools;
+//todo if im with patience to do so.
+// document this. idk. this code is shit.
+// maybe I will maybe not.
+// but I'll most likely not. :P
 class ChartConvert extends FlxState
 {
     private var _text:FlxText;
-    private var _chartText:FlxText;
+    private var _statusText:FlxText;
+    private var _fileDialog:FileDialog;
 
-    private var state:String = 'formatSel';
+    private var state(default, set):ConvertState = FormatSelect;
+
     private var format:String = '';
+    private var chartPath:String = null;
+    private var metaPath:String = null;
+    private var difficulty:String = 'hard';
+    private var difficulties:Array<String> = ['easy', 'normal', 'hard', 'erect', 'nightmare'];
+
+    // temporary storage for conversion results before saving stuff :P
+    private var _conversionResult:moon.dependency.MoonChart.ConvertResult = null;
+    private var _savedChartPath:String = null;
+    private var _savedEventsPath:String = null;
+
     private var _curSelection:Int = 0;
 
     override public function create():Void
     {
-        //TODO: (a huge one) MAKE THE CHART CONVERTING MORE PRACTICAL.
         super.create();
-        /*FlxG.stage.window.onDropFile.add((file) ->
-            (!file.endsWith('.json')) ? trace('NO >:(') : MoonChart.convert('vslice', file, 'hard')
-        );
-        FlxG.stage.window.onDropFile.cancel();*/
 
         FlxG.sound.playMusic(Paths.sound('toolbox/chillPlace'));
 
-        _text = new FlxText(0, 40, 0, 'Hello!\nDrop your desired chart at the following path:\n("assets/data/chart-converter")\nRename it to \"mychart\"\nThen, select its format:');
-        _text.setFormat(Paths.font('5by7_b.ttf'), 24, FlxColor.WHITE, CENTER);
+        _text = new FlxText(0, 40, FlxG.width, '');
+        _text.setFormat(Paths.font('5by7_b.ttf'), 32, FlxColor.WHITE, CENTER);
         _text.screenCenter(X);
         add(_text);
 
-        _chartText = new FlxText(0, 40, 0, '< None >');
-        _chartText.setFormat(Paths.font('5by7_b.ttf'), 24, FlxColor.CYAN, CENTER);
-        _chartText.screenCenter();
-        add(_chartText);
+        _statusText = new FlxText(0, 0, FlxG.width, '');
+        _statusText.setFormat(Paths.font('5by7_b.ttf'), 32, FlxColor.CYAN, CENTER);
+        _statusText.screenCenter();
+        add(_statusText);
+
+        updateStateText();
     }
 
-    private var numb:Int = 0;
     override public function update(elapsed:Float)
     {
         super.update(elapsed);
 
-        if(state == 'formatSel')
+        // Don't process input if a file dialog is potentially open
+        if (_fileDialog != null) return;
+
+        switch (state)
         {
-            if(FlxG.keys.justPressed.LEFT) changeSelection(1);
-            else if (FlxG.keys.justPressed.RIGHT) changeSelection(-1);
-            else if (FlxG.keys.justPressed.ENTER)
-            {
-                changeTXT('Nice! Now converting...', FlxColor.LIME);
-                state = 'chartConversion';
+            case FormatSelect:
+                Global.allowInputs = true;
+                if (MoonInput.justPressed(UI_LEFT)) changeSelection(-1, MoonChart.SUPPORTED_FORMATS);
+                else if (MoonInput.justPressed(UI_RIGHT)) changeSelection(1, MoonChart.SUPPORTED_FORMATS);
+                else if (MoonInput.justPressed(ACCEPT))
+                {
+                    format = MoonChart.SUPPORTED_FORMATS[_curSelection];
+                    _curSelection = 0;
+                    state = ChartFileSelect;
+                    updateStateText();
+                    selectChartFile();
+                }
 
-                FlxTween.tween(_chartText, {alpha: 0}, 0.2, {onComplete: (_) -> _chartText.destroy()});
-                //TODO: Select difficculty
-                final format = MoonChart.SUPPORTED_FORMATS[_curSelection];
-                final pBase = 'assets/data/chart-converter';
-                MoonChart.convert(format, '$pBase/mychart.json', 'hard',(format == 'v-slice') ? '$pBase/mychart-metadata.json' : null);
-                changeTXT('Converted Succesfully!', FlxColor.LIME);
-
-                new FlxTimer().start(2, (_) -> FlxG.resetState());
-            }
+            case DifficultySelect:
+                if (FlxG.keys.justPressed.LEFT) changeSelection(-1, difficulties);
+                else if (FlxG.keys.justPressed.RIGHT) changeSelection(1, difficulties);
+                else if (FlxG.keys.justPressed.ENTER)
+                {
+                    difficulty = difficulties[_curSelection];
+                    // Check if metadata is needed for this format
+                    if (format == 'codename' || format == 'v-slice')
+                    {
+                        state = MetaFileSelect;
+                        updateStateText();
+                        selectMetaFile();
+                    }
+                    else startConversion();
+                }
+            case ChartFileSelect | MetaFileSelect | Converting | SavingChart | SavingEvents | Done:
+                // already handled by dialogue or timers, so ignore.
+            case Failed:
+                if (MoonInput.justPressed(ACCEPT) || MoonInput.justPressed(BACK)) FlxG.resetState();
         }
     }
 
-    function changeSelection(change:Int = 0):Void
+    function changeSelection(change:Int = 0, array:Array<Dynamic>):Void
     {
-        _curSelection = FlxMath.wrap(_curSelection + change, 0, MoonChart.SUPPORTED_FORMATS.length - 1);
-        _chartText.text = '< ${MoonChart.SUPPORTED_FORMATS[_curSelection]} >';
-        _chartText.screenCenter();
+        _curSelection = FlxMath.wrap(_curSelection + change, 0, array.length - 1);
+        updateStateText();
+    }
+
+    function selectChartFile()
+    {
+        #if sys
+        _fileDialog = new FileDialog();
+        _fileDialog.onSelect.add(onChartFileSelected);
+        _fileDialog.onCancel.add(onDialogueCancel);
+        _fileDialog.browse(OPEN, "json", Sys.getCwd(), "Browse for the CHART file");
+        #else
+        state = Failed;
+        #end
+    }
+
+    function selectMetaFile()
+    {
+        #if sys
+        _fileDialog = new FileDialog();
+        _fileDialog.onSelect.add(onMetaFileSelected);
+        _fileDialog.onCancel.add(onDialogueCancel);
+        _fileDialog.browse(OPEN, "json", Sys.getCwd(), "Browse for the METADATA file");
+        #else
+        state = Failed;
+        #end
+    }
+
+    function startConversion()
+    {
+        try
+        {
+            state = Converting;
+            new FlxTimer().start(0.1, (_) ->
+            {
+                _conversionResult = MoonChart.convert(format, chartPath, difficulty, metaPath);
+                state = SavingChart;
+                saveChartFile();
+            });
+        }
+        catch (e:Dynamic){
+            state = Failed;
+        }
+    }
+
+    function saveChartFile()
+    {
+        #if sys
+        _fileDialog = new FileDialog();
+        _fileDialog.onSave.add(onChartFileSaved);
+        _fileDialog.onCancel.add(onDialogueCancel);
+        _fileDialog.save(_conversionResult.chartJson, "json", Sys.getCwd(), "Save your converted CHART file");
+        #else
+        state = Failed;
+        #end
+    }
+
+    function saveEventsFile()
+    {
+        #if sys
+        _fileDialog = new FileDialog();
+        _fileDialog.onSave.add(onEventsFileSaved);
+        _fileDialog.onCancel.add(onDialogueCancel);
+        _fileDialog.save(_conversionResult.eventsJson, "json", Sys.getCwd(), "Save your converted EVENTS file");
+        #else
+        state = Failed;
+        #end
+    }
+
+    // --- Callbacks ---
+    function onChartFileSelected(path:String)
+    {
+        _fileDialog = null;
+        chartPath = path;
+        state = DifficultySelect;
+    }
+
+    function onMetaFileSelected(path:String)
+    {
+        _fileDialog = null;
+        metaPath = path;
+        startConversion();
+    }
+
+    function onChartFileSaved(path:String)
+    {
+        _fileDialog = null;
+        try
+        {
+            //Paths.saveFileContent(path, _conversionResult.chartJson);
+            _savedChartPath = path;
+            state = SavingEvents;
+            saveEventsFile();
+        }
+        catch (e:Dynamic){
+            state = Failed;
+        }
+    }
+
+    function onEventsFileSaved(path:String)
+    {
+        _fileDialog = null;
+        //Paths.saveFileContent(path, _conversionResult.eventsJson);
+        _savedEventsPath = path;
+        finishConversion();
+    }
+
+    function onDialogueCancel()
+    {
+        _fileDialog = null;
+        state = Failed;
+    }
+
+    function finishConversion()
+    {
+        state = Done;
+        _conversionResult = null;
+        _savedChartPath = null;
+        _savedEventsPath = null;
+    }
+
+    // --- UI Updates ---
+    // hate this shit btw, but whatev
+    function updateStateText()
+    {
+        switch(state)
+        {
+            case FormatSelect:
+                changeTXT("Select the format of the chart you want to convert:");
+                changeStatus('< ${MoonChart.SUPPORTED_FORMATS[_curSelection]} >', FlxColor.CYAN);
+
+            case ChartFileSelect:
+                changeTXT("Select your chart file...");
+                changeStatus('(Format: $format)', FlxColor.YELLOW);
+
+            case DifficultySelect:
+                changeTXT('Select the difficulty to convert:\n(Chart: ${haxe.io.Path.directory(chartPath)})');
+                changeStatus('< ${difficulties[_curSelection]} >', FlxColor.CYAN);
+
+            case MetaFileSelect:
+                changeTXT('This format requires a metadata file.\nPress Enter to select the metadata file...');
+                changeStatus('(Chart: ${haxe.io.Path.directory(chartPath)}-$difficulty)', FlxColor.YELLOW);
+
+            case Converting:
+                changeTXT('Please wait...');
+                changeStatus('');
+
+            case SavingChart: changeTXT('Conversion done! Now save your chart file...');
+            case SavingEvents: changeTXT('Conversion done! Now save your events file...');
+            case Done: changeTXT('Conversion done! Enjoy :3', FlxColor.LIME); reset();
+            case Failed:
+                changeTXT('Operation either failed or cancelled.', FlxColor.ORANGE);
+                changeStatus('Press Enter or Escape to return. (or just wait)');
+                reset();
+        }
+    }
+    
+    private function changeStatus(txt:String, color:FlxColor = FlxColor.WHITE)
+    {
+        _statusText.text = txt;
+        _statusText.color = color;
+        _statusText.screenCenter(X);
+        _statusText.y = _text.y + _text.height + 20;
     }
 
     private function changeTXT(txt:String, ?color:FlxColor = FlxColor.WHITE)
@@ -83,4 +271,27 @@ class ChartConvert extends FlxState
         _text.color = color;
         _text.screenCenter(X);
     }
+
+    function reset()
+        new FlxTimer().start(5, (_) -> FlxG.resetState());
+
+    @:noCompletion public function set_state(state:ConvertState):ConvertState
+    {
+        this.state = state;
+        updateStateText();
+        return this.state;
+    }
+}
+
+enum ConvertState
+{
+    FormatSelect;
+    ChartFileSelect;
+    SavingChart;
+    SavingEvents;
+    DifficultySelect;
+    MetaFileSelect;
+    Converting;
+    Done;
+    Failed;
 }

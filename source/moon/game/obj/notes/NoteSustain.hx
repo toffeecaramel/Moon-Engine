@@ -43,7 +43,7 @@ class NoteSustain extends TiledSprite
         this.height = Math.max(expectedHeight, 0);
 
         final obj = ((!parent.active) ? parent.receptor : parent);
-        this.setPosition(parent.x + (parent.width - this.width) * 0.5, obj.y + parent.height * 0.5);
+        this.setPosition(obj.x + (parent.width - this.width) * 0.5, obj.y + parent.height * 0.5);
 
         if(downscroll)
             this.y -= height;

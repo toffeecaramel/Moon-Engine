@@ -19,6 +19,7 @@ class Timings
         'miss' => [-1.0,    180,    -600,  -4.5,   0xFF894331]
     ];
 
+    //TODO ONCE IMPLEMENTED: Move this to PlayerStats
     public static var judgementsCounter:Map<String, Int> =
     [
         'sick' => 0,
