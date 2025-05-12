@@ -2,7 +2,10 @@
 <project xmlns="http://lime.openfl.org/project/1.0.4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://lime.openfl.org/project/1.0.4 http://lime.openfl.org/xsd/project-1.0.4.xsd">
 
-	<!-- _________________________ Application Settings _________________________ -->
+	
+	<!-- •••••••••••••••• -->
+	<!-- • APP SETTINGS • -->
+	<!-- •••••••••••••••• -->
 
 	<app title="Moon-Engine" file="Moon-Engine" main="Main" version="0.0.1" company="Chaotic Team" />
 
@@ -10,24 +13,23 @@
 		or you can set the actual size of your file manually at "FlxPreloaderBase-onUpdate-bytesTotal"-->
 	<app preloader="flixel.system.FlxPreloader" />
 
-	<!--Minimum without FLX_NO_GAMEPAD: 11.8, without FLX_NO_NATIVE_CURSOR: 11.2-->
 	<set name="SWF_VERSION" value="11.8" />
 
-	<!-- ____________________________ Window Settings ___________________________ -->
 
-	<!--These window settings apply to all targets-->
+	<!-- ••••••••••••••••••• -->
+	<!-- • WINDOW SETTINGS • -->
+	<!-- ••••••••••••••••••• -->
+
 	<window width="1280" height="720" fps="60" background="#000000" hardware="true" vsync="false" />
 
-	<!--HTML5-specific-->
 	<window if="html5" resizable="true" />
-
-	<!--Desktop-specific-->
 	<window if="desktop" orientation="landscape" fullscreen="false" resizable="true" />
-
-	<!--Mobile-specific-->
 	<window if="mobile" orientation="landscape" fullscreen="true" width="0" height="0" />
 
-	<!-- _____________________________ Path Settings ____________________________ -->
+
+	<!-- ••••••••••••••••• -->
+	<!-- • PATH SETTINGS • -->
+	<!-- ••••••••••••••••• -->
 
 	<set name="BUILD_DIR" value="export" />
 	<set name="BUILD_DIR" value="export/debug" 	 if="debug" />
@@ -36,7 +38,10 @@
 	<source path="source" />
 	<assets path="assets" rename="assets" />
 
-	<!-- _______________________________ Libraries ______________________________ -->
+
+	<!-- ••••••••••••• -->
+	<!-- • LIBRARIES • -->
+	<!-- ••••••••••••• -->
 
 	<haxelib name="flixel" />
 	<haxelib name="flixel-addons" />
@@ -57,7 +62,10 @@
 	<haxelib name="flxanimate" />
 	<haxelib name="funkin.visfix" />
 
-	<!-- ______________________________ Haxedefines _____________________________ -->
+
+	<!-- •••••••••••••••••••••••••• -->
+	<!-- • DEFAULT FLIXEL DEFINES • -->
+	<!-- •••••••••••••••••••••••••• -->
 
 	<!--Remove the legacy health system-->
 	<haxedef name="FLX_NO_HEALTH" />
@@ -101,11 +109,21 @@
 	<haxedef name="HXCPP_STACK_LINE" if="release" />
 	<haxedef name="HXCPP_STACK_TRACE" />
 
-	<!-- _________________________________ Custom _______________________________ -->
+
+	<!-- ••••••••••••••••••••••• -->
+	<!-- • MOON ENGINE DEFINES • -->
+	<!-- ••••••••••••••••••••••• -->
+
+	<haxedef name="hscriptPos"/>
+	<haxedef name="test"/>
+
+
+	<!-- ••••••••• -->
+	<!-- • OTHER • -->
+	<!-- ••••••••• -->
 
 	<!-- Makes it run a script before and after compiling. -->
 	<prebuild haxe="Prebuild.hx"/>
 	<postbuild haxe="Postbuild.hx"/>
 
-	<haxedef name="hscriptPos"/>
 </project>
