@@ -29,7 +29,7 @@ class ChartGrid extends FlxSpriteGroup
     public var follower:MoonSprite = new MoonSprite();
     private var fullGrid:FlxTiledSprite;
     private var notes:FlxTypedSpriteGroup<Note> = new FlxTypedSpriteGroup<Note>();
-
+    private var sustains:FlxTypedSpriteGroup<NoteSustain> = new FlxTypedSpriteGroup<NoteSustain>();
 
     public function new(?x:Float = 0, ?y:Float = 0, lane:String = 'opponent')
     {
@@ -65,6 +65,7 @@ class ChartGrid extends FlxSpriteGroup
         for(i in 0...notesData.length)
             if(notesData[i].lane == this.lane) addNote(notesData[i]);
 
+        add(sustains);
         add(notes);
         return this;
     }
@@ -78,10 +79,22 @@ class ChartGrid extends FlxSpriteGroup
             note.setGraphicSize(gridSize, gridSize);
             note.updateHitbox();
             note.setPosition(data.data * gridSize, getTimePos(data.time));
+            if(note.duration > 0) recycleSustain(note, note);
             return note;
         });
 
         noteData.push(data);
+    }
+
+    public function recycleSustain(note:Note, parentNote:Note)
+    {
+        //TODO: Fix sustains length, they look weird.
+        sustains.recycle(NoteSustain, function():NoteSustain
+        {
+            var sustain = note.child != null ? note.child : new NoteSustain(parentNote);
+            if (note.child == null) note.child = sustain;
+            return sustain;
+        });
     }
 
     public function redrawGrid():Void

@@ -46,7 +46,7 @@ class LevelEditor extends FlxState
         var bg = new MoonSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.fromRGB(30, 29, 31));
         add(bg);
 
-        grid = new ChartGrid('opponent').createGrid(_chart.content.notes, _conductor, _playback.fullLength);
+        grid = new ChartGrid('p1').createGrid(_chart.content.notes, _conductor, _playback.fullLength);
         grid.screenCenter(X);
         add(grid);
 

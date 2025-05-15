@@ -15,7 +15,7 @@ using flixel.util.FlxColorTransformUtil;
  * An object able to vertically repeat an `FlxFrame` by an arbitary amount.
  * This class has been built for hold note trails in mind.
  * 
- * Made for FnF Eternal by Sword352: https://github.com/Sword352/FnF-Eternal/blob/dev/src/funkin/objects/display/TiledSprite.hx
+ * Made for the now retired "FnF Eternal" by Sword352: https://github.com/Sword352/FnF-Eternal/blob/dev/src/funkin/objects/display/TiledSprite.hx
  * All credits goes to them, none of this is mine. Just adapted it for use on moon engine.
  */
 class TiledSprite extends MoonSprite
