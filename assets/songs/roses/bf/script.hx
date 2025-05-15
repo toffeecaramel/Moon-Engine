@@ -7,7 +7,7 @@ import moon.dependency.MoonUtils;
 
 function onCutsceneStart()
 {
-    playField.alpha = 0.0001;
+    game.camHUD.visible = false;
     MoonUtils.playGlobalMusic('game/weeb/Lunchbox', true);
 
     game.onHardcodedEvent(new MoonEvent('SetCameraFocus', null).getCamFocusValues('opponent', 1, "circOut"));
@@ -48,8 +48,8 @@ function onCutsceneStart()
                             new FlxTimer().start(0.42, (_) -> {
                                 charAnim('player', 'singRIGHT');
 
-                                new FlxTimer().start(0.8, (_) -> playField.inCutscene = false);
-                                playField.alpha = 1;
+                                playField.inCutscene = false;
+                                game.camHUD.visible = true;
                             });
                         });
                     }});

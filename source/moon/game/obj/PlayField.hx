@@ -43,8 +43,6 @@ class PlayField extends FlxGroup
     var p1Combo:ComboNumbers;
     var stats:FlxText;
 
-    var alpha(default, set):Float = 1;
-
     // -- CALLBACKS //
 
     /**
@@ -404,17 +402,5 @@ class PlayField extends FlxGroup
 
             if(onSongCountdown != null) onSongCountdown(Std.int(beat));
        }
-    }
-
-    @:noCompletion public function set_alpha(val:Float):Float
-    {
-        this.alpha = val;
-        for (obj in this.members)
-        {
-            if(Std.isOfType(obj, FlxSprite))
-                cast(obj, FlxSprite).alpha = this.alpha;
-        }
-
-        return this.alpha;
     }
 }

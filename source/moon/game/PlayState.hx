@@ -207,21 +207,38 @@ class PlayState extends FlxState
 	{
 		switch(event.tag)
 		{
-			case 'SetCameraFocus':
-				//TODO: make these a separate function
-				if(camMov != null && camMov.active) camMov.cancel();
-
-				final charPos = getCamPos(event.values.character);
-				camMov = FlxTween.tween(camFollower, {x: charPos[0] + event.values?.x ?? 0, y: charPos[1] + event.values?.y ?? 0}, 
-				(event.values.ease != 'INSTANT') ? conductor.stepCrochet / 1000 * event.values.duration : 0.0001, {ease: Reflect.field(FlxEase, event.values.ease)});
+			case 'SetCameraFocus': setCameraFocus(
+				event.values.character, 
+				[event.values?.x ?? 0, event.values?.y ?? 0],
+				(event.values.ease != 'INSTANT') ? conductor.stepCrochet / 1000 * event.values.duration : 0.0001,
+				{ease: Reflect.field(FlxEase, event.values.ease)}
+			);
 			
-			case 'SetCameraZoom':
-				if(camZoom != null && camZoom.active) camZoom.cancel();
-				camZoom = FlxTween.tween(camGAME, {zoom: event.values.zoom}, 
-				conductor.stepCrochet / 1000 * event.values.duration, {ease: Reflect.field(FlxEase, event.values.ease)});
-
+			case 'SetCameraZoom': setCameraZoom(
+				event.values.zoom, 
+				conductor.stepCrochet / 1000 * event.values.duration, 
+				{ease: Reflect.field(FlxEase, event.values.ease)}
+			);
+			
 			case 'ChangeBPM': conductor.changeBpmAt(event.time, event.values.bpm, event.values.timeSignature[0], event.values.timeSignature[1]);
 		}
+	}
+
+	public function setCameraFocus(char:String, ?offsets:Array<Int>, ?duration:Float = 2, 
+		?options:Null<TweenOptions>)
+	{
+		if(camMov != null && camMov.active) camMov.cancel();
+
+		final charPos = getCamPos(char);
+		camMov = FlxTween.tween(camFollower, {x: charPos[0] + (offsets[0] ?? 0), y: charPos[1] + (offsets[1] ?? 0)}, 
+		duration, options);
+	}
+
+	public function setCameraZoom(zoom:Float, duration:Float, ?options:Null<TweenOptions>)
+	{
+		if(camZoom != null && camZoom.active) camZoom.cancel();
+		camZoom = FlxTween.tween(camGAME, {zoom: zoom}, 
+		duration, options);
 	}
 
 	var awa:Character;

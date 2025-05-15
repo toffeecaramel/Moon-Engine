@@ -57,9 +57,5 @@ class Main extends Sprite
 		addChild(fps);
 
 		MoonSettings.updateGlobalSettings();
-
-		#if test
-		trace('wow');
-		#end
 	}
 }
