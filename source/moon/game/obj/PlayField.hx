@@ -2,19 +2,17 @@ package moon.game.obj;
 
 import flixel.tweens.FlxTween;
 import flixel.math.FlxMath;
-import moon.game.obj.judgements.JudgementSprite;
-import moon.game.obj.judgements.ComboNumbers;
+import moon.game.obj.judgements.*;
 import moon.backend.gameplay.PlayerStats;
 import flixel.FlxSprite;
 import flixel.util.FlxTimer;
 import haxe.ui.styles.Style.StyleBorderType;
 import flixel.util.FlxColor;
 import flixel.text.FlxText;
-import moon.backend.gameplay.InputHandler;
 import flixel.FlxG;
 import flixel.group.FlxGroup;
 import moon.game.obj.notes.*;
-import moon.backend.gameplay.Timings;
+import moon.backend.gameplay.*;
 
 @:publicFields
 class PlayField extends FlxGroup
@@ -26,7 +24,7 @@ class PlayField extends FlxGroup
     var playback:Song;
 
     var noteSpawner:NoteSpawner;
-    var chart:MoonChart;
+    var chart:Chart;
 
     var inCutscene:Bool = true;
     var song:String;
@@ -96,7 +94,7 @@ class PlayField extends FlxGroup
         instance = this;
 
         //< -- SONG SETUP -- >//
-        chart = new MoonChart(song, difficulty, mix);
+        chart = new Chart(song, difficulty, mix);
         
         conductor = new Conductor(chart.content.meta.bpm, chart.content.meta.timeSignature[0], chart.content.meta.timeSignature[1]);
         conductor.onBeat.add(beatHit);

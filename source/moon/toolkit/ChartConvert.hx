@@ -1,7 +1,6 @@
 package moon.toolkit;
 
 import flixel.util.FlxTimer;
-import moon.dependency.MoonChart;
 import lime.ui.FileDialog;
 import flixel.util.FlxColor;
 import flixel.text.FlxText;
@@ -29,7 +28,7 @@ class ChartConvert extends FlxState
     private var difficulties:Array<String> = ['easy', 'normal', 'hard', 'erect', 'nightmare'];
 
     // temporary storage for conversion results before saving stuff :P
-    private var _conversionResult:moon.dependency.MoonChart.ConvertResult = null;
+    private var _conversionResult:moon.backend.data.Chart.ConvertResult = null;
     private var _savedChartPath:String = null;
     private var _savedEventsPath:String = null;
 
@@ -65,11 +64,11 @@ class ChartConvert extends FlxState
         {
             case FormatSelect:
                 Global.allowInputs = true;
-                if (MoonInput.justPressed(UI_LEFT)) changeSelection(-1, MoonChart.SUPPORTED_FORMATS);
-                else if (MoonInput.justPressed(UI_RIGHT)) changeSelection(1, MoonChart.SUPPORTED_FORMATS);
+                if (MoonInput.justPressed(UI_LEFT)) changeSelection(-1, Chart.SUPPORTED_FORMATS);
+                else if (MoonInput.justPressed(UI_RIGHT)) changeSelection(1, Chart.SUPPORTED_FORMATS);
                 else if (MoonInput.justPressed(ACCEPT))
                 {
-                    format = MoonChart.SUPPORTED_FORMATS[_curSelection];
+                    format = Chart.SUPPORTED_FORMATS[_curSelection];
                     _curSelection = 0;
                     state = ChartFileSelect;
                     updateStateText();
@@ -135,7 +134,7 @@ class ChartConvert extends FlxState
             state = Converting;
             new FlxTimer().start(0.1, (_) ->
             {
-                _conversionResult = MoonChart.convert(format, chartPath, difficulty, metaPath);
+                _conversionResult = Chart.convert(format, chartPath, difficulty, metaPath);
                 state = SavingChart;
                 saveChartFile();
             });
@@ -229,7 +228,7 @@ class ChartConvert extends FlxState
         {
             case FormatSelect:
                 changeTXT("Select the format of the chart you want to convert:");
-                changeStatus('< ${MoonChart.SUPPORTED_FORMATS[_curSelection]} >', FlxColor.CYAN);
+                changeStatus('< ${Chart.SUPPORTED_FORMATS[_curSelection]} >', FlxColor.CYAN);
 
             case ChartFileSelect:
                 changeTXT("Select your chart file...");

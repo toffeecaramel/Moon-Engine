@@ -12,7 +12,7 @@ import flixel.util.FlxColor;
 
 class LevelEditor extends FlxState
 {
-    private var _chart:MoonChart;
+    private var _chart:Chart;
     private var _conductor:Conductor;
     private var _playback:Song;
 
@@ -30,7 +30,7 @@ class LevelEditor extends FlxState
         final diff = 'hard';
         final mix = 'bf';
 
-        _chart = new MoonChart(song, diff, mix);
+        _chart = new Chart(song, diff, mix);
 
         //TODO: get chart's time signature.
         _conductor = new Conductor(_chart.content.meta.bpm, 4, 4);

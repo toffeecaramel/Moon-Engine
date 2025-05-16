@@ -1,4 +1,4 @@
-package moon.dependency;
+package moon.backend.data;
 
 import moonchart.formats.fnf.legacy.FNFLegacy;
 import moon.dependency.scripting.MoonEvent;
@@ -12,7 +12,7 @@ import haxe.io.Path;
 using StringTools;
 
 /**
- * Structure for MoonChart's notes.
+ * Structure for the Chart's notes.
  */
 typedef NoteStruct =
 {
@@ -24,7 +24,7 @@ typedef NoteStruct =
 };
 
 /**
- * Structure for MoonChart's events.
+ * Structure for the Chart's events.
  */
 typedef EventStruct = 
 {
@@ -34,7 +34,7 @@ typedef EventStruct =
 };
 
 /**
- * Structure for MoonChart's metadata.
+ * Structure for the Chart's metadata.
  */
 typedef MetadataStruct =
 {
@@ -70,7 +70,7 @@ typedef ConvertResult =
 };
 
 /**
- * Structure for the entire MoonChart.
+ * Structure for the entire Chart.
  */
 typedef ChartStruct =
 {
@@ -80,9 +80,8 @@ typedef ChartStruct =
 
 /**
  * Class used for handling ingame charts.
- * (Name pun not intended!)
  **/
-class MoonChart
+class Chart
 {
     /**
      * All the chart formats supported for converting.

@@ -3,7 +3,7 @@ package moon.toolkit.level_editor;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import moon.game.obj.notes.*;
-import moon.dependency.MoonChart.NoteStruct;
+import moon.backend.data.Chart.NoteStruct;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup;
 import flixel.group.FlxSpriteGroup;

@@ -1,7 +1,7 @@
 package moon.game.obj.notes;
 
 import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
-import moon.dependency.MoonChart.NoteStruct;
+import moon.backend.data.Chart.NoteStruct;
 import flixel.group.FlxGroup;
 import flixel.group.FlxGroup.FlxTypedGroup;
 
