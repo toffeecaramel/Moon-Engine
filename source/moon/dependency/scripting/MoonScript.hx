@@ -43,7 +43,7 @@ class MoonScript
      */
     inline public function load(path:String)
     {
-        if(Paths.fileExists(path))
+        if(Paths.exists(path))
         {
             code = new Iris(Paths.getFileContent(path));
             for(variableName => variableValue in DEFAULT_VARIABLES)

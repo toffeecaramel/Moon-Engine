@@ -100,7 +100,7 @@ class Character extends MoonSprite
 
     @:noCompletion public function set_character(char:String):String
     {
-        if(!Paths.fileExists('assets/images/ingame/characters/$char/data.json')) char = 'darnell';
+        if(!Paths.exists('assets/images/ingame/characters/$char/data.json', TEXT)) char = 'darnell';
         
         this.character = char;
         data = cast Paths.JSON('ingame/characters/$char/data');

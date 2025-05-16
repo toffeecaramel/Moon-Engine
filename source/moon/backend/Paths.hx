@@ -100,7 +100,7 @@ class Paths
     {
         if (bitmap == null)
         {
-            if (fileExists(file, IMAGE))
+            if (exists(file, IMAGE))
             {
                 #if sys
                 bitmap = BitmapData.fromFile(file);
@@ -141,7 +141,7 @@ class Paths
     static function returnGraphic(key:String, ?from:String = 'images', ?library:String, ?textureCompression:Bool = false)
     {
         var path = getPath('$from/$key.png', IMAGE, library);
-        if (fileExists(path, IMAGE))
+        if (exists(path, IMAGE))
         {
             // Increase reference count on usage.
             addAssetRef(key);
@@ -309,9 +309,9 @@ class Paths
     // ----------------------------
 
     /**
-     * Helper function to check if a file exists.
+     * Helper function to check if a file, or a path, exists.
      */
-    inline static function fileExists(path:String, ?type:AssetType):Bool
+    inline static function exists(path:String, ?type:AssetType):Bool
         return #if sys FileSystem.exists(path); #else return OpenFlAssets.exists(path, type); #end
 
     /**
@@ -375,7 +375,7 @@ class Paths
             return currentTrackedSounds.get(key);
         }
 
-        if (fileExists(path, SOUND))
+        if (exists(path, SOUND))
         {
             var newSound = Sound.fromFile(path);
             currentTrackedSounds.set(key, newSound);
@@ -403,7 +403,7 @@ class Paths
         }
 
         var bitmap:BitmapData = null;
-        if (fileExists(file, IMAGE))
+        if (exists(file, IMAGE))
             bitmap = BitmapData.fromFile(file);
         else if (OpenFlAssets.exists(file, IMAGE))
             bitmap = OpenFlAssets.getBitmapData(file);
@@ -425,7 +425,7 @@ class Paths
         var graphic:FlxGraphic = returnGraphic(key, from, library, textureCompression);
         final xmlPath = getPath('$from/$key.xml', TEXT, library);
 
-        final xmlContent = (fileExists(xmlPath, TEXT)) ? getFileContent(xmlPath) : (OpenFlAssets.exists(xmlPath, TEXT)) ? OpenFlAssets.getText(xmlPath) : null;
+        final xmlContent = (exists(xmlPath, TEXT)) ? getFileContent(xmlPath) : (OpenFlAssets.exists(xmlPath, TEXT)) ? OpenFlAssets.getText(xmlPath) : null;
         return (FlxAtlasFrames.fromSparrow(graphic, xmlContent));
     }
 
@@ -446,7 +446,7 @@ class Paths
             return getLibraryPath(file, library);
 
         var filePath = getPreloadPath(file);
-        if (fileExists(filePath, type))
+        if (exists(filePath, type))
             return filePath;
 
         var levelPath = getLibraryPathForce(file, "mods");
@@ -458,7 +458,7 @@ class Paths
     inline static function getPreloadPath(file:String)
     {
         var returnPath:String = 'assets/$file';
-        if (!fileExists(returnPath, TEXT))
+        if (!exists(returnPath, TEXT))
             returnPath = swapSpaceDash(returnPath);
         return returnPath;
     }

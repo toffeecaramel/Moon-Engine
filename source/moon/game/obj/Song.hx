@@ -64,7 +64,7 @@ class Song extends FlxTypedGroup<MoonSound>
             final items = '$song/$char/${audList[i]}$erectOrNot';
             final audPath = Paths.sound('$items', 'songs');
 
-            if(Paths.fileExists('assets/songs/$items.ogg'))
+            if(Paths.exists('assets/songs/$items.ogg', SOUND))
             {
                 this.recycle(MoonSound, function():MoonSound
                 {

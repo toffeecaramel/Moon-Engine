@@ -27,7 +27,7 @@ class MoonUtils
      */
     static function getArrayFromFile(path:String)
     {
-        if (Paths.fileExists(path))
+        if (Paths.exists(path))
             return Paths.getFileContent(path).split("\n").map((line) -> return line.trim());
         else 
             trace('File at $path not found!', "ERROR");

@@ -1,12 +1,6 @@
 package moon.game.obj.notes;
 
-import sys.FileSystem;
-import flixel.FlxG;
 import moon.dependency.scripting.MoonScript;
-import flixel.util.FlxColor;
-import flixel.tweens.FlxTween;
-import flixel.tweens.FlxEase;
-import flixel.FlxSprite;
 
 /**
  * The state of a note in the game.
@@ -113,7 +107,7 @@ class Note extends MoonSprite
 
     private function _updateGraphics():Void
     {
-        var curSkin = ((type != "default" || type != null) && FileSystem.exists('assets/images/ingame/UI/notes/$type')) ? type : skin;
+        var curSkin = ((type != "default" || type != null) && Paths.exists('assets/images/ingame/UI/notes/$type')) ? type : skin;
         var dir = MoonUtils.intToDir(direction);
 
         if (!sharedScripts.exists(curSkin))
