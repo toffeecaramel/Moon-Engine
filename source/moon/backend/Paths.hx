@@ -144,9 +144,9 @@ class Paths
         if (exists(path, IMAGE))
         {
             // Increase reference count on usage.
-            addAssetRef(key);
+            addAssetRef(path);
 
-            if (!currentTrackedAssets.exists(key))
+            if (!currentTrackedAssets.exists(path))
             {
                 var bitmap = BitmapData.fromFile(path);
                 var newGraphic:FlxGraphic;
@@ -154,22 +154,22 @@ class Paths
                 {
                     var texture = FlxG.stage.context3D.createTexture(bitmap.width, bitmap.height, BGRA, true, 0);
                     texture.uploadFromBitmapData(bitmap);
-                    currentTrackedTextures.set(key, texture);
+                    currentTrackedTextures.set(path, texture);
                     bitmap.dispose();
                     bitmap.disposeImage();
                     bitmap = BitmapData.fromTexture(texture);
-                    newGraphic = FlxGraphic.fromBitmapData(bitmap, false, key, false);
+                    newGraphic = FlxGraphic.fromBitmapData(bitmap, false, path, false);
                 }
                 else
-                    newGraphic = FlxGraphic.fromBitmapData(bitmap, false, key, false);
+                    newGraphic = FlxGraphic.fromBitmapData(bitmap, false, path, false);
 
-                currentTrackedAssets.set(key, newGraphic);
+                currentTrackedAssets.set(path, newGraphic);
             }
             
-            localTrackedAssets.push(key);
-            return currentTrackedAssets.get(key);
+            localTrackedAssets.push(path);
+            return currentTrackedAssets.get(path);
         }
-        trace('$key didn\'t load. Did you type the path correctly?', "ERROR");
+        trace('graphic at $path didn\'t load. Did you type the path correctly?', "ERROR");
         return null;
     }
 
@@ -420,14 +420,8 @@ class Paths
     /**
      * Returns a Sparrow Atlas for animations.
      */
-    inline static function getSparrowAtlas(key:String, ?from:String = 'images', ?library:String, ?textureCompression:Bool = false)
-    {
-        var graphic:FlxGraphic = returnGraphic(key, from, library, textureCompression);
-        final xmlPath = getPath('$from/$key.xml', TEXT, library);
-
-        final xmlContent = (exists(xmlPath, TEXT)) ? getFileContent(xmlPath) : (OpenFlAssets.exists(xmlPath, TEXT)) ? OpenFlAssets.getText(xmlPath) : null;
-        return (FlxAtlasFrames.fromSparrow(graphic, xmlContent));
-    }
+	inline static function getSparrowAtlas(key:String, ?from:String = 'images', ?library:String, textureCompression:Bool = false)
+		return (FlxAtlasFrames.fromSparrow(returnGraphic(key, from, library, textureCompression), getFileContent(getPath('$from/$key.xml', TEXT, library))));
 
     // ----------------------------
     // Sound Playback Utilities
@@ -458,7 +452,7 @@ class Paths
     inline static function getPreloadPath(file:String)
     {
         var returnPath:String = 'assets/$file';
-        if (!exists(returnPath, TEXT))
+        if (!exists(returnPath, null))
             returnPath = swapSpaceDash(returnPath);
         return returnPath;
     }

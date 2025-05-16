@@ -173,7 +173,6 @@ class Receptor extends FlxSpriteGroup
         final cx = strumNote.x + strumNote.width / 2;
         final cy = strumNote.y + strumNote.height / 2;
         
-        // play strum animation
         strumNote.playAnim('$dir-confirm', true);
 
         // splash for taps
@@ -185,7 +184,7 @@ class Receptor extends FlxSpriteGroup
         }
         
         // splash for sustains
-        if (note.duration > 90
+        if (note.duration > 130
             && sustainSplash.animation.getAnimationList().length > 0)
         {
             sustainSplash.setPosition(cx - sustainSplash.width / 2, cy - sustainSplash.height / 2);

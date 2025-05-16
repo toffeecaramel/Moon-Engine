@@ -80,6 +80,7 @@ class Freeplay extends FlxSubState
         'F for Final Stretch (Indie Cross)\n' +
 		'U for Unbeatable not indie cross but marios madness\n' + 
         'M for monster booo lame\n' +
+        'L lit up bf miks\n' +
 		'\n Chicos... estoy comendo mortadelaa,,,';
         txt.setFormat(Paths.font('vcr.ttf'), 32, FlxColor.BLACK, CENTER);
         txt.setBorderStyle(OUTLINE, FlxColor.CYAN, 10);
@@ -113,6 +114,9 @@ class Freeplay extends FlxSubState
 
         if(FlxG.keys.justPressed.M)//lol
             FlxG.switchState(() -> new PlayState('monster', 'hard', 'bf'));
+
+        if(FlxG.keys.justPressed.L)//lol
+            FlxG.switchState(() -> new PlayState('lit up', 'hard', 'bf'));
 			
         if(mainBG.script.exists('onUpdate')) mainBG.script.get('onUpdate')(elapsed);
     }
