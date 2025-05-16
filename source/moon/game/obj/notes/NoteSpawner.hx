@@ -1,7 +1,7 @@
 package moon.game.obj.notes;
 
 import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
-import moon.dependency.MoonChart.NoteStruct; // We still need NoteStruct for input data
+import moon.dependency.MoonChart.NoteStruct;
 import flixel.group.FlxGroup;
 import flixel.group.FlxGroup.FlxTypedGroup;
 
@@ -65,18 +65,18 @@ class NoteSpawner extends FlxGroup
                     note.visible = false;
                     note.speed = scrollSpeed;
                     note.state = NONE;
-                    if(note.duration > 0) recycleSustain(note, group.sustainsGroup, note);
+                    if(note.duration > 0) recycleSustain(note, group.sustainsGroup);
                     return note;
                 });
             }
         }
     }
 
-    public function recycleSustain(note:Note, group:FlxTypedSpriteGroup<NoteSustain>, parentNote:Note)
+    public function recycleSustain(note:Note, group:FlxTypedSpriteGroup<NoteSustain>)
     {
         group.recycle(NoteSustain, function():NoteSustain
         {
-            var sustain = note.child != null ? note.child : new NoteSustain(parentNote);
+            var sustain = note.child != null ? note.child : new NoteSustain(note);
             if (note.child == null) note.child = sustain;
             return sustain;
         });
