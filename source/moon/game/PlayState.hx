@@ -68,6 +68,7 @@ class PlayState extends FlxState
 	override public function create()
 	{
 		super.create();
+		//Paths.clearStoredMemory();
 		instance = this;
 		
 		this.persistentUpdate = false;

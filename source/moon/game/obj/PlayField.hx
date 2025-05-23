@@ -1,5 +1,6 @@
 package moon.game.obj;
 
+import moon.menus.Freeplay;
 import flixel.tweens.FlxTween;
 import flixel.math.FlxMath;
 import moon.game.obj.judgements.*;
@@ -37,7 +38,7 @@ class PlayField extends FlxGroup
 
     var healthBar:HealthBar;
     
-    var p1Judgements:JudgementSprite;
+    //var p1Judgements:JudgementSprite;
     var p1Combo:ComboNumbers;
     var stats:FlxText;
 
@@ -108,15 +109,16 @@ class PlayField extends FlxGroup
         playback.state = PAUSE;
 
         //< -- COMBO SETUP -- >//
-        //TODO: Skin for this one too :p
-        p1Judgements = new JudgementSprite();
+        //TODO: Refactor and do an overhaul on this system.
+        //TODO: Its currently VERY terrible on optimization :P
+        /*p1Judgements = new JudgementSprite();
         p1Judgements.alpha = 0.0001;
         //just for preloading :p
         
         for(judgement => judgementVals in Timings.judgementsMap)
             p1Judgements.showJudgement(judgement, true, true);
 
-        add(p1Judgements);
+        add(p1Judgements);*/
 
         p1Combo = new ComboNumbers();
         add(p1Combo);
@@ -166,7 +168,7 @@ class PlayField extends FlxGroup
             inputHandler.onNoteMiss = (note) -> onMiss(playerIDs[i], note);
             inputHandler.onGhostTap = (keyDir) -> if(onGhostTap != null) onGhostTap(keyDir);
 
-            p1Judgements.skin = p1Combo.skin = strumline.members[0].judgementsSkin;
+            //p1Judgements.skin = p1Combo.skin = strumline.members[0].judgementsSkin;
         }
 
         // Little text for testing out the accuracy.
@@ -296,6 +298,13 @@ class PlayField extends FlxGroup
         if(FlxG.keys.justPressed.I) playback.pitch -= 0.05;
         else if (FlxG.keys.justPressed.O) playback.pitch += 0.05;
 
+        #if debug
+        if(FlxG.keys.justPressed.ONE)
+        {
+            FlxG.switchState(()->new Freeplay());
+        }
+        #end
+        
         // update health based on p1's health.
         healthBar.health = inputHandlers.get('p1').stats.health;
 
@@ -311,7 +320,7 @@ class PlayField extends FlxGroup
             stats.scale.set(1.2, 1.2);
 
             // actually its colored by judgement now so fuck
-            if(timing != null) setStatsColor(Timings.getParameters(timing)[4]);
+            //if(timing != null) setStatsColor(Timings.getParameters(timing)[4]);
             updateP1Stats(timing);
         }
 
@@ -353,7 +362,7 @@ class PlayField extends FlxGroup
         ((MoonSettings.callSetting('Stats Position') != 'On Player Lane')) ? stats.screenCenter(X)
         : stats.x = sx - (stats.width / 2);
 
-        if(!statsOnly)
+        /*if(!statsOnly)
         {
             if(judgement != null)
             {
@@ -369,7 +378,7 @@ class PlayField extends FlxGroup
             p1Combo.displayCombo(true, true);
             p1Combo.numsColor = p1Judgements.color;
             p1Combo.screenCenter();
-        }
+        }*/
     }
 
     var statsColor:FlxTween;
