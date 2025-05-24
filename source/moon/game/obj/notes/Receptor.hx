@@ -184,7 +184,7 @@ class Receptor extends FlxSpriteGroup
         }
         
         // splash for sustains
-        if (note.duration > 130
+        if (isSustain && note.duration > 130
             && sustainSplash.animation.getAnimationList().length > 0)
         {
             sustainSplash.setPosition(cx - sustainSplash.width / 2, cy - sustainSplash.height / 2);

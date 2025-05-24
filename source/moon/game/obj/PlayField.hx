@@ -35,6 +35,8 @@ class PlayField extends FlxGroup
     var inputHandlers:Map<String, InputHandler> = [];
     var strumsBG:Array<MoonSprite> = [];
     var strumlines:Array<Strumline> = [];
+    var playerStrum:Strumline;
+    var oppStrum:Strumline;
 
     var healthBar:HealthBar;
     
@@ -159,6 +161,7 @@ class PlayField extends FlxGroup
             }
 
             strumlines.push(strumline);
+            (playerIDs[i]=='opponent') ? oppStrum = strumline : playerStrum = strumline; 
 
             var inputHandler = new InputHandler(null, playerIDs[i], strumline, conductor);
 			inputHandler.CPUMode = isCPUPlayers[i];
@@ -200,7 +203,6 @@ class PlayField extends FlxGroup
             handler.thisNotes = noteSpawner.notes;
     }
 
-    var playerStrum:Strumline;
     public function settingsUpdate()
     {
         final downscroll = MoonSettings.callSetting('Downscroll');
