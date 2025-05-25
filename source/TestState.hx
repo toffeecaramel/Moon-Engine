@@ -20,15 +20,15 @@ class TestState extends FlxState
         super.create();
         FlxG.mouse.useSystemCursor = true;
 
-        var files = new Map<String, Bytes>();
+        /*var files = new Map<String, Bytes>();
         files.set("nya/text.txt", Bytes.ofString("Hello world! I am here to spread an important message.\nI got created by code.\nYes.\nThat's right.\n\n\nIsn't that cool?"));
         files.set("data.json", Bytes.ofString('{"hi": true}'));
-        Mchr.create(files, "test.mchr");
+        Mchr.create(files, "test.mchr");*/
 
-        var fileList = Mchr.listFiles("test.mchr");
-        trace('Files: $fileList', "DEBUG");
+        //var fileList = Mchr.listFiles("test.mchr");
+        //trace('Files: $fileList', "DEBUG");
 
-        var fileContent = Mchr.extract("test.mchr", "nya/text.txt");
+        var fileContent = Mchr.extract(Paths.getPath("test.mchr", null), "nya/text.txt");
         trace('Content of text: ${fileContent.toString()}', "DEBUG");
     }
 
