@@ -76,14 +76,9 @@ class Freeplay extends FlxSubState
         'S For Senpai Noimix\n' +
         'R for Roses Noimix\n' +
         'T for Thorns Noimix\n' +
-        'A for thorns erect by agua thanks aguacrunch you are so fucking gay\n' +
-        'F for Final Stretch (Indie Cross)\n' +
-		'U for Unbeatable not indie cross but marios madness\n' + 
-        'M for monster booo lame\n' +
-        'L lit up bf miks\n' +
-		'\n Chicos... estoy comendo mortadelaa,,,';
+        'A for thorns erect by agua thanks aguacrunch you are so fucking gay\n';
         txt.setFormat(Paths.font('vcr.ttf'), 32, FlxColor.BLACK, CENTER);
-        txt.setBorderStyle(OUTLINE, FlxColor.CYAN, 10);
+        txt.setBorderStyle(SHADOW, FlxColor.CYAN, 10);
         add(txt);
         txt.screenCenter();
 
@@ -105,18 +100,6 @@ class Freeplay extends FlxSubState
 
         if(FlxG.keys.justPressed.A)//lol
             FlxG.switchState(() -> new PlayState('thorns', 'erect', 'agua'));
-
-        if(FlxG.keys.justPressed.F)//lol
-            FlxG.switchState(() -> new PlayState('final stretch', 'hard', 'bf'));
-			
-        if(FlxG.keys.justPressed.U)//lol
-            FlxG.switchState(() -> new PlayState('unbeatable', 'hard', 'bf'));
-
-        if(FlxG.keys.justPressed.M)//lol
-            FlxG.switchState(() -> new PlayState('monster', 'hard', 'bf'));
-
-        if(FlxG.keys.justPressed.L)//lol
-            FlxG.switchState(() -> new PlayState('lit up', 'hard', 'bf'));
 			
         if(mainBG.script.exists('onUpdate')) mainBG.script.get('onUpdate')(elapsed);
     }
