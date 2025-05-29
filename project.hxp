@@ -1,0 +1,331 @@
+import hxp.*;
+import lime.tools.*;
+
+using StringTools;
+class Project extends HXProject
+{
+	static final TITLE:String = "Friday Night Funkin' - Moon Engine";
+	static final VERSION:String = "0.0.0";
+	static final EXECUTABLE_NAME:String = "Moon-Engine";
+
+	static final SOURCE_DIR:String = "source";
+	static final PACKAGE_NAME:String = "me.chaoticteam.fnfme";
+	static final MAIN_CLASS:String = "Main";
+	static final COMPANY:String = "Chaotic Team";
+
+    static final PREBUILD_HX:String = "Prebuild.hx";
+    static final POSTBUILD_HX:String = "Postbuild.hx";
+	
+	// feature flags go here
+
+	//
+
+	// if you want a specific haxedef to be enabled on certain circumstances,
+	// or one that needs more values,
+	// you'll have to go to setupHaxedefs() and add it manually there.
+	static final HAXEDEFS:Array<String> = [
+		"FLX_NO_HEALTH", "HXCPP_STACK_TRACE", "hscriptPos",
+		"openfl-enable-handle-error", 
+		"HXCPP_CHECK_POINTER", "HXCPP_STACK_LINE", "HXCPP_STACK_TRACE",
+		"FLX_NO_FOCUS_LOST_SCREEN"
+	];
+
+	// same thing I said above applies to libraries.
+	static final HAXELIBS:Array<String> = [
+		"flixel", "flixel-addons", "haxeui-flixel", "haxeui-core",
+		"hscript-iris", "moonchart", "flxanimate", "funkin.visfix"
+	];
+
+    public function new()
+    {
+        super();
+
+        setupGame();
+		setupHaxelibs();
+		setupHaxedefs();
+		setupFeatureFlags();
+		includeAssets("assets");
+    }
+    
+    function setupGame()
+    {
+		this.meta.title = TITLE;
+		this.meta.version = VERSION;
+		this.meta.packageName = PACKAGE_NAME;
+		this.meta.company = COMPANY;
+
+		this.app.main = MAIN_CLASS;
+		this.app.file = EXECUTABLE_NAME;
+		this.sources.push(SOURCE_DIR);
+
+        // Tell Lime to run some prebuild and postbuild scripts.
+        this.preBuildCallbacks.push(buildHaxeCLICommand(PREBUILD_HX));
+        this.postBuildCallbacks.push(buildHaxeCLICommand(POSTBUILD_HX));
+
+        //maybe use this, sounds very cool
+		//this.meta.buildNumber = 0;
+
+		this.window.fps = 60;
+		this.window.width = 1280;
+		this.window.height = 720;
+		this.window.background = 0xFF000000;
+
+		this.window.hardware = true;
+		this.window.vsync = false;
+		this.window.allowHighDPI = true;
+
+		if (isDesktop()) {
+			this.window.orientation = Orientation.LANDSCAPE;
+			this.window.fullscreen = false;
+			this.window.resizable = true;
+			this.window.vsync = false;
+		}
+
+		final buildDir = 'export/${isDebug() ? 'debug' : 'release'}/';
+		app.path = buildDir;
+	}
+
+	function setupHaxelibs()
+	{
+		addHaxelib("lime", "8.2.2");
+		addHaxelib("openfl", "9.4.1");
+		for(lib in HAXELIBS)
+			addHaxelib(lib);
+
+		if (isDebug())
+			addHaxelib('hxcpp-debug-server');
+
+		if(isDesktop() && !isHashLink())
+		{
+			addHaxelib('hxvlc');
+			addHaxelib('discord_rpc');
+		}
+	}
+
+	function setupHaxedefs()
+	{
+		for(def in HAXEDEFS)
+			setHaxedef(def);
+
+		if (!isDebug())
+			setHaxedef("FLX_NO_DEBUG");
+
+		setHaxedef("message.reporting", "pretty");
+	}
+
+	function setupFeatureFlags()
+	{
+		
+	}
+
+	// -- Helper Functions -- //
+
+	public function isWeb():Bool
+		return this.platformType == PlatformType.WEB;
+
+	public function isMobile():Bool
+		return this.platformType == PlatformType.MOBILE;
+
+	public function isDesktop():Bool
+		return this.platformType == PlatformType.DESKTOP;
+
+	public function isConsole():Bool
+		return this.platformType == PlatformType.CONSOLE;
+
+	public function is32Bit():Bool
+	return this.architectures.contains(Architecture.X86);
+
+	public function is64Bit():Bool
+		return this.architectures.contains(Architecture.X64);
+
+	public function isWindows():Bool
+		return this.target == Platform.WINDOWS;
+
+	public function isMac():Bool
+		return this.target == Platform.MAC;
+
+	public function isLinux():Bool
+		return this.target == Platform.LINUX;
+
+	public function isAndroid():Bool
+		return this.target == Platform.ANDROID;
+
+	public function isIOS():Bool
+		return this.target == Platform.IOS;
+
+	public function isHashLink():Bool
+		return this.targetFlags.exists("hl");
+
+	public function isNeko():Bool
+		return this.targetFlags.exists("neko");
+
+	public function isJava():Bool
+		return this.targetFlags.exists("java");
+
+	public function isNodeJS():Bool
+		return this.targetFlags.exists("nodejs");
+
+	public function isCSharp():Bool
+		return this.targetFlags.exists("cs");
+
+	public function isDisplay():Bool
+		return this.command == "display";
+
+	public function isDebug():Bool
+		return this.debug;
+
+	public function isRelease():Bool
+		return !isDebug();
+
+	public function getHaxedef(name:String):Null<Dynamic>
+		return this.haxedefs.get(name);
+
+	public function setHaxedef(name:String, ?value:String):Void
+	{
+		if (value == null) value = "";
+		this.haxedefs.set(name, value);
+	}
+
+	public function unsetHaxedef(name:String):Void {
+		this.haxedefs.remove(name);
+	}
+
+	public function getDefine(name:String):Null<Dynamic> {
+		return this.defines.get(name);
+	}
+
+	public function hasDefine(name:String):Bool {
+		return this.defines.exists(name);
+	}
+
+	/**
+	 * Add a library to the list of dependencies for the project.
+	 * @param name The name of the library to add.
+	 * @param version The version of the library to add. Optional.
+	 */
+	public function addHaxelib(name:String, version:String = ""):Void {
+		this.haxelibs.push(new Haxelib(name, version));
+	}
+
+	/**
+	 * Add a `haxeflag` to the project.
+	 */
+	public function addHaxeFlag(value:String):Void {
+		this.haxeflags.push(value);
+	}
+
+	/**
+	 * Call a Haxe build macro.
+	 */
+	public function addHaxeMacro(value:String):Void {
+		addHaxeFlag('--macro ${value}');
+	}
+
+	/**
+	 * Add an icon to the project.
+	 * @param icon The path to the icon.
+	 * @param size The size of the icon. Optional.
+	 */
+	public function addIcon(icon:String, ?size:Int):Void {
+		this.icons.push(new Icon(icon, size));
+	}
+
+	/**
+	 * A CLI command to run a command in the shell.
+	 */
+	public function buildCLICommand(cmd:String):CLICommand
+    	return CommandHelper.fromSingleString(cmd);
+
+	/**
+	 * A CLI command to run a Haxe script via `--interp`.
+	 */
+	public function buildHaxeCLICommand(path:String):CLICommand
+		return CommandHelper.interpretHaxe(path);
+}
+
+abstract FeatureFlag(String) {
+	static final INVERSE_PREFIX:String = "NO_";
+
+	public function new(input:String) {
+		this = input;
+	}
+
+	@:from
+	public static function fromString(input:String):FeatureFlag {
+		return new FeatureFlag(input);
+	}
+
+	/**
+	 * Enable/disable a feature flag if it is unset, and handle the inverse flag.
+	 * Doesn't override a feature flag that was set explicitly.
+	 * @param enableByDefault Whether to enable this feature flag if it is unset.
+	 */
+	public function apply(project:Project, enableByDefault:Bool = false):Void {
+		// TODO: Name this function better?
+
+		if (isEnabled(project)) {
+			getInverse().disable(project, false);
+		} else if (getInverse().isEnabled(project)) {
+			disable(project, false);
+		} else {
+			if (enableByDefault) {
+				enable(project, true);
+			} else {
+				disable(project, true);
+			}
+		}
+	}
+
+	/**
+	 * Enable this feature flag by setting the appropriate compile define.
+	 *
+	 * @param project The project to modify.
+	 * @param andInverse Also disable the feature flag's inverse.
+	 */
+	public function enable(project:Project, andInverse:Bool = true) {
+		project.setHaxedef(this, "");
+		if (andInverse) {
+			getInverse().disable(project, false);
+		}
+	}
+
+	/**
+	 * Disable this feature flag by removing the appropriate compile define.
+	 *
+	 * @param project The project to modify.
+	 * @param andInverse Also enable the feature flag's inverse.
+	 */
+	public function disable(project:Project, andInverse:Bool = true) {
+		project.unsetHaxedef(this);
+		if (andInverse) {
+			getInverse().enable(project, false);
+		}
+	}
+
+	/**
+	 * Query if this feature flag is enabled.
+	 * @param project The project to query.
+	 */
+	public function isEnabled(project:Project):Bool {
+		// Check both Haxedefs and Defines for this flag.
+		return project.haxedefs.exists(this) || project.defines.exists(this);
+	}
+
+	/**
+	 * Query if this feature flag's inverse is enabled.
+	 */
+	public function isDisabled(project:Project):Bool {
+		return getInverse().isEnabled(project);
+	}
+
+	/**
+	 * Return the inverse of this feature flag.
+	 * @return A new feature flag that is the inverse of this one.
+	 */
+	public function getInverse():FeatureFlag {
+		if (this.startsWith(INVERSE_PREFIX)) {
+			return this.substring(INVERSE_PREFIX.length);
+		}
+		return INVERSE_PREFIX + this;
+	}
+}

@@ -36,6 +36,7 @@ haxelib install flixel-text-input 2.0.2
 
 haxelib install hxcpp-debugger 
 haxelib install hxcpp-debug-server 1.2.4
+haxelib install hxp
 
 haxelib install moonchart 0.5.0
 haxelib install hxvlc 2.1.4
