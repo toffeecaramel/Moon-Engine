@@ -18,7 +18,20 @@ class Prebuild
     
     public static var motivationMsgs:Array<String> = [
         "Don't give up hope, no matter what people say.",
-		"I know you can make it better than it ever was."
+		"I know you can make it better than it ever was.",
+        "Hmm...",
+        "I sure do love waiting!",
+        "Some burguers would be nice rn...",
+        "Chicken nuggiess,,.,",
+        "Deltarune Tomorrow",
+        "(Did you know?) Spirits face was inspired by Tom Fulps face. (found this on reddit lolol)",
+        "A mimir...",
+        "Mano Mix is cool",
+        "Luna Mix is cool",
+        "Oh, Okay! let's go!",
+        "Don't forget to drink some water!",
+        "You're almost there!",
+        "Why do we brainstorm with ideas only when we're not working?"
     ];
 
     static function main():Void
@@ -30,7 +43,7 @@ class Prebuild
     public static function traceMessage():Void
     {
         final message = motivationMsgs[Std.random(motivationMsgs.length)];
-        Sys.println('\n[ $message ]' + "\n\n[ Anyways, the game is buildin' up just now. ]\n[ Please wait... :3 ]\n");
+        Sys.println('\x1b[36m[INFO] Today\'s message: $message\x1b[0m');
     }
 
     static function saveBuildTime():Void

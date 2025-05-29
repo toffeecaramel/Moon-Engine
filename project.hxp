@@ -32,13 +32,15 @@ class Project extends HXProject
 
 	// same thing I said above applies to libraries.
 	static final HAXELIBS:Array<String> = [
-		"flixel", "flixel-addons", "haxeui-flixel", "haxeui-core",
+		"lime", "openfl", "flixel", "flixel-addons", "haxeui-flixel", "haxeui-core",
 		"hscript-iris", "moonchart", "flxanimate", "funkin.visfix"
 	];
 
     public function new()
     {
         super();
+
+		info('Initializing Compilation...');
 
         setupGame();
 		setupHaxelibs();
@@ -57,6 +59,8 @@ class Project extends HXProject
 		this.app.main = MAIN_CLASS;
 		this.app.file = EXECUTABLE_NAME;
 		this.sources.push(SOURCE_DIR);
+
+		info('$TITLE v.$VERSION in ${(isDebug()) ? 'debug' : 'release'}');
 
         // Tell Lime to run some prebuild and postbuild scripts.
         this.preBuildCallbacks.push(buildHaxeCLICommand(PREBUILD_HX));
@@ -83,12 +87,12 @@ class Project extends HXProject
 
 		final buildDir = 'export/${isDebug() ? 'debug' : 'release'}/';
 		app.path = buildDir;
+
+		info('Current Commit: ${getGitCommit()}');
 	}
 
 	function setupHaxelibs()
 	{
-		addHaxelib("lime", "8.2.2");
-		addHaxelib("openfl", "9.4.1");
 		for(lib in HAXELIBS)
 			addHaxelib(lib);
 
@@ -118,7 +122,28 @@ class Project extends HXProject
 		
 	}
 
-	// -- Helper Functions -- //
+	// -- Helper Functions (taken from FNF's Hxp. Thanks funkin crew) -- //
+
+	public function error(message:String):Void
+		Log.error('${message}');
+
+	public function info(message:String):Void {
+		if(command != "display") Log.info('\x1b[36m[INFO] ${message}\x1b[0m');
+	}
+
+	public function getGitCommit():String
+	{
+		var process = new sys.io.Process('git', ['rev-parse', 'HEAD']);
+		if (process.exitCode() != 0)
+		{
+			var message = process.stderr.readAll().toString();
+			error('[ERROR] Could not determine current git commit; is this a proper Git repository?');
+		}
+		var commitHash:String = process.stdout.readLine();
+		var commitHashSplice:String = commitHash.substr(0, 7);
+		process.close();
+		return commitHashSplice;
+	}
 
 	public function isWeb():Bool
 		return this.platformType == PlatformType.WEB;
