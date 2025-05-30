@@ -27,7 +27,7 @@ class PlayField extends FlxGroup
     var noteSpawner:NoteSpawner;
     var chart:Chart;
 
-    var inCutscene:Bool = true;
+    var inCutscene:Bool = false;
     var song:String;
     var mix:String;
     var difficulty:String;

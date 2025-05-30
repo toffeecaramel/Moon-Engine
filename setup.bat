@@ -41,6 +41,7 @@ haxelib install hxp
 haxelib install moonchart 0.5.0
 haxelib install hxvlc 2.1.4
 haxelib install hscript-iris
+haxelib install flixel-waveform
 
 haxelib git haxeui-flixel https://github.com/haxeui/haxeui-flixel
 
