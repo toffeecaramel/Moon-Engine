@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TextureAtlas imagePath="strumline.png">
+	<SubTexture name="left-static0000" x="0" y="0" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="left-static0001" x="0" y="0" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="left-press0000" x="32" y="0" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="left-press0001" x="32" y="0" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="left-confirm0000" x="64" y="0" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="left-confirm0001" x="64" y="0" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="left-confirm0002" x="96" y="0" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="left-confirm0003" x="96" y="0" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="down-static0000" x="0" y="32" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="down-static0001" x="0" y="32" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="down-press0000" x="32" y="32" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="down-press0001" x="32" y="32" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="down-confirm0000" x="64" y="32" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="down-confirm0001" x="64" y="32" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="down-confirm0002" x="96" y="32" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="down-confirm0003" x="96" y="32" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="up-static0000" x="0" y="64" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="up-static0001" x="0" y="64" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="up-press0000" x="32" y="64" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="up-press0001" x="32" y="64" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="up-confirm0000" x="64" y="64" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="up-confirm0001" x="64" y="64" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="up-confirm0002" x="96" y="64" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="up-confirm0003" x="96" y="64" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="right-static0000" x="0" y="96" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="right-static0001" x="0" y="96" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="right-press0000" x="32" y="96" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="right-press0001" x="32" y="96" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="right-confirm0000" x="64" y="96" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="right-confirm0001" x="64" y="96" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="right-confirm0002" x="96" y="96" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="right-confirm0003" x="96" y="96" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+</TextureAtlas>

@@ -39,7 +39,7 @@ class TestState extends FlxState
         waveform = new FlxWaveform(0, 0, FlxG.width, Std.int(FlxG.height / 2 - 50));
         add(waveform);
         
-        playfield = new PlayField('roses', 'hard', 'noimix');
+        playfield = new PlayField('thorns', 'hard', 'noimix');
         add(playfield);
         
         waveform.loadDataFromFlxSound(playfield.playback.inst[0]);

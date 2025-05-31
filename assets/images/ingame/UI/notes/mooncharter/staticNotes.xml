@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TextureAtlas imagePath="staticNotes.png">
+	<SubTexture name="left0000" x="0" y="0" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="left0001" x="0" y="0" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="left-hold0000" x="32" y="0" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="left-hold0001" x="32" y="0" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="left-holdend0000" x="64" y="0" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="left-holdend0001" x="64" y="0" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="down0000" x="96" y="0" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="down0001" x="96" y="0" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="down-hold0000" x="0" y="32" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="down-hold0001" x="0" y="32" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="down-holdend0000" x="32" y="32" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="down-holdend0001" x="32" y="32" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="up0000" x="64" y="32" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="up0001" x="64" y="32" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="up-hold0000" x="96" y="32" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="up-hold0001" x="96" y="32" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="up-holdend0000" x="0" y="64" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="up-holdend0001" x="0" y="64" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="right0000" x="32" y="64" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="right0001" x="32" y="64" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="right-hold0000" x="64" y="64" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="right-hold0001" x="64" y="64" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="right-holdend0000" x="96" y="64" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+	<SubTexture name="right-holdend0001" x="96" y="64" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32" />
+</TextureAtlas>

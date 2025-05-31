@@ -228,7 +228,7 @@ class PlayState extends FlxState
 	public function setCameraFocus(char:String, ?offsets:Array<Int>, ?duration:Float = 2, 
 		?options:Null<TweenOptions>)
 	{
-		if(camMov != null && camMov.active) camMov.cancel();
+		MoonUtils.cancelActiveTwn(camMov);
 
 		final charPos = getCamPos(char);
 		camMov = FlxTween.tween(camFollower, {x: charPos[0] + (offsets[0] ?? 0), y: charPos[1] + (offsets[1] ?? 0)}, 
@@ -237,7 +237,7 @@ class PlayState extends FlxState
 
 	public function setCameraZoom(zoom:Float, duration:Float, ?options:Null<TweenOptions>)
 	{
-		if(camZoom != null && camZoom.active) camZoom.cancel();
+		MoonUtils.cancelActiveTwn(camZoom);
 		camZoom = FlxTween.tween(camGAME, {zoom: zoom}, 
 		duration, options);
 	}

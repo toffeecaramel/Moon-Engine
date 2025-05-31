@@ -39,7 +39,7 @@ function createReceptor(direction)
 
     sustainSplash.animation.addByPrefix('pre', 'pre', 24, false);
     sustainSplash.animation.addByPrefix(direction + '-loop', direction + '-loop', 20, true);
-    sustainSplash.animation.addByPrefix(direction + '-end', direction + '-end', 24, false);
+    sustainSplash.animation.addByPrefix(direction + '-end', direction + '-end', 20, false);
     sustainSplash.playAnim(direction + '-end', true);
     sustainSplash.animation.onFinish.add(function(anim:String)
     {
@@ -49,7 +49,7 @@ function createReceptor(direction)
     
     // Blend Mode. 0 is ADD! you can reference all the blend modes from here: https://api.openfl.org/openfl/display/BlendMode.html
     splash.blend = 0;
-    sustainSplash.blend = 0;
+    //sustainSplash.blend = 0;
 
     sustainSplash.antialiasing = splash.antialiasing = strumNote.antialiasing = true;
 }
