@@ -12,6 +12,7 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.math.FlxMath;
 import flixel.util.FlxColor;
+import flixel.math.FlxPoint;
 
 import moon.game.obj.Stage;
 import moon.game.obj.PlayField;
@@ -43,9 +44,6 @@ class PlayState extends FlxState
 	public var camFollower:FlxObject = new FlxObject();
 	
 	// -- Some other values --
-
-	//Game's Zoom.
-	public var gameZoom:Float = 1;
 
 	// Events (a array containing every MoonEvent, not the raw events from chart.)
 	public static var events:Array<MoonEvent> = [];
@@ -103,7 +101,7 @@ class PlayState extends FlxState
 		for (plyr in chartMeta.players) stage.addCharTo(plyr, stage.players, playField.inputHandlers.get('p1'));
 		for (spct in chartMeta.spectators) stage.addCharTo(spct, stage.spectators);
 
-		if(stage.script.exists("onBeat")) conductor.onBeat.add(stage.script.get('onBeat'));
+		if(stage.script.exists("onBeat")) conductor.onBeat.add((beat) -> stage.script.call('onBeat', [beat]));
 
 		setEvents();
 		
@@ -114,7 +112,7 @@ class PlayState extends FlxState
 		
 		final mainSpec = stage.spectators.members[0];
 		camFollower.setPosition(stage.cameraSettings?.startX ?? (mainSpec.x ?? 0), stage.cameraSettings?.startY ?? (mainSpec.y ?? 0));
-		gameZoom = stage.cameraSettings.zoom ?? 1;
+		FlxG.camera.zoom = stage.cameraSettings.zoom ?? 1;
 
 		songScript.load(Paths.getPath('songs/$song/$mix/script.hx', TEXT));
 		callScriptField('onCreate');

@@ -147,7 +147,7 @@ class PlayField extends FlxGroup
             add(strumBG);
             strumsBG.push(strumBG);
             //TODO: Skins lol
-            var strumline = new Strumline(xVal + strumXs[i], 68, 'mooncharter', isCPUPlayers[i], playerIDs[i], conductor);
+            var strumline = new Strumline(xVal + strumXs[i], 68, 'v-slice', isCPUPlayers[i], playerIDs[i], conductor);
             add(strumline);
 
             strumBG.makeGraphic(Std.int(strumline.width + 64), Std.int(FlxG.height) + 32, FlxColor.BLACK);
