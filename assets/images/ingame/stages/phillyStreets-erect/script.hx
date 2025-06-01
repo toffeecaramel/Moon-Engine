@@ -104,7 +104,7 @@ function onBeat(beat)
 	if (beat == (lastChange + changeInterval)) changeLights(beat);
 }
 
-function changeLights(beat:Int):Void
+function changeLights(beat:Int)
 {
 	lastChange = beat;
 	lightsStop = !lightsStop;

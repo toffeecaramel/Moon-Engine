@@ -77,7 +77,8 @@ class Freeplay extends FlxSubState
         'R for Roses Noimix\n' +
         'T for Thorns Noimix\n' +
         'A for thorns erect by agua thanks aguacrunch you are so fucking gay\n' +
-        'D for darnell bf mixas';
+        'D for darnell bf mixas\n' +
+        'E for darnell erect\n';
         txt.setFormat(Paths.font('vcr.ttf'), 32, FlxColor.BLACK, CENTER);
         txt.setBorderStyle(SHADOW, FlxColor.CYAN, 10);
         add(txt);
@@ -104,6 +105,9 @@ class Freeplay extends FlxSubState
 			
         if(FlxG.keys.justPressed.D)//lol
             FlxG.switchState(() -> new PlayState('darnell', 'hard', 'bf'));
+
+        if(FlxG.keys.justPressed.E)//lol
+            FlxG.switchState(() -> new PlayState('darnell', 'erect', 'pico'));
         if(mainBG.script.exists('onUpdate')) mainBG.script.get('onUpdate')(elapsed);
     }
 }
