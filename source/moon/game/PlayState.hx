@@ -128,8 +128,25 @@ class PlayState extends FlxState
 
 		// -- Script Calls
 		playField.onGhostTap = (keyDir) -> callScriptField('onGhostTap', [keyDir]);
-		playField.onNoteHit = (playerID, note, timing, isSustain) -> callScriptField('onNoteHit', [playerID, note, timing, isSustain]);
-		playField.onNoteMiss = (playerID, note) -> callScriptField('onNoteMiss', [playerID, note]);
+		playField.onNoteHit = (playerID, note, timing, isSustain) -> 
+		{
+			final combo = playField.inputHandlers.get('p1').stats.combo;
+
+			if(combo == 50 || combo == 200)
+				for(spectator in stage.spectators.members)
+					cast(spectator, Character).playAnim((combo == 50) ? 'combo50' : 'combo200',true);
+
+			callScriptField('onNoteHit', [playerID, note, timing, isSustain]);
+		};
+
+		playField.onNoteMiss = (playerID, note) -> 
+		{
+			if(playerID == 'p1')
+				for(spectator in stage.spectators.members)
+					cast(spectator, Character).playAnim('comboBreak', true);
+			
+			callScriptField('onNoteMiss', [playerID, note]);
+		};
 		playField.onSongCountdown = (number) -> callScriptField('onSongCountdown', [number]);
 
 		playField.onSongStart = () -> callScriptField('onSongStart');

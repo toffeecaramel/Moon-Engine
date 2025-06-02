@@ -125,6 +125,11 @@ class Character extends MoonSprite
 
         this.updateHitbox();
         this.playAnim("idle-0");
+
+        animation.onFinish.add((anim)->
+        {
+            if(anim == 'comboBreak' || anim == 'combo50' || anim == 'combo200') dance(true);
+        });
         return char;
     }
 }

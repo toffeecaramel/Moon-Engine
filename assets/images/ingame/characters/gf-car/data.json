@@ -21,6 +21,9 @@
             "x": 0,
             "y": 0, 
             "fps": 24
-        }
+        },
+        {"name": "comboBreak", "prefix": "gf sad", "x": 2, "y": -21, "fps": 24},
+		{"name": "combo50", "prefix": "GF Cheer", "x": 0, "y": 0, "fps": 24},
+        {"name": "combo200", "prefix": "GF Cheer", "x": 0, "y": 0, "fps": 24}
     ]
 }

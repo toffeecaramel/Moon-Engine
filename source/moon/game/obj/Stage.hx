@@ -9,7 +9,7 @@ import openfl.display.BlendMode;
 import flixel.addons.display.FlxBackdrop;
 import flixel.util.FlxAxes;
 
-import moon.dependency.scripting.MoonScript;
+import moon.dependency.scripting.*;
 
 /**
  * The background for songs.
@@ -110,7 +110,7 @@ class Stage extends FlxTypedGroup<FlxBasic>
     public function adjustGroupColor(group:FlxSpriteGroup, values:{?hue:Float, ?saturation:Float, ?brightness:Float, ?contrast:Float})
     {
         var shader = new MoonShader('AdjustColor');
-        shader.script.get("setValues")(values.hue ?? 0, values.saturation ?? 0,values.brightness ?? 0, values.contrast ?? 0);
+        shader.script.call("setValues", [values?.hue ?? 0, values?.saturation ?? 0,values?.brightness ?? 0, values?.contrast ?? 0]);
 
         for(i in 0...group.members.length) group.members[i].shader = shader;
     }
