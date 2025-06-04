@@ -80,7 +80,8 @@ class Freeplay extends FlxSubState
         'D for darnell bf mixas\n' +
         'E for darnell erect\n'+
         'H for high erect\n' +
-        'C for satin panties erect it makes no sense but S is taken';
+        'C for satin panties erect it makes no sense but S is taken\n' +
+		'Btw press B for blammed pico misx';
         txt.setFormat(Paths.font('vcr.ttf'), 32, FlxColor.BLACK, CENTER);
         txt.setBorderStyle(SHADOW, FlxColor.LIME, 5);
         add(txt);
@@ -116,6 +117,9 @@ class Freeplay extends FlxSubState
 
         if(FlxG.keys.justPressed.C)//lol
             FlxG.switchState(() -> new PlayState('satin panties', 'erect', 'bf'));
+			
+		if(FlxG.keys.justPressed.B)//lol
+            FlxG.switchState(() -> new PlayState('blammed', 'hard', 'pico'));
         
         if(mainBG.script.exists('onUpdate')) mainBG.script.get('onUpdate')(elapsed);
     }

@@ -120,8 +120,8 @@ class Character extends MoonSprite
                 idleAnims.push(anim.name);
         }
 
-        this.antialiasing = data.antialiasing ?? true;
-        this.scale.set(data.scale ?? 0, data.scale ?? 0);
+        this.antialiasing = data?.antialiasing ?? true;
+        this.scale.set(data?.scale ?? 0, data?.scale ?? 0);
 
         this.updateHitbox();
         this.playAnim("idle-0");
@@ -130,6 +130,8 @@ class Character extends MoonSprite
         {
             if(anim == 'comboBreak' || anim == 'combo50' || anim == 'combo200') dance(true);
         });
+		
+		this.flipX = data?.flipX ?? false;
         return char;
     }
 }
