@@ -132,7 +132,7 @@ class PlayState extends FlxState
 		{
 			final combo = playField.inputHandlers.get('p1').stats.combo;
 
-			if(combo == 50 || combo == 200)
+			if((playerID == 'p1') && (combo == 50 || combo == 200))
 				for(spectator in stage.spectators.members)
 					cast(spectator, Character).playAnim((combo == 50) ? 'combo50' : 'combo200',true);
 
