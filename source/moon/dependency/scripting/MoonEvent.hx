@@ -72,7 +72,8 @@ class MoonEvent extends MoonScript
         this.values = {
             zoom: zoom,
             duration: duration,
-            ease: ease
+            ease: ease,
+            mode: 'stage'
         };
 
         this.time = 0;

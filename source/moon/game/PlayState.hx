@@ -1,9 +1,9 @@
 package moon.game;
 
 import moon.dependency.scripting.MoonScript;
+import flixel.FlxObject;
 import openfl.filters.ShaderFilter;
 import moon.game.obj.Character;
-import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.FlxG;
 import flixel.FlxState;
@@ -226,13 +226,13 @@ class PlayState extends FlxState
 			case 'SetCameraFocus': setCameraFocus(
 				event.values.character, 
 				[event.values?.x ?? 0, event.values?.y ?? 0],
-				(event.values.ease != 'INSTANT') ? conductor.stepCrochet / 1000 * event.values.duration : 0.0001,
+				(event.values.ease != 'INSTANT' || event.values.duration != 0) ? conductor.stepCrochet / 1000 * event.values.duration : 0.0001,
 				{ease: Reflect.field(FlxEase, event.values.ease)}
 			);
 			
 			case 'SetCameraZoom': setCameraZoom(
 				event.values.zoom, 
-				conductor.stepCrochet / 1000 * event.values.duration, 
+				(event.values.duration != 0 || event.values.ease != 'INSTANT') ? conductor.stepCrochet / 1000 * event.values.duration : 0.0001, 
 				{ease: Reflect.field(FlxEase, event.values.ease)}
 			);
 			

@@ -71,7 +71,7 @@ class Freeplay extends FlxSubState
         add(mainBG.foreground);
 
         var txt = new FlxText();
-        txt.text = 'Seven. Seven humans souls and the king ASGORE...\n' +
+        txt.text = 'Human I remember youre genocidios\n' +
         '*COUGH* ahem- i mean-\n' +
         'S For Senpai Noimix\n' +
         'R for Roses Noimix\n' +
@@ -81,9 +81,10 @@ class Freeplay extends FlxSubState
         'E for darnell erect\n'+
         'H for high erect\n' +
         'C for satin panties erect it makes no sense but S is taken\n' +
-		'Btw press B for blammed pico misx';
+		'Btw press B for blammed pico misx\n' + 
+        'K for darnell cow mix';
         txt.setFormat(Paths.font('vcr.ttf'), 32, FlxColor.BLACK, CENTER);
-        txt.setBorderStyle(SHADOW, FlxColor.LIME, 5);
+        txt.setBorderStyle(SHADOW, FlxColor.RED, 5);
         add(txt);
         txt.screenCenter();
 
@@ -120,6 +121,9 @@ class Freeplay extends FlxSubState
 			
 		if(FlxG.keys.justPressed.B)//lol
             FlxG.switchState(() -> new PlayState('blammed', 'hard', 'pico'));
+
+        if(FlxG.keys.justPressed.K)//lol
+            FlxG.switchState(() -> new PlayState('darnell', 'hard', 'cow'));
         
         if(mainBG.script.exists('onUpdate')) mainBG.script.get('onUpdate')(elapsed);
     }

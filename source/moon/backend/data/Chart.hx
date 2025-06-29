@@ -206,7 +206,8 @@ class Chart
                         values: {
                             zoom: event.v.zoom,
                             duration: event.v.duration,
-                            ease: event.v.ease
+                            ease: event.v.ease,
+                            mode: 'absolute'
                         },
                         time: event.t                    
                     };
