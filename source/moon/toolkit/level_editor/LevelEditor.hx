@@ -1,43 +1,69 @@
 package moon.toolkit.level_editor;
 
 import flixel.tweens.FlxTween;
+import flixel.FlxG;
+import flixel.FlxState;
+import flixel.util.FlxColor;
+import flixel.math.FlxMath;
+import flixel.group.FlxSpriteGroup;
+import flixel.group.FlxSpriteContainer;
+import flixel.addons.display.FlxGridOverlay;
+import flixel.addons.display.FlxTiledSprite;
+import openfl.geom.ColorTransform;
+
 import haxe.ui.containers.VBox;
 import haxe.ui.containers.TabView;
 import haxe.ui.components.CheckBox;
 import haxe.ui.containers.menus.MenuBar;
 import haxe.ui.ComponentBuilder;
-import flixel.FlxG;
+
 import moon.game.obj.Song;
-import flixel.FlxState;
-import flixel.util.FlxColor;
+import moon.game.obj.notes.*;
+import moon.backend.data.Chart.NoteStruct;
 
 class LevelEditor extends FlxState
 {
+    // ----------------------- //
+    // Setup
     public var chart:Chart;
     public var conductor:Conductor;
     public var playback:Song;
 
-    public static var isMetronomeActive:Bool = false;
-
-    public var miniPlayer:Miniplayer;
-    public var grid:ChartGrid;
+    //public var miniPlayer:Miniplayer;
     public var taskbar:MenuBar;
 
-    private var camMINIPLAYER:MoonCamera = new MoonCamera();
-    private var camEDITOR:MoonCamera = new MoonCamera();
+    private var camBACK:MoonCamera = new MoonCamera();
+    private var camMID:MoonCamera = new MoonCamera();
+    private var camFRONT:MoonCamera = new MoonCamera();
+
+    public static var isMetronomeActive:Bool = false;
+
+    // ----------------------- //
+    // Grid config
+    public var gridSize:Int = 54;
+    public var laneCount:Int = 4;
+
+    // Data
+    public var gridContainer:FlxSpriteContainer;
+    public var noteData:Array<NoteStruct> = [];
+    public var gridBG:FlxTiledSprite;
 
     override public function create()
     {
         //TODO: get actual song selected by user.
-        final song = 'thorns';
+        final song = 'darnell';
         final diff = 'hard';
-        final mix = 'noimix';
+        final mix = 'bf';
 
-		camEDITOR.bgColor = 0x00000000;
-        camMINIPLAYER.bgColor = 0x00000000;
+		camBACK.bgColor = 0x00000000;
+        camMID.bgColor = 0x00000000;
+        camFRONT.bgColor = 0x00000000;
 
-		FlxG.cameras.add(camEDITOR, true);
-		FlxG.cameras.add(camMINIPLAYER, false);
+        FlxG.mouse.useSystemCursor = FlxG.mouse.visible = true;
+
+		FlxG.cameras.add(camBACK, true);
+		FlxG.cameras.add(camMID, false);
+        FlxG.cameras.add(camFRONT, false);
 
         chart = new Chart(song, diff, mix);
 
@@ -55,13 +81,23 @@ class LevelEditor extends FlxState
         var bg = new MoonSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.fromRGB(30, 29, 31));
         add(bg);
 
-        miniPlayer = new Miniplayer(this);
-        miniPlayer.camera = camMINIPLAYER;
-        add(miniPlayer);
+        //miniPlayer = new Miniplayer(this);
+        //miniPlayer.camera = camMID;
+        //add(miniPlayer);
 
-        grid = new ChartGrid('p1').createGrid(chart.content.notes, conductor, playback.fullLength);
-        grid.screenCenter(X);
-        add(grid);
+        laneCount = 4;
+
+        gridContainer = new FlxSpriteContainer();
+        add(gridContainer);
+
+        drawGrid(playback.fullLength);
+
+        for (n in chart.content.notes)
+            if (n.lane == "opponent")
+                addNote(n);
+
+        gridContainer.x = (FlxG.width - gridContainer.width) / 2;
+        gridContainer.y = 0;
 
         playback.state = PAUSE;
 
@@ -86,8 +122,6 @@ class LevelEditor extends FlxState
         if(!isFullscreen)
         {
             FlxG.mouse.enabled = FlxG.mouse.visible = true;
-            //TODO: Remove this, it's only for debug lol.
-            if(FlxG.keys.justPressed.R) grid.redrawGrid();
 
             if(FlxG.keys.justPressed.SPACE) playback.state = (playback.state != PLAY) ? PLAY : PAUSE;
 
@@ -96,7 +130,7 @@ class LevelEditor extends FlxState
             if(MoonInput.justPressed(UI_LEFT)) playback.time -= advanceSecs;
             else if (MoonInput.justPressed(UI_RIGHT)) playback.time += advanceSecs;
 
-            grid.time = playback.time;
+            gridContainer.y = -getTimePos(playback.time);
         }
         else
         {
@@ -104,23 +138,72 @@ class LevelEditor extends FlxState
         }
     }
 
+    function drawGrid(songLength:Float):Void
+    {
+        if (gridBG != null) gridContainer.remove(gridBG);
+
+        final totalHeight = Math.ceil((songLength / conductor.stepCrochet) * gridSize);
+        var base = FlxGridOverlay.create(gridSize, gridSize, gridSize * laneCount, gridSize * 2, true, 0xFF2a2a2c, 0xFF373639);
+
+        gridBG = new FlxTiledSprite(null, gridSize * laneCount, gridSize);
+        gridBG.loadGraphic(base.graphic);
+        gridBG.height = totalHeight;
+        gridContainer.add(gridBG);
+    }
+
+    function addNote(data:NoteStruct)
+    {
+        var note = new Note(data.data, data.time, data.type, 'mooncharter', data.duration, conductor);
+        note.state = CHART_EDITOR;
+        note.setGraphicSize(gridSize, gridSize);
+        note.updateHitbox();
+
+        note.x = data.data * gridSize;
+        note.y = getTimePos(data.time);
+
+        gridContainer.add(note);
+
+        if (note.duration > 0)
+            drawSustain(note);
+
+        noteData.push(data);
+    }
+
+    function drawSustain(note:Note)
+    {
+        final susHeight = getTimePos(note.time + note.duration) - getTimePos(note.time);
+        var sus = new MoonSprite().makeGraphic(10, Std.int(susHeight), getColor(note.direction));
+        sus.x = note.x + (gridSize - sus.width) / 2;
+        sus.y =  note.y + gridSize;
+        sus.pixels.fillRect(new openfl.geom.Rectangle(0, sus.height - 8, sus.width, 8), FlxColor.WHITE);
+        gridContainer.add(sus);
+    }
+
     public function beatHit(curBeat)
     {}
 
-    var coolTwn:FlxTween;
+    function getTimePos(time:Float):Float
+        return FlxMath.remapToRange(time, 0, playback.fullLength, 0, (playback.fullLength / conductor.stepCrochet) * gridSize);
+
+    function getColor(data:Int):FlxColor
+    {
+        final colors = [0xFF7f16ff, 0xFF37a5ff, 0xFF61d041, 0xFFff3f3f];
+        return colors[data % colors.length];
+    }
+
     @:noCompletion function set_isFullscreen(isFS:Bool):Bool
     {
         this.isFullscreen = isFS;
 
         if(!isFullscreen)
         {
-            camMINIPLAYER.zoom = 0.25;
-            camMINIPLAYER.setPosition(-400, -170);
+            camFRONT.zoom = 0.25;
+            camFRONT.setPosition(-400, -170);
         }
         else
         {
-            camMINIPLAYER.zoom = 1;
-            camMINIPLAYER.setPosition();
+            camFRONT.zoom = 1;
+            camFRONT.setPosition();
         }
 
         return this.isFullscreen;

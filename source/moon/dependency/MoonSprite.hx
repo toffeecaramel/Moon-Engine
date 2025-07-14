@@ -67,4 +67,10 @@ class MoonSprite extends FlxSprite
 	 */
 	public function addOffset(name:String, x:Float = 0, y:Float = 0)
 		animOffsets[name] = [x, y];
+
+	override public function destroy()
+	{
+		//TODO: check why when reloading a sprite with frames it breaks
+		super.destroy();
+	}
 }
