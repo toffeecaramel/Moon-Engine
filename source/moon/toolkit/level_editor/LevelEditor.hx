@@ -39,14 +39,14 @@ class LevelEditor extends FlxState
     public static var isMetronomeActive:Bool = false;
 
     // ----------------------- //
-    // Grid config
+    // Grid Stuff
     public var gridSize:Int = 54;
-    public var laneCount:Int = 4;
-
-    // Data
+    public var laneCount:Int = 2;
+    public var laneLines:FlxTypedSpriteGroup<MoonSprite>;
     public var gridContainer:FlxSpriteContainer;
-    public var noteData:Array<NoteStruct> = [];
     public var gridBG:FlxTiledSprite;
+
+    public var noteData:Array<NoteStruct> = [];
 
     override public function create()
     {
@@ -85,12 +85,14 @@ class LevelEditor extends FlxState
         //miniPlayer.camera = camMID;
         //add(miniPlayer);
 
-        laneCount = 4;
-
         gridContainer = new FlxSpriteContainer();
         add(gridContainer);
 
+        laneLines = new FlxTypedSpriteGroup<MoonSprite>();
+
         drawGrid(playback.fullLength);
+
+        gridContainer.add(laneLines);
 
         for (n in chart.content.notes)
             if (n.lane == "opponent")
@@ -140,15 +142,43 @@ class LevelEditor extends FlxState
 
     function drawGrid(songLength:Float):Void
     {
+        //---- grid ----//
+        
         if (gridBG != null) gridContainer.remove(gridBG);
 
         final totalHeight = Math.ceil((songLength / conductor.stepCrochet) * gridSize);
         var base = FlxGridOverlay.create(gridSize, gridSize, gridSize * laneCount, gridSize * 2, true, 0xFF2a2a2c, 0xFF373639);
 
-        gridBG = new FlxTiledSprite(null, gridSize * laneCount, gridSize);
+        final totalCols = laneCount * 4;
+        gridBG = new FlxTiledSprite(null, gridSize * totalCols, gridSize);
         gridBG.loadGraphic(base.graphic);
         gridBG.height = totalHeight;
         gridContainer.add(gridBG);
+
+        //---- lines ----//
+
+        if(laneLines.members.length > 0) laneLines.clear();
+
+        final totalCols = laneCount * 4;
+        final lineWidth = gridSize * totalCols;
+        final beatCount = Math.ceil(songLength / conductor.crochet);
+
+        for (i in 0...beatCount)
+        {
+            var line = new MoonSprite().makeGraphic(lineWidth, 2, (i % conductor.numerator == 0) ? 0xFF777777 : FlxColor.BLACK);
+            line.x = 0;
+            line.y = getTimePos(i * conductor.crochet);
+
+            laneLines.add(line);
+        }
+
+        for (i in 0...laneCount + 1)
+        {
+            var line = new MoonSprite().makeGraphic(2, Std.int(totalHeight), FlxColor.BLACK);
+            line.x = i * 4 * gridSize;
+            line.y = 0;
+            laneLines.add(line);
+        }
     }
 
     function addNote(data:NoteStruct)
