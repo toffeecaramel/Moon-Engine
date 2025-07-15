@@ -42,10 +42,16 @@ class LevelEditor extends FlxState
     // Grid Stuff
     public var gridSize:Int = 54;
     public var laneCount:Int = 2;
+    public var snapDiv:Int = 4;
+
+    public var strumline:MoonSprite;
+    public var strumArrows:FlxSpriteContainer;
     public var laneLines:FlxTypedSpriteGroup<MoonSprite>;
     public var gridContainer:FlxSpriteContainer;
     public var gridBG:FlxTiledSprite;
+    var snapCursor:MoonSprite;
 
+    public var notes:Array<Note> = [];
     public var noteData:Array<NoteStruct> = [];
 
     override public function create()
@@ -53,13 +59,13 @@ class LevelEditor extends FlxState
         //TODO: get actual song selected by user.
         final song = 'darnell';
         final diff = 'hard';
-        final mix = 'bf';
+        final mix = 'cow';
 
 		camBACK.bgColor = 0x00000000;
         camMID.bgColor = 0x00000000;
         camFRONT.bgColor = 0x00000000;
 
-        FlxG.mouse.useSystemCursor = FlxG.mouse.visible = true;
+        FlxG.mouse.visible = true;
 
 		FlxG.cameras.add(camBACK, true);
 		FlxG.cameras.add(camMID, false);
@@ -95,11 +101,55 @@ class LevelEditor extends FlxState
         gridContainer.add(laneLines);
 
         for (n in chart.content.notes)
-            if (n.lane == "opponent")
-                addNote(n);
+        {
+            final laneIndex = chart.content.meta.lanes.indexOf(n.lane);
+            if (laneIndex >= 0)
+                addNote(n, laneIndex);
+        }
 
-        gridContainer.x = (FlxG.width - gridContainer.width) / 2;
+        gridContainer.x = ((FlxG.width - gridContainer.width) / 2) + 216;
         gridContainer.y = 0;
+
+        snapCursor = new MoonSprite().makeGraphic(gridSize, gridSize, FlxColor.WHITE);
+        snapCursor.alpha = 0.4;
+        snapCursor.camera = camMID;
+        add(snapCursor);
+
+        strumline = new MoonSprite().makeGraphic(Std.int(gridContainer.width), 5, FlxColor.WHITE);
+        strumline.x = gridContainer.x;
+        strumline.y = 120;
+        strumline.alpha = 0.3;
+        strumline.camera = camMID;
+        add(strumline);
+
+        strumArrows = new FlxSpriteContainer();
+        for(a in 0...laneCount)
+        {
+            for(i in 0...4)
+            {
+                var ok = new MoonSprite().loadGraphic(Paths.image('toolbox/level-editor/strumline'), true, 32, 32);
+                ok.animation.add('a', [i], 1, true);
+                ok.animation.play('a');
+                strumArrows.add(ok);
+
+                ok.setGraphicSize(gridSize, gridSize);
+                ok.antialiasing = false;
+                ok.updateHitbox();
+
+                ok.x = strumline.x + ((a * 4 + i) * gridSize);
+                ok.y = strumline.y;
+
+                ok.color = getColor(i);
+                ok.alpha = 0.0001;
+                ok.blend = ADD;
+
+                ok.ID = i;
+                ok.strID = chart.content.meta.lanes[a];
+                //trace('${chart.content.meta.lanes[a]} & $i', "DEBUG");
+            }
+        }
+        strumArrows.camera = camMID;
+        add(strumArrows);
 
         playback.state = PAUSE;
 
@@ -115,6 +165,7 @@ class LevelEditor extends FlxState
     override public function update(elapsed:Float)
     {
         conductor.time = playback.time;
+        strumline.alpha = FlxMath.lerp(strumline.alpha, 0.3, elapsed * 2);
 
         super.update(elapsed);
 
@@ -123,16 +174,71 @@ class LevelEditor extends FlxState
 
         if(!isFullscreen)
         {
-            FlxG.mouse.enabled = FlxG.mouse.visible = true;
+            // ----- DATA ------ //
+            final localX = FlxG.mouse.viewX - gridContainer.x;
+            final localY = FlxG.mouse.viewY - gridContainer.y;
 
-            if(FlxG.keys.justPressed.SPACE) playback.state = (playback.state != PLAY) ? PLAY : PAUSE;
+            final col = Math.floor(localX / gridSize);
+            final laneIndex = Math.floor(col / 4);
+            final data = col % 4;
+            final snappedTime = getSnappedTime(localY);
 
             final addition = (FlxG.keys.pressed.SHIFT) ? 3 : 1;
             final advanceSecs = 500 * addition;
+
+            // ----- Input Stuff ----- //
+            if(FlxG.keys.justPressed.SPACE) playback.state = (playback.state != PLAY) ? PLAY : PAUSE;
+
             if(MoonInput.justPressed(UI_LEFT)) playback.time -= advanceSecs;
             else if (MoonInput.justPressed(UI_RIGHT)) playback.time += advanceSecs;
 
-            gridContainer.y = -getTimePos(playback.time);
+            if (FlxG.mouse.justPressed && FlxG.mouse.viewY > strumline.y)
+                placeNote(col, localY);
+
+            // ----- Upon note hit ----- //
+            for (n in notes)
+            {
+                // If not hit yet, and time has passed, and the songi is playing
+                if (n.strID != 'h' && conductor.time >= n.time && playback.state == PLAY)
+                {
+                    n.strID = 'h';
+                    for(i in 0...strumArrows.members.length)
+                    {
+                        final s = cast(strumArrows.members[i], MoonSprite);
+                        
+                        if (s.strID.toLowerCase() == n.lane.toLowerCase() && s.ID == n.direction)
+                        {
+                            s.alpha = 1;
+                            s.scale.set(1, 1);
+                            //trace('${s.strID.toLowerCase()} to ${n.lane.toLowerCase()}', "DEBUG");
+                        }
+                    }
+                }
+
+                if (n.strID == 'h' && conductor.time < n.time)
+                    n.strID = 'a';
+            }
+
+            // ----- Other ----- //
+            for(s in strumArrows.members)
+            {
+                s.alpha = FlxMath.lerp(s.alpha, 0.0001, elapsed * 6);
+                s.scale.x = s.scale.y = FlxMath.lerp(s.scale.x, 1.6, elapsed * 9);
+            }
+
+            FlxG.mouse.enabled = FlxG.mouse.visible = true;
+
+            snapCursor.visible = (col >= 0 && col < chart.content.meta.lanes.length * 4);
+            if (snapCursor.visible)
+            {
+                snapCursor.x = (laneIndex * 4 + data) * gridSize + gridContainer.x;
+                snapCursor.y = getTimePos(snappedTime) + gridContainer.y;
+            }
+
+            gridContainer.y = strumline.y - getTimePos(playback.time);
+
+            for (obj in notes)
+                obj.active = obj.visible = obj.isOnScreen();
         }
         else
         {
@@ -143,13 +249,14 @@ class LevelEditor extends FlxState
     function drawGrid(songLength:Float):Void
     {
         //---- grid ----//
-        
+
         if (gridBG != null) gridContainer.remove(gridBG);
 
         final totalHeight = Math.ceil((songLength / conductor.stepCrochet) * gridSize);
         var base = FlxGridOverlay.create(gridSize, gridSize, gridSize * laneCount, gridSize * 2, true, 0xFF2a2a2c, 0xFF373639);
 
-        final totalCols = laneCount * 4;
+        final totalCols = chart.content.meta.lanes.length * 4;
+
         gridBG = new FlxTiledSprite(null, gridSize * totalCols, gridSize);
         gridBG.loadGraphic(base.graphic);
         gridBG.height = totalHeight;
@@ -159,7 +266,6 @@ class LevelEditor extends FlxState
 
         if(laneLines.members.length > 0) laneLines.clear();
 
-        final totalCols = laneCount * 4;
         final lineWidth = gridSize * totalCols;
         final beatCount = Math.ceil(songLength / conductor.crochet);
 
@@ -172,7 +278,7 @@ class LevelEditor extends FlxState
             laneLines.add(line);
         }
 
-        for (i in 0...laneCount + 1)
+        for (i in 0...chart.content.meta.lanes.length + 1)
         {
             var line = new MoonSprite().makeGraphic(2, Std.int(totalHeight), FlxColor.BLACK);
             line.x = i * 4 * gridSize;
@@ -181,15 +287,37 @@ class LevelEditor extends FlxState
         }
     }
 
-    function addNote(data:NoteStruct)
+    function placeNote(col, y):Void
+    {
+        if (col < 0 || col >= chart.content.meta.lanes.length * 4) return;
+
+        final laneIndex = Math.floor(col / 4);
+        final snappedTime = getSnappedTime(y);
+
+        var ns:NoteStruct = {
+            lane: chart.content.meta.lanes[laneIndex],
+            data: col % 4,
+            time: snappedTime,
+            type: "normal",
+            duration: 0
+        };
+
+        noteData.push(ns);
+        addNote(ns, laneIndex);
+        sfx('addNote-${FlxG.random.int(1, 6)}');
+    }
+
+    function addNote(data:NoteStruct, laneIndex:Int)
     {
         var note = new Note(data.data, data.time, data.type, 'mooncharter', data.duration, conductor);
         note.state = CHART_EDITOR;
         note.setGraphicSize(gridSize, gridSize);
         note.updateHitbox();
+        note.lane = data.lane;
 
-        note.x = data.data * gridSize;
+        note.x = (laneIndex * 4 + data.data) * gridSize;
         note.y = getTimePos(data.time);
+        note.strID = 'a';
 
         gridContainer.add(note);
 
@@ -197,6 +325,7 @@ class LevelEditor extends FlxState
             drawSustain(note);
 
         noteData.push(data);
+        notes.push(note);
     }
 
     function drawSustain(note:Note)
@@ -209,16 +338,34 @@ class LevelEditor extends FlxState
         gridContainer.add(sus);
     }
 
-    public function beatHit(curBeat)
-    {}
+    public function beatHit(curBeat:Float)
+    {
+        if(curBeat % conductor.numerator == 0)
+        {
+            strumline.alpha = 1;
+        }
+    }
 
     function getTimePos(time:Float):Float
         return FlxMath.remapToRange(time, 0, playback.fullLength, 0, (playback.fullLength / conductor.stepCrochet) * gridSize);
+
+    function getSnappedTime(localY:Float):Float
+    {
+        final snapLen = conductor.crochet / snapDiv;
+        final rawTime = localY / gridSize * conductor.stepCrochet;
+        return Math.round(rawTime / snapLen) * snapLen;
+    }
 
     function getColor(data:Int):FlxColor
     {
         final colors = [0xFF7f16ff, 0xFF37a5ff, 0xFF61d041, 0xFFff3f3f];
         return colors[data % colors.length];
+    }
+
+    private function sfx(p:String)
+    {
+        if(playback.state != PLAY)
+            Paths.playSFX('toolkit/level-editor/$p');
     }
 
     @:noCompletion function set_isFullscreen(isFS:Bool):Bool

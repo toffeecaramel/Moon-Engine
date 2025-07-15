@@ -11,6 +11,7 @@
 		"diffRating": 0,
 		"displayName": "Thorns-Erect (Agua Mix)",
 		"generatedBy": "Moonchart 0.4.0",
+		"lanes": ["opponent", "p1"],
 		"opponents": [
 			"senpai-angry"
 		],

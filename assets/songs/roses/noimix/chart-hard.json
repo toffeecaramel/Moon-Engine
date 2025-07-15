@@ -11,6 +11,7 @@
 		"diffRating": 5,
 		"displayName": "Roses (Noimix)",
 		"generatedBy": "Friday Night Funkin' - v0.5.1",
+		"lanes": ["opponent", "p1"],
 		"opponents": [
 			"senpai-angry"
 		],

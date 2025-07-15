@@ -43,6 +43,7 @@ typedef MetadataStruct =
     var timeSignature:Array<Int>;
     var scrollSpd:Float;
     var stage:String;
+    var lanes:Array<String>;
     var players:Array<String>;
     var spectators:Array<String>;
     var opponents:Array<String>;
@@ -244,6 +245,7 @@ class Chart
             timeSignature: [metadata.timeChanges[0]?.n ?? 4, metadata.timeChanges[0]?.d ?? 4],
             scrollSpd: Reflect.field(data.scrollSpeed, difficulty),
             stage: metadata.playData.stage,
+            lanes: ["opponent", "p1"],
             players: [metadata.playData.characters.player],
             spectators: [metadata.playData.characters.girlfriend],
             opponents: [metadata.playData.characters.opponent],

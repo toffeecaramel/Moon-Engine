@@ -7,6 +7,7 @@
 		"diffRating": 12,
 		"displayName": "Satin Panties Erect",
 		"generatedBy": "Friday Night Funkin' - v0.3.3 (rewrite/master:51a44d4) PROTOTYPE",
+		"lanes": ["opponent", "p1"],
 		"opponents": [
 			"mom-car"
 		],

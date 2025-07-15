@@ -11,6 +11,7 @@
 		"diffRating": 9,
 		"displayName": "Roses Erect",
 		"generatedBy": "Friday Night Funkin' - v0.3.3 (rewrite/master:7562143) PROTOTYPE",
+		"lanes": ["opponent", "p1"],
 		"opponents": [
 			"senpai-angry"
 		],
