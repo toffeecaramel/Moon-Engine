@@ -25,6 +25,11 @@ class HealthBar extends FlxSpriteGroup
     public var health(default, set):Float = 50;
 
     /**
+     * The scale icons will have.
+     */
+    public var iconScale:Float = 0.8;
+
+    /**
      * Will create a health bar instance.
      * @param opponent the opponent name.
      * @param player the player name.
@@ -37,18 +42,19 @@ class HealthBar extends FlxSpriteGroup
         barBG.scale.set(0.9, 0.9);
         barBG.updateHitbox();
 
-        bar = new FlxBar(RIGHT_TO_LEFT, Std.int(barBG.width - 12), Std.int(barBG.height - 3));
-        bar.x += 5;
+        bar = new FlxBar(RIGHT_TO_LEFT, Std.int(barBG.width - 16), Std.int(barBG.height - 8));
+        bar.y = barBG.y + (barBG.height - bar.height) / 2;
+        bar.x = barBG.x + (barBG.width - bar.width) / 2;
 
         add(bar);
         add(barBG);
 
         oppIcon = new HealthIcon();
-        oppIcon.scale.set(0.8, 0.8);
+        oppIcon.scale.set(iconScale, iconScale);
         oppIcon.y = bar.y - (oppIcon.height * 0.5);
 
         playerIcon = new HealthIcon();
-        playerIcon.scale.set(0.8, 0.8);
+        playerIcon.scale.set(0.5, 0.5);
 
         playerIcon.flipX = true;
         playerIcon.y = bar.y - (playerIcon.height * 0.5);
@@ -77,24 +83,29 @@ class HealthBar extends FlxSpriteGroup
         {
             final percent:Float = 1 - (health / 100);
             final value = bar.x + (bar.width * percent);
-            
-            oppIcon.x = FlxMath.lerp(oppIcon.x, value - 100, elapsed * 8);
-            playerIcon.x = FlxMath.lerp(playerIcon.x, value, elapsed * 8);
+            final separation = 16;
 
-            //oppIcon.updateHitbox();
-            //playerIcon.updateHitbox();
-            
+            final iconOffset = 16;
+            playerIcon.x = bar.x + (bar.width * percent) + (150 * playerIcon.scale.x - 150) / 2 + iconOffset * 2;
+            oppIcon.x = bar.x + (bar.width * percent) - (150 * oppIcon.scale.x) / 2 - iconOffset * 2;
+
             oppIcon.y = bar.y - (oppIcon.height * 0.5);
             playerIcon.y = bar.y - (playerIcon.height * 0.5);
         }
         
-        oppIcon.scale.x = oppIcon.scale.y = playerIcon.scale.x = playerIcon.scale.y = FlxMath.lerp(playerIcon.scale.x, 0.8, elapsed * 12);
+        oppIcon.scale.x = oppIcon.scale.y = playerIcon.scale.x = playerIcon.scale.y = FlxMath.lerp(playerIcon.scale.x, iconScale, elapsed * 12);
     }
 
     public function updateBarStats()
     {
         playerIcon.icon = player;
         oppIcon.icon = opponent;
+    }
+
+    public function bump()
+    {
+        oppIcon.scale.set(iconScale + 0.1, iconScale + 0.1);
+        playerIcon.scale.set(iconScale + 0.1, iconScale + 0.1);
     }
 
     public function getRGBData(character:String)

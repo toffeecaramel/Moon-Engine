@@ -392,8 +392,7 @@ class PlayField extends FlxGroup
 
     function beatHit(beat:Float):Void
     {
-        healthBar.oppIcon.scale.set(1, 1);
-        healthBar.playerIcon.scale.set(1, 1);
+        healthBar.bump();
 
        // <- COUNTDOWN STUFF -> //
        if(inCountdown && !inCutscene)
