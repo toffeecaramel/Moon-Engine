@@ -81,11 +81,9 @@ class HealthBar extends FlxSpriteGroup
 
         if(updateIconsPos)
         {
-            final percent:Float = 1 - (health / 100);
-            final value = bar.x + (bar.width * percent);
-            final separation = 16;
-
+            final percent = 1 - (health / 100);
             final iconOffset = 16;
+			
             playerIcon.x = bar.x + (bar.width * percent) + (150 * playerIcon.scale.x - 150) / 2 + iconOffset * 2;
             oppIcon.x = bar.x + (bar.width * percent) - (150 * oppIcon.scale.x) / 2 - iconOffset * 2;
 
