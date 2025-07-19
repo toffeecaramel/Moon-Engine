@@ -213,6 +213,14 @@ class Chart
                         time: event.t                    
                     };
                 convertedEvents.push(camZoomVent);
+				
+				default:
+					final ev:EventStruct = {
+						tag: event.e,
+						values: event.v,
+						time: event.t
+					};
+				convertedEvents.push(ev);
             }
         }
 

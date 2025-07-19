@@ -72,6 +72,7 @@ class HealthBar extends FlxSpriteGroup
     }
 
     public var updateIconsPos:Bool = true;
+    public var lerpPercent:Float = 0;
 
     override public function update(elapsed:Float)
     {
@@ -82,10 +83,11 @@ class HealthBar extends FlxSpriteGroup
         if(updateIconsPos)
         {
             final percent = 1 - (health / 100);
+            lerpPercent = FlxMath.lerp(lerpPercent, percent, elapsed * 12);
             final iconOffset = 16;
 			
-            playerIcon.x = bar.x + (bar.width * percent) + (150 * playerIcon.scale.x - 150) / 2 + iconOffset * 2;
-            oppIcon.x = bar.x + (bar.width * percent) - (150 * oppIcon.scale.x) / 2 - iconOffset * 2;
+            playerIcon.x = bar.x + (bar.width * lerpPercent) + (150 * playerIcon.scale.x - 150) / 2 + iconOffset * 2;
+            oppIcon.x = bar.x + (bar.width * lerpPercent) - (150 * oppIcon.scale.x) / 2 - iconOffset * 2;
 
             oppIcon.y = bar.y - (oppIcon.height * 0.5);
             playerIcon.y = bar.y - (playerIcon.height * 0.5);

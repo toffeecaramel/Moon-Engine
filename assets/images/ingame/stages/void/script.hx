@@ -7,8 +7,6 @@ import moon.dependency.MoonSprite;
 var trafficLights:MoonSprite;
 function onCreate()
 {
-	var back = new MoonSprite(-500).makeGraphic(FlxG.width * 2, FlxG.height * 2, 0xFFffe300);
-	background.add(back);
 }
 
 function onPostCreate()
@@ -19,15 +17,40 @@ function onPostCreate()
         startY: 300
 	};
 	
-	game.playField.strumlines[0].visible = false;
-	game.playField.healthBar.visible = false;
-	game.playField.tst.visible = false;
+	if(game.song == 'amusia')
+	{
+		for (i in 0...game.playField.strumlines[0].members.length)
+		{
+			final strum = game.playField.strumlines[0].members[i];
+			FlxTween.tween(strum, {y: strum.y - 95}, 2, {ease: FlxEase.quadInOut, type: 4, startDelay: 0.2 * i});
+		}
+	}
+	
+	//game.playField.strumlines[0].visible = false;
+	//game.playField.healthBar.visible = false;
+	//game.playField.tst.visible = false;
 }
 
 function onUpdate(elapsed)
 {
 }
 
-function onBeat()
+function onBeat(beat)
 {
+	if(game.song == 'monochrome' && beat == 32)
+	{
+		var text = new flixel.text.FlxText();
+		text.text = 'foi mal, morri mesmo :/';
+		text.setFormat(Paths.font('vcr.ttf'), 32);
+		text.camera = game.camHUD;
+		text.screenCenter();
+		game.add(text);
+		FlxTween.tween(text, {alpha: 0}, 5, {startDelay: 4});
+		
+		for (i in 0...game.playField.strumlines[0].members.length)
+		{
+			final strum = game.playField.strumlines[0].members[i];
+			FlxTween.tween(strum, {x: -900, angle: 180}, 2, {ease: FlxEase.backInOut});
+		}
+	}
 }

@@ -35,48 +35,10 @@ class TestState extends FlxState
 
         //var fileContent = Mchr.extract(Paths.getPath("test.mchr", null), "nya/text.txt");
         //trace('Content of text: ${fileContent.toString()}', "DEBUG");
-
-        waveform = new FlxWaveform(0, 0, FlxG.width, Std.int(FlxG.height / 2 - 50));
-        add(waveform);
-        
-        playfield = new PlayField('thorns', 'hard', 'noimix');
-        add(playfield);
-        
-        waveform.loadDataFromFlxSound(playfield.playback.inst[0]);
-        waveform.waveformTime = 0;
-        waveform.waveformDuration = 600;
-        waveform.waveformColor = 0xFFFFFFFF;
-        waveform.waveformRMSColor = 0xFF94ABFF;
-        waveform.waveformBarSize = 4;
-        waveform.waveformBarPadding = 0;
-        waveform.waveformDrawMode = COMBINED;
-        waveform.screenCenter();
-        waveform.alpha = 0.5;
-
-        playfield.conductor.onBeat.add((beat)->
-        {
-            waveform.alpha = 1;
-            waveform.scale.set(1.2, 1.2);
-
-            if ((beat % playfield.conductor.numerator) == 0)
-            {
-                FlxG.sound.play(Paths.sound('debug/metronome', 'sounds'));
-            }
-            else FlxG.sound.play(Paths.sound('debug/metronomePeak', 'sounds'));
-
-        });
     }
 
     override public function update(elapsed:Float)
     {
         super.update(elapsed);
-
-        waveform.alpha = FlxMath.lerp(waveform.alpha, 0.1, elapsed * 6);
-        waveform.scale.x = waveform.scale.y = FlxMath.lerp(waveform.scale.x, 1, elapsed * 6);
-        if (playfield.playback.inst[0].playing)
-        {
-            // Set our waveform's time to the music's time, keeping them in sync.
-            waveform.waveformTime = playfield.playback.inst[0].time;
-        }
     }
 }

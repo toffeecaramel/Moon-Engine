@@ -223,18 +223,19 @@ class PlayState extends FlxState
 	{
 		switch(event.tag)
 		{
-			case 'SetCameraFocus': setCameraFocus(
+			case 'SetCameraFocus': (event.values.ease != 'INSTANT') ? setCameraFocus(
 				event.values.character, 
 				[event.values?.x ?? 0, event.values?.y ?? 0],
-				(event.values.ease != 'INSTANT' || event.values.duration != 0) ? conductor.stepCrochet / 1000 * event.values.duration : 0.0001,
+				conductor.stepCrochet / 1000 * event.values.duration,
 				{ease: Reflect.field(FlxEase, event.values.ease)}
-			);
+			) : camFollower.setPosition(event.values?.x ?? 0, event.values?.y ?? 0);
 			
-			case 'SetCameraZoom': setCameraZoom(
-				event.values.zoom, 
-				(event.values.duration != 0 || event.values.ease != 'INSTANT') ? conductor.stepCrochet / 1000 * event.values.duration : 0.0001, 
+			case 'SetCameraZoom':/*setCameraZoom(
+				event.values?.zoom ?? 0, 
+				(event.values.ease != 'INSTANT' || event.values.duration != 0) ? conductor.stepCrochet / 1000 * event.values.duration: 0.001, 
 				{ease: Reflect.field(FlxEase, event.values.ease)}
-			);
+			);*/
+			// TODO: fix this lol
 			
 			case 'ChangeBPM': conductor.changeBpmAt(event.time, event.values.bpm, event.values.timeSignature[0], event.values.timeSignature[1]);
 		}

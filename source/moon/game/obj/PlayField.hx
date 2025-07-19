@@ -41,7 +41,7 @@ class PlayField extends FlxGroup
     var healthBar:HealthBar;
     
     //var p1Judgements:JudgementSprite;
-    var p1Combo:ComboNumbers;
+    //var p1Combo:ComboNumbers;
     var stats:FlxText;
 
     // -- CALLBACKS //
@@ -122,8 +122,8 @@ class PlayField extends FlxGroup
 
         add(p1Judgements);*/
 
-        p1Combo = new ComboNumbers();
-        add(p1Combo);
+        //p1Combo = new ComboNumbers();
+        //add(p1Combo);
 
         //< -- HEALTHBAR SETUP -- >//
         healthBar = new HealthBar(chart.content.meta.opponents[0], chart.content.meta.players[0]);
@@ -176,11 +176,12 @@ class PlayField extends FlxGroup
 
         // Little text for testing out the accuracy.
         // oh lol it doesn't even show accuracy anymore LMFAO
+        // fym it does now
         stats = new FlxText(0, 0);
-        stats.setFormat(Paths.font('vcr.ttf'), 16, FlxColor.WHITE, CENTER);
+        stats.setFormat(Paths.font('CRIKEY SQUATS REGULAR.TTF'), 20, FlxColor.WHITE, CENTER);
         stats.setBorderStyle(OUTLINE, FlxColor.BLACK, 2);
         stats.textField.antiAliasType = ADVANCED;
-        stats.textField.sharpness = 200;
+        stats.textField.sharpness = 300;
         add(stats);
 
         setupNotes();
@@ -222,8 +223,8 @@ class PlayField extends FlxGroup
 
         // also this is just so much offsetted it looks like ASS
         stats.y = (MoonSettings.callSetting('Stats Position') == 'On Player Lane')
-        ? ((downscroll) ? playerStrum.y + playerStrum.height + stats.height : playerStrum.y - stats.height)
-        : healthBar.y + stats.height + 16;
+        ? ((downscroll) ? playerStrum.y + playerStrum.height + stats.height -8 : playerStrum.y - stats.height)
+        : healthBar.y + stats.height + 8;
         updateP1Stats(null, false);
     }
 
@@ -300,12 +301,11 @@ class PlayField extends FlxGroup
         if(FlxG.keys.justPressed.I) playback.pitch -= 0.05;
         else if (FlxG.keys.justPressed.O) playback.pitch += 0.05;
 
-        #if debug
         if(FlxG.keys.justPressed.ONE)
         {
             FlxG.switchState(()->new Freeplay());
+			Paths.clearStoredMemory();
         }
-        #end
         
         // update health based on p1's health.
         healthBar.health = inputHandlers.get('p1').stats.health;
@@ -319,7 +319,7 @@ class PlayField extends FlxGroup
         if (playerID == 'p1')
         {
             inputHandlers.get('p1').stats.combo++;
-            stats.scale.set(1.2, 1.2);
+            stats.scale.set(1.07, 1.07);
 
             // actually its colored by judgement now so fuck
             //if(timing != null) setStatsColor(Timings.getParameters(timing)[4]);
@@ -339,7 +339,7 @@ class PlayField extends FlxGroup
         {
             // update stats
             updateP1Stats('miss');
-            p1Combo.comboRoll(0, 2, true);
+            //p1Combo.comboRoll(0, 2, true);
 
             // set the player combo to 0
             inputHandlers.get('p1').stats.combo = 0;

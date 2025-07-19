@@ -21,7 +21,22 @@ class Freeplay extends FlxSubState
 {
     public static var appearType:FreeplayTransition = NONE;
 
-    public final songList = ['lit up', 'test1', 'test2', 'test3', 'test4'];
+	// placeholder song list >:3
+	// song => mi
+    var s:Map<String, String> = [
+		'gerson' => 'gerson',
+		'amusia' => 'bf',
+		'blammed' => 'pico',
+		'darnell' => 'cow',
+		'monochrome' => 'bf',
+		'senpai' => 'noimix',
+		'roses' => 'noimix',
+		'thorns' => 'noimix',
+		'shitno' => 'bf',
+		'silly billy' => 'bf'
+	];
+	var texts:Array<FlxText> = [];
+	
     public var character:String;
 
     public var songVolume:Float = 1;
@@ -30,6 +45,7 @@ class Freeplay extends FlxSubState
     public var mainBG:FreeplayBG;
     public var weekBG:FlxSkewedSprite;
     public var thisDJ:FreeplayDJ;
+	var curSelected:Int = 0;
 
     public function new(character:String = 'bf')
     {
@@ -46,7 +62,7 @@ class Freeplay extends FlxSubState
 
         //TODO: Week based BG.
         weekBG = new FlxSkewedSprite();
-        weekBG.loadGraphic(Paths.image('menus/freeplay/bgs/week1'));
+        weekBG.loadGraphic(Paths.image('menus/freeplay/bgs/weekend1'));
         weekBG.scale.set(1.4, 1.4);
         weekBG.antialiasing = true;
         weekBG.updateHitbox();
@@ -70,61 +86,45 @@ class Freeplay extends FlxSubState
 
         add(mainBG.foreground);
 
-        var txt = new FlxText();
-        txt.text = 'Human I remember youre genocidios\n' +
-        '*COUGH* ahem- i mean-\n' +
-        'S For Senpai Noimix\n' +
-        'R for Roses Noimix\n' +
-        'T for Thorns Noimix\n' +
-        'A for thorns erect by agua thanks aguacrunch you are so fucking gay\n' +
-        'D for darnell bf mixas\n' +
-        'E for darnell erect\n'+
-        'H for high erect\n' +
-        'C for satin panties erect it makes no sense but S is taken\n' +
-		'Btw press B for blammed pico misx\n' + 
-        'K for darnell cow mix';
-        txt.setFormat(Paths.font('vcr.ttf'), 32, FlxColor.BLACK, CENTER);
-        txt.setBorderStyle(SHADOW, FlxColor.RED, 5);
-        add(txt);
-        txt.screenCenter();
+        var yPos = 0.0;
+        for (song => mix in s)
+        {
+            var text = new FlxText(0, yPos, 0, '$song-$mix', 32);
+            text.font = Paths.font('vcr.ttf');
+            texts.push(text);
+            text.screenCenter(X);
+			text.x += 64;
+            add(text);
+            yPos += text.height;
+        }
 
         if(mainBG.script.exists('onCreate')) mainBG.script.call('onCreate');
+		
+		changeSelection(0);
     }
 
     override public function update(elapsed:Float):Void
     {
         super.update(elapsed);
-
-        if(FlxG.keys.justPressed.S)//lol
-            FlxG.switchState(() -> new PlayState('senpai', 'hard', 'noimix'));
-
-        if(FlxG.keys.justPressed.R)//lol
-            FlxG.switchState(() -> new PlayState('roses', 'hard', 'noimix'));
-
-        if(FlxG.keys.justPressed.T)//lol
-            FlxG.switchState(() -> new PlayState('thorns', 'hard', 'noimix'));
-
-        if(FlxG.keys.justPressed.A)//lol
-            FlxG.switchState(() -> new PlayState('thorns', 'erect', 'agua'));
-			
-        if(FlxG.keys.justPressed.D)//lol
-            FlxG.switchState(() -> new PlayState('darnell', 'hard', 'bf'));
-
-        if(FlxG.keys.justPressed.E)//lol
-            FlxG.switchState(() -> new PlayState('darnell', 'erect', 'pico'));
-
-        if(FlxG.keys.justPressed.H)//lol
-            FlxG.switchState(() -> new PlayState('high', 'erect', 'bf'));
-
-        if(FlxG.keys.justPressed.C)//lol
-            FlxG.switchState(() -> new PlayState('satin panties', 'erect', 'bf'));
-			
-		if(FlxG.keys.justPressed.B)//lol
-            FlxG.switchState(() -> new PlayState('blammed', 'hard', 'pico'));
-
-        if(FlxG.keys.justPressed.K)//lol
-            FlxG.switchState(() -> new PlayState('darnell', 'hard', 'cow'));
+		
+		if(MoonInput.justPressed(UI_DOWN)) changeSelection(1);
+        if(MoonInput.justPressed(UI_UP)) changeSelection(-1);
+        
+        if(MoonInput.justPressed(ACCEPT))
+        {
+            for(song => mix in s)
+				if(texts[curSelected].text == '$song-$mix') FlxG.switchState(new PlayState(song, 'hard', mix));
+        }
         
         if(mainBG.script.exists('onUpdate')) mainBG.script.get('onUpdate')(elapsed);
+    }
+	
+	function changeSelection(change:Int = 0):Void
+    {
+        curSelected = flixel.math.FlxMath.wrap(curSelected + change, 0, texts.length - 1);
+        Paths.playSFX('ui/scrollMenu');
+
+        for(i in 0...texts.length)
+            texts[i].color = (i == curSelected) ? FlxColor.CYAN : FlxColor.WHITE;
     }
 }
