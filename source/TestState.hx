@@ -14,7 +14,16 @@ import haxe.zip.Writer;
 import haxe.zip.Entry;
 import haxe.io.Bytes;
 import haxe.ds.List;
+import sys.Http;
 
+import openfl.net.URLRequest;
+import openfl.net.URLLoader;
+import openfl.net.URLLoaderDataFormat;
+import openfl.events.Event;
+import openfl.events.IOErrorEvent;
+import openfl.events.ProgressEvent;
+
+using StringTools;
 class TestState extends FlxState
 {
     var waveform:FlxWaveform;
@@ -35,6 +44,59 @@ class TestState extends FlxState
 
         //var fileContent = Mchr.extract(Paths.getPath("test.mchr", null), "nya/text.txt");
         //trace('Content of text: ${fileContent.toString()}', "DEBUG");
+
+        //var request = new URLRequest('(link)');
+        //var loader = new URLLoader();
+        //loader.dataFormat = URLLoaderDataFormat.BINARY;
+
+        //files download test
+        /*loader.addEventListener(Event.COMPLETE, function(e:Event)
+        {
+            File.saveBytes('assets/video foda do luis.mp4', cast(loader.data, Bytes));
+            trace('gg', "DEBUG");
+        });
+
+        loader.addEventListener(ProgressEvent.PROGRESS, function(e:ProgressEvent)
+        {
+            final mbLoaded = e.bytesLoaded / 1048576;
+            final mbTotal = e.bytesTotal / 1048576;
+            final percent = (e.bytesLoaded / e.bytesTotal) * 100;
+
+            var display = 'Progress: $formatFloat(percent)% ($formatFloat(mbLoaded) MB / $formatFloat(mbTotal) MB)';
+            trace(display);
+        });
+
+        loader.load(request);*/
+
+        //reading a json file
+        var loader = new URLLoader();
+        loader.dataFormat = URLLoaderDataFormat.TEXT;
+
+        loader.addEventListener(Event.COMPLETE, function(e:Event)
+        {
+            trace('gg', "DEBUG");
+            var raw:String = cast(e.target, URLLoader).data;
+            try 
+            {
+                var list:Array<String> = haxe.Json.parse(raw).teste;
+                for (file in list)
+                    trace(file, "DEBUG");
+            }
+            catch (e) {trace(e, "ERROR");}
+        });
+        loader.addEventListener(IOErrorEvent.IO_ERROR, function(e:IOErrorEvent)
+        {
+            trace('a: ${e.text}', "ERROR");
+        });
+
+        loader.load(new URLRequest('http://luisovc1812.servegame.com/json'));
+    }
+
+    //helper 'w'
+    function formatFloat(val:Float, decimals:Int = 2):String
+    {
+        var factor = Math.pow(10, decimals);
+        return (Math.round(val * factor) / factor) + "";
     }
 
     override public function update(elapsed:Float)

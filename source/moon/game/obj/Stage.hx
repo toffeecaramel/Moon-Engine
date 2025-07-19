@@ -67,20 +67,16 @@ class Stage extends FlxTypedGroup<FlxBasic>
 
     @:noCompletion public function set_stage(stg:String):String
     {
-        this.stage = stg;
-
         if (!Paths.exists('assets/images/ingame/stages/$stg/script.hx', TEXT))
         {
-            throw 'The specified stage "$stg" does not have an hx file at "assets/images/ingame/stages/$stg".';
-            return null;
+            trace('The specified stage "$stg" does not have an hx file at "assets/images/ingame/stages/$stg". LOADING DEFAULT...', "ERROR");
+            stg = 'void';
         }
-        else
-        {
-            script.load('assets/images/ingame/stages/$stg/script.hx');
-            script.set("background", this);
-            script.call('onCreate');
-
-        }
+        
+        this.stage = stg;
+        script.load('assets/images/ingame/stages/$stg/script.hx');
+        script.set("background", this);
+        script.call('onCreate');
 
         return stg;
     }
