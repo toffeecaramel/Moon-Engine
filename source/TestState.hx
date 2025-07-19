@@ -69,7 +69,7 @@ class TestState extends FlxState
         loader.load(request);*/
 
         //reading a json file
-        var loader = new URLLoader();
+        /*var loader = new URLLoader();
         loader.dataFormat = URLLoaderDataFormat.TEXT;
 
         loader.addEventListener(Event.COMPLETE, function(e:Event)
@@ -89,7 +89,7 @@ class TestState extends FlxState
             trace('a: ${e.text}', "ERROR");
         });
 
-        loader.load(new URLRequest('http://luisovc1812.servegame.com/json'));
+        loader.load(new URLRequest('link'));*/
     }
 
     //helper 'w'
