@@ -1,8 +1,10 @@
 package moon.dependency.user;
+
 import moon.menus.Settings;
 import openfl.system.Capabilities;
 import flixel.FlxG;
 import flixel.util.FlxSave;
+import lime.app.Application;
 
 using StringTools;
 
@@ -97,7 +99,7 @@ class MoonSettings
      */
     static function init():Void
     {
-        save.bind("ME-Settings");
+        save.bind(Constants.SETTINGS_SAVE_BIND);
         buildSettings();
         loadSettings();
         MoonInput.loadControls();
@@ -175,7 +177,7 @@ class MoonSettings
             new Setting("Auto-Updates", SELECTOR, "When an update is released, select whether to automatically download it, redirect you to a browser or do nothing.", ["Off", "In-Game", "Redirect"], "In-Game"),
             new Setting("Experimental Features", CHECKMARK, "Toggles features that are in a experimental phase. (SOME OF THEM MAY CRASH YOUR GAME!)", null, false),
             new Setting("Modding Tools", CHECKMARK, "Enable tools for modding (such as the chart and character editors).", null, false),
-            new Setting("Moon Engine Version", INFO, "Moon Engine's current version. Thanks for using!", null, 'v.${Constants.VERSION}')
+            new Setting("Moon Engine Version", INFO, "Moon Engine's current version. Thanks for using!", null, 'v.${Application.current.meta.get('version')}')
         ]);
 
         // A category that's not visible on the settings, it's mostly just for internal use

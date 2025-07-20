@@ -3,6 +3,7 @@ package moon.game.obj;
 import flixel.FlxG;
 import moon.dependency.MoonSound.MusicType;
 import flixel.group.FlxGroup.FlxTypedGroup;
+import flixel.util.FlxSignal;
 
 enum SongState {
 	PLAY;
@@ -36,7 +37,8 @@ class Song extends FlxTypedGroup<MoonSound>
     public var inst:Array<MoonSound> = [];
     public var voices:Array<MoonSound> = [];
 
-    public var onComplete:()->Void;
+    public final onFinish = new FlxTypedSignal<Void->Void>();
+
     private var conductor:Conductor;
 
     /**
@@ -71,6 +73,7 @@ class Song extends FlxTypedGroup<MoonSound>
                     var aud = cast new MoonSound().loadEmbedded(audPath, false, true);
                     aud.type = audList[i];
                     aud.strID = song;
+                    aud.onComplete = finish;
                     FlxG.sound.list.add(cast aud);
 
                     (aud.type == Inst) ? inst.push(aud) : voices.push(aud);
@@ -85,6 +88,14 @@ class Song extends FlxTypedGroup<MoonSound>
     override public function update(dt:Float)
     {
         super.update(dt);
+        if (conductor.time >= fullLength)
+            finish();
+    }
+
+    function finish()
+    {
+        trace("AAAAAAAAAAAA");
+        onFinish.dispatch();
     }
 
     final threshold = 30;

@@ -14,6 +14,7 @@ import flixel.math.FlxMath;
 import flixel.util.FlxColor;
 import flixel.math.FlxPoint;
 
+import moon.menus.*;
 import moon.game.obj.Stage;
 import moon.game.obj.PlayField;
 import moon.toolkit.ChartConvert;
@@ -49,6 +50,9 @@ class PlayState extends FlxState
 	public static var events:Array<MoonEvent> = [];
 
 	public var songScript:MoonScript = new MoonScript();
+
+	// If the score is valid or not. Sets to false if on practice mode, botplay, or different pitch.
+	public static var VALID_SCORE:Bool = true;
 
 	public var song:String;
 	public var difficulty:String;
@@ -127,6 +131,7 @@ class PlayState extends FlxState
 		songScript.set('playField', playField);
 
 		// -- Script Calls
+		//TODO: OVERHAUL SCRIPTS SYSTEM.
 		playField.onGhostTap = (keyDir) -> callScriptField('onGhostTap', [keyDir]);
 		playField.onNoteHit = (playerID, note, timing, isSustain) -> 
 		{
@@ -150,9 +155,18 @@ class PlayState extends FlxState
 		playField.onSongCountdown = (number) -> callScriptField('onSongCountdown', [number]);
 
 		playField.onSongStart = () -> callScriptField('onSongStart');
-		playField.onSongEnd = () -> callScriptField('onSongEnd');
 
 		playField.inCutscene = (callScriptField('onCutsceneStart'));
+		playField.playback.onFinish.add(()->{
+			callScriptField('onSongEnd');
+			final stat = playField.inputHandlers.get('p1').stats;
+			if(VALID_SCORE)
+				SongData.saveData(song, difficulty, mix, stat.score, stat.misses, stat.accuracy);
+
+			FlxG.switchState(() -> new MainMenu());
+		});
+
+		trace(SongData.retrieveData(song, difficulty, mix));
 	}
 	
 	/**

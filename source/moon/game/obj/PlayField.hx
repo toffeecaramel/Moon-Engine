@@ -57,11 +57,6 @@ class PlayField extends FlxGroup
     var onSongRestart:Void->Void;
 
     /**
-     * Called whenever a song is completed.
-     */
-    var onSongEnd:Void->Void; //TODO
-
-    /**
      * Called when countdown is happening.
      */
     var onSongCountdown:Int->Void;

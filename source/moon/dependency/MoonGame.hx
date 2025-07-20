@@ -15,6 +15,7 @@ class MoonGame extends FlxGame
 
 		MoonSettings.init();
         Alphabet.init();
+        SongData.init();
 
         FlxG.stage.addEventListener(openfl.events.KeyboardEvent.KEY_DOWN, (e) ->
 		{
