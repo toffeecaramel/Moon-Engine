@@ -216,6 +216,8 @@ class InputHandler
         {
             note.state = GOT_HIT;
             note.visible = note.active = false;
+            stats.judgementsCounter.set(timing, stats.judgementsCounter.get(timing) + 1);
+            //trace(stats.judgementsCounter, "DEBUG");
             if (note.duration > 0) {
                 heldSustains.set(ID, note);
                 lastSustainStep.set(ID, conductor.curStep);

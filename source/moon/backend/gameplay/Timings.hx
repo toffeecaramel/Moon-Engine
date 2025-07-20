@@ -19,16 +19,6 @@ class Timings
         'miss' => [-1.0,    180,    -600,  -4.5,   0xFF894331]
     ];
 
-    //TODO ONCE IMPLEMENTED: Move this to PlayerStats
-    public static var judgementsCounter:Map<String, Int> =
-    [
-        'sick' => 0,
-        'good' => 0,
-        'bad' => 0,
-        'shit' => 0,
-        'miss' => 0
-    ];
-
     public static var values(get, default):Array<String>;
 
     /**

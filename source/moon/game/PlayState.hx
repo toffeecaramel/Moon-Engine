@@ -166,7 +166,7 @@ class PlayState extends FlxState
 			FlxG.switchState(() -> new MainMenu());
 		});
 
-		trace(SongData.retrieveData(song, difficulty, mix));
+		//trace(SongData.retrieveData(song, difficulty, mix));
 	}
 	
 	/**

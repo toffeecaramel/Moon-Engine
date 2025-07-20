@@ -298,8 +298,7 @@ class PlayField extends FlxGroup
 
         if(FlxG.keys.justPressed.ONE)
         {
-            FlxG.switchState(()->new Freeplay());
-			Paths.clearStoredMemory();
+            FlxG.resetState();
         }
         
         // update health based on p1's health.
