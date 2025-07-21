@@ -295,11 +295,6 @@ class PlayField extends FlxGroup
         //TODO: REMOVE, PLACEHOLDER.
         if(FlxG.keys.justPressed.I) playback.pitch -= 0.05;
         else if (FlxG.keys.justPressed.O) playback.pitch += 0.05;
-
-        if(FlxG.keys.justPressed.ONE)
-        {
-            FlxG.resetState();
-        }
         
         // update health based on p1's health.
         healthBar.health = inputHandlers.get('p1').stats.health;

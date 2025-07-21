@@ -62,6 +62,7 @@ class Stage extends FlxTypedGroup<FlxBasic>
         this.conductor = conductor;
 
         script = new MoonScript();
+        Global.registerScript('stageScript', script);
         this.stage = stage;
     }
 
@@ -93,7 +94,7 @@ class Stage extends FlxTypedGroup<FlxBasic>
     {
         group.recycle(Character, function():Character
         {
-            var char = new Character(0 + (800 * group.members.length), 0, charName, conductor);
+            var char = new Character(0 + (900 * group.members.length), 0, charName, conductor);
             char.ID = index;
             chars.push(char);
             
@@ -114,7 +115,5 @@ class Stage extends FlxTypedGroup<FlxBasic>
     override public function update(elapsed:Float)
     {
         super.update(elapsed);
-
-        if(script.exists("onUpdate")) script.get("onUpdate")(elapsed);
     }
 }

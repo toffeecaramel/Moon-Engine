@@ -8,5 +8,6 @@ import flixel.FlxState;
  */
 class MoonScriptedState extends FlxState
 {
-    // Nothing for now!
+    // Nothing for now lol!
+    // dont know if its even possible lmfao!!!!!!!!!!!!!
 }

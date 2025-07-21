@@ -67,13 +67,14 @@ function createStaticNote(skin, direction)
 
 /**
  * This function is called whenever a note is hit.
+ * @param playerID  The ID of the player. (can be either opponent, or p1)
  * @param note      The note that is being hit.
  * @param judgement The judgement got from hitting said note.
  * @param isSustain Whether or not its a sustain note.
  */
-function onNoteHit(note, judgement, isSustain)
+function onNoteHit(playerID, note, timing, isSustain)
 {
-    if(judgement == 'sick' && !isSustain)
+    if(timing == 'sick' && !isSustain)
     {
         splash.angle = FlxG.random.float(-360, 360);
     }

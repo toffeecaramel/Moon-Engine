@@ -114,6 +114,7 @@ class Receptor extends FlxSpriteGroup
 
         // load the new noteskin script
         script = new MoonScript();
+        Global.registerScript('receptor-$playerID-$data', script);
         script.load('assets/images/ingame/UI/notes/$value/noteskin.hx');
         script.set("this", this);
 
@@ -190,8 +191,5 @@ class Receptor extends FlxSpriteGroup
             sustainSplash.setPosition(cx - sustainSplash.width / 2, cy - sustainSplash.height / 2);
             sustainSplash.spawn();
         }
-
-        if (script.exists('onNoteHit'))
-            script.get('onNoteHit')(note, judgement, isSustain);
     }
 }

@@ -59,9 +59,9 @@ function createStaticNote(skin, direction)
 }
 
 var arrTwn:FlxTween;
-function onNoteHit(note, judgement, isSustain)
+function onNoteHit(playerID, note, timing, isSustain)
 {
-    if(judgement == 'sick' && !isSustain && note.lane != 'opponent')
+    if(timing == 'sick' && !isSustain && note.lane != 'opponent')
     {
         splash.alpha = 0.8;
         splash.playAnim('splash0', true);
@@ -69,7 +69,6 @@ function onNoteHit(note, judgement, isSustain)
     }
 
     final strumNote = note.receptor;
-    
     if(arrTwn != null && arrTwn.active)
         arrTwn.cancel();
     

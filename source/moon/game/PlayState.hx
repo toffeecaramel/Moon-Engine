@@ -72,6 +72,9 @@ class PlayState extends FlxState
 		super.create();
 		//Paths.clearStoredMemory();
 		instance = this;
+
+		Global.registerScript("songScript", songScript);
+		songScript.load(Paths.getPath('songs/$song/$mix/script.hx', TEXT));
 		
 		this.persistentUpdate = false;
 		//this.persistentDraw = false;
@@ -105,34 +108,19 @@ class PlayState extends FlxState
 		for (plyr in chartMeta.players) stage.addCharTo(plyr, stage.players, playField.inputHandlers.get('p1'));
 		for (spct in chartMeta.spectators) stage.addCharTo(spct, stage.spectators);
 
-		if(stage.script.exists("onBeat")) conductor.onBeat.add((beat) -> stage.script.call('onBeat', [beat]));
-
 		setEvents();
 		
 		// call on post create for scripts
-		stage.script.set('game', this);
-
-		if(stage.script.exists('onPostCreate')) stage.script.call('onPostCreate');
-		
-		final mainSpec = stage.spectators.members[0];
-		camFollower.setPosition(stage.cameraSettings?.startX ?? (mainSpec.x ?? 0), stage.cameraSettings?.startY ?? (mainSpec.y ?? 0));
-		FlxG.camera.zoom = stage.cameraSettings.zoom ?? 1;
-
-		songScript.load(Paths.getPath('songs/$song/$mix/script.hx', TEXT));
-		callScriptField('onCreate');
+		Global.scriptSet('game', instance);
+		Global.scriptCall('onPostCreate');
 
 		playField.onSongRestart = () -> {
 			events = [];
 			setEvents();
-			callScriptField('onSongRestart');
+			Global.scriptCall('onSongRestart');
 		};
-
-		songScript.set('game', this);
-		songScript.set('playField', playField);
-
-		// -- Script Calls
-		//TODO: OVERHAUL SCRIPTS SYSTEM.
-		playField.onGhostTap = (keyDir) -> callScriptField('onGhostTap', [keyDir]);
+		
+		playField.onGhostTap = (keyDir) -> Global.scriptCall('onGhostTap', [keyDir]);
 		playField.onNoteHit = (playerID, note, timing, isSustain) -> 
 		{
 			final combo = playField.inputHandlers.get('p1').stats.combo;
@@ -141,7 +129,7 @@ class PlayState extends FlxState
 				for(spectator in stage.spectators.members)
 					cast(spectator, Character).playAnim((combo == 50) ? 'combo50' : 'combo200',true);
 
-			callScriptField('onNoteHit', [playerID, note, timing, isSustain]);
+			Global.scriptCall('onNoteHit', [playerID, note, timing, isSustain]);
 		};
 
 		playField.onNoteMiss = (playerID, note) -> 
@@ -150,19 +138,21 @@ class PlayState extends FlxState
 				for(spectator in stage.spectators.members)
 					cast(spectator, Character).playAnim('comboBreak', true);
 			
-			callScriptField('onNoteMiss', [playerID, note]);
+			Global.scriptCall('onNoteMiss', [playerID, note]);
 		};
-		playField.onSongCountdown = (number) -> callScriptField('onSongCountdown', [number]);
+		playField.onSongCountdown = (number) -> Global.scriptCall('onSongCountdown', [number]);
 
-		playField.onSongStart = () -> callScriptField('onSongStart');
+		playField.onSongStart = () -> Global.scriptCall('onSongStart');
 
 		playField.inCutscene = (callScriptField('onCutsceneStart'));
+		if(playField.inCutscene)Global.scriptCall('onCutsceneStart');
 		playField.playback.onFinish.add(()->{
-			callScriptField('onSongEnd');
+			Global.scriptCall('onSongEnd');
 			final stat = playField.inputHandlers.get('p1').stats;
 			if(VALID_SCORE)
 				SongData.saveData(song, difficulty, mix, stat.score, stat.misses, stat.accuracy);
 
+			Global.clearScriptList();
 			FlxG.switchState(() -> new MainMenu());
 		});
 
@@ -171,7 +161,7 @@ class PlayState extends FlxState
 	
 	/**
 	 * Calls a field in the script if it exists.
-	 * @param field The field's name. Can be a function or a variable.
+	 * @param field The field's name.
 	 * @return true or false depending if the field exists or not.
 	 */
 	public function callScriptField(field:String, ?args:Null<Array<Dynamic>>):Bool
@@ -210,7 +200,7 @@ class PlayState extends FlxState
 		{
 			if (event.time <= conductor.time)
 			{
-				callScriptField('onEvent', [event.tag]);
+				Global.scriptCall('onEvent', [event.tag]);
 				(event.valid) ? event.exec() : onHardcodedEvent(event);
 				events.remove(event);
 			}
@@ -228,7 +218,7 @@ class PlayState extends FlxState
 			playField.playback.state = PAUSE;
 		}
 
-		callScriptField('onUpdate', [elapsed]);
+		Global.scriptCall('onUpdate', [elapsed]);
 	}
 
 	var camMov:FlxTween;
@@ -297,7 +287,7 @@ class PlayState extends FlxState
 
 	public function beatHit(curBeat:Float)
 	{
-		callScriptField('onBeat', [curBeat]);
+		Global.scriptCall('onBeat', [curBeat]);
 		if (((curBeat % playField.conductor.numerator) == 0) && !playField.inCountdown)
 		{
 			//camGAME.zoom += 0.010;

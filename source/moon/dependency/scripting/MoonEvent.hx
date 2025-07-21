@@ -48,8 +48,7 @@ class MoonEvent extends MoonScript
     }
 
     public function exec()
-        if(valid)
-            get('onExecute')(values);
+        if(valid) call('onExecute', [values]);
 
     public function getCamFocusValues(charFocus:String, duration:Float, ease:String)
     {
