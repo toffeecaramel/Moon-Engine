@@ -39,7 +39,7 @@ function createStaticNote(skin, direction)
 }
 
 var arrTwn:FlxTween;
-function onNoteHit(note, judgement, isSustain)
+function onNoteHit(playerID, note, timing, isSustain)
 {
     final strumNote = note.receptor;
     

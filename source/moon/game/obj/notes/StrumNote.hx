@@ -10,7 +10,7 @@ class StrumNote extends MoonSprite
     {
         this.data = data;
         this.isCPU = isCPU;
-        super(data);
+        super();
 
         this.skin = skin;
     }

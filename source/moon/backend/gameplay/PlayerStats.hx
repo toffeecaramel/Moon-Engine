@@ -44,6 +44,18 @@ class PlayerStats
     var playerID:String = 'p1';
 
     /**
+     * A map containing all the notes hit on said judgement.
+     */
+    public var judgementsCounter:Map<String, Int> =
+    [
+        'sick' => 0,
+        'good' => 0,
+        'bad' => 0,
+        'shit' => 0,
+        'miss' => 0
+    ];
+
+    /**
      * Creates states for a specific player
      * @param playerID The player ID that'll be used. (e.g. `p1, opponent[...]`)
      */
