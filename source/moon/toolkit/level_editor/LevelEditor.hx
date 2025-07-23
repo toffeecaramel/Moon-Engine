@@ -21,6 +21,28 @@ import moon.game.obj.Song;
 import moon.game.obj.notes.*;
 import moon.backend.data.Chart.NoteStruct;
 
+enum GridTypes {
+    NOTES;
+    EVENTS;
+    CHARACTERS;
+    SOUNDS;
+    GIMMICKS;
+}
+
+/**
+ * TODO LIST:
+ * REMOVE HAXEUI, AND BUILD UP MY OWN UI FRAMEWORK FOR M.E.L.E.
+ * FINISH ALL EVENT ICONS (Luna's Task)
+ * SUSTAIN RESIZING
+ * NOTE/EVENT SELECTING
+ * CHART CONFIG
+ * MINIPLAYER???
+ * ICON TO DISPLAY WHO'S WHO
+ * WAVEFORMS
+ * HITSOUNDS
+ * blegh
+ **/
+
 class LevelEditor extends FlxState
 {
     // ----------------------- //
@@ -40,10 +62,14 @@ class LevelEditor extends FlxState
 
     // ----------------------- //
     // Grid Stuff
-    public var gridSize:Int = 54;
+    public var allTypes:Array<GridTypes> = [NOTES, SOUNDS, EVENTS, CHARACTERS, GIMMICKS];
+    public var curGrid(default, set):Int = 0;
+    public var gridSize:Int = 64;
     public var laneCount:Int = 2;
     public var snapDiv:Int = 4;
 
+    // ----------------------- //
+    // Grid Sprites & Groups
     public var strumline:MoonSprite;
     public var strumArrows:FlxSpriteContainer;
     public var laneLines:FlxTypedSpriteGroup<MoonSprite>;
@@ -57,9 +83,9 @@ class LevelEditor extends FlxState
     override public function create()
     {
         //TODO: get actual song selected by user.
-        final song = 'darnell';
+        final song = 'amusia';
         final diff = 'hard';
-        final mix = 'cow';
+        final mix = 'bf';
 
 		camBACK.bgColor = 0x00000000;
         camMID.bgColor = 0x00000000;
@@ -127,7 +153,7 @@ class LevelEditor extends FlxState
         {
             for(i in 0...4)
             {
-                var ok = new MoonSprite().loadGraphic(Paths.image('toolbox/level-editor/strumline'), true, 32, 32);
+                var ok = new MoonSprite().loadGraphic(Paths.image('toolkit/level-editor/strumline'), true, 32, 32);
                 ok.animation.add('a', [i], 1, true);
                 ok.animation.play('a');
                 strumArrows.add(ok);
@@ -148,6 +174,7 @@ class LevelEditor extends FlxState
                 //trace('${chart.content.meta.lanes[a]} & $i', "DEBUG");
             }
         }
+
         strumArrows.camera = camMID;
         add(strumArrows);
 
@@ -158,7 +185,11 @@ class LevelEditor extends FlxState
         playbackSldr.onChange = (_) -> playback.pitch = playbackSldr.value;
         add(taskbar);
 
+        var testTab = new Tabs(28, 320, [{name: "My Tab Title", tag: "grid"}, {name: "My Tab 2", tag: "metadata"}]);
+        add(testTab);
+
         isFullscreen = false;
+        changeTab(0);
     }
 
     var isFullscreen(default, set):Bool = false;
@@ -175,8 +206,8 @@ class LevelEditor extends FlxState
         if(!isFullscreen)
         {
             // ----- DATA ------ //
-            final localX = FlxG.mouse.viewX - gridContainer.x;
-            final localY = FlxG.mouse.viewY - gridContainer.y;
+            final localX = FlxG.mouse.x - gridContainer.x;
+            final localY = FlxG.mouse.y - gridContainer.y;
 
             final col = Math.floor(localX / gridSize);
             final laneIndex = Math.floor(col / 4);
@@ -194,6 +225,8 @@ class LevelEditor extends FlxState
 
             if (FlxG.mouse.justPressed && FlxG.mouse.viewY > strumline.y)
                 placeNote(col, localY);
+
+            if(FlxG.keys.justPressed.TAB) changeTab(1);
 
             // ----- Upon note hit ----- //
             for (n in notes)
@@ -366,6 +399,19 @@ class LevelEditor extends FlxState
     {
         if(playback.state != PLAY)
             Paths.playSFX('toolkit/level-editor/$p');
+    }
+
+    function changeTab(change:Int = 0):Void
+        curGrid = flixel.math.FlxMath.wrap(curGrid + change, 0, allTypes.length - 1);
+
+    @:noCompletion function set_curGrid(curGrid:Int):Int
+    {
+        this.curGrid = curGrid;
+
+        final strType = '${allTypes[curGrid]}';
+        sfx(strType.toLowerCase() + 'Tab');
+
+        return this.curGrid;
     }
 
     @:noCompletion function set_isFullscreen(isFS:Bool):Bool
