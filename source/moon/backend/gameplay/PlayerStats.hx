@@ -61,7 +61,7 @@ class PlayerStats
     /**
      * A map containing all the notes hit on said judgement.
      */
-    public var judgementsCounter:Map<String, Int> =
+    var judgementsCounter:Map<String, Int> =
     [
         'sick' => 0,
         'good' => 0,
@@ -74,7 +74,7 @@ class PlayerStats
      * Creates states for a specific player
      * @param playerID The player ID that'll be used. (e.g. `p1, opponent[...]`)
      */
-    public function new(playerID:String = 'p1')
+    function new(playerID:String = 'p1')
     {
         this.playerID = playerID;
         reset();
@@ -87,20 +87,16 @@ class PlayerStats
         accuracy = Math.round((accuracyCount / totalNotes) * 10000) / 100;
 
     /**
-     * Returns how much percentage of totalNotes was reached with noSustainCombo.
-     * The result goes from 0 to 100. (TODO)
-     */
-    public function calcClear():Float
-        return 0;
-
-    /**
-     * Resets all stats on upon calling.
+     * Resets all stats back to their default values on upon calling.
      */
     function reset()
     {
         accuracyCount = totalNotes = 0;
-        accuracy = misses = score = combo = 0;
+        accuracy = misses = score = combo = highestCombo = noSustainCombo = noSustainHighestCombo = 0;
         health = 50;
+
+        for(judge => counter in judgementsCounter)
+            judgementsCounter.set(judge, 0);
     }
 
     @:noCompletion function set_accuracyCount(value:Float):Float

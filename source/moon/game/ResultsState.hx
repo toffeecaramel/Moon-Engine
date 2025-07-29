@@ -20,10 +20,10 @@ class ResultsState extends FlxState
     var textOrder:Array<String> = ['totalNotes', 'maxCombo', 'sick', 'good', 'bad', 'shit', 'miss'];
     // Position for each text, representing the orders from the array above ^^
     var posOrder:Array<FlxPoint> = [
-        FlxPoint.get(372, 135), FlxPoint.get(372, 198),
-        FlxPoint.get(200, 258), FlxPoint.get(200, 312),
+        FlxPoint.get(372, 130), FlxPoint.get(372, 198),
+        FlxPoint.get(200, 255), FlxPoint.get(200, 312),
         FlxPoint.get(200, 368), FlxPoint.get(200, 426),
-        FlxPoint.get(230, 483)
+        FlxPoint.get(230, 478)
     ];
 
     public function new(stats:PlayerStats)
@@ -33,6 +33,8 @@ class ResultsState extends FlxState
         createObjects();
     }
 
+    var accTemp(default, set):Int = 0;
+    var rank:String = '';
     public function createObjects()
     {
         super.create();
@@ -65,6 +67,7 @@ class ResultsState extends FlxState
 
         //category symbol name:
         // categories or category idont remem ber
+        rank = Timings.getRank(stats.accuracy);
 
         new FlxTimer().start(0.4, (_) ->
         {
@@ -85,20 +88,51 @@ class ResultsState extends FlxState
                 judges.x += 25;
                 judges.alpha = 1;
 
-                //TODO: text for this
-                trace('Clear: ' + stats.calcClear(), "DEBUG");
-
                 for (i in 0...textOrder.length)
                 {
-                    new FlxTimer().start(0.6 + (0.25 * i), (_) -> {
+                    new FlxTimer().start(0.6 + (0.14 * i), (_) -> {
                         final point = posOrder[i];
                         final text = textOrder[i];
+
                         var t = new FlxText(point.x, point.y);
-                        t.setFormat(Paths.font('letterstuff/Tardling-Regular.otf'), 48, (i > 1) ? Timings.getParameters(text)[4] : FlxColor.WHITE);
+                        t.setFormat(Paths.font('letterstuff/Tardling-Regular.otf'), 60, (i > 1) ? Timings.getParameters(text)[4] : FlxColor.WHITE);
                         t.text = (i == 0) ? '${stats.totalNotes}' : (i == 1) ? '${stats.highestCombo}' : '${stats.judgementsCounter.get(text)}';
+                        t.textField.antiAliasType = ADVANCED;
+                        t.textField.sharpness = 400;
                         add(t);
-                    }, i+1);
+                    });
                 }
+
+                var clear = new FlxText(FlxG.width - 128);
+                clear.setFormat(Paths.font('phantomuff/difficulty.ttf'), 128, FlxColor.WHITE);
+                clear.screenCenter(Y);
+                add(clear);
+
+                new FlxTimer().start(0.8, (_) -> {
+                    FlxTween.tween(this, {accTemp: Std.int(stats.accuracy)}, 1.8, {ease: FlxEase.circOut, onUpdate: (_) -> {
+                        clear.text = '$accTemp%';
+                        clear.x = FlxG.width - clear.width - 128;
+                    },
+                    onComplete: (_)->{
+                        clear.text = '${Std.int(stats.accuracy)}%';
+                        clear.x = FlxG.width - clear.width - 128;
+
+                        FlxTween.color(clear, 1, Timings.getRankColor(rank), FlxColor.WHITE);
+                        Paths.playSFX('results/reveal$rank');
+
+                        if(rank != 'LOSS')
+                        {
+                            clear.scale.set(1.3, 1.3);
+                            FlxTween.tween(clear.scale, {x: 1, y: 1}, 1.3, {ease: FlxEase.elasticOut});
+                            FlxTween.tween(clear, {x: FlxG.width + clear.width}, 0.8, {ease: FlxEase.expoIn, startDelay: 0.6});
+                        }
+                        else
+                        {
+                            FlxTween.tween(clear, {y: clear.y + 300, "scale.y": 0.6}, 2, {ease: FlxEase.bounceOut, onComplete: (_)->
+                                FlxTween.tween(clear, {alpha: 0}, 0.6, {startDelay: 0.2})});
+                        }
+                    }});
+                });
             });
         });
     }
@@ -106,5 +140,15 @@ class ResultsState extends FlxState
     override public function update(elapsed:Float)
     {
         super.update(elapsed);
+    }
+
+    function set_accTemp(a:Int):Int
+    {
+        if(accTemp != a)
+            Paths.playSFX('ui/scrollMenu');
+
+        accTemp = a;
+
+        return accTemp;
     }
 }

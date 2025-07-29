@@ -176,7 +176,7 @@ class PlayField extends FlxGroup
         stats.setFormat(Paths.font('CRIKEY SQUATS REGULAR.TTF'), 20, FlxColor.WHITE, CENTER);
         stats.setBorderStyle(OUTLINE, FlxColor.BLACK, 2);
         stats.textField.antiAliasType = ADVANCED;
-        stats.textField.sharpness = 300;
+        stats.textField.sharpness = 400;
         add(stats);
 
         setupNotes();
@@ -343,7 +343,7 @@ class PlayField extends FlxGroup
     {
         // get the stat and update them
         final stat = inputHandlers.get('p1').stats;
-        stats.text = 'Score: ${stat.score} // Misses: ${stat.misses} // Accuracy: ${stat.accuracy}%';
+        stats.text = 'Score: ${stat.score} // Misses: ${stat.misses} // Accuracy: ${stat.accuracy}% (${Timings.getRank(stat.accuracy, true)})';
         
         // set stats X based on what setting it is.
         final sx = playerStrum.x + playerStrum.width / 2;
