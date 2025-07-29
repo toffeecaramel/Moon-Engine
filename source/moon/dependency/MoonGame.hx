@@ -27,7 +27,14 @@ class MoonGame extends FlxGame
 
             // update volume settings when the volume is changed.
             if((kc == FlxKey.PLUS || kc == FlxKey.NUMPADPLUS) || (kc == FlxKey.MINUS || kc == FlxKey.NUMPADMINUS))
-                MoonSettings.setSetting("Master Volume", FlxG.sound.volume * 100);
+			{
+				MoonSettings.setSetting("Master Volume", FlxG.sound.volume * 100);
+				MoonSettings.updateGlobalSettings();
+			
+			}
 		}, false, 100);
+		
+		if(!sys.FileSystem.exists('customChars'))
+			sys.FileSystem.createDirectory('customChars');
     }
 }

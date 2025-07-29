@@ -73,10 +73,7 @@ class Mchr
         for (entry in read(path))
         {
             if (entry.fileName == fileName)
-            {
-                var content = Reader.unzip(entry);
-                return content;
-            }
+                return Reader.unzip(entry);
         }
 
         throw 'File not found in .mchr: $fileName';

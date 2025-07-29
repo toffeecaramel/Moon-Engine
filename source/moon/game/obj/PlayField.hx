@@ -242,7 +242,7 @@ class PlayField extends FlxGroup
             handler.thisNotes = [];
             handler.heldSustains.clear();
         }
-
+        
         noteSpawner.clear();
         noteSpawner.killMembers();
         remove(noteSpawner, true);

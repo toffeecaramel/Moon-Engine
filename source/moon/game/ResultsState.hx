@@ -65,8 +65,6 @@ class ResultsState extends FlxState
         results.alpha = 0.0001;
         add(results);
 
-        //category symbol name:
-        // categories or category idont remem ber
         rank = Timings.getRank(stats.accuracy);
 
         new FlxTimer().start(0.4, (_) ->
@@ -109,7 +107,7 @@ class ResultsState extends FlxState
                 add(clear);
 
                 new FlxTimer().start(0.8, (_) -> {
-                    FlxTween.tween(this, {accTemp: Std.int(stats.accuracy)}, 1.8, {ease: FlxEase.circOut, onUpdate: (_) -> {
+                    FlxTween.tween(this, {accTemp: Std.int(stats.accuracy)}, 1.8, {ease: FlxEase.quadOut, onUpdate: (_) -> {
                         clear.text = '$accTemp%';
                         clear.x = FlxG.width - clear.width - 128;
                     },
