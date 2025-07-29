@@ -146,15 +146,7 @@ class PlayState extends FlxState
 
 		playField.inCutscene = (callScriptField('onCutsceneStart'));
 		if(playField.inCutscene)Global.scriptCall('onCutsceneStart');
-		playField.playback.onFinish.add(()->{
-			Global.scriptCall('onSongEnd');
-			final stat = playField.inputHandlers.get('p1').stats;
-			if(VALID_SCORE)
-				SongData.saveData(song, difficulty, mix, stat.score, stat.misses, stat.accuracy);
-
-			Global.clearScriptList();
-			FlxG.switchState(() -> new MainMenu());
-		});
+		playField.playback.onFinish.add(()->endSong());
 
 		//trace(SongData.retrieveData(song, difficulty, mix));
 	}
@@ -218,6 +210,10 @@ class PlayState extends FlxState
 			playField.playback.state = PAUSE;
 		}
 
+		//TODO: REMOVE, THIS IS DEBUGGIN
+		if(FlxG.keys.justPressed.EIGHT)
+			endSong();
+
 		Global.scriptCall('onUpdate', [elapsed]);
 	}
 
@@ -227,12 +223,13 @@ class PlayState extends FlxState
 	{
 		switch(event.tag)
 		{
-			case 'SetCameraFocus': (event.values.ease != 'INSTANT') ? setCameraFocus(
+			case 'SetCameraFocus': setCameraFocus(
 				event.values.character, 
 				[event.values?.x ?? 0, event.values?.y ?? 0],
 				conductor.stepCrochet / 1000 * event.values.duration,
-				{ease: Reflect.field(FlxEase, event.values.ease)}
-			) : camFollower.setPosition(event.values?.x ?? 0, event.values?.y ?? 0);
+				{ease: Reflect.field(FlxEase, event.values.ease)},
+				event.values.ease == 'INSTANT'
+			);
 			
 			case 'SetCameraZoom':/*setCameraZoom(
 				event.values?.zoom ?? 0, 
@@ -246,13 +243,16 @@ class PlayState extends FlxState
 	}
 
 	public function setCameraFocus(char:String, ?offsets:Array<Int>, ?duration:Float = 2, 
-		?options:Null<TweenOptions>)
+		?options:Null<TweenOptions>, ?isInstant:Bool = false)
 	{
 		MoonUtils.cancelActiveTwn(camMov);
-
 		final charPos = getCamPos(char);
-		camMov = FlxTween.tween(camFollower, {x: charPos[0] + (offsets[0] ?? 0), y: charPos[1] + (offsets[1] ?? 0)}, 
-		duration, options);
+
+		if(!isInstant)
+			camMov = FlxTween.tween(camFollower, {x: charPos[0] + (offsets[0] ?? 0), y: charPos[1] + (offsets[1] ?? 0)}, 
+			duration, options);
+		else
+			camFollower.setPosition(charPos[0] + (offsets[0] ?? 0), charPos[1] + (offsets[1] ?? 0));
 	}
 
 	public function setCameraZoom(zoom:Float, duration:Float, ?options:Null<TweenOptions>)
@@ -293,5 +293,16 @@ class PlayState extends FlxState
 			//camGAME.zoom += 0.010;
 			camHUD.zoom += 0.020;
 		}
+	}
+
+	public function endSong()
+	{
+		Global.scriptCall('onSongEnd');
+		final stat = playField.inputHandlers.get('p1').stats;
+		if(VALID_SCORE)
+			SongData.saveData(song, difficulty, mix, stat.score, stat.misses, stat.accuracy);
+
+		Global.clearScriptList();
+		FlxG.switchState(() -> new ResultsState(stat));
 	}
 }

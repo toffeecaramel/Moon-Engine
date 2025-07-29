@@ -21,7 +21,7 @@ class PlayerStats
     /**
      * Total misses by said player, either by ghost tapping or missing notes.
      */
-    var misses:Int = 0;
+    var misses(default, set):Int = 0;
 
     /**
      * Total score by said player, gained by each note hit, depending on the Timing it got.
@@ -31,7 +31,22 @@ class PlayerStats
     /**
      * The combo of notes hit in a row without missing.
      */
-    var combo:Int = 0;
+    var combo(default, set):Int = 0;
+
+    /**
+     * The combo of notes hit in a row without missing, except it doesn't take sustain notes in account.
+     */
+    var noSustainCombo(default, set):Int = 0;
+
+    /**
+     * The highest combo the player got.
+     */
+    var highestCombo:Int = 0;
+
+    /**
+     * The highest combo the player got, ignoring the sustains.
+     */
+    var noSustainHighestCombo:Int = 0;
 
     /**
      * The total health by said player.
@@ -72,6 +87,13 @@ class PlayerStats
         accuracy = Math.round((accuracyCount / totalNotes) * 10000) / 100;
 
     /**
+     * Returns how much percentage of totalNotes was reached with noSustainCombo.
+     * The result goes from 0 to 100. (TODO)
+     */
+    public function calcClear():Float
+        return 0;
+
+    /**
      * Resets all stats on upon calling.
      */
     function reset()
@@ -93,5 +115,34 @@ class PlayerStats
         totalNotes = value;
         updtAccuracy();
         return value;
+    }
+
+    @:noCompletion function set_misses(misses:Int):Int
+    {
+        this.misses = misses;
+
+        judgementsCounter.set('miss', judgementsCounter.get('miss') + 1);
+
+        return this.misses;
+    }
+
+    @:noCompletion function set_combo(combo:Int):Int
+    {
+        this.combo = combo;
+
+        if (combo > highestCombo)
+            highestCombo = combo;
+
+        return this.combo;
+    }
+
+    @:noCompletion function set_noSustainCombo(noSustainCombo:Int):Int
+    {
+        this.noSustainCombo = noSustainCombo;
+
+        if (noSustainCombo > noSustainHighestCombo)
+            noSustainHighestCombo = noSustainCombo;
+
+        return this.noSustainCombo;
     }
 }

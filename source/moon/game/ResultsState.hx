@@ -1,16 +1,39 @@
 package moon.game;
 
 import flixel.util.FlxTimer;
+import flixel.util.FlxColor;
 import flxanimate.FlxAnimate;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.FlxG;
 import flixel.util.FlxGradient;
 import flixel.FlxState;
+import flixel.text.FlxText;
+import moon.backend.gameplay.*;
+import flixel.math.FlxPoint;
 
 class ResultsState extends FlxState
 {
-    override public function create()
+    public var stats:PlayerStats;
+
+    // The order for each text
+    var textOrder:Array<String> = ['totalNotes', 'maxCombo', 'sick', 'good', 'bad', 'shit', 'miss'];
+    // Position for each text, representing the orders from the array above ^^
+    var posOrder:Array<FlxPoint> = [
+        FlxPoint.get(372, 135), FlxPoint.get(372, 198),
+        FlxPoint.get(200, 258), FlxPoint.get(200, 312),
+        FlxPoint.get(200, 368), FlxPoint.get(200, 426),
+        FlxPoint.get(230, 483)
+    ];
+
+    public function new(stats:PlayerStats)
+    {
+        super();
+        this.stats = stats;
+        createObjects();
+    }
+
+    public function createObjects()
     {
         super.create();
         
@@ -43,22 +66,39 @@ class ResultsState extends FlxState
         //category symbol name:
         // categories or category idont remem ber
 
-        new FlxTimer().start(0.5, (_) -> {
+        new FlxTimer().start(0.4, (_) ->
+        {
             results.alpha = 1;
             results.anim.play('hi', true);
             results.screenCenter(X);
 
             soundBooth.alpha = 1;
             soundBooth.screenCenter();
-            soundBooth.x += 395; // urgh, offsets amirite?
+            soundBooth.x += 380; // urgh, offsets amirite?
             soundBooth.y += 123;
             soundBooth.anim.play('drop');
 
-            new FlxTimer().start(0.75, (_) -> {
+            new FlxTimer().start(0.4, (_) ->
+            {
                 judges.anim.play('show');
                 judges.y += 120;
                 judges.x += 25;
                 judges.alpha = 1;
+
+                //TODO: text for this
+                trace('Clear: ' + stats.calcClear(), "DEBUG");
+
+                for (i in 0...textOrder.length)
+                {
+                    new FlxTimer().start(0.6 + (0.25 * i), (_) -> {
+                        final point = posOrder[i];
+                        final text = textOrder[i];
+                        var t = new FlxText(point.x, point.y);
+                        t.setFormat(Paths.font('letterstuff/Tardling-Regular.otf'), 48, (i > 1) ? Timings.getParameters(text)[4] : FlxColor.WHITE);
+                        t.text = (i == 0) ? '${stats.totalNotes}' : (i == 1) ? '${stats.highestCombo}' : '${stats.judgementsCounter.get(text)}';
+                        add(t);
+                    }, i+1);
+                }
             });
         });
     }

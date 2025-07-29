@@ -301,13 +301,14 @@ class PlayField extends FlxGroup
 
         // uhhmmm yeah stats scaling thats p much all
         stats.scale.x = stats.scale.y = FlxMath.lerp(stats.scale.x, 1, dt * 12);
+		
+		if(FlxG.keys.justPressed.ONE) FlxG.resetState();
     }
 
     function onHit(playerID:String, note:Note, timing:String, isSustain:Bool)
     {
         if (playerID == 'p1')
         {
-            inputHandlers.get('p1').stats.combo++;
             stats.scale.set(1.07, 1.07);
 
             // actually its colored by judgement now so fuck
@@ -329,9 +330,6 @@ class PlayField extends FlxGroup
             // update stats
             updateP1Stats('miss');
             //p1Combo.comboRoll(0, 2, true);
-
-            // set the player combo to 0
-            inputHandlers.get('p1').stats.combo = 0;
 
             // and do a lil cool thing to the stats
             setStatsColor(FlxColor.RED);

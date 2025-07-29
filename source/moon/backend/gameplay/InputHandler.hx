@@ -217,6 +217,7 @@ class InputHandler
             note.state = GOT_HIT;
             note.visible = note.active = false;
             stats.judgementsCounter.set(timing, stats.judgementsCounter.get(timing) + 1);
+            stats.noSustainCombo++;
             //trace(stats.judgementsCounter, "DEBUG");
             if (note.duration > 0) {
                 heldSustains.set(ID, note);
@@ -226,6 +227,7 @@ class InputHandler
         
         stats.health += (!isSustain) ? Timings.getParameters(timing)[3] : 0.5;
         stats.score += (!isSustain) ? Timings.getParameters(timing)[2] : 2;
+        stats.combo++;
         strumline.members[note.direction].onNoteHit(note, timing, isSustain);
         
         // little workaround if it doesnt despawn, which may happen sometimes...
@@ -252,6 +254,8 @@ class InputHandler
         stats.score += Timings.getParameters('miss')[2];
         stats.health += Timings.getParameters('miss')[3];
         stats.misses++;
+        stats.combo = 0;
+        stats.noSustainCombo = 0;
         
         if(onNoteMiss != null) onNoteMiss(note);
     }
