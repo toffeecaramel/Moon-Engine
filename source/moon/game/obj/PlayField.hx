@@ -44,7 +44,7 @@ class PlayField extends FlxGroup
     //var p1Combo:ComboNumbers;
     var stats:FlxText;
 
-    // -- CALLBACKS //
+    // -- CALLBACKS -- //
 
     /**
      * Called whenever a song is started.

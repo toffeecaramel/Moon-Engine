@@ -23,6 +23,8 @@ import openfl.events.Event;
 import openfl.events.IOErrorEvent;
 import openfl.events.ProgressEvent;
 
+import moon.backend.gameplay.*;
+
 using StringTools;
 class TestState extends FlxState
 {
@@ -32,6 +34,9 @@ class TestState extends FlxState
     {
         super.create();
         FlxG.mouse.useSystemCursor = true;
+
+        var stats = new PlayerStats('p1');
+        FlxG.switchState(() -> new moon.game.ResultsState(stats));
 
         // addons file test
         /*var files = new Map<String, Bytes>();

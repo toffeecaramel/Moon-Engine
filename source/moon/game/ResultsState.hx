@@ -11,6 +11,8 @@ import flixel.FlxState;
 import flixel.text.FlxText;
 import moon.backend.gameplay.*;
 import flixel.math.FlxPoint;
+import flixel.group.FlxSpriteGroup;
+import moon.dependency.scripting.MoonScript;
 
 class ResultsState extends FlxState
 {
@@ -26,23 +28,59 @@ class ResultsState extends FlxState
         FlxPoint.get(230, 478)
     ];
 
+    public var script:MoonScript = new MoonScript();
     public function new(stats:PlayerStats)
     {
         super();
         this.stats = stats;
+
         createObjects();
     }
 
     var accTemp(default, set):Int = 0;
     var rank:String = '';
+    var character:String = '';
+
+    public var background:FlxSpriteGroup = new FlxSpriteGroup();
     public function createObjects()
     {
         super.create();
+
+        //rank = 'LOSS';
+        rank = Timings.getRank(stats.accuracy);
+        character = MoonSettings.callSetting('Game Character');
+
+        Global.registerScript("rankScript", script);
+
+        var tryRank = rank;
+        // Look for the rank in thresholds
+        for (i in 0...Timings.thresholds.length)
+        {
+            if (Timings.thresholds[i].rank == rank)
+            {
+                var prev = i;
+                while (prev >= 0)
+                {
+                    final fallback = Timings.thresholds[prev].rank;
+                    if (Paths.exists('assets/images/ingame/results/$character/$fallback'))
+                    {
+                        tryRank = fallback;
+                        break;
+                    }
+                    prev--;
+                }
+                break;
+            }
+        }
+        script.load(Paths.getPath('images/ingame/results/$character/$tryRank/script.hx', TEXT));
+        Global.scriptSet('results', this);
         
         var back = FlxGradient.createGradientFlxSprite(FlxG.width, FlxG.height, [0xFFFECD5C, 0xFFFF9D47]);
         add(back);
         back.alpha = 0.0001;
         FlxTween.tween(back, {alpha: 1}, 0.7);
+
+        add(background);
 
         var soundBooth = new FlxAnimate();
         soundBooth.loadAtlas(Paths.getPath("images/ingame/results/UI/soundBooth", null));
@@ -65,7 +103,7 @@ class ResultsState extends FlxState
         results.alpha = 0.0001;
         add(results);
 
-        rank = Timings.getRank(stats.accuracy);
+        Global.scriptCall('onPostCreate');
 
         new FlxTimer().start(0.4, (_) ->
         {
@@ -107,7 +145,7 @@ class ResultsState extends FlxState
                 add(clear);
 
                 new FlxTimer().start(0.8, (_) -> {
-                    FlxTween.tween(this, {accTemp: Std.int(stats.accuracy)}, 1.8, {ease: FlxEase.quadOut, onUpdate: (_) -> {
+                    FlxTween.tween(this, {accTemp: Std.int(stats.accuracy)}, 1.2, {ease: FlxEase.quadOut, onUpdate: (_) -> {
                         clear.text = '$accTemp%';
                         clear.x = FlxG.width - clear.width - 128;
                     },
@@ -129,6 +167,8 @@ class ResultsState extends FlxState
                             FlxTween.tween(clear, {y: clear.y + 300, "scale.y": 0.6}, 2, {ease: FlxEase.bounceOut, onComplete: (_)->
                                 FlxTween.tween(clear, {alpha: 0}, 0.6, {startDelay: 0.2})});
                         }
+
+                        Global.scriptCall('onIntroEnd');
                     }});
                 });
             });
@@ -138,6 +178,7 @@ class ResultsState extends FlxState
     override public function update(elapsed:Float)
     {
         super.update(elapsed);
+        Global.scriptCall('onUpdate', [elapsed]);
     }
 
     function set_accTemp(a:Int):Int

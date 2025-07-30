@@ -20,6 +20,15 @@ class Timings
         'miss' => [-1.0,    180,    -600,  -4.5,   0xFF894331]
     ];
 
+    static var thresholds:Array<{limit:Float, rank:String, short:String}> = [
+        {limit: 60, rank: 'LOSS', short: 'L'},
+        {limit: 80, rank: 'GOOD', short: 'G'},
+        {limit: 90, rank: 'GREAT', short: 'G'},
+        {limit: 98, rank: 'EXCELLENT', short: 'E'},
+        {limit: 100, rank: 'PERFECT', short: 'P'},
+        {limit: 101, rank: 'PERFECT-GOLD', short: 'P'}
+    ];
+
     static var values(get, default):Array<String>;
 
     /**
@@ -29,29 +38,14 @@ class Timings
      */  
     static function getRank(accuracy:Float, ?short:Bool = false):String
     {
-        final thresholds:Array<{limit:Float, rank:String, short:String}> = [
-            {limit: 60, rank: 'LOSS', short: 'L'},
-            {limit: 80, rank: 'GOOD', short: 'G'},
-            {limit: 90, rank: 'GREAT', short: 'G'},
-            {limit: 98, rank: 'EXCELLENT', short: 'E'},
-            {limit: 100, rank: 'PERFECT', short: 'P'}
-        ];
-
         for (t in thresholds)
             if (accuracy < t.limit)
-                if(short)
-                {
-                    return t.short;
-                }
-                else
-                {
-                    return t.rank;
-                }
+            {
+                if(short) return t.short;
+                else return t.rank;
+            }
 
-        if(!short)
-            return 'PERFECT-GOLD';
-        else
-            return 'P';
+        return 'PERFECT-GOLD';
     }
 
     static function getRankColor(rank:String):FlxColor
