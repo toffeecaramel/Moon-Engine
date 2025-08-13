@@ -334,7 +334,7 @@ class PlayField extends FlxGroup
             // and do a lil cool thing to the stats
             setStatsColor(FlxColor.RED);
             MoonUtils.cancelActiveTwn(statShake);
-            statShake = FlxTween.shake(stats, 0.05, 0.2, X);
+            statShake = FlxTween.shake(stats, 0.04, 0.14, X);
         }
         if(onNoteMiss != null) onNoteMiss(playerID, note);
     }
@@ -343,8 +343,10 @@ class PlayField extends FlxGroup
     {
         // get the stat and update them
         final stat = inputHandlers.get('p1').stats;
-        stats.text = 'Score: ${stat.score} // Misses: ${stat.misses} // Accuracy: ${stat.accuracy}% (${Timings.getRank(stat.accuracy, true)})';
-        
+        final rankData = Timings.getRank(stat.accuracy);
+        stats.text = 'Score: ${stat.score} // Misses: ${stat.misses} // Accuracy: ${stat.accuracy}% (${rankData.short})';
+        stats.color = rankData.color;
+
         // set stats X based on what setting it is.
         final sx = playerStrum.x + playerStrum.width / 2;
 
@@ -374,7 +376,7 @@ class PlayField extends FlxGroup
     function setStatsColor(color:FlxColor)
     {
         MoonUtils.cancelActiveTwn(statsColor);
-        statsColor = FlxTween.color(stats, 0.4, color, FlxColor.WHITE, {startDelay: 0.05});
+        statsColor = FlxTween.color(stats, 0.4, color, Timings.getRank(inputHandlers.get('p1').stats.accuracy).color, {startDelay: 0.05});
     }
 
     function beatHit(beat:Float):Void

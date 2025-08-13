@@ -4,10 +4,8 @@ import flxanimate.FlxAnimate;
 var fuckers:FlxAnimate;
 function onPostCreate()
 {
-	FlxG.sound.cache(Paths.getPath("music/results/bf/LOSS.ogg", "SOUND"));
-	
 	fuckers = new FlxAnimate();
-    fuckers.loadAtlas(Paths.getPath("images/ingame/results/bf/LOSS/bfgf", null));
+    fuckers.loadAtlas(Paths.getPath("images/ingame/results/bf/LOSS/bfgf"));
     results.background.add(fuckers);
 
     fuckers.visible = false;

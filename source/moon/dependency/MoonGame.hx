@@ -11,8 +11,9 @@ class MoonGame extends FlxGame
         ?initialState:Null<flixel.util.typeLimit.NextState.InitialState>, ?updateFramerate:Int, ?drawFramerate:Int, 
         ?skipSplash:Bool, ?startFullscreen:Bool)
     {
+    	FlxG.signals.preStateCreate.add(_ -> Paths.clearMemory());
         super(gameWidth, gameHeight, initialState, updateFramerate, drawFramerate, skipSplash, startFullscreen);
-
+        
 		MoonSettings.init();
         Alphabet.init();
         SongData.init();

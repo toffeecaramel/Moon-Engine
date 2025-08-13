@@ -82,7 +82,7 @@ class ComboNumbers extends FlxSpriteGroup
         this.combo = toNumber;
 
         //then we update their graphic
-        if(Paths.exists('assets/images/ingame/UI/judgements_combo/$skin/numbers/roll.png', IMAGE))
+        if(Paths.exists('assets/images/ingame/UI/judgements_combo/$skin/numbers/roll.png'))
         {
             for (number in this.members)
             {
@@ -131,7 +131,7 @@ class ComboNumbers extends FlxSpriteGroup
     {
         this.skin = skin;
 
-        if(Paths.exists('assets/images/ingame/UI/judgements_combo/$skin/config.json', TEXT))
+        if(Paths.exists('assets/images/ingame/UI/judgements_combo/$skin/config.json'))
             data = Paths.JSON('ingame/UI/judgements_combo/$skin/config');
         else throw 'The data .JSON file for the combo and judgements were not found!';
 

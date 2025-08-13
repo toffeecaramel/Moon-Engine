@@ -44,7 +44,7 @@ class MoonEvent extends MoonScript
         this.tag = tag;
         this.values = values;
 
-        (!HARDCODED_EVENTS.contains(tag) && Paths.exists('assets/data/events/$tag.hx', TEXT)) ? load(Paths.data('events/$tag.hx')) : valid = false;
+        (!HARDCODED_EVENTS.contains(tag) && Paths.exists('assets/data/events/$tag.hx')) ? load('data/events/$tag.hx') : valid = false;
     }
 
     public function exec()

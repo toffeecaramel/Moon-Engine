@@ -28,8 +28,11 @@ class Global
      */
     static function registerScript(scriptName:String, script:MoonScript)
     {
-        scripts.set(scriptName, script);
-        trace('Registered a new script: $scriptName', "DEBUG");
+        if(!scripts.exists(scriptName))
+        {
+            scripts.set(scriptName, script);
+            trace('Registered a new script: $scriptName', "DEBUG");
+        }
     }
 
     /**
@@ -38,8 +41,11 @@ class Global
      */
     static function unregisterScript(scriptName:String)
     {
-        scripts.remove(scriptName);
-        trace('Un-Registered a script: $scriptName', "DEBUG");
+        if(scripts.exists(scriptName))
+        {
+            scripts.remove(scriptName);
+            trace('Un-Registered a script: $scriptName', "DEBUG");
+        }
     }
 
     /**

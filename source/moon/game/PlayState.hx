@@ -74,7 +74,7 @@ class PlayState extends FlxState
 		instance = this;
 
 		Global.registerScript("songScript", songScript);
-		songScript.load(Paths.getPath('songs/$song/$mix/script.hx', TEXT));
+		songScript.load('songs/$song/$mix/script.hx');
 		
 		this.persistentUpdate = false;
 		//this.persistentDraw = false;

@@ -10,6 +10,7 @@ import flixel.util.FlxGradient;
 import flixel.FlxState;
 import flixel.text.FlxText;
 import moon.backend.gameplay.*;
+import moon.backend.gameplay.Timings.RankData;
 import flixel.math.FlxPoint;
 import flixel.group.FlxSpriteGroup;
 import moon.dependency.scripting.MoonScript;
@@ -38,6 +39,7 @@ class ResultsState extends FlxState
     }
 
     var accTemp(default, set):Int = 0;
+    var rankData:RankData;
     var rank:String = '';
     var character:String = '';
 
@@ -47,7 +49,8 @@ class ResultsState extends FlxState
         super.create();
 
         //rank = 'LOSS';
-        rank = Timings.getRank(stats.accuracy);
+        rankData = Timings.getRank(stats.accuracy);
+        rank = rankData.rank;
         character = MoonSettings.callSetting('Game Character');
 
         Global.registerScript("rankScript", script);
@@ -72,7 +75,7 @@ class ResultsState extends FlxState
                 break;
             }
         }
-        script.load(Paths.getPath('images/ingame/results/$character/$tryRank/script.hx', TEXT));
+        script.load('images/ingame/results/$character/$tryRank/script.hx');
         Global.scriptSet('results', this);
         
         var back = FlxGradient.createGradientFlxSprite(FlxG.width, FlxG.height, [0xFFFECD5C, 0xFFFF9D47]);
@@ -131,21 +134,27 @@ class ResultsState extends FlxState
                         final text = textOrder[i];
 
                         var t = new FlxText(point.x, point.y);
-                        t.setFormat(Paths.font('letterstuff/Tardling-Regular.otf'), 60, (i > 1) ? Timings.getParameters(text)[4] : FlxColor.WHITE);
+                        t.setFormat(Paths.font('CRIKEY SQUATS REGULAR.TTF'), 48, (i > 1) ? Timings.getParameters(text)[4] : FlxColor.WHITE);
                         t.text = (i == 0) ? '${stats.totalNotes}' : (i == 1) ? '${stats.highestCombo}' : '${stats.judgementsCounter.get(text)}';
-                        t.textField.antiAliasType = ADVANCED;
-                        t.textField.sharpness = 400;
+                        //t.textField.antiAliasType = ADVANCED;
+                        //t.textField.sharpness = 400;
+                        t.setBorderStyle(SHADOW, FlxColor.BLACK, 4);
                         add(t);
+                        t.alpha = 0.4;
+
+                        t.origin.set(t.width / 2, t.height / 2);
+                        FlxTween.tween(t, {y: t.y - 12, alpha: 1}, 0.7, {ease: FlxEase.expoOut});
                     });
                 }
 
                 var clear = new FlxText(FlxG.width - 128);
                 clear.setFormat(Paths.font('phantomuff/difficulty.ttf'), 128, FlxColor.WHITE);
                 clear.screenCenter(Y);
+                clear.setBorderStyle(SHADOW, FlxColor.BLACK, 6);
                 add(clear);
 
-                new FlxTimer().start(0.8, (_) -> {
-                    FlxTween.tween(this, {accTemp: Std.int(stats.accuracy)}, 1.2, {ease: FlxEase.quadOut, onUpdate: (_) -> {
+                new FlxTimer().start(1, (_) -> {
+                    FlxTween.tween(this, {accTemp: Std.int(stats.accuracy)}, 2, {ease: FlxEase.quadOut, onUpdate: (_) -> {
                         clear.text = '$accTemp%';
                         clear.x = FlxG.width - clear.width - 128;
                     },
@@ -153,7 +162,7 @@ class ResultsState extends FlxState
                         clear.text = '${Std.int(stats.accuracy)}%';
                         clear.x = FlxG.width - clear.width - 128;
 
-                        FlxTween.color(clear, 1, Timings.getRankColor(rank), FlxColor.WHITE);
+                        FlxTween.color(clear, 1, rankData.color, FlxColor.WHITE);
                         Paths.playSFX('results/reveal$rank');
 
                         if(rank != 'LOSS')

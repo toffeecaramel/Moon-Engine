@@ -4,10 +4,8 @@ import flxanimate.FlxAnimate;
 var fuckers:FlxAnimate;
 function onPostCreate()
 {
-	//TODO: naughtyness shit
-	FlxG.sound.cache(Paths.getPath("music/results/bf/PERFECT.ogg", "SOUND"));
 	fuckers = new FlxAnimate();
-    fuckers.loadAtlas(Paths.getPath("images/ingame/results/bf/PERFECT/bed", null));
+    fuckers.loadAtlas(Paths.getPath("images/ingame/results/bf/PERFECT/bed"));
     results.background.add(fuckers);
 
     fuckers.visible = false;

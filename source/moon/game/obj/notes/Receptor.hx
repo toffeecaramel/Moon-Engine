@@ -115,11 +115,11 @@ class Receptor extends FlxSpriteGroup
         // load the new noteskin script
         script = new MoonScript();
         Global.registerScript('receptor-$playerID-$data', script);
-        script.load('assets/images/ingame/UI/notes/$value/noteskin.hx');
+        script.load('images/ingame/UI/notes/$value/noteskin.hx');
         script.set("this", this);
 
         // clear any old visuals
-        clear(); // removes notes and any direct children
+        clear();
         notesGroup.clear();
         sustainsGroup.clear();
         splashGroup.clear();

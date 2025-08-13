@@ -88,6 +88,11 @@ class Project extends HXProject
 		final buildDir = 'export/${isDebug() ? 'debug' : 'release'}/';
 		app.path = buildDir;
 
+      addIcon("other/icons/icon16.png", 16);
+      addIcon("other/icons/icon32.png", 32);
+      addIcon("other/icons/icon64.png", 64);
+      addIcon("other/icons/iconOG.png");
+
 		info('Current Commit: ${getGitCommit()}');
 	}
 

@@ -13,7 +13,7 @@ class GaussianBlurShader extends FlxRuntimeShader
 
     public function new(amount:Float = 1.0)
     {
-        super(Assets.getText(Paths.data('shaders/gaussianBlur.frag')));
+        super(Assets.getText(Paths.getPath('data/shaders/gaussianBlur.frag')));
         setAmount(amount);
     }
 

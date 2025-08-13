@@ -22,6 +22,7 @@ class MoonScript
     public var DEFAULT_VARIABLES:Map<String, Dynamic> = [
         "Paths" => Paths,
         "Constants" => Constants,
+        "Global" => Global,
         "Reflect" => Reflect,
 
         "TextScroll" => TextScroll,

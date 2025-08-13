@@ -20,13 +20,13 @@ class Timings
         'miss' => [-1.0,    180,    -600,  -4.5,   0xFF894331]
     ];
 
-    static var thresholds:Array<{limit:Float, rank:String, short:String}> = [
-        {limit: 60, rank: 'LOSS', short: 'L'},
-        {limit: 80, rank: 'GOOD', short: 'G'},
-        {limit: 90, rank: 'GREAT', short: 'G'},
-        {limit: 98, rank: 'EXCELLENT', short: 'E'},
-        {limit: 100, rank: 'PERFECT', short: 'P'},
-        {limit: 101, rank: 'PERFECT-GOLD', short: 'P'}
+    static var thresholds:Array<RankData> = [
+        {limit: 60, rank: 'LOSS', short: 'L', color: 0xFF6044FF},
+        {limit: 80, rank: 'GOOD', short: 'G', color: 0xFFEF8764},
+        {limit: 90, rank: 'GREAT', short: 'G', color: 0xFFEAF6FF},
+        {limit: 98, rank: 'EXCELLENT', short: 'E', color: 0xFFFDCB42},
+        {limit: 100, rank: 'PERFECT', short: 'P', color: 0xFFFF58B4},
+        {limit: 101, rank: 'PERFECT-GOLD', short: 'P', color: 0xFFFFB619}
     ];
 
     static var values(get, default):Array<String>;
@@ -34,32 +34,14 @@ class Timings
     /**
      * Get a rank based on accuracy.
      * @param accuracy The accuracy value.
-     * @param short Whether or not should the rank be short.
      */  
-    static function getRank(accuracy:Float, ?short:Bool = false):String
+    static function getRank(accuracy:Float):RankData
     {
         for (t in thresholds)
             if (accuracy < t.limit)
-            {
-                if(short) return t.short;
-                else return t.rank;
-            }
+                return t;
 
-        return 'PERFECT-GOLD';
-    }
-
-    static function getRankColor(rank:String):FlxColor
-    {
-        switch (rank)
-        {
-            case 'LOSS': return 0xFF6044FF;
-            case 'GOOD': return 0xFFEF8764;
-            case 'GREAT' :return 0xFFEAF6FF;
-            case 'EXCELLENT': return 0xFFFDCB42;
-            case 'PERFECT': return 0xFFFF58B4;
-            case 'PERFECT-GOLD': return 0xFFFFB619;
-            default: return FlxColor.WHITE;
-        }
+        return {limit: 0, rank: 'NOT FOUND.', short: 'N', color: FlxColor.WHITE};
     }
 
     /**
@@ -75,4 +57,11 @@ class Timings
         values = ['sick', 'good', 'bad', 'shit', 'miss'];
         return values;
     }
+}
+
+typedef RankData = {
+    var limit:Float;
+    var rank:String;
+    var short:String;
+    var color:FlxColor;
 }

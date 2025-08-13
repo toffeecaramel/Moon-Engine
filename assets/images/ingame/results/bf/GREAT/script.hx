@@ -6,14 +6,14 @@ var gf:FlxAnimate;
 function onPostCreate()
 {
 	gf = new FlxAnimate();
-    gf.loadAtlas(Paths.getPath("images/ingame/results/bf/GREAT/gf", null));
+    gf.loadAtlas(Paths.getPath("images/ingame/results/bf/GREAT/gf"));
     results.background.add(gf);
     gf.visible = gf.visible = false;
     gf.anim.addBySymbol("intro", "gf jumping", 24, false);
     gf.anim.onComplete.add(() -> gf.anim.play("gf jumping", true, false, 9));
 
 	bf = new FlxAnimate();
-    bf.loadAtlas(Paths.getPath("images/ingame/results/bf/GREAT/bf", null));
+    bf.loadAtlas(Paths.getPath("images/ingame/results/bf/GREAT/bf"));
     results.background.add(bf);
     bf.visible = gf.visible = false;
     bf.anim.addBySymbol("intro", "bf jumping", 24, false);

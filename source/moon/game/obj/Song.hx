@@ -6,33 +6,33 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.util.FlxSignal;
 
 enum SongState {
-	PLAY;
-	PAUSE;
-	STOP;
-	KILL;
+    PLAY;
+    PAUSE;
+    STOP;
+    KILL;
 }
 
 class Song extends FlxTypedGroup<MoonSound>
 {
     /**
-	 * The song's state, those being: `PLAY`, `PAUSE`, `STOP` & `KILL`.
-	 */
-	public var state(default, set):SongState = PLAY;
+     * The song's state, those being: `PLAY`, `PAUSE`, `STOP` & `KILL`.
+     */
+    public var state(default, set):SongState = PLAY;
 
     /**
-	 * The song's pitch.
-	 */
-	public var pitch(default, set):Float = 1;
-
-	/**
-	 * The song's current time.
-	 */
-	@:isVar public var time(get, set):Float = 0;
+     * The song's pitch.
+     */
+    public var pitch(default, set):Float = 1;
 
     /**
-	 * Get the song's full time.
-	 */
-	@:isVar public var fullLength(get, never):Float = 0;
+     * The song's current time.
+     */
+    @:isVar public var time(get, set):Float = 0;
+
+    /**
+     * Get the song's full time.
+     */
+    @:isVar public var fullLength(get, never):Float = 0;
 
     public var inst:Array<MoonSound> = [];
     public var voices:Array<MoonSound> = [];
@@ -64,13 +64,14 @@ class Song extends FlxTypedGroup<MoonSound>
 
             final erectOrNot = (useErect) ? "-erect" : "";
             final items = '$song/$char/${audList[i]}$erectOrNot';
-            final audPath = Paths.sound('$items', 'songs');
+            //trace(items);
+            //trace(Paths.sound('$items', 'songs'));
 
-            if(Paths.exists('assets/songs/$items.ogg', SOUND))
+            if(Paths.exists('songs/$items.ogg'))
             {
                 this.recycle(MoonSound, function():MoonSound
                 {
-                    var aud = cast new MoonSound().loadEmbedded(audPath, false, true);
+                    var aud = cast new MoonSound().loadEmbedded(Paths.sound('$items', 'songs'), false, true);
                     aud.type = audList[i];
                     aud.strID = song;
                     aud.onComplete = finish;
@@ -118,9 +119,9 @@ class Song extends FlxTypedGroup<MoonSound>
     }
 
     /**
-	 * Resyncs every member in this instance to their supposed time position based on conductor.
-	 */
-	public function resync():Void
+     * Resyncs every member in this instance to their supposed time position based on conductor.
+     */
+    public function resync():Void
     {
         for(i in inst)
         {
@@ -145,7 +146,7 @@ class Song extends FlxTypedGroup<MoonSound>
 
     ////////////////////////////////////////////////////////////////////////////////////
 
-	@:noCompletion public function set_state(state:SongState = PLAY):SongState
+    @:noCompletion public function set_state(state:SongState = PLAY):SongState
     {
         this.state = state;
         for (i in 0...members.length)
@@ -180,7 +181,7 @@ class Song extends FlxTypedGroup<MoonSound>
             lastTime = members[i].time;
 
         return lastTime;
-    }		
+    }       
 
     @:noCompletion public function set_time(value:Float):Float
     {

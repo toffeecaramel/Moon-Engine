@@ -8,7 +8,7 @@ var cartoonPlayer:MoonSound;
 function onCreate()
 {
     // dj setup
-    dj.loadAtlas(Paths.getPath("images/menus/freeplay/bf/freeplay-bf", null));
+    dj.loadAtlas(Paths.getPath("images/menus/freeplay/bf/freeplay-bf"));
     
     // Main Anims
     dj.anim.addBySymbol("intro", "boyfriend dj intro", 24, false);
@@ -102,7 +102,7 @@ function playRandomCartoon()
             cartoonPlayer.stop();
         }
 
-        cartoonPlayer.loadEmbedded(Paths.sound('menus/freeplay/cartoons/cartoon' + FlxG.random.int(1, 24), 'sounds'));
+        cartoonPlayer.loadEmbedded(Paths.sound('menus/freeplay/cartoons/cartoon' + FlxG.random.int(1, 24)));
         cartoonPlayer.play();
         FlxG.sound.list.add(cartoonPlayer);
     }, true);

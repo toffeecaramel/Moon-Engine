@@ -112,7 +112,7 @@ class Title extends FlxState
         //GlobalMusic.song = 'menus/freakyMenu';
         //GlobalMusic.start(true);
         MoonUtils.playGlobalMusic('menus/freakierMenu', true);
-        var songMeta = Paths.JSON('menus/freakierMenu-metadata', "music");
+        var songMeta = Paths.JSON('music/menus/freakierMenu-metadata');
 
         if(songMeta != null)
         {
@@ -243,7 +243,7 @@ class Title extends FlxState
 
     public function getRandomTXT()
     {
-        var allTxts = MoonUtils.getArrayFromFile(Paths.data('introTexts.txt'));
+        var allTxts = MoonUtils.getArrayFromFile(Paths.getPath('data/introTexts.txt'));
         var lines = [];
         for (i in allTxts) lines.push(i.split('--'));
         randomText = FlxG.random.getObject(lines);

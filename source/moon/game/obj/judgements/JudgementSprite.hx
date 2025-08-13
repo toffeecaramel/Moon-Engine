@@ -50,7 +50,7 @@ class JudgementSprite extends MoonSprite
     {
         this.skin = skin;
 
-        if(Paths.exists('assets/images/ingame/UI/judgements_combo/$skin/config.json', TEXT))
+        if(Paths.exists('assets/images/ingame/UI/judgements_combo/$skin/config.json'))
             data = Paths.JSON('ingame/UI/judgements_combo/$skin/config');
 
         return this.skin;

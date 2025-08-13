@@ -22,6 +22,7 @@ import openfl.net.URLLoaderDataFormat;
 import openfl.events.Event;
 import openfl.events.IOErrorEvent;
 import openfl.events.ProgressEvent;
+import moon.global_obj.PixelIcon;
 
 import moon.backend.gameplay.*;
 
@@ -35,8 +36,8 @@ class TestState extends FlxState
         super.create();
         FlxG.mouse.useSystemCursor = true;
 
-        var stats = new PlayerStats('p1');
-        FlxG.switchState(() -> new moon.game.ResultsState(stats));
+        //var stats = new PlayerStats('p1');
+        //FlxG.switchState(() -> new moon.game.ResultsState(stats));
 
         // addons file test
         /*var files = new Map<String, Bytes>();
@@ -95,6 +96,12 @@ class TestState extends FlxState
         });
 
         loader.load(new URLRequest('link'));*/
+
+        var displayIcon = new PixelIcon('dummy');
+        add(displayIcon);
+        displayIcon.playAnim('select', true);
+
+        //trace();
     }
 
     //helper 'w'
@@ -107,5 +114,7 @@ class TestState extends FlxState
     override public function update(elapsed:Float)
     {
         super.update(elapsed);
+
+        if(FlxG.keys.justPressed.R) FlxG.resetState();
     }
 }

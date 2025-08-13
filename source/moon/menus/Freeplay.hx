@@ -21,22 +21,22 @@ class Freeplay extends FlxSubState
 {
     public static var appearType:FreeplayTransition = NONE;
 
-	// placeholder song list >:3
-	// song => mi
+    // placeholder song list >:3
+    // song => mi
     var s:Map<String, String> = [
-		'gerson' => 'gerson',
-		'amusia' => 'bf',
-		'blammed' => 'pico',
-		'darnell' => 'cow',
-		'monochrome' => 'bf',
-		'senpai' => 'noimix',
-		'roses' => 'noimix',
-		'thorns' => 'noimix',
-		'shitno' => 'bf',
-		'silly billy' => 'bf'
-	];
-	var texts:Array<FlxText> = [];
-	
+        'gerson' => 'gerson',
+        'amusia' => 'bf',
+        'blammed' => 'pico',
+        'darnell' => 'cow',
+        'monochrome' => 'bf',
+        'senpai' => 'noimix',
+        'roses' => 'noimix',
+        'thorns' => 'noimix',
+        'shitno' => 'bf',
+        'silly billy' => 'bf'
+    ];
+    var texts:Array<FlxText> = [];
+    
     public var character:String;
 
     public var songVolume:Float = 1;
@@ -45,7 +45,7 @@ class Freeplay extends FlxSubState
     public var mainBG:FreeplayBG;
     public var weekBG:FlxSkewedSprite;
     public var thisDJ:FreeplayDJ;
-	var curSelected:Int = 0;
+    var curSelected:Int = 0;
 
     public function new(character:String = 'bf')
     {
@@ -93,33 +93,33 @@ class Freeplay extends FlxSubState
             text.font = Paths.font('vcr.ttf');
             texts.push(text);
             text.screenCenter(X);
-			text.x += 64;
+            text.x += 64;
             add(text);
             yPos += text.height;
         }
 
         if(mainBG.script.exists('onCreate')) mainBG.script.call('onCreate');
-		
-		changeSelection(0);
+        
+        changeSelection(0);
     }
 
     override public function update(elapsed:Float):Void
     {
         super.update(elapsed);
-		
-		if(MoonInput.justPressed(UI_DOWN)) changeSelection(1);
+        
+        if(MoonInput.justPressed(UI_DOWN)) changeSelection(1);
         if(MoonInput.justPressed(UI_UP)) changeSelection(-1);
         
         if(MoonInput.justPressed(ACCEPT))
         {
             for(song => mix in s)
-				if(texts[curSelected].text == '$song-$mix') FlxG.switchState(new PlayState(song, 'hard', mix));
+                if(texts[curSelected].text == '$song-$mix') FlxG.switchState(new PlayState(song, 'hard', mix));
         }
         
         if(mainBG.script.exists('onUpdate')) mainBG.script.get('onUpdate')(elapsed);
     }
-	
-	function changeSelection(change:Int = 0):Void
+    
+    function changeSelection(change:Int = 0):Void
     {
         curSelected = flixel.math.FlxMath.wrap(curSelected + change, 0, texts.length - 1);
         Paths.playSFX('ui/scrollMenu');

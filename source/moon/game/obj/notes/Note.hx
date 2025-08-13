@@ -92,7 +92,7 @@ class Note extends MoonSprite
     private static var sharedScripts:Map<String, MoonScript> = new Map();
 
     public function new(direction:Int, time:Float, ?type:String = "default", ?skinName:String = "v-slice", 
-        duration:Float, conductor:Conductor)
+        duration:Float = 0, conductor:Conductor = null)
     {
         super();
         this.direction = direction;
@@ -113,7 +113,7 @@ class Note extends MoonSprite
         if (!sharedScripts.exists(curSkin))
         {
             var wawa = new MoonScript();
-            wawa.load('assets/images/ingame/UI/notes/$curSkin/noteskin.hx');
+            wawa.load('images/ingame/UI/notes/$curSkin/noteskin.hx');
             sharedScripts.set(curSkin, wawa);
         }
 
