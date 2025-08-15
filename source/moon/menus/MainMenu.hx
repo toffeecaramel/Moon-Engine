@@ -48,7 +48,7 @@ class MainMenu extends FlxState
                 case 'story mode': return; // nothing for now.
                 case 'freeplay': openSubState(new Freeplay('bf')); //TODO
                 case 'settings': openSubState(new Settings(false));
-                case 'fuck off': Sys.exit(1);
+                case 'fuck off': #if system Sys.exit(1); #end
             }
         }
     }

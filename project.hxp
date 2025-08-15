@@ -18,6 +18,8 @@ class Project extends HXProject
 	
 	// feature flags go here
 
+	// Rename files that has underscore for html5 builds
+	static final RENAME_UNDERSCORE:FeatureFlag = "RENAME_UNDERSCORE";
 	//
 
 	// if you want a specific haxedef to be enabled on certain circumstances,
@@ -124,7 +126,7 @@ class Project extends HXProject
 
 	function setupFeatureFlags()
 	{
-		
+		RENAME_UNDERSCORE.apply(this, isWeb());	
 	}
 
 	// -- Helper Functions (taken from FNF's Hxp. Thanks funkin crew) -- //

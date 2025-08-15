@@ -35,7 +35,9 @@ class MoonGame extends FlxGame
 			}
 		}, false, 100);
 		
+        #if system
 		if(!sys.FileSystem.exists('customChars'))
 			sys.FileSystem.createDirectory('customChars');
+        #end
     }
 }
