@@ -107,7 +107,7 @@ class Note extends MoonSprite
 
     private function _updateGraphics():Void
     {
-        var curSkin = ((type != "default" || type != null) && Paths.exists('assets/images/ingame/UI/notes/$type')) ? type : skin;
+        var curSkin = ((type != "default" || type != null) && Paths.exists('images/ingame/UI/notes/$type')) ? type : skin;
         var dir = MoonUtils.intToDir(direction);
 
         if (!sharedScripts.exists(curSkin))

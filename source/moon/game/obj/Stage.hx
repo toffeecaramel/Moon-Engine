@@ -68,7 +68,7 @@ class Stage extends FlxTypedGroup<FlxBasic>
 
     @:noCompletion public function set_stage(stg:String):String
     {
-        if (!Paths.exists('assets/images/ingame/stages/$stg/script.hx'))
+        if (!Paths.exists('images/ingame/stages/$stg/script.hx'))
         {
             trace('The specified stage "$stg" does not have an hx file at "assets/images/ingame/stages/$stg". Loading default...', "ERROR");
             stg = 'void';

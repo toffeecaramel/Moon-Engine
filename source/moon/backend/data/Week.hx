@@ -18,7 +18,7 @@ abstract Week(WeekFile) from WeekFile to WeekFile
 {
     static function getWeek(week:String):Week
     {
-        if(Paths.exists('assets/data/weeks/$week'))
+        if(Paths.exists('data/weeks/$week'))
             return Paths.JSON('data/weeks/$week/$week');
         else
             trace('$week was not found within the week directory.', "ERROR");

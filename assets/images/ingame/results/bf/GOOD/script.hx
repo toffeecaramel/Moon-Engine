@@ -1,5 +1,6 @@
 import flixel.FlxG;
-import flxanimate.FlxAnimate;
+import animate.FlxAnimate;
+import animate.FlxAnimateFrames;
 import moon.dependency.MoonSprite;
 
 var bf:FlxAnimate;
@@ -16,11 +17,11 @@ function onPostCreate()
     results.background.add(gf);
 
 	bf = new FlxAnimate();
-    bf.loadAtlas(Paths.getPath("images/ingame/results/bf/GOOD/bf", null));
+    bf.frames = FlxAnimateFrames.fromAnimate(Paths.getPath("images/ingame/results/bf/GOOD/bf"));
     results.background.add(bf);
     
     bf.anim.addBySymbol("intro", "Boyfriend Good Anim", 24, false);
-    bf.anim.onComplete.add(() -> bf.anim.play("Boyfriend Good Anim", true, false, 14));
+    bf.anim.onFinish.add(() -> bf.anim.play("Boyfriend Good Anim", true, false, 14));
 	
 	bf.visible = gf.visible = false;
 	

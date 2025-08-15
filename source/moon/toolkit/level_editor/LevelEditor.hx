@@ -11,12 +11,6 @@ import flixel.addons.display.FlxGridOverlay;
 import flixel.addons.display.FlxTiledSprite;
 import openfl.geom.ColorTransform;
 
-import haxe.ui.containers.VBox;
-import haxe.ui.containers.TabView;
-import haxe.ui.components.CheckBox;
-import haxe.ui.containers.menus.MenuBar;
-import haxe.ui.ComponentBuilder;
-
 import moon.game.obj.Song;
 import moon.game.obj.notes.*;
 import moon.backend.data.Chart.NoteStruct;
@@ -52,7 +46,6 @@ class LevelEditor extends FlxState
     public var playback:Song;
 
     //public var miniPlayer:Miniplayer;
-    public var taskbar:MenuBar;
 
     private var camBACK:MoonCamera = new MoonCamera();
     private var camMID:MoonCamera = new MoonCamera();
@@ -179,14 +172,6 @@ class LevelEditor extends FlxState
         add(strumArrows);
 
         playback.state = PAUSE;
-
-        taskbar = ComponentBuilder.fromFile('assets/data/ui/level-editor/taskbar.xml');
-        final playbackSldr = taskbar.findComponent('playbackSpd');
-        playbackSldr.onChange = (_) -> playback.pitch = playbackSldr.value;
-        add(taskbar);
-
-        var testTab = new Tabs(28, 320, [{name: "My Tab Title", tag: "grid"}, {name: "My Tab 2", tag: "metadata"}]);
-        add(testTab);
 
         isFullscreen = false;
         changeTab(0);

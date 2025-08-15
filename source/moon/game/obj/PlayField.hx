@@ -7,7 +7,6 @@ import moon.game.obj.judgements.*;
 import moon.backend.gameplay.PlayerStats;
 import flixel.FlxSprite;
 import flixel.util.FlxTimer;
-import haxe.ui.styles.Style.StyleBorderType;
 import flixel.util.FlxColor;
 import flixel.text.FlxText;
 import flixel.FlxG;

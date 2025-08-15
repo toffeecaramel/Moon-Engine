@@ -1,7 +1,8 @@
 package moon.menus.obj.freeplay;
 
 import moon.dependency.scripting.MoonScript;
-import flxanimate.FlxAnimate;
+import animate.FlxAnimate;
+import animate.FlxAnimateFrames;
 
 class FreeplayDJ extends FlxAnimate
 {

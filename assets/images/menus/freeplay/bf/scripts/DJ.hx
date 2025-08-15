@@ -3,12 +3,14 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxTimer;
 import lime.app.Future;
 import moon.dependency.MoonSound;
+import animate.FlxAnimate;
+import animate.FlxAnimateFrames;
 
 var cartoonPlayer:MoonSound;
 function onCreate()
 {
     // dj setup
-    dj.loadAtlas(Paths.getPath("images/menus/freeplay/bf/freeplay-bf"));
+    dj.frames = FlxAnimateFrames.fromAnimate(Paths.getPath("images/menus/freeplay/bf/freeplay-bf"));
     
     // Main Anims
     dj.anim.addBySymbol("intro", "boyfriend dj intro", 24, false);
@@ -26,15 +28,6 @@ function onCreate()
     dj.anim.addBySymbol("afk2", "Boyfriend DJ watchin tv OG", 24, false);
 
     dj.anim.play("intro", true);
-
-    dj.anim.onComplete.add(function()
-    {
-        switch(dj.anim.curSymbol.name)
-        {
-            case 'boyfriend dj intro', 'bf dj afk', 'Boyfriend DJ fist pump', 'Boyfriend DJ loss reaction 1': dj.canDance = true;
-            case 'Boyfriend DJ watchin tv OG': chooseNextDJAction();
-        }
-    });
 
     // pos setup and more
     dj.screenCenter();

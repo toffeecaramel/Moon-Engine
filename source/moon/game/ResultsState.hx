@@ -2,7 +2,8 @@ package moon.game;
 
 import flixel.util.FlxTimer;
 import flixel.util.FlxColor;
-import flxanimate.FlxAnimate;
+import animate.FlxAnimate;
+import animate.FlxAnimateFrames;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.FlxG;
@@ -34,8 +35,6 @@ class ResultsState extends FlxState
     {
         super();
         this.stats = stats;
-
-        createObjects();
     }
 
     var accTemp(default, set):Int = 0;
@@ -44,7 +43,7 @@ class ResultsState extends FlxState
     var character:String = '';
 
     public var background:FlxSpriteGroup = new FlxSpriteGroup();
-    public function createObjects()
+    override public function create()
     {
         super.create();
 
@@ -65,7 +64,7 @@ class ResultsState extends FlxState
                 while (prev >= 0)
                 {
                     final fallback = Timings.thresholds[prev].rank;
-                    if (Paths.exists('assets/images/ingame/results/$character/$fallback'))
+                    if (Paths.exists('images/ingame/results/$character/$fallback'))
                     {
                         tryRank = fallback;
                         break;
@@ -86,13 +85,13 @@ class ResultsState extends FlxState
         add(background);
 
         var soundBooth = new FlxAnimate();
-        soundBooth.loadAtlas(Paths.getPath("images/ingame/results/UI/soundBooth", null));
+        soundBooth.frames = FlxAnimateFrames.fromAnimate(Paths.getPath("images/ingame/results/UI/soundBooth"));
         soundBooth.anim.addBySymbol('drop', 'sound system', 24, false);
         soundBooth.alpha = 0.0001;
         add(soundBooth);
 
         var judges = new FlxAnimate();
-        judges.loadAtlas(Paths.getPath("images/ingame/results/UI/judgesDisplay", null));
+        judges.frames = FlxAnimateFrames.fromAnimate(Paths.getPath("images/ingame/results/UI/judgesDisplay"));
         judges.anim.addBySymbol('show', 'categories', 24, false);
         judges.alpha = 0.0001;
         add(judges);
@@ -101,7 +100,7 @@ class ResultsState extends FlxState
         add(bb);
 
         var results = new FlxAnimate();
-        results.loadAtlas(Paths.getPath("images/ingame/results/UI/resultsTxt", null));
+        results.frames = FlxAnimateFrames.fromAnimate(Paths.getPath("images/ingame/results/UI/resultsTxt"));
         results.anim.addBySymbol("hi", "results", 24, false);
         results.alpha = 0.0001;
         add(results);

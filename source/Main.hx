@@ -1,6 +1,5 @@
 package;
 
-import haxe.ui.Toolkit;
 import moon.toolkit.ChartConvert;
 import flixel.FlxG;
 import flixel.FlxGame;
@@ -42,12 +41,7 @@ class Main extends Sprite
 			Sys.println('${levelData.color}${infoBefore.rpad(" ", 10)}${v}\x1b[0m');
 		};
 		#end
-		
-		// - Init haxeui stuff - //
-		Toolkit.init();
-		Toolkit.theme = 'dark';
-		Toolkit.autoScale = false;
-		haxe.ui.focus.FocusManager.instance.autoFocus = false;
+
 		FlxG.fixedTimestep = false;
 
 		var game = new MoonGame(Constants.GAME_WIDTH, Constants.GAME_HEIGHT, Constants.INITIAL_STATE, Constants.GAME_FRAMERATE, Constants.GAME_FRAMERATE, Constants.SKIP_SPLASH);

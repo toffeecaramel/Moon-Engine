@@ -4,10 +4,8 @@ import flixel.math.FlxMath;
 import moon.game.obj.PlayField;
 import flixel.addons.display.waveform.FlxWaveform;
 import moon.game.obj.judgements.ComboNumbers;
-import haxe.ui.ComponentBuilder;
 import flixel.FlxG;
 import flixel.FlxState;
-import haxe.ui.components.Button;
 import sys.io.File;
 import haxe.io.Path;
 import haxe.zip.Writer;
@@ -35,9 +33,7 @@ class TestState extends FlxState
     {
         super.create();
         FlxG.mouse.useSystemCursor = true;
-
-        //var stats = new PlayerStats('p1');
-        //FlxG.switchState(() -> new moon.game.ResultsState(stats));
+        //FlxG.switchState(() -> new moon.game.ResultsState(new PlayerStats('p1')));
 
         // addons file test
         /*var files = new Map<String, Bytes>();
@@ -97,9 +93,9 @@ class TestState extends FlxState
 
         loader.load(new URLRequest('link'));*/
 
-        var displayIcon = new PixelIcon('dummy');
-        add(displayIcon);
-        displayIcon.playAnim('select', true);
+        //var displayIcon = new PixelIcon('dummy');
+        //add(displayIcon);
+        //displayIcon.playAnim('select', true);
 
         //trace();
     }
@@ -115,6 +111,6 @@ class TestState extends FlxState
     {
         super.update(elapsed);
 
-        if(FlxG.keys.justPressed.R) FlxG.resetState();
+        //if(FlxG.keys.justPressed.R) FlxG.resetState();
     }
 }

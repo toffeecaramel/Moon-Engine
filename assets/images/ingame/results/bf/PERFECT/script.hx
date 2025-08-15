@@ -1,16 +1,17 @@
 import flixel.FlxG;
-import flxanimate.FlxAnimate;
+import animate.FlxAnimate;
+import animate.FlxAnimateFrames;
 
 var fuckers:FlxAnimate;
 function onPostCreate()
 {
 	fuckers = new FlxAnimate();
-    fuckers.loadAtlas(Paths.getPath("images/ingame/results/bf/PERFECT/bed"));
+    fuckers.frames = FlxAnimateFrames.fromAnimate(Paths.getPath("images/ingame/results/bf/PERFECT/bed"));
     results.background.add(fuckers);
 
     fuckers.visible = false;
     fuckers.anim.addBySymbol("intro", "boyfriend perfect rank", 24, false);
-    fuckers.anim.onComplete.add(() -> fuckers.anim.play("intro", true, false, 120));
+    fuckers.anim.onFinish.add(() -> fuckers.anim.play("intro", true, false, 120));
 }
 
 function onIntroEnd()

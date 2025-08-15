@@ -115,7 +115,7 @@ class Chart
     public function new(song:String, difficulty:String = 'hard', mix:String = 'bf')
     {
         final modifier = (difficulty == 'erect' || difficulty == 'nightmare') ? '-erect' : '';
-        events = (Paths.exists('assets/songs/$song/$mix/events$modifier.json')) ? Paths.JSON('songs/$song/$mix/events$modifier') : [];
+        events = (Paths.exists('songs/$song/$mix/events$modifier.json')) ? Paths.JSON('songs/$song/$mix/events$modifier') : [];
         content = Paths.JSON('songs/$song/$mix/chart-$difficulty');
     }
 

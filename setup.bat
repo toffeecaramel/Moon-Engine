@@ -42,13 +42,9 @@ haxelib install moonchart 0.5.0
 haxelib install hxvlc 2.1.4
 haxelib install hscript-iris
 haxelib install flixel-waveform
-
-haxelib git haxeui-flixel https://github.com/haxeui/haxeui-flixel
-
-haxelib git haxeui-core https://github.com/haxeui/haxeui-core
+haxelib install flixel-animate 1.1.0 
 
 haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc
-haxelib git flxanimate https://github.com/FunkinCrew/flxanimate
 haxelib git funkin.visfix https://github.com/toffeecaramel/funkVis-GrigFIX
 
 haxelib set flixel 6.0.0
@@ -60,8 +56,7 @@ haxelib set flixel-text-input 2.0.2
 haxelib set hxcpp-debug-server 1.2.4
 haxelib set moonchart 0.5.0
 haxelib set hxvlc 2.1.4
-haxelib set haxeui-flixel git
-haxelib set haxeui-core git
+haxelib set flixel-animate 1.1.0
 haxelib run lime setup
 
 cls
