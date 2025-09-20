@@ -23,6 +23,7 @@ import openfl.events.ProgressEvent;
 import moon.global_obj.PixelIcon;
 
 import moon.backend.gameplay.*;
+import moon.toolkit.ui.*;
 
 using StringTools;
 class TestState extends FlxState
@@ -39,12 +40,12 @@ class TestState extends FlxState
         /*var files = new Map<String, Bytes>();
         files.set("nya/text.txt", Bytes.ofString("Hello world! I am here to spread an important message.\nI got created by code.\nYes.\nThat's right.\n\n\nIsn't that cool?"));
         files.set("data.json", Bytes.ofString('{"hi": true}'));
-        Mchr.create(files, "test.mchr");*/
+        MZip.create(files, "test.mzip");*/
 
-        //var fileList = Mchr.listFiles("test.mchr");
+        //var fileList = MZip.listFiles("test.mzip");
         //trace('Files: $fileList', "DEBUG");
 
-        //var fileContent = Mchr.extract(Paths.getPath("test.mchr", null), "nya/text.txt");
+        //var fileContent = MZip.extract(Paths.getPath("test.mzip", null), "nya/text.txt");
         //trace('Content of text: ${fileContent.toString()}', "DEBUG");
 
         //var request = new URLRequest('(link)');
@@ -98,13 +99,27 @@ class TestState extends FlxState
         //displayIcon.playAnim('select', true);
 
         //trace();
+
+        testMod();
     }
 
     //helper 'w'
-    function formatFloat(val:Float, decimals:Int = 2):String
+    /*function formatFloat(val:Float, decimals:Int = 2):String
     {
         var factor = Math.pow(10, decimals);
         return (Math.round(val * factor) / factor) + "";
+    }*/
+
+    function testMod()
+    {
+        /*MZip.loadMod('mods/test.mzip');
+        trace(MZip.listFiles('mods/test.mzip'));
+        var image = new MoonSprite().loadGraphic(Paths.image('curMod/oie'));
+        add(image);*/
+
+        var popup = new Popup(500, 164);
+        popup.screenCenter();
+        add(popup);
     }
 
     override public function update(elapsed:Float)

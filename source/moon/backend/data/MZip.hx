@@ -9,7 +9,7 @@ import haxe.io.BytesInput;
 import sys.io.File;
 
 @:publicFields
-class Mchr
+class MZip
 {
     /**
      * Creates a zipped Moon Char file.
@@ -76,6 +76,21 @@ class Mchr
                 return Reader.unzip(entry);
         }
 
-        throw 'File not found in .mchr: $fileName';
+        throw 'File not found in .mzip: $fileName';
+    }
+
+    /**
+     * Loads a single mod from a .mzip file into memory for use by the Paths class.
+     * Clears any previously loaded mod.
+     * @param path The path to the .mzip file.
+     */
+    static function loadMod(path:String):Void
+    {
+        var entries = read(path);
+        Global.currentModFiles.clear();
+        for (entry in entries)
+            Global.currentModFiles.set(entry.fileName, Reader.unzip(entry));
+        
+        trace('Loaded mod from $path with ${Lambda.count(Global.currentModFiles)} files.', "INFO");
     }
 }

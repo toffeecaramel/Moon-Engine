@@ -1,6 +1,7 @@
 package moon;
 
 import moon.dependency.scripting.MoonScript;
+import haxe.io.Bytes;
 
 @:publicFields
 
@@ -49,16 +50,16 @@ class Global
     }
 
     /**
-	 * Calls a field/method in all the scripts if they exist.
-	 * @param field The field's name. Can be a function or a variable.
-	 * @param args The arguments needed for said field.
-	 */
-	static function scriptCall(field:String, ?args:Null<Array<Dynamic>>)
-	{
+     * Calls a field/method in all the scripts if they exist.
+     * @param field The field's name. Can be a function or a variable.
+     * @param args The arguments needed for said field.
+     */
+    static function scriptCall(field:String, ?args:Null<Array<Dynamic>>)
+    {
         for(script in scripts.iterator())
             if (script != null && script.exists(field)) 
                 script.call(field, args);
-	}
+    }
 
     /**S
      * Sets a field on all the scripts.
@@ -78,7 +79,15 @@ class Global
      */
     static function clearScriptList()
     {
+        trace('CLEARING SCRIPT LIST!', "WARNING");
         for(name => script in scripts)
             unregisterScript(name);
     }
+
+    // ------ MODDING STUFF ------ //
+
+    /**
+     * A Map containing files from the currently loaded mod (.mzip contents).
+     */
+    static var currentModFiles:Map<String, Bytes> = new Map<String, Bytes>();
 }

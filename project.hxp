@@ -35,7 +35,7 @@ class Project extends HXProject
 	// same thing I said above applies to libraries.
 	static final HAXELIBS:Array<String> = [
 		"lime", "openfl", "flixel", "flixel-addons",
-		"hscript-iris", "moonchart", "flixel-animate", 
+		"flixel-ui", "hscript-iris", "moonchart", "flixel-animate", 
 		"funkin.visfix", "flixel-waveform"
 	];
 
@@ -46,6 +46,7 @@ class Project extends HXProject
 		info('Initializing Compilation...');
 
 		includeAssets("assets");
+		includeAssets("mods");
         setupGame();
 		setupHaxelibs();
 		setupHaxedefs();

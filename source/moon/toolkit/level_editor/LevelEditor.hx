@@ -10,6 +10,7 @@ import flixel.group.FlxSpriteContainer;
 import flixel.addons.display.FlxGridOverlay;
 import flixel.addons.display.FlxTiledSprite;
 import openfl.geom.ColorTransform;
+import moon.toolkit.ui.*;
 
 import moon.game.obj.Song;
 import moon.game.obj.notes.*;
@@ -25,7 +26,7 @@ enum GridTypes {
 
 /**
  * TODO LIST:
- * REMOVE HAXEUI, AND BUILD UP MY OWN UI FRAMEWORK FOR M.E.L.E.
+ * REMOVE HAXEUI, AND BUILD UP MY OWN UI FRAMEWORK FOR ALL THE TOOLKIT*.
  * FINISH ALL EVENT ICONS (Luna's Task)
  * SUSTAIN RESIZING
  * NOTE/EVENT SELECTING
@@ -34,6 +35,8 @@ enum GridTypes {
  * ICON TO DISPLAY WHO'S WHO
  * WAVEFORMS
  * HITSOUNDS
+ * DRAG N DROP STUFF
+ * EXPORT CHART TO OTHER ENGINES
  * blegh
  **/
 
