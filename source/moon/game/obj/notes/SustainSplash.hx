@@ -1,11 +1,13 @@
 package moon.game.obj.notes;
 
 import openfl.display.BlendMode;
+import flixel.util.FlxSignal.FlxTypedSignal;
 
 class SustainSplash extends MoonSprite
 {
     @:isVar public var skin(default, set):String;
     public var data:Int;
+    public final onSpawn = new FlxTypedSignal<Void->Void>();
 
     /**
      * Creates a hold note splash instance
@@ -44,6 +46,7 @@ class SustainSplash extends MoonSprite
      */
     public function spawn()
     {
+        onSpawn.dispatch();
         // just a check for making the animation not loop if the function is called again
         if(!isOnLoop)
         {

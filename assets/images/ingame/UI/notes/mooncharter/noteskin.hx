@@ -4,6 +4,7 @@ import flixel.tweens.FlxTween;
 
 final scale = 3;
 
+//TODO: UPDATE
 function createReceptor(direction)
 {
     final p = 'ingame/UI/notes/mooncharter/';

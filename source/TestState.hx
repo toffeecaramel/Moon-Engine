@@ -24,6 +24,7 @@ import moon.global_obj.PixelIcon;
 
 import moon.backend.gameplay.*;
 import moon.toolkit.ui.*;
+import moon.toolkit.*;
 
 using StringTools;
 class TestState extends FlxState
@@ -117,9 +118,9 @@ class TestState extends FlxState
         var image = new MoonSprite().loadGraphic(Paths.image('curMod/oie'));
         add(image);*/
 
-        var popup = new Popup(500, 164);
-        popup.screenCenter();
-        add(popup);
+        //var popup = new Popup(500, 164);
+        //popup.screenCenter();
+        //add(popup);
     }
 
     override public function update(elapsed:Float)

@@ -4,6 +4,7 @@ import flixel.tweens.FlxTween;
 
 final scale = 5;
 
+//TODO: UPDATE
 function createReceptor(direction)
 {
     final p = 'ingame/UI/notes/pixel/';

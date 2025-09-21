@@ -62,7 +62,7 @@ class LevelEditor extends FlxState
     public var curGrid(default, set):Int = 0;
     public var gridSize:Int = 64;
     public var laneCount:Int = 2;
-    public var snapDiv:Int = 4;
+    public var snapDiv:Int = 1;
 
     // ----------------------- //
     // Grid Sprites & Groups
@@ -75,27 +75,39 @@ class LevelEditor extends FlxState
 
     public var notes:Array<Note> = [];
     public var noteData:Array<NoteStruct> = [];
+    public var noteStructs:Map<Note, NoteStruct> = new Map();
+    public var sustainSprites:Map<Note, MoonSprite> = new Map();
+
+    // ----------------------- //
+    // uhhh misc?
+    public var selectedNotes:Array<Note> = [];
+    public var sustainHandles:Map<Note, MoonSprite> = new Map();
+    var selectionRect:MoonSprite;
+    var selecting:Bool = false;
+    var adjustingSustain:Bool = false;
+    var dragStartX:Float = 0;
+    var dragStartY:Float = 0;
+    var startDurations:Map<Note, Float> = new Map();
 
     override public function create()
     {
         //TODO: get actual song selected by user.
-        final song = 'amusia';
+        final song = 'tko2';
         final diff = 'hard';
         final mix = 'bf';
 
-		camBACK.bgColor = 0x00000000;
+        camBACK.bgColor = 0x00000000;
         camMID.bgColor = 0x00000000;
         camFRONT.bgColor = 0x00000000;
 
         FlxG.mouse.visible = true;
 
-		FlxG.cameras.add(camBACK, true);
-		FlxG.cameras.add(camMID, false);
+        FlxG.cameras.add(camBACK, true);
+        FlxG.cameras.add(camMID, false);
         FlxG.cameras.add(camFRONT, false);
 
         chart = new Chart(song, diff, mix);
 
-        //TODO: get chart's time signature.
         conductor = new Conductor(chart.content.meta.bpm, chart.content.meta.timeSignature[0], chart.content.meta.timeSignature[0]);
         conductor.onBeat.add(beatHit);
         
@@ -129,7 +141,8 @@ class LevelEditor extends FlxState
                 addNote(n, laneIndex);
         }
 
-        gridContainer.x = ((FlxG.width - gridContainer.width) / 2) + 216;
+        //TODO: change x pos
+        gridContainer.x = (FlxG.width - gridContainer.width) / 2;
         gridContainer.y = 0;
 
         snapCursor = new MoonSprite().makeGraphic(gridSize, gridSize, FlxColor.WHITE);
@@ -178,6 +191,11 @@ class LevelEditor extends FlxState
 
         isFullscreen = false;
         changeTab(0);
+
+        selectionRect = new MoonSprite();
+        selectionRect.makeGraphic(1, 1, FlxColor.fromRGB(0, 0, 255, 100));
+        add(selectionRect);
+        selectionRect.visible = false;
     }
 
     var isFullscreen(default, set):Bool = false;
@@ -211,10 +229,153 @@ class LevelEditor extends FlxState
             if(MoonInput.justPressed(UI_LEFT)) playback.time -= advanceSecs;
             else if (MoonInput.justPressed(UI_RIGHT)) playback.time += advanceSecs;
 
-            if (FlxG.mouse.justPressed && FlxG.mouse.viewY > strumline.y)
-                placeNote(col, localY);
+            if (FlxG.keys.justPressed.TAB) changeTab(1);
 
-            if(FlxG.keys.justPressed.TAB) changeTab(1);
+            if (FlxG.keys.pressed.CONTROL && FlxG.mouse.justPressed && !adjustingSustain)
+            {
+                selecting = true;
+                dragStartX = FlxG.mouse.x;
+                dragStartY = FlxG.mouse.y;
+                selectionRect.visible = true;
+            }
+
+            if (selecting)
+            {
+                if (FlxG.mouse.pressed)
+                {
+                    var minX = Math.min(dragStartX, FlxG.mouse.x);
+                    var minY = Math.min(dragStartY, FlxG.mouse.y);
+                    var w = Math.abs(FlxG.mouse.x - dragStartX);
+                    var h = Math.abs(FlxG.mouse.y - dragStartY);
+                    selectionRect.setPosition(minX, minY);
+                    selectionRect.setGraphicSize(Std.int(w), Std.int(h));
+                    selectionRect.updateHitbox();
+                }
+                else
+                {
+                    selecting = false;
+                    selectionRect.visible = false;
+                    deselectAll();
+                    for (n in notes)
+                        if (selectionRect.overlaps(n))
+                            selectNote(n);
+                }
+            }
+
+            if (FlxG.keys.justPressed.DELETE && selectedNotes.length > 0)
+            {
+                for (n in selectedNotes.copy())
+                    removeNote(n);
+
+                deselectAll();
+            }
+
+            // Handle right-click deletion for single note
+            if (FlxG.mouse.justPressedRight)
+            {
+                final hoveredNote = getHoveredNote();
+                if (hoveredNote != null)
+                {
+                    removeNote(hoveredNote);
+                    if (selectedNotes.contains(hoveredNote))
+                        deselectNote(hoveredNote);
+                }
+            }
+
+            // Handle sustain adjusting or note selection/placement
+            if (!selecting && !adjustingSustain && FlxG.mouse.justPressed && FlxG.mouse.viewY > strumline.y)
+            {
+                final hoveredHandle = getHoveredHandle();
+                if (hoveredHandle != null)
+                {
+                    adjustingSustain = true;
+                    if (!selectedNotes.contains(hoveredHandle))
+                    {
+                        deselectAll();
+                        selectNote(hoveredHandle);
+                    }
+                    dragStartY = FlxG.mouse.y;
+                    startDurations = new Map();
+                    for (n in selectedNotes)
+                    {
+                        startDurations.set(n, n.duration);
+                        if (n.duration > 0 && !sustainSprites.exists(n))
+                            drawSustain(n);
+                    }
+                }
+                else
+                {
+                    var hoveredNote = getHoveredNote();
+                    var hoveredSustain = getHoveredSustain();
+                    
+                    if (hoveredNote != null || hoveredSustain != null)
+                    {
+                        // Use the note from either the note itself or the sustain
+                        var targetNote = (hoveredNote != null) ? hoveredNote : hoveredSustain;
+                        
+                        if (!FlxG.keys.pressed.CONTROL)
+                        {
+                            deselectAll();
+                            selectNote(targetNote);
+                        }
+                        else
+                        {
+                            if (selectedNotes.contains(targetNote))
+                                deselectNote(targetNote);
+                            else
+                                selectNote(targetNote);
+                        }
+                    }
+                    else
+                        placeNote(col, localY);
+                }
+            }
+
+            // Handle adjusting sustains
+            if (adjustingSustain && FlxG.mouse.pressed)
+            {
+                final currentLocalY = FlxG.mouse.y - gridContainer.y;
+                final startLocalY = dragStartY - gridContainer.y;
+                final deltaTime = getSnappedTime(currentLocalY) - getSnappedTime(startLocalY);
+
+                for (n in selectedNotes)
+                {
+                    var newDur = startDurations.get(n) + deltaTime;
+                    if (newDur < 0) newDur = 0;
+                    n.duration = newDur;
+                    noteStructs.get(n).duration = newDur;
+
+                    if (newDur > 0)
+                    {
+                        var susHeight = Math.max(8, getTimePos(n.time + newDur) - getTimePos(n.time));
+                        var sus = sustainSprites.get(n);
+                        if (sus == null)
+                        {
+                            drawSustain(n);
+                        }
+                        else
+                        {
+                            sus.makeGraphic(gridSize - 4, Std.int(susHeight), getColor(n.direction));
+                            var capHeight = Math.min(8, susHeight);
+                            sus.pixels.fillRect(new openfl.geom.Rectangle(0, susHeight - capHeight, sus.width, capHeight), FlxColor.WHITE);
+                        }
+                        final sus = sustainSprites.get(n);
+                        // Center the sustain properly
+                        sus.x = n.x + 2; // Small padding from grid edge
+                        sus.y = n.y + gridSize;
+                    }
+                    else if (sustainSprites.exists(n))
+                    {
+                        gridContainer.remove(sustainSprites.get(n));
+                        sustainSprites.get(n).destroy();
+                        sustainSprites.remove(n);
+                    }
+
+                    updateHandlePos(n);
+                }
+            }
+            else if (adjustingSustain)
+                adjustingSustain = false;
 
             // ----- Upon note hit ----- //
             for (n in notes)
@@ -262,9 +423,7 @@ class LevelEditor extends FlxState
                 obj.active = obj.visible = obj.isOnScreen();
         }
         else
-        {
             FlxG.mouse.enabled = FlxG.mouse.visible = false;
-        }
     }
 
     function drawGrid(songLength:Float):Void
@@ -324,11 +483,13 @@ class LevelEditor extends FlxState
         };
 
         noteData.push(ns);
-        addNote(ns, laneIndex);
+        final note = addNote(ns, laneIndex);
+        deselectAll();
+        selectNote(note);
         sfx('addNote-${FlxG.random.int(1, 6)}');
     }
 
-    function addNote(data:NoteStruct, laneIndex:Int)
+    function addNote(data:NoteStruct, laneIndex:Int):Note
     {
         var note = new Note(data.data, data.time, data.type, 'mooncharter', data.duration, conductor);
         note.state = CHART_EDITOR;
@@ -345,18 +506,23 @@ class LevelEditor extends FlxState
         if (note.duration > 0)
             drawSustain(note);
 
-        noteData.push(data);
+        noteStructs.set(note, data);
         notes.push(note);
+        return note;
     }
 
     function drawSustain(note:Note)
     {
-        final susHeight = getTimePos(note.time + note.duration) - getTimePos(note.time);
-        var sus = new MoonSprite().makeGraphic(10, Std.int(susHeight), getColor(note.direction));
-        sus.x = note.x + (gridSize - sus.width) / 2;
-        sus.y =  note.y + gridSize;
-        sus.pixels.fillRect(new openfl.geom.Rectangle(0, sus.height - 8, sus.width, 8), FlxColor.WHITE);
+        var susHeight = Math.max(8, getTimePos(note.time + note.duration) - getTimePos(note.time));
+        var sus = new MoonSprite().makeGraphic(gridSize - 4, Std.int(susHeight), getColor(note.direction));
+
+        sus.x = note.x + 2;
+        sus.y = note.y + gridSize;
+        
+        var capHeight = Math.min(8, susHeight);
+        sus.pixels.fillRect(new openfl.geom.Rectangle(0, susHeight - capHeight, sus.width, capHeight), FlxColor.WHITE);
         gridContainer.add(sus);
+        sustainSprites.set(note, sus);
     }
 
     public function beatHit(curBeat:Float)
@@ -372,7 +538,7 @@ class LevelEditor extends FlxState
 
     function getSnappedTime(localY:Float):Float
     {
-        final snapLen = conductor.crochet / snapDiv;
+        final snapLen = conductor.stepCrochet / snapDiv;
         final rawTime = localY / gridSize * conductor.stepCrochet;
         return Math.round(rawTime / snapLen) * snapLen;
     }
@@ -418,5 +584,123 @@ class LevelEditor extends FlxState
         }
 
         return this.isFullscreen;
+    }
+
+    private function getHoveredNote():Note
+    {
+        for (n in notes)
+            if (FlxG.mouse.overlaps(n))
+                return n;
+        return null;
+    }
+
+    private function getHoveredSustain():Note
+    {
+        for (n => s in sustainSprites)
+            if (FlxG.mouse.overlaps(s))
+                return n;
+        return null;
+    }
+
+    private function getHoveredHandle():Note
+    {
+        for (n => h in sustainHandles)
+            if (FlxG.mouse.overlaps(h))
+                return n;
+        return null;
+    }
+
+    private function selectNote(note:Note):Void
+    {
+        if (!selectedNotes.contains(note))
+        {
+            selectedNotes.push(note);
+            note.color = FlxColor.GRAY;
+            createHandle(note);
+        }
+    }
+
+    private function deselectNote(note:Note):Void
+    {
+        selectedNotes.remove(note);
+        note.color = FlxColor.WHITE;
+        if (sustainHandles.exists(note))
+        {
+            gridContainer.remove(sustainHandles.get(note));
+            sustainHandles.get(note).destroy();
+            sustainHandles.remove(note);
+        }
+    }
+
+    private function deselectAll():Void
+    {
+        for (n in selectedNotes)
+        {
+            n.color = FlxColor.WHITE;
+            if (sustainHandles.exists(n))
+            {
+                gridContainer.remove(sustainHandles.get(n));
+                sustainHandles.get(n).destroy();
+                sustainHandles.remove(n);
+            }
+        }
+        selectedNotes = [];
+    }
+
+    private function createHandle(note:Note):Void
+    {
+        if (!sustainHandles.exists(note))
+        {
+            final handleSize = gridSize / 2;
+            var handle = new MoonSprite().makeGraphic(Std.int(handleSize), Std.int(handleSize), FlxColor.YELLOW);
+            gridContainer.add(handle);
+            sustainHandles.set(note, handle);
+            updateHandlePos(note);
+        }
+    }
+
+    private function updateHandlePos(note:Note):Void
+    {
+        if (sustainHandles.exists(note))
+        {
+            final h = sustainHandles.get(note);
+            final handleSize = h.width;
+            if (note.duration == 0)
+            {
+                h.x = note.x + (note.width - handleSize) / 2;
+                h.y = note.y + gridSize - handleSize;
+            }
+            else
+            {
+                final sus = sustainSprites.get(note);
+                h.x = sus.x + (sus.width - handleSize) / 2;
+                h.y = sus.y + sus.height - handleSize;
+            }
+        }
+    }
+
+    private function removeNote(note:Note):Void
+    {
+        notes.remove(note);
+        final ns = noteStructs.get(note);
+        noteData.remove(ns);
+        noteStructs.remove(note);
+
+        if (sustainSprites.exists(note))
+        {
+            gridContainer.remove(sustainSprites.get(note));
+            sustainSprites.get(note).destroy();
+            sustainSprites.remove(note);
+        }
+
+        if (sustainHandles.exists(note))
+        {
+            gridContainer.remove(sustainHandles.get(note));
+            sustainHandles.get(note).destroy();
+            sustainHandles.remove(note);
+        }
+
+        gridContainer.remove(note);
+        note.destroy();
     }
 }

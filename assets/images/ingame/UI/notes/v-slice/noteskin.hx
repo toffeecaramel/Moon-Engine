@@ -2,6 +2,7 @@ import flixel.FlxG;
 
 final scale = 0.6;
 
+//TODO: UPDATE
 function createReceptor(direction)
 {
     //trace("Hello there! From noteskin~", "DEBUG");
